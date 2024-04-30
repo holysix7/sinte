@@ -22,14 +22,6 @@
                 <div class="card card-success">
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
-                        <div class="row">
-                            <!-- <div class="col-md-auto">
-                                <a href="cetakeservices" id=cetakeservices class="btn btn-success btn-block"><i class="fas fa-print"></i> Cetak laporan</a>
-                            </div>
-                            <div class="col-md-auto">
-                                <a href="<?php echo base_url('eservices/pdf') ?>" class="btn btn-dark"><i class="fas fa fa-download ">&nbsp</i> Export E-services</a>
-                            </div> -->
-                        </div>
                         <br>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="tableEservice" width="100%" cellspacing="0">

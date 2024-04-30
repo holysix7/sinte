@@ -122,8 +122,20 @@
             <span>Data Kerja Praktik</span>
         </a>
     </li>
-    <hr class="sidebar-divider d-none d-md-block">
 
+
+    <!-- Nav Item - Charts Kunjungan Tamu Superadmin -->
+    <li class="nav-item 
+    <?php if (current_url() == base_url('tamu/view')) {
+        echo 'active';
+    } ?>">
+        <a class="nav-link" href="<?= base_url('tamu/view') ?>">
+            <i class="fas fa-address-card"></i>
+            <span>Data Kunjungan Tamu</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item 
@@ -218,6 +230,33 @@
                             <?php if (current_url() == base_url('eservices/laporan_eservices')) {
                                 echo 'active';
                             } ?>" href="<?php echo base_url('eservices/laporan_eservices') ?>">Laporan E-Services</a>
+
+                        <a class="collapse-item 
+                            <?php if (current_url() == base_url('aplikasi/laporan_aplikasi')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('aplikasi/laporan_aplikasi') ?>">Laporan Aplikasi</a>
+
+                        <a class="collapse-item 
+                            <?php if (current_url() == base_url('bigdata/laporan_bigdata')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('bigdata/laporan_bigdata') ?>">Laporan Bigdata</a>
+
+                        <a class="collapse-item 
+                            <?php if (current_url() == base_url('multimedia/laporan_multimedia')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('multimedia/laporan_multimedia') ?>">Laporan Multimedia</a>
+
+                        <a class="collapse-item 
+                            <?php if (current_url() == base_url('publikasi/laporan_publikasi')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('publikasi/laporan_publikasi') ?>">Laporan Publikasi</a>
+
+                        <a class="collapse-item 
+                            <?php if (current_url() == base_url('kp/laporan_kp')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('kp/laporan_kp') ?>">Laporan Kerja Praktik</a>
+
+
 
 
                     <?php endif; ?>

@@ -20,6 +20,8 @@
 
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url('vendor/') ?>css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('media/img/logo.png') ?>" rel="icon" />
+    <title>SINTE BPSDM JABAR- <?php echo $title; ?></title>
 
 </head>
 
@@ -70,6 +72,9 @@
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="<?= base_url('auth/register'); ?>">Create an Account!</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="<?= base_url('auth/register'); ?>">Login As Administrator</a>
                                     </div>
                                 </div>
                             </div>

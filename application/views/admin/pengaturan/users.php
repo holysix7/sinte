@@ -25,8 +25,7 @@
                         <div class="row">
                             <?php if ($user == 'superadmin') { ?>
                                 <div class="col-md-3">
-                                    <button class="btn btn-primary btn-flat btn-block" data-toggle="modal"
-                                        data-target="#adduser"><i class="fas fa-plus"></i> Tambah user </button>
+                                    <button class="btn btn-primary btn-flat btn-block" data-toggle="modal" data-target="#adduser"><i class="fas fa-plus"></i> Tambah user </button>
                                 </div>
                             <?php } else { ?>
                             <?php } ?>
@@ -40,29 +39,26 @@
                                         <th>Nama Lengkap</th>
                                         <th>Username</th>
                                         <th>Level</th>
-                                        <?php if ($user == 'superadmin') { ?>
-                                            <th>Aksi</th><?php } else {
-                                        } ?>
+                                        <?php if ($user == 'superadmin') { ?><th>Aksi</th><?php } else {
+                                                                                        } ?>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;
-                                    foreach ($users as $u): ?>
+                                    foreach ($users as $u) : ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
                                             <td><?= $u->nama_lengkap; ?></td>
                                             <td><?= $u->username; ?></td>
                                             <td><?php
-                                            if ($u->level == 1) {
-                                                echo 'Superadmin';
-                                            }
-                                            if ($u->level == 2) {
-                                                echo 'Admin';
-                                            }
-                                            if ($u->level == 3) {
-                                                echo 'Users';
-                                            }
-                                            ?>
+                                                if ($u->level == 1) {
+                                                    echo 'Superadmin';
+                                                }if ($u->level == 2) {
+                                                    echo 'Admin';
+                                                }if ($u->level == 3) {
+                                                    echo 'Users';
+                                                }
+                                                ?>
                                             </td>
                                             <?php if ($user == 'superadmin') { ?>
                                                 <td>
@@ -73,13 +69,9 @@
                                                             class="badge badge-danger d-block">Hapus</a>
                                                         <br>
                                                         <?php if ($u->level == "2") { ?>
-                                                            <a href="<?= base_url('admin/ubahlevel/1/' . $u->id_user) ?>"
-                                                                data-level="<?= $u->level ?>" class="badge badge-dark d-block">Jadikan
-                                                                Super Admin</a>
+                                                            <a href="<?= base_url('admin/ubahlevel/1/' . $u->id_user) ?>" data-level="<?= $u->level ?>" class="badge badge-dark d-block">Jadikan Super Admin</a>
                                                         <?php } else { ?>
-                                                            <a href="<?= base_url('admin/ubahlevel/2/' . $u->id_user) ?>"
-                                                                data-level="<?= $u->level ?>"
-                                                                class="badge badge-secondary d-block">Jadikan Admin</a>
+                                                            <a href="<?= base_url('admin/ubahlevel/2/' . $u->id_user) ?>" data-level="<?= $u->level ?>" class="badge badge-secondary d-block">Jadikan Admin</a>
                                                         <?php } ?>
                                                     <?php } ?>
                                                 </td>
@@ -119,8 +111,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Pilih tombol 'hapus' untuk menghapus user <span id="hps-nama-lengkap"></span> ?
-            </div>
+            <div class="modal-body">Pilih tombol 'hapus' untuk menghapus user <span id="hps-nama-lengkap"></span> ? </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                 <a href="#" class="btn btn-danger" id="hps-id-user">Hapus</a>

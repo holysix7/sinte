@@ -24,8 +24,7 @@
                         <?= $this->session->flashdata('message'); ?>
                         <div class="row">
                             <div class="col-md-4">
-                                <a href="#" id="cetaklaporansk" class="btn btn-success btn-block"><i
-                                        class="fas fa-print"></i> Cetak laporan</a>
+                                <a href="#" id="cetaklaporansk" class="btn btn-success btn-block"><i class="fas fa-print"></i> Cetak laporan</a>
                             </div>
                             <div class="col-md-4">
                                 <form action="<?php echo base_url('admin/laporan_suratkeluar') ?>" method="GET">
@@ -33,10 +32,8 @@
                                         <div class="input-group">
                                             <select class="form-control" id="filter-index-sk" name="id_index">
                                                 <option value="">Filter Berdasarkan Jenis Surat</option>
-                                                <?php foreach ($indeks as $i): ?>
-                                                    <option value="<?php echo $i->id_indeks ?>">
-                                                        <?php echo $i->judul_indeks; ?>
-                                                    </option>
+                                                <?php foreach ($indeks as $i) : ?>
+                                                    <option value="<?php echo $i->id_indeks ?>"><?php echo $i->judul_indeks; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -45,15 +42,11 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle btn-block" type="button"
-                                        id="filterTanggal" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle btn-block" type="button" id="filterTanggal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Filter tanggal
                                     </button>
                                     <?php if (isset($_GET['filter-tanggal'])) { ?>
-                                        <a href="<?php echo base_url('admin/laporan_suratkeluar') ?>"
-                                            class="btn btn-info text-white btn-block"><i class="fas fa-eye"
-                                                title="Tampilkan semua"></i> Tampilkan semua</a>
+                                        <a href="<?php echo base_url('admin/laporan_suratkeluar') ?>" class="btn btn-info text-white btn-block"><i class="fas fa-eye" title="Tampilkan semua"></i> Tampilkan semua</a>
                                     <?php } ?>
                                     <div class="dropdown-menu lg" aria-labelledby="dropdownMenuButton">
                                         <form action="<?php echo base_url('admin/laporan_suratkeluar') ?>" method='GET'>
@@ -66,9 +59,7 @@
                                                 <input type="date" class="form-control" name="tanggal_akhir">
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" name="filter-tanggal"
-                                                    class="btn btn-primary btn-block"><i
-                                                        class="fas fa-filter"></i>Filter</button>
+                                                <button type="submit" name="filter-tanggal" class="btn btn-primary btn-block"><i class="fas fa-filter"></i>Filter</button>
                                             </div>
                                         </form>
                                     </div>
@@ -91,7 +82,7 @@
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;
-                                    foreach ($suratkeluar as $sk): ?>
+                                    foreach ($suratkeluar as $sk) : ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
                                             <td><?= $sk->no_suratkeluar; ?></td>
@@ -99,7 +90,7 @@
                                             <td><?= $sk->judul_indeks; ?></td>
                                             <td><?= $sk->tujuan; ?></td>
                                             <td><?php $date = date_create($sk->tanggal_keluar);
-                                            echo date_format($date, 'd/m/Y'); ?></td>
+                                                echo date_format($date, 'd/m/Y'); ?></td>
                                             <td><?= $sk->keterangan; ?></td>
                                         </tr>
                                     <?php endforeach; ?>

@@ -1,8 +1,8 @@
 <?php
 
 /**
- *
- */
+*
+*/
 class Userskp extends CI_Controller
 {
 
@@ -40,7 +40,7 @@ class Userskp extends CI_Controller
         $this->load->view('admin/dashboard', $data);
         $this->load->view('templates/footer');
     }
-    // suratmasuk
+// suratmasuk
     public function suratmasuk()
     {
         $data['title'] = 'Surat Masuk';
@@ -79,7 +79,7 @@ class Userskp extends CI_Controller
         if ($query) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Nomor surat sudah ada!</h5>
+                <h5><i class="icon fa fa-trash"></i> Nomor surat sudah ada!</h5>
                 </div>');
             redirect('admin/suratmasuk');
         } elseif ($namaberkas_suratmasuk == null) {
@@ -101,15 +101,15 @@ class Userskp extends CI_Controller
                 </div>');
             redirect('admin/suratmasuk');
         } else {
-            $config['upload_path'] = 'vendor/files/suratmasuk/';
-            $config['allowed_types'] = 'jpeg|jpg|png|doc|docx|pdf';
+            $config['upload_path']          = 'vendor/files/suratmasuk/';
+            $config['allowed_types']        = 'jpeg|jpg|png|doc|docx|pdf';
             $config['file_name'] = $berkas_suratmasuk;
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('berkas_suratmasuk')) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5><i class="icon fas fa-times"></i> Gagal!</h5>
+                    <h5><i class="icon fa fa-trash"></i> Gagal!</h5>
                     ' . $this->upload->display_errors() . '
                     </div>');
                 redirect('admin/suratmasuk');
@@ -188,15 +188,15 @@ class Userskp extends CI_Controller
                     unlink($path);
                 }
 
-                $config['upload_path'] = 'vendor/files/suratmasuk/';
-                $config['allowed_types'] = 'jpeg|jpg|png|doc|docx|pdf';
+                $config['upload_path']          = 'vendor/files/suratmasuk/';
+                $config['allowed_types']        = 'jpeg|jpg|png|doc|docx|pdf';
                 $config['file_name'] = $berkas_suratmasuk;
                 $this->load->library('upload', $config);
 
                 if (!$this->upload->do_upload('berkas_suratmasuk')) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-times"></i> ' . $this->upload->display_errors() . '!</h5>
+                        <h5><i class="icon fa fa-trash"></i> ' . $this->upload->display_errors() . '!</h5>
                         </div>');
                     redirect('admin/suratmasuk');
                 } else {
@@ -213,7 +213,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Gagal!</h5>
+                <h5><i class="icon fa fa-trash"></i> Gagal!</h5>
                 Nomor surat sudah ada!
                 </div>');
             redirect('admin/suratmasuk');
@@ -242,7 +242,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Gagal dihapus!</h5>
+                <h5><i class="icon fa fa-trash"></i> Gagal dihapus!</h5>
                 </div>');
             redirect('admin/suratmasuk');
         }
@@ -297,7 +297,7 @@ class Userskp extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // suratkeluar
+// suratkeluar
     public function suratkeluar()
     {
         $data['title'] = 'Surat Keluar';
@@ -343,8 +343,8 @@ class Userskp extends CI_Controller
                 'berkas_suratkeluar' => $berkas_suratkeluar
             ];
             if ($berkas_suratkeluar != null) {
-                $config['upload_path'] = 'vendor/files/suratkeluar/';
-                $config['allowed_types'] = 'jpeg|jpg|png|doc|docx|pdf';
+                $config['upload_path']          = 'vendor/files/suratkeluar/';
+                $config['allowed_types']        = 'jpeg|jpg|png|doc|docx|pdf';
                 $config['file_name'] = $berkas_suratkeluar;
 
                 $this->load->library('upload', $config);
@@ -352,7 +352,7 @@ class Userskp extends CI_Controller
                 if (!$this->upload->do_upload('berkas_suratkeluar')) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-times"></i> ' . $this->upload->display_errors() . '!</h5>
+                        <h5><i class="icon fa fa-trash"></i> ' . $this->upload->display_errors() . '!</h5>
                         </div>');
                     redirect('admin/suratkeluar');
                 } else {
@@ -375,7 +375,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Nomor surat sudah ada!</h5>
+                <h5><i class="icon fa fa-trash"></i> Nomor surat sudah ada!</h5>
                 </div>');
             redirect('admin/suratkeluar');
         }
@@ -397,9 +397,9 @@ class Userskp extends CI_Controller
 
         $cek_no = $this->model_surat->getdatawithadd('suratkeluar', 'no_suratkeluar="' . $no_suratkeluar . '" AND id_suratkeluar!=' . $id_suratkeluar)->row_array();
 
-        // jika no surat benar
+// jika no surat benar
         if (!$cek_no) {
-            // jika berkas kosong
+// jika berkas kosong
             if ($namaberkas_suratkeluar != null) {
                 $array = [
                     'no_suratkeluar' => $no_suratkeluar,
@@ -411,20 +411,20 @@ class Userskp extends CI_Controller
                     'berkas_suratkeluar' => $berkas_suratkeluar
                 ];
 
-                $config['upload_path'] = 'vendor/files/suratkeluar/';
-                $config['allowed_types'] = 'jpeg|jpg|png|doc|docx|pdf';
+                $config['upload_path']          = 'vendor/files/suratkeluar/';
+                $config['allowed_types']        = 'jpeg|jpg|png|doc|docx|pdf';
                 $config['file_name'] = $berkas_suratkeluar;
 
                 $this->load->library('upload', $config);
-                // jika upload gagal
+// jika upload gagal
                 if (!$this->upload->do_upload('berkas_suratkeluar')) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-times"></i> ' . $this->upload->display_errors() . '!</h5>
+                        <h5><i class="icon fa fa-trash"></i> ' . $this->upload->display_errors() . '!</h5>
                         </div>');
                     redirect('admin/suratkeluar');
                 } else {
-                    // jika berhasil
+// jika berhasil
                     $this->upload->do_upload();
                     $this->model_surat->updatedata('suratkeluar', $array, array('id_suratkeluar' => $id_suratkeluar));
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
@@ -442,7 +442,7 @@ class Userskp extends CI_Controller
                     'tanggal_keluar' => $tanggal_keluar,
                     'keterangan' => $keterangan
                 ];
-                // tanpa upload berkas
+// tanpa upload berkas
                 $this->model_surat->updatedata('suratkeluar', $array, array('id_suratkeluar' => $id_suratkeluar));
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -453,7 +453,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Nomor surat sudah ada!</h5>
+                <h5><i class="icon fa fa-trash"></i> Nomor surat sudah ada!</h5>
                 </div>');
             redirect('admin/suratkeluar');
         }
@@ -481,7 +481,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Gagal dihapus!</h5>
+                <h5><i class="icon fa fa-trash"></i> Gagal dihapus!</h5>
                 </div>');
             redirect('admin/suratkeluar');
         }
@@ -533,10 +533,10 @@ class Userskp extends CI_Controller
         }
 
         $this->load->view('admin/laporan/cetaksuratkeluar', $data);
-        // $this->load->view('templates/footer');
+// $this->load->view('templates/footer');
     }
 
-    // indeks
+// indeks
     public function indeks()
     {
         $data['title'] = 'Indeks Surat';
@@ -544,7 +544,7 @@ class Userskp extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
@@ -573,7 +573,7 @@ class Userskp extends CI_Controller
         if ($query) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Gagal!</h5>
+                <h5><i class="icon fa fa-trash"></i> Gagal!</h5>
                 Kode indeks sudah ada!
                 </div>');
             redirect('admin/indeks');
@@ -607,7 +607,7 @@ class Userskp extends CI_Controller
         if ($cek) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Kode sudah ada! coba kode lain</h5>
+                <h5><i class="icon fa fa-trash"></i> Kode sudah ada! coba kode lain</h5>
                 </div>');
             redirect('admin/ubahindeks/' . $id_indeks);
         } else {
@@ -638,7 +638,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Gagal dihapus!</h5>
+                <h5><i class="icon fa fa-trash"></i> Gagal dihapus!</h5>
                 </div>');
             redirect('admin/indeks');
         }
@@ -657,7 +657,7 @@ class Userskp extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
@@ -695,7 +695,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Username sudah ada!</h5>
+                <h5><i class="icon fa fa-trash"></i> Username sudah ada!</h5>
                 </div>');
             redirect('admin/users');
         }
@@ -719,7 +719,7 @@ class Userskp extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> User gagal dihapus!</h5>
+                <h5><i class="icon fa fa-trash"></i> User gagal dihapus!</h5>
                 </div>');
             redirect('admin/users');
         }
@@ -760,7 +760,7 @@ class Userskp extends CI_Controller
         if ($cek_username) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Username ada!</h5>
+                <h5><i class="icon fa fa-trash"></i> Username ada!</h5>
                 </div>');
             redirect('admin/profil');
         } else {
@@ -801,7 +801,7 @@ class Userskp extends CI_Controller
                 if (!$this->upload->do_upload('image')) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-times"></i> ' . $this->upload->display_errors() . '!</h5>
+                        <h5><i class="icon fa fa-trash"></i> ' . $this->upload->display_errors() . '!</h5>
                         </div>');
                     redirect('admin/profil');
                 } else {
@@ -829,7 +829,7 @@ class Userskp extends CI_Controller
         if (!$cek_password) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Password lama salah!</h5>
+                <h5><i class="icon fa fa-trash"></i> Password lama salah!</h5>
                 </div>');
             redirect('admin/profil');
         } else {

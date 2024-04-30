@@ -44,7 +44,7 @@ class Eservices extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
@@ -54,35 +54,13 @@ class Eservices extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambah_data()
-    {
-        $data['title'] = 'E-services';
-
-        $data['eservice'] = $this->M_eservice->SemuaData();
-
-        if ($this->session->userdata('level') == 1) {
-            $data['user'] = 'superadmin';
-        } elseif ($this->session->userdata('level') == 2) {
-            $data['user'] = 'admin';
-        } elseif ($this->session->userdata('level') == 3) {
-            $data['user'] = 'userskp';
-        }
-        if ($this->session->userdata('level') != 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
-                </div>');
-            redirect(base_url(''));
-        }
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/eservices/tambah_data', $data);
-        $this->load->view('templates/footer');
-    }
-
     public function proses_tambah_data()
     {
         $this->M_eservice->proses_tambah_data();
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+        </div>');
         redirect('eservices/view');
     }
 
@@ -108,6 +86,10 @@ class Eservices extends CI_Controller
             );
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('eservice', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+            </div>');
             redirect('eservices/view');
         }
     }
@@ -134,42 +116,22 @@ class Eservices extends CI_Controller
             );
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('eservice', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+            </div>');
             redirect('eservices/view');
         }
     }
 
-
     public function hapus_data($id)
     {
         $this->M_eservice->hapus_data($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
+        </div>');
         redirect('eservices/view');
-    }
-
-    public function edit_data($id)
-    {
-        $data['title'] = 'E-services';
-
-        // $data['eservice'] = $this->M_eservice->SemuaData();
-        $data['eservice'] = $this->M_eservice->ambil_id_eservice($id);
-
-        if ($this->session->userdata('level') == 1) {
-            $data['user'] = 'superadmin';
-        } elseif ($this->session->userdata('level') == 2) {
-            $data['user'] = 'admin';
-        } elseif ($this->session->userdata('level') == 3) {
-            $data['user'] = 'userskp';
-        }
-        if ($this->session->userdata('level') != 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
-                </div>');
-            redirect(base_url(''));
-        }
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/eservices/edit_data', $data);
-        $this->load->view('templates/footer');
     }
 
     public function proses_edit_data()
@@ -181,6 +143,10 @@ class Eservices extends CI_Controller
         ];
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('eservice', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
+        </div>');
         redirect('eservices/view');
     }
 
@@ -200,16 +166,6 @@ class Eservices extends CI_Controller
         force_download($file, NULL);
     }
 
-    public function pdf()
-    {
-        $this->load->view('admin/eservices/pdf_services');
-        $data['eservice'] = $this->M_eservice->read();
-        $this->load->library('Mypdf');
-        $this->mypdf->generate('admin/eservices/pdf_services', $data, 'Laporan E-services', 'A4', 'potrait');
-
-
-    }
-
     public function laporan_eservices()
     {
         $data['title'] = 'E-services';
@@ -218,29 +174,16 @@ class Eservices extends CI_Controller
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
         }
-
+       
         $data['eservice'] = $this->M_eservice->SemuaData();
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/laporan/laporan_eservices', $data);
         $this->load->view('templates/footer');
-
+    
     }
 
 
-    public function cetakeservices()
-    {
-        $data['title'] = 'Eservices #' . uniqid();
-
-
-        $data['eservice'] = $this->M_eservice->SemuaData();
-
-
-        $this->load->view('admin/laporan/cetakeservices', $data);
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/footer');
-
-    }
 
 }
 

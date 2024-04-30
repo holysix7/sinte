@@ -31,13 +31,10 @@
                             <?php } else { ?>
                             <?php } ?>
                         </div>
-
+                       
                         <br>
                         <div class="table-responsive">
-
-
-
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -55,7 +52,7 @@
                                         } ?>
                                     </tr>
                                 </thead>
-
+                    
                                 <tbody>
                                     <?php
                                     $no = 1;
@@ -74,7 +71,7 @@
                                                 <?php echo $bd['nama_kegiatan']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $bd['bidang_penyelenggara']; ?>
+                                                <?php echo $bd['bidang_penyelenggara'];   ?>
                                             </td>
 
                                             <td>
@@ -85,28 +82,21 @@
                                             </td>
 
                                             <td>
-                                                <button type="button" class="badge badge-dark btn-flat btn-block"
-                                                    data-toggle="modal"
+                                                <button type="button" class="badge badge-dark btn-flat btn-block" data-toggle="modal"
                                                     data-target="#upfotokegiatan<?php echo $bd['id_bigdata']; ?>">Upload</button>
                                                 <a href="<?php echo base_url() ?>bigdata/download1/<?php echo $bd['id_bigdata']; ?>"
-                                                    class="badge badge-success btn-flat btn-block"
-                                                    title="download">Download</a>
+                                                    class="badge badge-success btn-flat btn-block" title="download">Download</a>
                                             </td>
                                             <td>
-                                                <button type="button" class="badge badge-dark btn-flat btn-block"
-                                                    data-toggle="modal"
+                                                <button type="button" class="badge badge-dark btn-flat btn-block" data-toggle="modal"
                                                     data-target="#updatapeserta<?php echo $bd['id_bigdata']; ?>">Upload</button>
                                                 <a href="<?php echo base_url() ?>bigdata/download2/<?php echo $bd['id_bigdata']; ?>"
-                                                    class="badge badge-success btn-flat btn-block"
-                                                    title="download">Download</a>
+                                                    class="badge badge-success btn-flat btn-block" title="download">Download</a>
 
                                             </td>
-
-
                                             <td>
-                                                <button type="button" class="badge badge-primary btn-block"
-                                                    data-toggle="modal"
-                                                    data-target="#editbigdata<?php echo $bd['id_bigdata']; ?>">Edit</button>
+                                                <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
+                                                    data-target="#editbigdata<?php  echo $bd['id_bigdata']; ?>">Edit</button>
                                                 <br>
                                                 <a href="<?php echo base_url() ?>bigdata/hapus_data/<?php echo $bd['id_bigdata']; ?>"
                                                     class="badge badge-danger btn-flat btn-block">Hapus</a>
@@ -151,59 +141,60 @@
                     <?php
                     echo form_open_multipart('bigdata/proses_tambah_data');
                     ?>
-                <div class="card-body row">
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="">Tanggal Kegiatan</label>
-                            <input type="date" name="tgl_kegiatan" class="form-control" placeholder="Tanggal Kegiatan"
+                    <div class="card-body row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="">Tanggal Kegiatan</label>
+                                <input type="date" name="tgl_kegiatan" class="form-control" placeholder="Tanggal Kegiatan"
                                 required>
-                        </div>
+                            </div>
 
-                        <!-- dropdown  -->
-                        <div class="form-group">
-                            <label>Pengisi disposisi</label>
-                            <select name="jenis_kegiatan" id="jenis_kegiatan" class="form-control" required>
-                                <option value="">-- Pilih --</option>
-                                <option value="Pelatihan">Pelatihan</option>
-                                <option value="Sertifikasi">Sertifikasi</option>
-                                <option value="Webinar">Webinar</option>
-                            </select>
-                            <small><span class="text-danger text-small" id="alert_jenis_kegiatan"></span></small>
-                        </div>
-                        <!-- dropdown  -->
+                            <!-- dropdown  -->
+                            <div class="form-group">
+                                <label>Jenis Kegiatan</label>
+                                <select name="jenis_kegiatan" id="jenis_kegiatan" class="form-control" required>
+                                    <option value="">-- Pilih --</option>
+                                    <option value="Pelatihan">Pelatihan</option>
+                                    <option value="Sertifikasi">Sertifikasi</option>
+                                    <option value="Webinar">Webinar</option>
+                                </select>
+                                <small><span class="text-danger text-small" id="alert_jenis_kegiatan"></span></small>
+                            </div>
+                             <!-- dropdown  -->
 
-                        <div class="form-group">
-                            <label for="">Nama Kegiatan</label>
-                            <input type="text" class="form-control" name="nama_kegiatan" required>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="">Bidang Penyelenggara</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="bidang_penyelenggara" required>
+                             <div class="form-group">
+                                <label for="">Nama Kegiatan</label>
+                                <input type="text" class="form-control" name="nama_kegiatan" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">Jumlah Peserta</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" name="jumlah_peserta" required>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="">Bidang Penyelenggara</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="bidang_penyelenggara" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Jumlah Peserta</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="jumlah_peserta" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Link Sertifikat</label>
+                                <input type="textr" class="form-control" name="link_sertifikat" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="">Link Sertifikat</label>
-                            <input type="textr" class="form-control" name="link_sertifikat" required>
-                        </div>
+
                     </div>
-                </div>
-                <!-- /.card-body -->
+                    <!-- /.card-body -->
+                    <div class="row mb-3">
+                            <div class="col-sm-5">
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                <button type="reset" class="btn btn-danger">Reset</button>
+                            </div>
+                    </div>
                 </p>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-5">
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                    <button type="reset" class="btn btn-danger">Reset</button>
-                </div>
             </div>
             </form>
         </div>
@@ -214,6 +205,7 @@
 <!-- Tambah Bigdata -->
 
 
+
 <!-- bigdata Edit-->
 <?php $no = 0;
 foreach ($bigdata as $bd):
@@ -222,69 +214,76 @@ foreach ($bigdata as $bd):
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Form Edit Data</h4>
+                    <h4 class="modal-title">Ubah Data</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <p>
-                        <?php
-                        echo form_open_multipart('bigdata/proses_edit_data');
-                        ?>
-                    <div class="card-body row">
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label for="">Tanggal Kegiatan</label>
-                                <div class="input-group">
-                                    <input type="date" name="tgl_kegiatan" class="form-control"
-                                        placeholder="Tanggal Kegiatan" value="<?php echo $bd['tgl_kegiatan']; ?>" required>
+                    <form role="form" action="<?= base_url('bigdata/proses_edit_data') ?>" method="post"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="id_bigdata" value="<?php echo $bd['id_bigdata'] ?>">
+                            <div class="card-body row">
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <label for="">Tanggal Kegiatan</label>
+                                        <div class="input-group">
+                                            <input type="date" name="tgl_kegiatan" class="form-control" placeholder="Tanggal Kegiatan"
+                                            value="<?php echo $bd['tgl_kegiatan']; ?>" required>
+                                        </div>
+                                    </div>
+                                    <!-- dropdown  -->
+                                    <div class="form-group">
+                                        <label>Jenis Kegiatan</label>
+                                        <select name="jenis_kegiatan" id="jenis_kegiatan" class="form-control" required>
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Pelatihan">Pelatihan</option>
+                                            <option value="Sertifikasi">Sertifikasi</option>
+                                            <option value="Webinar">Webinar</option>
+                                        </select>
+                                        <small><span class="text-danger text-small" id="alert_jenis_kegiatan"></span></small>
+                                    </div>
+                                    <!-- dropdown  -->
+                                    <div class="form-group">
+                                        <label for="">Nama Kegiatan</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="nama_kegiatan"
+                                                value="<?php echo $bd['nama_kegiatan']; ?>" required>
+                                            </div>
+                                    </div>   
+                                </div>
+                                
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <label for="">Bidang Penyelenggara</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="bidang_penyelenggara"
+                                                value="<?php echo $bd['bidang_penyelenggara']; ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Jumlah Peserta</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" name="jumlah_peserta"
+                                                value="<?php echo $bd['jumlah_peserta']; ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Link Sertifikat</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="link_sertifikat"
+                                                value="<?php echo $bd['link_sertifikat']; ?>" required>
+                                        </div>
+                                    </div>  
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="">Jenis Kegiatan</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="jenis_kegiatan"
-                                        value="<?php echo $bd['jenis_kegiatan']; ?>" required>
+                            <div class="row mb-3">
+                                <div class="col-sm-5">
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="">Nama Kegiatan</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="nama_kegiatan"
-                                        value="<?php echo $bd['nama_kegiatan']; ?>" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label for="">Bidang Penyelenggara</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="bidang_penyelenggara"
-                                        value="<?php echo $bd['bidang_penyelenggara']; ?>" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Jumlah Peserta</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="jumlah_peserta"
-                                        value="<?php echo $bd['jumlah_peserta']; ?>" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Link Sertifikat</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="link_sertifikat"
-                                        value="<?php echo $bd['link_sertifikat']; ?>" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                        <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
-                    </div>
-                    <!-- /.card-body -->
+                    </form>
                     </p>
                 </div>
             </div>
@@ -293,7 +292,9 @@ foreach ($bigdata as $bd):
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
-<!-- edit bigdata -->
+<!-- bigdata Edit-->
+
+
 
 <!-- Upload Foto Kegiatan-->
 <?php $no = 0;
@@ -358,8 +359,7 @@ foreach ($bigdata as $bd):
                             <label for="">Data Peserta</label>
                             <input type="file" class="form-control" name="userfile1"
                                 value="<?php echo $bd['bigdata_peserta']; ?>">
-                            <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan
-                                PPT</small>
+                                <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan PPT</small>
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-5">
@@ -375,3 +375,5 @@ foreach ($bigdata as $bd):
         <!-- /.modal-dialog -->
     </div>
 <?php endforeach; ?>
+
+

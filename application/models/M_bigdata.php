@@ -37,6 +37,21 @@ class M_bigdata extends CI_Model
     }
 
 
+    public function proses_edit_data()
+    {
+        $data = [
+            "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
+            "jenis_kegiatan" => $this->input->post('jenis_kegiatan'),
+            "nama_kegiatan" => $this->input->post('nama_kegiatan'),
+            "bidang_penyelenggara" => $this->input->post('bidang_penyelenggara'),
+            "jumlah_peserta" => $this->input->post('jumlah_peserta'),
+            "link_sertifikat" => $this->input->post('link_sertifikat'),
+        ];
+
+        $this->db->where('id_bigdata', $this->input->post('id_bigdata'));
+        $this->db->update('bigdata', $data);
+    }
+
     public function getother($table)
     {
         $query = "SELECT * FROM " . $table;

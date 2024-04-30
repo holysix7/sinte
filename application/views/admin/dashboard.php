@@ -21,20 +21,19 @@
                 <div class="row">
                     <!-- total surat masuk -->
                     <div class="<?php if ($user == 'superadmin') {
-                        echo 'col-xl-3';
-                    } else {
-                        echo 'col-xl-6';
-                    } ?> col-md-6 mb-4">
+                                    echo 'col-xl-3';
+                                } else {
+                                    echo 'col-xl-6';
+                                } ?> col-md-6 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total
-                                            Surat Masuk</div>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Surat Masuk</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php foreach ($count_sm as $key) {
                                                 echo $key->total;
-                                            } ?>
+                                            }  ?>
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -47,20 +46,19 @@
 
                     <!-- total surat keluar -->
                     <div class="<?php if ($user == 'superadmin') {
-                        echo 'col-xl-3';
-                    } else {
-                        echo 'col-xl-6';
-                    } ?> col-md-6 mb-4">
+                                    echo 'col-xl-3';
+                                } else {
+                                    echo 'col-xl-6';
+                                } ?> col-md-6 mb-4">
                         <div class="card border-left-success shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total
-                                            Surat Keluar</div>
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Surat Keluar</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php foreach ($count_sk as $key) {
                                                 echo $key->total;
-                                            } ?>
+                                            }  ?>
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -76,12 +74,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Indeks
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Indeks</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php foreach ($count_indeks as $key) {
                                                     echo $key->total;
-                                                } ?>
+                                                }  ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -97,12 +94,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Users
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Users</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php foreach ($count_users as $key) {
                                                     echo $key->total;
-                                                } ?>
+                                                }  ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -126,8 +122,7 @@
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Surat Masuk hari ini</h6>
                                 <div class="dropdown no-arrow">
-                                    <a href="<?= base_url('admin/suratmasuk') ?>" class="text-dark"
-                                        style="text-decoration: none">Lihat semua</a>
+                                    <a href="<?= base_url('admin/suratmasuk') ?>" class="text-dark" style="text-decoration: none">Lihat semua</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -148,7 +143,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $no = 1;
-                                            foreach ($sm_today as $sm): ?>
+                                            foreach ($sm_today as $sm) : ?>
                                                 <tr>
                                                     <td><?= $no++; ?></td>
                                                     <td><?= $sm->no_suratmasuk; ?></td>
@@ -156,13 +151,11 @@
                                                     <td><?= $sm->judul_indeks; ?></td>
                                                     <td><?= $sm->asal_surat; ?></td>
                                                     <td><?php $date = date_create($sm->tanggal_masuk);
-                                                    echo date_format($date, 'd/m/Y'); ?></td>
+                                                        echo date_format($date, 'd/m/Y'); ?></td>
                                                     <td><?php $date = date_create($sm->tanggal_diterima);
-                                                    echo date_format($date, 'd/m/Y'); ?></td>
+                                                        echo date_format($date, 'd/m/Y'); ?></td>
                                                     <td><?= $sm->keterangan; ?></td>
-                                                    <td><a
-                                                            href="<?php echo base_url($user . '/download/' . $sm->berkas_suratmasuk) ?>"><i
-                                                                class="fas fa-download text-success"></i></a></td>
+                                                    <td><a href="<?php echo base_url($user . '/download/' . $sm->berkas_suratmasuk) ?>"><i class="fas fa-download text-success"></i></a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -178,8 +171,7 @@
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-success">Surat Keluar hari ini</h6>
                                 <div class="dropdown no-arrow">
-                                    <a href="<?= base_url('admin/suratkeluar') ?>" class="text-dark"
-                                        style="text-decoration: none">Lihat semua</a>
+                                    <a href="<?= base_url('admin/suratkeluar') ?>" class="text-dark" style="text-decoration: none">Lihat semua</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -199,7 +191,7 @@
                                         </thead>
                                         <tbody>
                                             <?php $no = 1;
-                                            foreach ($sk_today as $sk): ?>
+                                            foreach ($sk_today as $sk) : ?>
                                                 <tr>
                                                     <td><?= $no++; ?></td>
                                                     <td><?= $sk->no_suratkeluar; ?></td>
@@ -207,11 +199,9 @@
                                                     <td><?= $sk->judul_indeks; ?></td>
                                                     <td><?= $sk->tujuan; ?></td>
                                                     <td><?php $date = date_create($sk->tanggal_keluar);
-                                                    echo date_format($date, 'd/m/Y'); ?></td>
+                                                        echo date_format($date, 'd/m/Y'); ?></td>
                                                     <td><?= $sk->keterangan; ?></td>
-                                                    <td><a
-                                                            href="<?php echo base_url($user . '/download/' . $sk->berkas_suratkeluar) ?>"><i
-                                                                class="fas fa-download text-success"></i></a></td>
+                                                    <td><a href="<?php echo base_url($user . '/download/' . $sk->berkas_suratkeluar) ?>"><i class="fas fa-download text-success"></i></a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>

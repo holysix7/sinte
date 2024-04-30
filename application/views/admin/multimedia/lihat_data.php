@@ -23,10 +23,13 @@
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
                         <div class="row">
-                            <div class="col-md-auto">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#addmultimedia">Tambah
-                                    Multimedia</button>
-                            </div>
+                            <?php if ($user == 'superadmin') { ?>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
+                                        data-target="#addmultimedia"><i class="fas fa-plus"></i> Tambah data </button>
+                                </div>
+                            <?php } else { ?>
+                            <?php } ?>
                         </div>
                         <br>
                         <div class="table-responsive">
@@ -43,7 +46,7 @@
                                         } ?>
                                     </tr>
                                 </thead>
-
+                    
                                 <tbody>
                                     <?php
                                     $no = 1;
@@ -63,8 +66,7 @@
                                             </td>
 
                                             <td>
-                                                <button type="button" class="badge badge-primary btn-block"
-                                                    data-toggle="modal"
+                                                <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
                                                     data-target="#editmultimedia<?php echo $mu['id']; ?>">Edit</button>
                                                 <br>
                                                 <a href="<?php echo base_url() ?>multimedia/hapus_data/<?php echo $mu['id']; ?>"
@@ -83,8 +85,8 @@
             <!-- /.container-fluid -->
 
         </div>
-
-        <!-- Footer -->
+        
+         <!-- Footer -->
         <?php $this->load->view('templates/copyright') ?>
         <!-- End of Footer -->
 
@@ -162,7 +164,7 @@ foreach ($multimedia as $mu):
 
                         <input type="hidden" name="id" value="<?php echo $mu['id'] ?>">
                         <div class="form-group">
-                            <label for="">Tanggal</label>
+                        <label for="">Tanggal</label>
                             <div class="input-group">
                                 <input type="date" name="tgl_multimedia" class="form-control" placeholder="Tanggal"
                                     value="<?php echo $mu['tgl_multimedia']; ?>" required>
@@ -171,19 +173,18 @@ foreach ($multimedia as $mu):
                         <div class="form-group">
                             <label for="">Nama Kegiatan</label>
                             <div class="input-group">
-                                <input type="text" name="nama_kegiatan" class="form-control" placeholder="Nama Kegiatan"
+                            <input type="text" name="nama_kegiatan" class="form-control" placeholder="Nama Kegiatan"
                                     value="<?php echo $mu['nama_kegiatan']; ?>" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">Link Video</label>
                             <input type="text" name="link_vidio" class="form-control" placeholder="Link Video"
-                                value="<?php echo $mu['link_vidio']; ?>" required>
+                                    value="<?php echo $mu['link_vidio']; ?>" required>
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-5">
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
                             </div>
                         </div>
                     </form>

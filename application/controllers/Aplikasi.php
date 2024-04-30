@@ -1,6 +1,5 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
-class Aplikasi extends CI_Controller
-{
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+class Aplikasi extends CI_Controller {
 
     function __construct()
     {
@@ -12,7 +11,7 @@ class Aplikasi extends CI_Controller
         }
     }
 
-    public function index()
+	public function index()
     {
         $data['title'] = "Dashboard";
         if ($this->session->userdata('level') == 1) {
@@ -44,7 +43,7 @@ class Aplikasi extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
@@ -55,49 +54,55 @@ class Aplikasi extends CI_Controller
     }
 
 
-    public function tambah_data()
-    {
-        $data['title'] = 'E-services';
-
-        $data['aplikasi'] = $this->M_aplikasi->SemuaData();
-
-        if ($this->session->userdata('level') == 1) {
-            $data['user'] = 'superadmin';
-        } elseif ($this->session->userdata('level') == 2) {
-            $data['user'] = 'admin';
-        } elseif ($this->session->userdata('level') == 3) {
-            $data['user'] = 'userskp';
-        }
-        if ($this->session->userdata('level') != 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
-                </div>');
-            redirect(base_url(''));
-        }
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/aplikasi/tambah_data', $data);
-        $this->load->view('templates/footer');
-    }
-
     public function proses_tambah_data()
     {
         $this->M_aplikasi->proses_tambah_data();
-        redirect('aplikasi/view');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+        </div>');
+        redirect(base_url('aplikasi/view'));
     }
 
     public function hapus_data($id)
     {
         $this->M_aplikasi->hapus_data($id);
-        redirect('aplikasi/view');
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
+        </div>');
+        redirect(base_url('aplikasi/view'));
     }
 
     public function proses_edit_data()
     {
         $this->M_aplikasi->proses_edit_data();
-        redirect('aplikasi/view');
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
+        </div>');
+        redirect(base_url('aplikasi/view'));
     }
+
+
+    public function laporan_aplikasi()
+    {
+        $data['title'] = 'Aplikasi';
+        if ($this->session->userdata('level') == 1) {
+            $data['user'] = 'superadmin';
+        } elseif ($this->session->userdata('level') == 2) {
+            $data['user'] = 'admin';
+        }
+       
+        $data['aplikasi'] = $this->M_aplikasi->SemuaData();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/laporan/laporan_aplikasi', $data);
+        $this->load->view('templates/footer');
+    
+    }
+
+
 }
 
 

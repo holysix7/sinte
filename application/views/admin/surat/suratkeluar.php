@@ -87,11 +87,9 @@
                                                         data-target="#ubahsk<?php echo $sk->id_suratkeluar ?>"
                                                         class="badge badge-primary d-block">edit</a>
                                                     <br>
-                                                    <a
-                                                        href="<?php echo base_url('admin/hapus_datask/' . $sk->id_suratkeluar) ?>">
-                                                        <button
-                                                            onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini ?')"
-                                                            class="badge badge-danger d-block">Hapus</button>
+                                                    <a href="<?php echo base_url('admin/hapus_datask/' . $sk->id_suratkeluar) ?>">
+                                                        <button onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini ?')" 
+                                                        class="badge badge-danger d-block">Hapus</button>
                                                     </a>
                                                 </td>
                                             <?php } else {
@@ -149,7 +147,7 @@ foreach ($suratkeluar as $sk):
                                     $tahun = $pecah[2]; ?>
                                     <input type="text" name="no_suratkeluar" class="form-control"
                                         value="<?= $sk->no_suratkeluar ?>">
-                                    <small class="text-danger">Sesuaikan Nomor Surat Terlebih Dahulu</small>
+                                        <small class="text-danger">Sesuaikan Nomor Surat Terlebih Dahulu</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Judul Surat Keluar</label>
@@ -195,8 +193,7 @@ foreach ($suratkeluar as $sk):
                                                 for="exampleInputFile"><?= $sk->berkas_suratkeluar ?></label>
                                         </div>
                                     </div>
-                                    <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan
-                                        PPT</small>
+                                    <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan PPT</small>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -209,12 +206,12 @@ foreach ($suratkeluar as $sk):
                         </div>
                         <!-- /.card-body -->
                         <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                            <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                         </div>
+                        
                     </form>
                 </div>
-
+                           
             </div>
             <!-- /.modal-content -->
         </div>

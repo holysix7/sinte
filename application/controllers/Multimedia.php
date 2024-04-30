@@ -1,6 +1,5 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
-class multimedia extends CI_Controller
-{
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+class multimedia extends CI_Controller {
 
     function __construct()
     {
@@ -12,7 +11,7 @@ class multimedia extends CI_Controller
         }
     }
 
-    public function index()
+	public function index()
     {
         $data['title'] = "Dashboard";
         if ($this->session->userdata('level') == 1) {
@@ -44,40 +43,13 @@ class multimedia extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/multimedia/lihat_data', $data);
-        $this->load->view('templates/footer');
-    }
-
-
-    public function tambah_data()
-    {
-        $data['title'] = 'E-services';
-
-        $data['multimedia'] = $this->M_multimedia->SemuaData();
-
-        if ($this->session->userdata('level') == 1) {
-            $data['user'] = 'superadmin';
-        } elseif ($this->session->userdata('level') == 2) {
-            $data['user'] = 'admin';
-        } elseif ($this->session->userdata('level') == 3) {
-            $data['user'] = 'userskp';
-        }
-        if ($this->session->userdata('level') != 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
-                </div>');
-            redirect(base_url(''));
-        }
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/multimedia/tambah_data', $data);
         $this->load->view('templates/footer');
     }
 
@@ -110,7 +82,7 @@ class multimedia extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
@@ -124,6 +96,23 @@ class multimedia extends CI_Controller
     {
         $this->M_multimedia->proses_edit_data();
         redirect('multimedia/view');
+    }
+
+    public function laporan_multimedia()
+    {
+        $data['title'] = 'Multimedia';
+        if ($this->session->userdata('level') == 1) {
+            $data['user'] = 'superadmin';
+        } elseif ($this->session->userdata('level') == 2) {
+            $data['user'] = 'admin';
+        }
+       
+        $data['multimedia'] = $this->M_multimedia->SemuaData();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/laporan/laporan_multimedia', $data);
+        $this->load->view('templates/footer');
+    
     }
 }
 

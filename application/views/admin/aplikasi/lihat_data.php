@@ -23,10 +23,13 @@
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
                         <div class="row">
-                            <div class="col-md-auto">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#addaplikasi">Tambah
-                                    Aplikasi</button>
-                            </div>
+                            <?php if ($user == 'superadmin') { ?>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
+                                        data-target="#addaplikasi"><i class="fas fa-plus"></i> Tambah data </button>
+                                </div>
+                            <?php } else { ?>
+                            <?php } ?>
                         </div>
                         <br>
                         <div class="table-responsive">
@@ -44,34 +47,33 @@
                                         } ?>
                                     </tr>
                                 </thead>
-
+                    
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($aplikasi as $es): ?>
+                                    foreach ($aplikasi as $ap): ?>
                                         <tr>
                                             <td>
                                                 <?php echo $no++; ?>
                                             </td>
                                             <td>
-                                                <?php echo $es['tgl_aplikasi']; ?>
+                                                <?php echo $ap['tgl_aplikasi']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $es['nama_aplikasi']; ?>
+                                                <?php echo $ap['nama_aplikasi']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $es['deskripsi']; ?>
+                                                <?php echo $ap['deskripsi']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $es['link_aplikasi']; ?>
+                                                <?php echo $ap['link_aplikasi'];   ?>
                                             </td>
-
+                                           
                                             <td>
-                                                <button type="button" class="badge badge-primary btn-block"
-                                                    data-toggle="modal"
-                                                    data-target="#editaplikasi<?php echo $es['id']; ?>">Edit</button>
+                                                <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
+                                                    data-target="#editaplikasi<?php echo $ap['id']; ?>">Edit</button>
                                                 <br>
-                                                <a href="<?php echo base_url() ?>aplikasi/hapus_data/<?php echo $es['id']; ?>"
+                                                <a href="<?php echo base_url() ?>aplikasi/hapus_data/<?php echo $ap['id']; ?>"
                                                     class="badge badge-danger btn-flat btn-block">Hapus</a>
                                             </td>
                                         </tr>
@@ -86,8 +88,8 @@
             <!-- /.container-fluid -->
 
         </div>
-
-        <!-- Footer -->
+        
+         <!-- Footer -->
         <?php $this->load->view('templates/copyright') ?>
         <!-- End of Footer -->
 
@@ -151,9 +153,9 @@
 
 <!-- Aplikasi Edit-->
 <?php $no = 0;
-foreach ($aplikasi as $es):
+foreach ($aplikasi as $ap):
     $no++ ?>
-    <div class="modal fade" id="editaplikasi<?php echo $es['id']; ?>">
+    <div class="modal fade" id="editaplikasi<?php echo $ap['id']; ?>">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
@@ -167,35 +169,34 @@ foreach ($aplikasi as $es):
                     <form role="form" action="<?= base_url('aplikasi/proses_edit_data') ?>" method="post"
                         enctype="multipart/form-data">
 
-                        <input type="hidden" name="id" value="<?php echo $es['id'] ?>">
+                        <input type="hidden" name="id" value="<?php echo $ap['id'] ?>">
                         <div class="form-group">
                             <label for="">Tanggal</label>
                             <div class="input-group">
                                 <input type="date" name="tgl_aplikasi" class="form-control" placeholder="Tanggal"
-                                    value="<?php echo $es['tgl_aplikasi']; ?>" required>
+                                    value="<?php echo $ap['tgl_aplikasi']; ?>" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">Nama Aplikasi</label>
                             <input type="text" class="form-control" name="nama_aplikasi"
-                                value="<?php echo $es['nama_aplikasi']; ?>" required>
+                                value="<?php echo $ap['nama_aplikasi']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="">Deskripsi</label>
-                            <input type="text" class="form-control" name="deskripsi" value="<?php echo $es['deskripsi']; ?>"
-                                required>
+                            <input type="text" class="form-control" name="deskripsi"
+                                value="<?php echo $ap['deskripsi']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="">Link Aplikasi</label>
                             <input type="link" class="form-control" name="link_aplikasi"
-                                value="<?php echo $es['link_aplikasi']; ?>" required>
+                                value="<?php echo $ap['link_aplikasi']; ?>" required>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-5">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                            </div>
+                        <div class="col-sm-5">
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
+                    </div>
                     </form>
                     </p>
                 </div>

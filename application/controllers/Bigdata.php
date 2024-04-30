@@ -44,7 +44,7 @@ class Bigdata extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
@@ -136,7 +136,7 @@ class Bigdata extends CI_Controller
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-times"></i> Akses ditolak!</h5>
+                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
         }
@@ -148,18 +148,11 @@ class Bigdata extends CI_Controller
 
     public function proses_edit_data()
     {
-        $data = [
-            "jenis_kegiatan" => $this->input->post('jenis_kegiatan'),
-            "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
-            "nama_kegiatan" => $this->input->post('nama_kegiatan'),
-            "bidang_penyelenggara" => $this->input->post('bidang_penyelenggara'),
-            "jumlah_peserta" => $this->input->post('jumlah_peserta'),
-            "link_sertifikat" => $this->input->post('link_sertifikat'),
-        ];
-        $this->db->where('id_bigdata', $this->input->post('id_bigdata'));
-        $this->db->update('bigdata', $data);
+        $this->M_bigdata->proses_edit_data();
         redirect('bigdata/view');
     }
+
+
 
     public function download1($id_bigdata)
     {
@@ -175,6 +168,23 @@ class Bigdata extends CI_Controller
         $fileinfo = $this->M_bigdata->download($id_bigdata);
         $file = 'vendor/files/bigdata_peserta/' . $fileinfo['bigdata_peserta'];
         force_download($file, NULL);
+    }
+
+    public function laporan_bigdata()
+    {
+        $data['title'] = 'Bigdata';
+        if ($this->session->userdata('level') == 1) {
+            $data['user'] = 'superadmin';
+        } elseif ($this->session->userdata('level') == 2) {
+            $data['user'] = 'admin';
+        }
+       
+        $data['bigdata'] = $this->M_bigdata->SemuaData();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/laporan/laporan_bigdata', $data);
+        $this->load->view('templates/footer');
+    
     }
 
 }

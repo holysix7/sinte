@@ -23,10 +23,13 @@
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
                         <div class="row">
-                            <div class="col-md-auto">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#addpublikasi">Tambah
-                                    Publikasi</button>
-                            </div>
+                            <?php if ($user == 'superadmin') { ?>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
+                                        data-target="#addpublikasi"><i class="fas fa-plus"></i> Tambah data </button>
+                                </div>
+                            <?php } else { ?>
+                            <?php } ?>
                         </div>
                         <br>
                         <div class="table-responsive">
@@ -45,7 +48,7 @@
                                         } ?>
                                     </tr>
                                 </thead>
-
+                    
                                 <tbody>
                                     <?php
                                     $no = 1;
@@ -67,12 +70,11 @@
                                                 <?php echo $pu['link_internal']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $pu['link_eksternal']; ?>
+                                                <?php echo $pu['link_eksternal'];   ?>
                                             </td>
 
                                             <td>
-                                                <button type="button" class="badge badge-primary btn-block"
-                                                    data-toggle="modal"
+                                                <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
                                                     data-target="#editpublikasi<?php echo $pu['id']; ?>">Edit</button>
                                                 <br>
                                                 <a href="<?php echo base_url() ?>publikasi/hapus_data/<?php echo $pu['id']; ?>"
@@ -90,8 +92,8 @@
             <!-- /.container-fluid -->
 
         </div>
-
-        <!-- Footer -->
+        
+         <!-- Footer -->
         <?php $this->load->view('templates/copyright') ?>
         <!-- End of Footer -->
 
@@ -208,7 +210,6 @@ foreach ($publikasi as $pu):
                         <div class="row mb-3">
                             <div class="col-sm-5">
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
                             </div>
                         </div>
                     </form>

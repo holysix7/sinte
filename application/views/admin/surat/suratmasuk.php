@@ -79,15 +79,13 @@
                                                         class="badge badge-primary d-block">edit</a>
 
                                                     <br>
-                                                    <a
-                                                        href="<?php echo base_url('admin/hapus_datasm/' . $sm->id_suratmasuk) ?>">
-                                                        <button
-                                                            onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini ?')"
-                                                            class="badge badge-danger d-block">Hapus</button>
+                                                    <a href="<?php echo base_url('admin/hapus_datasm/' . $sm->id_suratmasuk) ?>">
+                                                        <button onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini ?')" 
+                                                        class="badge badge-danger d-block">Hapus</button>
                                                     </a>
 
 
-
+                                                   
                                                 </td>
                                             <?php } else {
                                             } ?>
@@ -142,7 +140,7 @@ foreach ($suratmasuk as $sm):
                                     $tahun = $pecah[2]; ?>
                                     <input type="text" id="no_suratmasuk" name="no_suratmasuk" class="form-control"
                                         value="<?= $sm->no_suratmasuk ?>">
-                                    <small class="text-danger">Sesuaikan Nomor Surat Terlebih Dahulu</small>
+                                        <small class="text-danger">Sesuaikan Nomor Surat Terlebih Dahulu</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Judul Surat Masuk</label>
@@ -162,8 +160,7 @@ foreach ($suratmasuk as $sm):
                                             <label class="custom-file-label"><?= $sm->berkas_suratmasuk ?></label>
                                         </div>
                                     </div>
-                                    <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan
-                                        PPT</small>
+                                    <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan PPT</small>
                                 </div>
                             </div>
 
@@ -211,13 +208,12 @@ foreach ($suratmasuk as $sm):
                                     <label>Keterangan</label>
                                     <textarea class="form-control" id="keterangan" name="keterangan"
                                         placeholder="Keterangan"><?php echo $sm->keterangan ?></textarea>
-                                </div>
+                                </div>  
                             </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                            <button type="submit" name="ubah" class="btn btn-primary">Ubah</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>

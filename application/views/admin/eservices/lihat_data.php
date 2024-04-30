@@ -23,14 +23,17 @@
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
                         <div class="row">
-                            <div class="col-md-auto">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#addeservices"><i
-                                        class="fas fa fa-plus">&nbsp</i>Tambah E-services</button>
-                            </div>
+                            <?php if ($user == 'superadmin') { ?>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
+                                        data-target="#addeservices"><i class="fas fa-plus"></i> Tambah data </button>
+                                </div>
+                            <?php } else { ?>
+                            <?php } ?>
                         </div>
                         <br>
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="tableEservice" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <td>No.</td>
@@ -45,7 +48,7 @@
                                         } ?>
                                     </tr>
                                 </thead>
-
+                    
                                 <tbody>
                                     <?php
                                     $no = 1;
@@ -82,7 +85,7 @@
                                                     data-target="#editeservices<?php echo $es['id']; ?>">Edit</button>
                                                 <br>
                                                 <a href="<?php echo base_url() ?>eservices/hapus_data/<?php echo $es['id']; ?>"
-                                                    class="badge badge-danger btn-block">Hapus</a>
+                                                    class="badge badge-danger btn-block">Hapus</a> 
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -96,10 +99,9 @@
             <!-- /.container-fluid -->
 
         </div>
-
-        <!-- Footer -->
+        
+         <!-- Footer -->
         <?php $this->load->view('templates/copyright') ?>
-        <?php $this->load->view('templates/footer') ?>
         <!-- End of Footer -->
 
         <!-- End of Main Content -->
