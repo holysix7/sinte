@@ -189,10 +189,10 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="row mb-3">
-                            <div class="col-sm-5">
-                                <button type="submit" class="btn btn-primary">Tambah</button>
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                            </div>
+                        <div class="col-sm-5">
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                        </div>
                     </div>
                 </p>
             </div>

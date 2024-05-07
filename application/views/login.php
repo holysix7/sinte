@@ -74,7 +74,7 @@
                                         <a class="small" href="<?= base_url('auth/register'); ?>">Create an Account!</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url('auth/register'); ?>">Login As Administrator</a>
+                                        <a class="small" href="<?= base_url('login/register'); ?>">Login As Administrator</a>
                                     </div>
                                 </div>
                             </div>

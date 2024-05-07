@@ -59,7 +59,7 @@
                                                 <?php echo $magang['no_induk']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $magang['asal_instansi'];   ?>
+                                                <?php echo $magang['asal_instansi']; ?>
                                             </td>
                                             <td>
                                                 <?php echo $magang['jurusan']; ?>
@@ -71,7 +71,7 @@
                                                 <?php echo $magang['jangka_waktu']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $magang['tgl_masuk'];   ?>
+                                                <?php echo $magang['tgl_masuk']; ?>
                                             </td>
                                             <td>
                                                 <?php echo $magang['tgl_akhir']; ?>
@@ -115,17 +115,17 @@
                 },
                 {
                     extend: 'excelHtml5',
-                    title: 'Laporan Aplikasi'
+                    title: 'Laporan Kerja Praktik'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: 'Laporan Aplikasi'
+                    title: 'Laporan Kerja Praktik'
                 },
                 {
                     extend: 'pdfHtml5',
-                    oriented: 'portrait',
+                    orientation: 'landscape',
                     pageSize: 'legal',
-                    title: 'Laporan Aplikasi',
+                    title: 'Laporan Kerja Praktik',
                     download: 'open',
                     customize: function (doc) {
                         doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');

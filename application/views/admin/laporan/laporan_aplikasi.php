@@ -53,7 +53,7 @@
                                                 <?php echo $ap['deskripsi']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $ap['link_aplikasi'];   ?>
+                                                <?php echo $ap['link_aplikasi']; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -99,7 +99,7 @@
                 },
                 {
                     extend: 'pdfHtml5',
-                    oriented: 'portrait',
+                    orientation: 'landscape',
                     pageSize: 'legal',
                     title: 'Laporan Aplikasi',
                     download: 'open',

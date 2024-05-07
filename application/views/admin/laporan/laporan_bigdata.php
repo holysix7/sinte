@@ -18,7 +18,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Laporan Bigdatai</h1>
+                <h1 class="h3 mb-4 text-gray-800">Laporan Bigdata</h1>
                 <div class="card card-success">
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
@@ -55,7 +55,7 @@
                                                 <?php echo $bd['nama_kegiatan']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $bd['bidang_penyelenggara'];   ?>
+                                                <?php echo $bd['bidang_penyelenggara']; ?>
                                             </td>
 
                                             <td>
@@ -100,17 +100,17 @@
                 },
                 {
                     extend: 'excelHtml5',
-                    title: 'Laporan Aplikasi'
+                    title: 'Laporan Bigdata'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: 'Laporan Aplikasi'
+                    title: 'Laporan Bigdata'
                 },
                 {
                     extend: 'pdfHtml5',
-                    oriented: 'portrait',
+                    orientation: 'landscape',
                     pageSize: 'legal',
-                    title: 'Laporan Aplikasi',
+                    title: 'Laporan Bigdata',
                     download: 'open',
                     customize: function (doc) {
                         doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');

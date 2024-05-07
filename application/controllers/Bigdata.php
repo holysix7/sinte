@@ -58,6 +58,10 @@ class Bigdata extends CI_Controller
     public function proses_tambah_data()
     {
         $this->M_bigdata->proses_tambah_data();
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+        </div>');
         redirect('bigdata/view');
     }
 
@@ -83,6 +87,10 @@ class Bigdata extends CI_Controller
             );
             $this->db->where('id_bigdata', $this->input->post('id_bigdata'));
             $this->db->update('bigdata', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+            </div>');
             redirect('bigdata/view');
         }
     }
@@ -109,6 +117,10 @@ class Bigdata extends CI_Controller
             );
             $this->db->where('id_bigdata', $this->input->post('id_bigdata'));
             $this->db->update('bigdata', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+            </div>');
             redirect('bigdata/view');
         }
     }
@@ -116,39 +128,21 @@ class Bigdata extends CI_Controller
     public function hapus_data($id_bigdata)
     {
         $this->M_bigdata->hapus_data($id_bigdata);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
+        </div>');
         redirect('bigdata/view');
     }
 
-    public function edit_data($id_bigdata)
-    {
-        $data['title'] = 'Bigdata';
-
-        // $data['bigdata'] = $this->M_bigdata->SemuaData();
-        $data['bigdata'] = $this->M_bigdata->ambil_id_bigdata($id_bigdata);
-
-        if ($this->session->userdata('level') == 1) {
-            $data['user'] = 'superadmin';
-        } elseif ($this->session->userdata('level') == 2) {
-            $data['user'] = 'admin';
-        } elseif ($this->session->userdata('level') == 3) {
-            $data['user'] = 'userskp';
-        }
-        if ($this->session->userdata('level') != 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
-                </div>');
-            redirect(base_url(''));
-        }
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/bigdata/edit_data', $data);
-        $this->load->view('templates/footer');
-    }
 
     public function proses_edit_data()
     {
         $this->M_bigdata->proses_edit_data();
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
+        </div>');
         redirect('bigdata/view');
     }
 
@@ -180,7 +174,6 @@ class Bigdata extends CI_Controller
         }
        
         $data['bigdata'] = $this->M_bigdata->SemuaData();
-
         $this->load->view('templates/header', $data);
         $this->load->view('admin/laporan/laporan_bigdata', $data);
         $this->load->view('templates/footer');

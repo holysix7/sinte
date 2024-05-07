@@ -56,12 +56,20 @@ class publikasi extends CI_Controller {
     public function proses_tambah_data()
     {
         $this->M_publikasi->proses_tambah_data();
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+        </div>');
         redirect('publikasi/view');
     }
 
     public function hapus_data($id)
     {
         $this->M_publikasi->hapus_data($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
+        </div>');
         redirect('publikasi/view');
     }
 
@@ -95,6 +103,10 @@ class publikasi extends CI_Controller {
     public function proses_edit_data()
     {
         $this->M_publikasi->proses_edit_data();
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
+        </div>');
         redirect('publikasi/view');
     }
 

@@ -152,6 +152,6 @@ class Auth extends CI_Controller
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		<h5><i class="icon fas fa-check"></i> Logout sukses!</h5>
 		</div>');
-		redirect('auth');
+		redirect(base_url('landingpage'));
 	}
 }

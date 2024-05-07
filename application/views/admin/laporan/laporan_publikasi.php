@@ -57,7 +57,7 @@
                                                 <?php echo $pu['link_internal']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $pu['link_eksternal'];   ?>
+                                                <?php echo $pu['link_eksternal']; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -95,17 +95,17 @@
                 },
                 {
                     extend: 'excelHtml5',
-                    title: 'Laporan Aplikasi'
+                    title: 'Laporan Publikasi'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: 'Laporan Aplikasi'
+                    title: 'Laporan Publikasi'
                 },
                 {
                     extend: 'pdfHtml5',
-                    oriented: 'portrait',
-                    pageSize: 'legal',
-                    title: 'Laporan Aplikasi',
+                    orientation: 'landscape',
+                    pageSize: '',
+                    title: 'Laporan Publikasi',
                     download: 'open',
                     customize: function (doc) {
                         doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');

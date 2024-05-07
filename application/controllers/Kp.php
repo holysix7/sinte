@@ -53,18 +53,30 @@ class Kp extends CI_Controller {
     public function proses_tambah_data()
     {
         $this->M_kp->proses_tambah_data();
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+        </div>');
         redirect('kp/view');
     }
 
     public function hapus_data($id)
     {
         $this->M_kp->hapus_data($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
+        </div>');
         redirect('kp/view');
     }
 
     public function proses_edit_data()
     {
         $this->M_kp->proses_edit_data();
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
+        </div>');
         redirect('kp/view');
     }
 

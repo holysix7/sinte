@@ -43,7 +43,6 @@
                                         <td>Jabatan</td>
                                         <td>Perihal</td>
                                         <td>Jumlah Tamu</td>
-                                        
                                         <?php if ($user == 'superadmin') { ?>
                                             <th>Aksi</th>
                                         <?php } else {
@@ -81,14 +80,13 @@
                                             <td>
                                                 <?php echo $tm['jumlah_tamu'];   ?>
                                             </td>
-             
-                                            
+    
                                             <?php if ($user == 'superadmin') { ?>
                                                 <td>
                                                     <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
-                                                        data-target="#editmagang<?php  echo $tm['id']; ?>">Edit</button>
+                                                        data-target="#edittamu<?php  echo $tm['id']; ?>">Edit</button>
                                                     <br>
-                                                    <a href="<?php echo base_url() ?>kp/hapus_data/<?php echo $tm['id']; ?>"
+                                                    <a href="<?php echo base_url() ?>tamu/hapus_data/<?php echo $tm['id']; ?>"
                                                         class="badge badge-danger btn-flat btn-block">Hapus</a>
                                                 </td>
                                             <?php } else {
@@ -118,8 +116,8 @@
 </div>
 
 
-<!-- kp add -->
-<div class="modal fade" id="addkerjapraktik">
+<!-- tamu add -->
+<div class="modal fade" id="addtamu">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -131,10 +129,16 @@
             <div class="modal-body">
                 <p>
                     <?php
-                    echo form_open_multipart('kp/proses_tambah_data');
+                    echo form_open_multipart('tamu/proses_tambah_data');
                     ?>
                     <div class="card-body row">
                             <div class="col-md">
+                                <div class="form-group">
+                                    <label for="">Tanggal Kunjungan</label>
+                                    <div class="input-group">
+                                        <input type="date" name="tanggal_kunjungan" class="form-control" placeholder="Tanggal Kunjungan..." required>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="">Nama Lengkap</label>
                                     <div class="input-group">
@@ -148,78 +152,45 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">No. Induk</label>
+                                    <label for="">Nomor Telepon</label>
                                     <div class="input-group">
-                                        <input type="text" name="no_induk" class="form-control" placeholder="No. Induk..." required>
+                                        <input type="number" name="nomor" class="form-control" placeholder="Nomor Telepon..." required>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Asal Instansi</label>
-                                    <div class="input-group">
-                                        <input type="text" name="asal_instansi" class="form-control" placeholder="Asal Instansi..." required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Jurusan</label>
-                                    <div class="input-group">
-                                        <input type="text" name="jurusan" class="form-control" placeholder="Jurusan..." required>
-                                    </div>
-                                </div>         
+                                </div>        
                             </div>
                             <div class="col-md">
                                 <div class="form-group">
-                                    <label>Perihal</label>
-                                    <select name="perihal" id="perihal" class="form-control" required>
-                                        <option value="">-- Pilih --</option>
-                                        <option value="Pendataan Kerja Praktik">Pendataan Kerja Praktik</option>
-                                        <option value="Pendataan Penelitian">Pendataan  Penelitian</option>
-                                    </select>
-                                    <small><span class="text-danger text-small" id="alert_perihal"></span></small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Jangka Waktu</label>
+                                    <label for="">Instansi</label>
                                     <div class="input-group">
-                                        <input type="text" name="jangka_waktu" class="form-control" placeholder="Jangka Waktu..." required>
+                                        <input type="text" name="instansi" class="form-control" placeholder="Asal Instansi..." required>
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="">Jabatan</label>
+                                    <div class="input-group">
+                                        <input type="text" name="jabatan" class="form-control" placeholder="Jabatan..." required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Tanggal Awal</label>
+                                    <label for="">Perihal</label>
                                     <div class="input-group">
-                                        <input type="date" name="tgl_masuk" class="form-control" placeholder="Tanggal Masuk..." required>
+                                        <input type="text" name="perihal" class="form-control" placeholder="Perihal..." required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Tanggal Akhir</label>
+                                    <label for="">Jumlah Tamu</label>
                                     <div class="input-group">
-                                        <input type="date" name="tgl_akhir" class="form-control" placeholder="Tanggal Akhir..." required>
+                                        <input type="number" name="jumlah_tamu" class="form-control" placeholder="Jumlah Tamu..." required>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Posisi Magang</label>
-                                    <select name="posisi_magang" id="posisi_magang" class="form-control" required>
-                                        <option value="">-- Pilih --</option>
-                                        <option value="Subbag Tata Usaha">Subbag Tata Usaha</option>
-                                        <option value="Bidang Pengembangan Kompetensi Manajerial">Bidang Pengembangan Kompetensi Manajerial</option>
-                                        <option value="Bidang Pengembangan Kompetensi Teknis Umum">Bidang Pengembangan Kompetensi Teknis Umum</option>
-                                        <option value="Bidang Pengembangan Kompetensi Teknis Inti">Bidang Pengembangan Kompetensi Teknis Inti</option>
-                                        <option value="Bidang Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan">Bidang Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan</option>
-                                        <option value="Sekretaris">Sekretaris</option>
-                                        <option value="Perpustakaan">Perpustakaan</option>
-                                        <option value="Kearsipan">Kearsipan</option>
-                                        <option value="Widyaiswara">Widyaiswara</option>
-                                    </select>
-                                    <small><span class="text-danger text-small" id="alert_posisi_magang"></span></small>
-                                </div>     
+                                </div>   
                             </div>
-                        
                         </div>
                     <!-- /.card-body -->
                 </p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-primary">Tambah</button>
                 <button type="reset" class="btn btn-danger">Reset</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
             </div>
             </form>
         </div>
@@ -227,15 +198,15 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- kp add -->
+<!-- tamu add -->
 
 
 
-<!-- kp Edit-->
+<!-- tamu Edit-->
 <?php $no = 0;
-foreach ($kp as $magang):
+foreach ($tamu as $tm): ?>
     $no++ ?>
-    <div class="modal fade" id="editmagang<?php echo $magang['id']; ?>">
+    <div class="modal fade" id="edittamu<?php echo $tm['id']; ?>">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -246,97 +217,71 @@ foreach ($kp as $magang):
                 </div>
                 <div class="modal-body">
                     <p>
-                    <form role="form" action="<?= base_url('kp/proses_edit_data') ?>" method="post"
+                    <form role="form" action="<?= base_url('tamu/proses_edit_data') ?>" method="post"
                         enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $magang['id'] ?>">
+                        <input type="hidden" name="id" value="<?php echo $tm['id'] ?>">
                             <div class="card-body row">
                                 <div class="col-md">
                                     <div class="form-group">
+                                        <label for="">Tanggal Kunjungan</label>
+                                        <div class="input-group">
+                                            <input type="date" name="tanggal_kunjungan" class="form-control" placeholder="Tanggal Kunjungan..." 
+                                            value="<?php echo  $tm['tanggal_kunjungan']; ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="">Nama Lengkap</label>
                                         <div class="input-group">
-                                            <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap..."
-                                            value="<?php echo  $magang['nama']; ?>" required>
+                                            <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap..." 
+                                            value="<?php echo  $tm['nama']; ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Alamat Email</label>
                                         <div class="input-group">
                                             <input type="text" name="email" class="form-control" placeholder="Alamat Email..." 
-                                            value="<?php echo  $magang['email']; ?>" required>
+                                            value="<?php echo  $tm['email']; ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">No. Induk</label>
+                                        <label for="">Nomor Telepon</label>
                                         <div class="input-group">
-                                            <input type="text" name="no_induk" class="form-control" placeholder="No. Induk..." 
-                                            value="<?php echo  $magang['no_induk']; ?>" required>
+                                            <input type="number" name="nomor" class="form-control" placeholder="Nomor Telepon..." 
+                                            value="<?php echo  $tm['nomor']; ?>" required>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Asal Instansi</label>
-                                        <div class="input-group">
-                                            <input type="text" name="asal_instansi" class="form-control" placeholder="Asal Instansi..." 
-                                            value="<?php echo  $magang['asal_instansi']; ?>" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Jurusan</label>
-                                        <div class="input-group">
-                                            <input type="text" name="jurusan" class="form-control" placeholder="Jurusan..." 
-                                            value="<?php echo  $magang['jurusan']; ?>" required>
-                                        </div>
-                                    </div>         
+                                    </div>        
                                 </div>
-                                
                                 <div class="col-md">
                                     <div class="form-group">
-                                        <label>Perihal</label>
-                                        <select name="perihal" id="perihal" class="form-control" required>
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Pendataan Kerja Praktik">Pendataan Kerja Praktik</option>
-                                            <option value="Pendataan Penelitian">Pendataan  Penelitian</option>
-                                        </select>
-                                        <small><span class="text-danger text-small" id="alert_perihal"></span></small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Jangka Waktu</label>
+                                        <label for="">Instansi</label>
                                         <div class="input-group">
-                                            <input type="text" name="jangka_waktu" class="form-control" placeholder="Jangka Waktu..." 
-                                            value="<?php echo  $magang['jangka_waktu']; ?>" required>
+                                            <input type="text" name="instansi" class="form-control" placeholder="Asal Instansi..." 
+                                            value="<?php echo  $tm['instansi']; ?>" required>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label for="">Jabatan</label>
+                                        <div class="input-group">
+                                            <input type="text" name="jabatan" class="form-control" placeholder="Jabatan..." 
+                                            value="<?php echo  $tm['jabatan']; ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Tanggal Awal</label>
+                                        <label for="">Perihal</label>
                                         <div class="input-group">
-                                            <input type="date" name="tgl_masuk" class="form-control" placeholder="Tanggal Masuk..." 
-                                            value="<?php echo  $magang['tgl_masuk']; ?>" required>
+                                            <input type="text" name="perihal" class="form-control" placeholder="Perihal..." 
+                                            value="<?php echo  $tm['perihal']; ?>" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Tanggal Akhir</label>
+                                        <label for="">Jumlah Tamu</label>
                                         <div class="input-group">
-                                            <input type="date" name="tgl_akhir" class="form-control" placeholder="Tanggal Akhir..." 
-                                            value="<?php echo  $magang['tgl_akhir']; ?>" required>
+                                            <input type="number" name="jumlah_tamu" class="form-control" placeholder="Jumlah Tamu..." 
+                                            value="<?php echo  $tm['jumlah_tamu']; ?>" required>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Posisi Magang</label>
-                                        <select name="posisi_magang" id="posisi_magang" class="form-control" required>
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Subbag Tata Usaha">Subbag Tata Usaha</option>
-                                            <option value="Bidang Pengembangan Kompetensi Manajerial">Bidang Pengembangan Kompetensi Manajerial</option>
-                                            <option value="Bidang Pengembangan Kompetensi Teknis Umum">Bidang Pengembangan Kompetensi Teknis Umum</option>
-                                            <option value="Bidang Pengembangan Kompetensi Teknis Inti">Bidang Pengembangan Kompetensi Teknis Inti</option>
-                                            <option value="Bidang Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan">Bidang Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan</option>
-                                            <option value="Sekretaris">Sekretaris</option>
-                                            <option value="Perpustakaan">Perpustakaan</option>
-                                            <option value="Kearsipan">Kearsipan</option>
-                                            <option value="Widyaiswara">Widyaiswara</option>
-                                        </select>
-                                        <small><span class="text-danger text-small" id="alert_posisi_magang"></span></small>
-                                    </div>     
+                                    </div>   
                                 </div>
+
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-5">
@@ -353,7 +298,7 @@ foreach ($kp as $magang):
     </div>
 <?php endforeach; ?>
 
-<!-- Kp Edit-->
+<!-- tamu Edit-->
 
 
 

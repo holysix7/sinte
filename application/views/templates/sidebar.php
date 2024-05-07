@@ -125,13 +125,18 @@
 
 
     <!-- Nav Item - Charts Kunjungan Tamu Superadmin -->
-    <li class="nav-item 
-    <?php if (current_url() == base_url('tamu/view')) {
-        echo 'active';
-    } ?>">
-        <a class="nav-link" href="<?= base_url('tamu/view') ?>">
-            <i class="fas fa-address-card"></i>
-            <span>Data Kunjungan Tamu</span>
+    <li class="nav-item">
+        <?php if (current_url() == base_url('tamu/view')) {
+        } ?>
+
+        <?php if ($user == 'superadmin'): ?>
+            <a class="nav-link
+                <?php if (current_url() == base_url('tamu/view')) {
+                    echo 'active';
+                } ?>" href="<?php echo base_url('tamu/view') ?>">
+                <i class="fas fa-share-alt"></i>
+                <span>Data Kunjungan Tamu</span>
+            <?php endif; ?>
         </a>
     </li>
 
@@ -215,7 +220,7 @@
                     echo 'show';
                 } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">List:</h6>
+                    <h6 class="collapse-header">Surat:</h6>
                     <a class="collapse-item
                         <?php if ($user == 'superadmin'): ?>
                             <?php if (current_url() == base_url('admin/laporan_suratmasuk')) {
@@ -225,7 +230,7 @@
                             <?php if (current_url() == base_url('admin/laporan_suratkeluar')) {
                                 echo 'active';
                             } ?>" href="<?php echo base_url('admin/laporan_suratkeluar') ?>">Laporan Surat Keluar</a>
-
+                        <h6 class="collapse-header">Master:</h6>
                         <a class="collapse-item 
                             <?php if (current_url() == base_url('eservices/laporan_eservices')) {
                                 echo 'active';
@@ -255,6 +260,11 @@
                             <?php if (current_url() == base_url('kp/laporan_kp')) {
                                 echo 'active';
                             } ?>" href="<?php echo base_url('kp/laporan_kp') ?>">Laporan Kerja Praktik</a>
+
+                        <a class="collapse-item 
+                            <?php if (current_url() == base_url('tamu/laporan_tamu')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('tamu/laporan_tamu') ?>">Laporan Kunjungan Tamu</a>
 
 
 

@@ -168,7 +168,7 @@
                                 <div class="form-group">
                                     <label for="">No. Induk</label>
                                     <div class="input-group">
-                                        <input type="text" name="no_induk" class="form-control" placeholder="No. Induk..." required>
+                                        <input type="number" name="no_induk" class="form-control" placeholder="No. Induk..." required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -236,8 +236,8 @@
                 </p>
             </div>
             <div class="modal-footer justify-content-between">
-                <button type="submit" class="btn btn-primary">Tambah</button>
                 <button type="reset" class="btn btn-danger">Reset</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
             </div>
             </form>
         </div>
@@ -286,7 +286,7 @@ foreach ($kp as $magang):
                                     <div class="form-group">
                                         <label for="">No. Induk</label>
                                         <div class="input-group">
-                                            <input type="text" name="no_induk" class="form-control" placeholder="No. Induk..." 
+                                            <input type="number" name="no_induk" class="form-control" placeholder="No. Induk..." 
                                             value="<?php echo  $magang['no_induk']; ?>" required>
                                         </div>
                                     </div>
