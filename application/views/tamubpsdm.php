@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>SINTE BPSDM JABAR-Landing Pages</title>
+    <title>SINTE BPSDM JABAR-Tamu Kunjungan</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -63,12 +63,13 @@
                         <h1>Sistem Informasi <br> <span>Integral Technology</span></h1>
                         <h2>Layanan Tamu Kunjungan</h2>
                         <div class="text-center text-lg-start">
+                            <a href="landingpage" class="btn-get-started scrollto">Kembali</a>
                             <a href="#about" class="btn-get-started scrollto">Memulai</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 order-1 order-lg-2 2 data-aos=" zoom-out" data-aos-delay="300">
-                    <img src="assets/img/BG/2.png" class="img-fluid animated" alt="">
+                <div class="col-lg-5 order-11 order-lg-2 2 data-aos=" zoom-out" data-aos-delay="300">
+                    <img src="assets/img/BG/6.png" class="img-fluid animated" alt="">
                 </div>
             </div>
         </div>

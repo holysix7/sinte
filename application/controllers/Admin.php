@@ -35,12 +35,13 @@ class Admin extends CI_Controller
         $data['sk_today'] = $this->model_surat->getdatawithadd('suratkeluar', $sk_today)->result();
         $data['count_indeks'] = $this->model_surat->countother('indeks')->result();
         $data['count_users'] = $this->model_surat->countother('user')->result();
+        $data['count_kp'] = $this->model_surat->countother('kp')->result();
+        $data['count_tamu'] = $this->model_surat->countother('tamu')->result();
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/dashboard', $data);
         $this->load->view('templates/footer');
     }
-
 
     // suratmasuk
     public function suratmasuk()

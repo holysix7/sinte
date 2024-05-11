@@ -52,7 +52,7 @@
                     <li class="dropdown"><a href="#"><span>Layanan</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a class="nav-link" href="<?= base_url('tamubpsdm') ?>"></i><span>Layanan Kunjungan Tamu</span></a></li>
-                            <li><a class="nav-link" href="<?php echo base_url('auth') ?>"></span> Layanan Kerja Praktik</a></li>
+                            <li><a class="nav-link" href="<?php echo base_url('kpbpsdm') ?>"></span> Layanan Kerja Praktik</a></li>
                         </ul>
                     </li>
                     <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 order-1 order-lg-2 2 data-aos=" zoom-out" data-aos-delay="300">
-                    <img src="assets/img/BG/6.png" class="img-fluid animated" alt="">
+                    <img src="assets/img/BG/8.png" class="img-fluid animated" alt="">
                 </div>
             </div>
         </div>
