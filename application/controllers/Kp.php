@@ -1,5 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-class Kp extends CI_Controller {
+<?php defined('BASEPATH') or exit('No direct script access allowed');
+class Kp extends CI_Controller
+{
 
     function __construct()
     {
@@ -11,7 +12,7 @@ class Kp extends CI_Controller {
         }
     }
 
-	public function index()
+    public function index()
     {
         $data['title'] = "Dashboard";
         if ($this->session->userdata('level') == 1) {
@@ -27,9 +28,6 @@ class Kp extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-
-
-
     public function view()
     {
         $data['title'] = 'Kerja Praktik';
@@ -42,8 +40,9 @@ class Kp extends CI_Controller {
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
         }
-        
+
         $data['kp'] = $this->M_kp->SemuaData();
+        $data['kp_user'] = $this->M_kp->kp_user();
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kp/lihat_data', $data);
@@ -80,6 +79,70 @@ class Kp extends CI_Controller {
         redirect('kp/view');
     }
 
+
+
+    public function editstatus()
+    {
+        $this->M_kp->editstatus();
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
+        </div>');
+        redirect(base_url('kp/view'));
+    }
+
+    public function proses_uploadsertifikat()
+    {
+        $config['upload_path'] = 'vendor/files/sertifikat/';
+        $config['allowed_types'] = 'gif|jpg|png|PNG|pdf|doc|docx|xls|xlsx|rar|zip|tar|pptx|ppt';
+        $config['max_size'] = 1000000;
+        $config['max_width'] = 1000000;
+        $config['max_height'] = 1000000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            echo "Gagal Tambah";
+        } else {
+            $sertifikat = $this->upload->data();
+            $sertifikat = $sertifikat['file_name'];
+
+            $data = array(
+                'sertifikat' => $sertifikat,
+
+            );
+            $this->db->where('id ', $this->input->post('id'));
+            $this->db->update('kp', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+            </div>');
+            redirect('kp/view');
+        }
+    }
+
+    public function downloadsertifikat($id)
+    {
+        $this->load->helper('download');
+        $fileinfo = $this->M_kp->downloadsertifikat($id);
+        $file = 'vendor/files/sertifikat/' . $fileinfo['sertifikat'];
+        if (file_exists($file)) {
+            force_download($file, NULL);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
+            </div>');
+            redirect('kp/view');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
+        </div>');
+            redirect('kp/view');
+        }
+    }
+
+
     public function laporan_kp()
     {
         $data['title'] = 'Kerja Praktik';
@@ -88,14 +151,124 @@ class Kp extends CI_Controller {
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
         }
-       
+
+        $data['tahun'] = $this->M_kp->gettahun();
         $data['kp'] = $this->M_kp->SemuaData();
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/laporan/laporan_kp', $data);
         $this->load->view('templates/footer');
-    
+
     }
+
+
+    function filter()
+    {
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $tahun1 = $this->input->post('tahun1');
+        $bulanawal = $this->input->post('bulanawal');
+        $bulanakhir = $this->input->post('bulanakhir');
+        $tahun2 = $this->input->post('tahun2');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        //tambahan
+        $nama = $this->input->post('nama');
+
+        if ($nilaifilter == 1) {
+
+            $data['title'] = "Laporan Kerja Praktik Berdasarkan Tanggal";
+            $data['subtitle'] = "Dari tanggal : " . $tanggalawal . ' Sampai tanggal : ' . $tanggalakhir;
+
+            if ($nama == null) {
+                $where = array(
+                    'tgl_masuk >=' => $tanggalawal,
+                    'tgl_masuk <=' => $tanggalakhir,
+                );
+                $data['datafilter'] = $this->M_kp->filterbytanggal($where);
+            } else {
+
+                if ($nama == null) {
+                    $where = array(
+                        'tgl_masuk >=' => $tanggalawal,
+                        'tgl_masuk <=' => $tanggalakhir,
+                        'nama' => $nama,
+                    );
+                    $data['datafilter'] = $this->M_kp->filterbytanggal($where);
+
+                } else if ($nama == null) {
+                    $where = array(
+                        'tgl_masuk >=' => $tanggalawal,
+                        'tgl_masuk <=' => $tanggalakhir,
+                    );
+                    $data['datafilter'] = $this->M_kp->filterbytanggal($where);
+                } else {
+                    $where = array(
+                        'tgl_masuk >=' => $tanggalawal,
+                        'tgl_masuk <=' => $tanggalakhir,
+                        'nama' => $nama,
+                    );
+                    $data['datafilter'] = $this->M_kp->filterbytanggal($where);
+                }
+            }
+
+            $this->load->view('admin/laporan/print_laporan_kp', $data);
+
+        } elseif ($nilaifilter == 2) {
+
+            $data['title'] = "Laporan Kerja Praktik Berdasarkan Bulan";
+            $data['subtitle'] = "Dari bulan : " . $bulanawal . ' Sampai tanggal : ' . $bulanakhir . ' Tahun : ' . $tahun1;
+
+
+            $data['datafilter'] = $this->M_kp->filterbybulan($tahun1, $bulanawal, $bulanakhir);
+
+            $this->load->view('admin/laporan/print_laporan_kp', $data);
+
+        } elseif ($nilaifilter == 3) {
+
+            $data['title'] = "Laporan Kerja Praktik Berdasarkan Tahun";
+            $data['subtitle'] = ' Tahun : ' . $tahun2;
+
+            if ($nama == null) {
+                $data['datafilter'] = $this->M_kp->filterbytahun($tahun2);
+            } else {
+
+                if ($nama == null) {
+                    $where = array(
+                        'YEAR(tgl_masuk)' => $tahun2,
+                        'nama' => $nama,
+                    );
+
+                    $data['datafilter'] = $this->M_kp->filterbytahun2($where);
+                } else if ($nama == null) {
+                    $where = array(
+                        'YEAR(tgl_masuk)' => $tahun2,
+                    );
+
+                    $data['datafilter'] = $this->M_kp->filterbytahun2($where);
+                } else {
+                    $where = array(
+                        'YEAR(tgl_masuk)' => $tahun2,
+                        'nama' => $nama,
+                    );
+
+                    $data['datafilter'] = $this->M_kp->filterbytahun2($where);
+                }
+
+            }
+
+
+            $this->load->view('admin/laporan/print_laporan_kp', $data);
+
+        }
+
+
+
+
+    }
+
+
+
 }
 
 

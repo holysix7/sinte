@@ -1,6 +1,55 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class M_multimedia extends CI_Model
 {
+
+    function gettahun()
+    {
+
+        $query = $this->db->query("SELECT YEAR(tgl_multimedia) AS tahun FROM multimedia GROUP BY YEAR(tgl_multimedia) ORDER BY YEAR(tgl_multimedia) ASC");
+
+        return $query->result();
+
+    }
+    function filterbytanggal($where)
+    {
+
+        $query = $this->db->get_where('multimedia', $where);
+
+        return $query->result();
+    }
+
+    function filterbytanggal1($tanggalawal, $tanggalakhir)
+    {
+
+        $query = $this->db->query("SELECT * from multimedia where tgl_multimedia BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_multimedia ASC ");
+
+        return $query->result();
+    }
+
+    function filterbybulan($tahun1, $bulanawal, $bulanakhir)
+    {
+
+        $query = $this->db->query("SELECT * from multimedia where YEAR(tgl_multimedia) = '$tahun1' and MONTH(tgl_multimedia) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tgl_multimedia ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun($tahun2)
+    {
+
+        $query = $this->db->query("SELECT * from multimedia where YEAR(tgl_multimedia) = '$tahun2'  ORDER BY tgl_multimedia ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun2($where)
+    {
+
+        $query = $this->db->get_where('multimedia', $where);
+
+        return $query->result();
+    }
+
     public function SemuaData()
     {
         return $this->db->get('multimedia')->result_array();

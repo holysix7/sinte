@@ -1,6 +1,55 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class M_kp extends CI_Model
 {
+
+    function gettahun()
+    {
+
+        $query = $this->db->query("SELECT YEAR(tgl_masuk) AS tahun FROM kp GROUP BY YEAR(tgl_masuk) ORDER BY YEAR(tgl_masuk) ASC");
+
+        return $query->result();
+
+    }
+    function filterbytanggal($where)
+    {
+
+        $query = $this->db->get_where('kp', $where);
+
+        return $query->result();
+    }
+
+    function filterbytanggal1($tanggalawal, $tanggalakhir)
+    {
+
+        $query = $this->db->query("SELECT * from kp where tgl_masuk BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_masuk ASC ");
+
+        return $query->result();
+    }
+
+    function filterbybulan($tahun1, $bulanawal, $bulanakhir)
+    {
+
+        $query = $this->db->query("SELECT * from kp where YEAR(tgl_masuk) = '$tahun1' and MONTH(tgl_masuk) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tgl_masuk ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun($tahun2)
+    {
+
+        $query = $this->db->query("SELECT * from kp where YEAR(tgl_masuk) = '$tahun2'  ORDER BY tgl_masuk ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun2($where)
+    {
+
+        $query = $this->db->get_where('kp', $where);
+
+        return $query->result();
+    }
+
     public function SemuaData()
     {
         return $this->db->get('kp')->result_array();
@@ -18,6 +67,7 @@ class M_kp extends CI_Model
             "jangka_waktu" => $this->input->post('jangka_waktu'),
             "tgl_masuk" => $this->input->post('tgl_masuk'),
             "tgl_akhir" => $this->input->post('tgl_akhir'),
+            "user_id" => $this->session->userdata('id_user'),
             "posisi_magang" => $this->input->post('posisi_magang'),
         ];
 
@@ -53,4 +103,29 @@ class M_kp extends CI_Model
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('kp', $data);
     }
+
+    function kp_user()
+    {
+        $this->db->where('kp.user_id', $this->session->userdata('id_user'));
+        return $this->db->get('kp')->result_array();
+    }
+
+    public function editstatus()
+    {
+        $data = [
+            "stat" => $this->input->post('stat'),
+            "ket_stat" => $this->input->post('ket_stat'),
+
+        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('kp', $data);
+    }
+
+    public function downloadsertifikat($id)
+    {
+        $query = $this->db->get_where('kp', array('id' => $id));
+        return $query->row_array();
+    }
 }
+

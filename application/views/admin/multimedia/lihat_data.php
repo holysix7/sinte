@@ -66,11 +66,17 @@
                                             </td>
 
                                             <td>
-                                                <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
-                                                    data-target="#editmultimedia<?php echo $mu['id']; ?>">Edit</button>
+                                                <a href="" data-id-kp="<?php echo $mu['id']; ?>"
+                                                    data-toggle="modal"
+                                                    data-target="#editmultimedia<?php  echo $mu['id']; ?>"
+                                                    class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                </a>
                                                 <br>
-                                                <a href="<?php echo base_url() ?>multimedia/hapus_data/<?php echo $mu['id']; ?>"
-                                                    class="badge badge-danger btn-flat btn-block">Hapus</a>
+                                                <a href="" data-id-mul="<?php echo $mu['id']; ?>"
+                                                    data-toggle="modal"
+                                                    data-target="#hapusmul<?php echo $mu['id']; ?>"
+                                                    class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
+                                                </a>
                                             </td>
 
                                         </tr>
@@ -96,6 +102,38 @@
     </div>
     <!-- End of Content Wrapper -->
 </div>
+
+
+<!-- Hapus -->
+<?php $no = 0;
+foreach ($multimedia as $mu):
+    $no++ ?>
+
+    <div class="modal fade" id="hapusmul<?php echo $mu['id'] ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action=" <?php echo base_url() ?>multimedia/hapus_data/<?php echo $mu['id'] ?>">
+					<div class="modal-body text-center">
+					<h5>Apakah anda yakin untuk menghapus ini? </h5>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
+					</div>
+				</form>           
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+<!-- Hapus -->
 
 <!-- multimedia Tambah-->
 <div class="modal fade" id="addmultimedia">

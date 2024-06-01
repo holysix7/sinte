@@ -5,6 +5,18 @@ class Model_surat extends CI_Model
     {
         $query = "SELECT * FROM " . $table . " INNER JOIN indeks WHERE " . $table . ".id_indeks=indeks.id_indeks";
         return $this->db->query($query);
+
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Syarat Tidak Terpenuhi',
+            3 => 'Diterima dan Dilanjutkan',
+            4 => 'Sudah Diketik dan Diparaf',
+            5 => 'Ditandatangani Lurah/<b>Selesai</b>',
+        ];
+        $this->db->select('*');
+        $this->db->from('suratpengajuan');
+        $query = $this->db->get();
+        $data['data'] = $query->result_array();
     }
 
     public function getdatawithadd($table, $additional)
@@ -60,9 +72,9 @@ class Model_surat extends CI_Model
     }
 
 
-    public function hapus_datask($id_suratkeluar)
+    public function hapus_datask($id_suratpengajuan)
     {
-        return $this->db->delete('suratkeluar', array('id_suratkeluar' => $id_suratkeluar));
+        return $this->db->delete('suratpengajuan', array('id_suratpengajuan' => $id_suratpengajuan));
     }
 
     public function hapus_datasm($id_suratmasuk)
@@ -85,10 +97,37 @@ class Model_surat extends CI_Model
     }
 
 
-    public function edit($id_suratkeluar)
+    public function edit($id_suratpengajuan)
     {
-        return $this->db->delete('suratkeluar', array('id_suratkeluar' => $id_suratkeluar));
+        return $this->db->delete('suratpengajuan', array('id_suratpengajuan' => $id_suratpengajuan));
     }
+
+    public function editstatus()
+    {
+        $data = [
+            "status" => $this->input->post('status'),
+            "ket_status" => $this->input->post('ket_status'),
+
+        ];
+
+        $this->db->where('id_suratpengajuan', $this->input->post('id_suratpengajuan'));
+        $this->db->update('suratpengajuan', $data);
+    }
+
+    public function kp_pengajuan()
+    {
+        $this->db->where('suratpengajuan.no_user', $this->session->userdata('id_user'));
+        return $this->db->get('suratpengajuan')->result();
+
+    }
+
+    public function downloadsuratbalasan($id_suratpengajuan)
+    {
+        $query = $this->db->get_where('suratpengajuan', array('id_suratpengajuan' => $id_suratpengajuan));
+        return $query->row_array();
+    }
+
+
 
 
 }

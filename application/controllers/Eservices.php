@@ -2,6 +2,8 @@
 class Eservices extends CI_Controller
 {
 
+
+
     function __construct()
     {
         parent::__construct();
@@ -22,6 +24,9 @@ class Eservices extends CI_Controller
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
         }
+
+        $data['databarang'] = $this->M_eservice->SemuaData();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/dashboard', $data);
@@ -48,6 +53,7 @@ class Eservices extends CI_Controller
                 </div>');
             redirect(base_url(''));
         }
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/eservices/lihat_data', $data);
@@ -91,6 +97,9 @@ class Eservices extends CI_Controller
             <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
             </div>');
             redirect('eservices/view');
+
+
+
         }
     }
 
@@ -155,7 +164,20 @@ class Eservices extends CI_Controller
         $this->load->helper('download');
         $fileinfo = $this->M_eservice->download($id);
         $file = 'vendor/files/jadwal_kegiatan/' . $fileinfo['jadwal_kegiatan'];
-        force_download($file, NULL);
+        if (file_exists($file)) {
+            force_download($file, NULL);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
+            </div>');
+            redirect('eservices/view');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
+        </div>');
+            redirect('eservices/view');
+        }
     }
 
     public function download2($id)
@@ -163,7 +185,20 @@ class Eservices extends CI_Controller
         $this->load->helper('download');
         $fileinfo = $this->M_eservice->download($id);
         $file = 'vendor/files/data_peserta/' . $fileinfo['data_peserta'];
-        force_download($file, NULL);
+        if (file_exists($file)) {
+            force_download($file, NULL);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
+            </div>');
+            redirect('eservices/view');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
+        </div>');
+            redirect('eservices/view');
+        }
     }
 
     public function laporan_eservices()
@@ -174,14 +209,121 @@ class Eservices extends CI_Controller
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
         }
-       
+
+        $data['tahun'] = $this->M_eservice->gettahun();
         $data['eservice'] = $this->M_eservice->SemuaData();
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/laporan/laporan_eservices', $data);
         $this->load->view('templates/footer');
-    
+
     }
+
+    function filter()
+    {
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $tahun1 = $this->input->post('tahun1');
+        $bulanawal = $this->input->post('bulanawal');
+        $bulanakhir = $this->input->post('bulanakhir');
+        $tahun2 = $this->input->post('tahun2');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        //tambahan
+        $nama_kegiatan = $this->input->post('nama_kegiatan');
+
+        if ($nilaifilter == 1) {
+
+            $data['title'] = "Laporan E-Services Berdasarkan Tanggal";
+            $data['subtitle'] = "Dari tanggal : " . $tanggalawal . ' Sampai tanggal : ' . $tanggalakhir;
+
+            if ($nama_kegiatan == null) {
+                $where = array(
+                    'tgl_kegiatan >=' => $tanggalawal,
+                    'tgl_kegiatan <=' => $tanggalakhir,
+                );
+                $data['datafilter'] = $this->M_eservice->filterbytanggal($where);
+            } else {
+
+                if ($nama_kegiatan == null) {
+                    $where = array(
+                        'tgl_kegiatan >=' => $tanggalawal,
+                        'tgl_kegiatan <=' => $tanggalakhir,
+                        'nama_kegiatan' => $nama_kegiatan,
+                    );
+                    $data['datafilter'] = $this->M_eservice->filterbytanggal($where);
+
+                } else if ($nama_kegiatan == null) {
+                    $where = array(
+                        'tgl_kegiatan >=' => $tanggalawal,
+                        'tgl_kegiatan <=' => $tanggalakhir,
+                    );
+                    $data['datafilter'] = $this->M_eservice->filterbytanggal($where);
+                } else {
+                    $where = array(
+                        'tgl_kegiatan >=' => $tanggalawal,
+                        'tgl_kegiatan <=' => $tanggalakhir,
+                        'nama_kegiatan' => $nama_kegiatan,
+                    );
+                    $data['datafilter'] = $this->M_eservice->filterbytanggal($where);
+                }
+            }
+
+            $this->load->view('admin/laporan/print_laporan_eservice', $data);
+
+        } elseif ($nilaifilter == 2) {
+
+            $data['title'] = "Laporan E-Services Berdasarkan Bulan";
+            $data['subtitle'] = "Dari bulan : " . $bulanawal . ' Sampai tanggal : ' . $bulanakhir . ' Tahun : ' . $tahun1;
+
+
+            $data['datafilter'] = $this->M_eservice->filterbybulan($tahun1, $bulanawal, $bulanakhir);
+
+            $this->load->view('admin/laporan/print_laporan_eservice', $data);
+
+        } elseif ($nilaifilter == 3) {
+
+            $data['title'] = "Laporan E-Services Berdasarkan Tahun";
+            $data['subtitle'] = ' Tahun : ' . $tahun2;
+
+            if ($nama_kegiatan == null) {
+                $data['datafilter'] = $this->M_eservice->filterbytahun($tahun2);
+            } else {
+
+                if ($nama_kegiatan == null) {
+                    $where = array(
+                        'YEAR(tgl_kegiatan)' => $tahun2,
+                        'nama_kegiatan' => $nama_kegiatan,
+                    );
+
+                    $data['datafilter'] = $this->M_eservice->filterbytahun2($where);
+                } else if ($nama_kegiatan == null) {
+                    $where = array(
+                        'YEAR(tgl_kegiatan)' => $tahun2,
+                    );
+
+                    $data['datafilter'] = $this->M_eservice->filterbytahun2($where);
+                } else {
+                    $where = array(
+                        'YEAR(tgl_kegiatan)' => $tahun2,
+                        'nama_kegiatan' => $nama_kegiatan,
+                    );
+
+                    $data['datafilter'] = $this->M_eservice->filterbytahun2($where);
+                }
+
+            }
+
+
+            $this->load->view('admin/laporan/print_laporan_eservice', $data);
+
+        }
+
+
+
+
+    }
+
 
 
 

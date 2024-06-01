@@ -41,17 +41,17 @@
                 <!-- Content Row -->
                 <body>
 
-
                     <!-- ======= Hero Section ======= -->
                     <section id="hero">
-                        <div class="card-body">
+                        <div class="container">
                             <div class="row justify-content-between">
-                                <div class="col-lg-6">
+                                <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
                                     <div data-aos="zoom-out">
-                                        <h1>Selamat Datang  <br> <span> Sistem Informasi Integral Technology</span></h1>
+                                        <h1>Selamat Datang <br> <span>Sistem Informasi Integral Technology</span></h1>
+                                        <h2>Seluruh Jajaran BPSDM Provinsi Jawa Barat Terus Menerus Meningkatkan Mutu Pelayanan</h2>
                                     </div>
                                 </div>
-                                 <div class="col-lg-6">
+                                <div class="col-lg-5 order-1 order-lg-2 2 data-aos=" zoom-out" data-aos-delay="300">
                                     <img src="assets/img/BG/2.png" class="img-fluid animated" alt="">
                                 </div>
                             </div>
@@ -69,7 +69,6 @@
                                 <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
                             </g>
                             <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
-                                </g>
                         </svg>
 
                     </section><!-- End Hero -->
@@ -107,7 +106,7 @@
                                         
                                         <div class="row">
                                             <div class="section-title">
-                                                <div> <!-- Search Start Here -->
+                                                <div> <!-- Boyermoore Serch -->
                                                     <?php
                                                     if (!empty($kata)) {
                                                         echo "<h3 style='font-size: 18px; padding: 2px; color: red;'> Hasil Pengecakan Testing: " . $total_time . " seconds</h3>";
@@ -170,7 +169,7 @@
                                                             ?>
                                                         </form>
                                                     </div>
-                                                </div>
+                                                </div>  <!-- Boyermoore Serch -->
                                             </div>
                                         </div>
                                     </div>

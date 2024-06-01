@@ -112,16 +112,7 @@
         </a>
     </li>
 
-    <!-- Nav Item - Charts Kerja Praktik Superadmin -->
-    <li class="nav-item 
-    <?php if (current_url() == base_url('kp/view')) {
-        echo 'active';
-    } ?>">
-        <a class="nav-link" href="<?= base_url('kp/view') ?>">
-            <i class="fas fa-envelope-open-text"></i>
-            <span>Data Kerja Praktik</span>
-        </a>
-    </li>
+
 
 
     <!-- Nav Item - Charts Kunjungan Tamu Superadmin -->
@@ -140,35 +131,81 @@
         </a>
     </li>
 
-    <hr class="sidebar-divider d-none d-md-block">
+
+
+
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item 
-    <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratkeluar')) {
+    <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratpengajuan')) {
         echo 'active';
     } ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
-            <i class="fas fa-envelope-open"></i>
-            <span>Surat</span>
+            <i class="fas fa-envelope-open-text"></i>
+            <span>Kerja Praktik</span>
         </a>
         <div id="collapseTwo" class="collapse 
-        <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratkeluar')) {
+        <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratpengajuan')) {
             echo 'show';
         } ?>" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">List:</h6>
-                <a class="collapse-item 
-                <?php if (current_url() == base_url('admin/suratmasuk')) {
-                    echo 'active';
-                } ?>" href="<?php echo base_url('admin/suratmasuk') ?>">Surat Masuk</a>
-                <a class="collapse-item 
-                <?php if (current_url() == base_url('admin/suratkeluar')) {
-                    echo 'active';
-                } ?>" href="<?php echo base_url('admin/suratkeluar') ?>">Surat Keluar</a>
+
+                <?php if ($user == 'userskp'): ?>
+                    <a class="collapse-item 
+                        <?php if (current_url() == base_url('kp/view')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('kp/view') ?>">Data Kerja Praktik
+                    </a>
+
+                    <a class="collapse-item 
+                        <?php if (current_url() == base_url('admin/suratpengajuankp')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan
+                    </a>
+
+                <?php endif; ?>
+
+                <?php if ($user == 'admin'): ?>
+                    <a class="collapse-item 
+                    <?php if (current_url() == base_url('kp/view')) {
+                        echo 'active';
+                    } ?>" href="<?php echo base_url('kp/view') ?>">Data Kerja Praktik</a>
+
+                    <a class="collapse-item 
+                    <?php if (current_url() == base_url('admin/suratpengajuan')) {
+                        echo 'active';
+                    } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>
+                <?php endif; ?>
+
+                <?php if ($user == 'superadmin'): ?>
+                    <a class="collapse-item 
+                    <?php if (current_url() == base_url('kp/view')) {
+                        echo 'active';
+                    } ?>" href="<?php echo base_url('kp/view') ?>">Data Kerja Praktik</a>
+
+                    <a class="collapse-item 
+                    <?php if (current_url() == base_url('admin/suratpengajuan')) {
+                        echo 'active';
+                    } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>
+
+                    <a class="collapse-item 
+                    <?php if (current_url() == base_url('admin/suratmasuk')) {
+                        echo 'active';
+                    } ?>" href="<?php echo base_url('admin/suratmasuk') ?>">Sertifikat</a>
+
+                <?php endif; ?>
             </div>
         </div>
     </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Properties
+    </div>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item 
@@ -207,7 +244,7 @@
 
     <li class="nav-item 
         <?php if ($user == 'superadmin'): ?>
-            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratkeluar')) {
+            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
                 echo 'active';
             } ?>">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
@@ -216,20 +253,28 @@
                 <span>Laporan</span>
             </a>
             <div id="collapseLaporan" class="collapse 
-                <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratkeluar')) {
+                <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
                     echo 'show';
                 } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Surat:</h6>
+                    <h6 class="collapse-header">Kerja Praktik:</h6>
                     <a class="collapse-item
                         <?php if ($user == 'superadmin'): ?>
+                        <?php if (current_url() == base_url('kp/laporan_kp')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('kp/laporan_kp') ?>">Laporan Data KP</a>
+                        <a class="collapse-item   
+                        <?php if (current_url() == base_url('admin/laporan_suratpengajuan')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('admin/laporan_suratpengajuan') ?>">Laporan Surat Pengajuan</a>
+                        <a class="collapse-item 
                             <?php if (current_url() == base_url('admin/laporan_suratmasuk')) {
                                 echo 'active';
-                            } ?>" href="<?php echo base_url('admin/laporan_suratmasuk') ?>">Laporan Surat Masuk</a>
-                        <a class="collapse-item 
-                            <?php if (current_url() == base_url('admin/laporan_suratkeluar')) {
-                                echo 'active';
-                            } ?>" href="<?php echo base_url('admin/laporan_suratkeluar') ?>">Laporan Surat Keluar</a>
+                            } ?>" href="<?php echo base_url('admin/laporan_suratmasuk') ?>">Laporan Sertifikat
+                            Digital</a>
+
+
+
                         <h6 class="collapse-header">Master:</h6>
                         <a class="collapse-item 
                             <?php if (current_url() == base_url('eservices/laporan_eservices')) {
@@ -257,11 +302,6 @@
                             } ?>" href="<?php echo base_url('publikasi/laporan_publikasi') ?>">Laporan Publikasi</a>
 
                         <a class="collapse-item 
-                            <?php if (current_url() == base_url('kp/laporan_kp')) {
-                                echo 'active';
-                            } ?>" href="<?php echo base_url('kp/laporan_kp') ?>">Laporan Kerja Praktik</a>
-
-                        <a class="collapse-item 
                             <?php if (current_url() == base_url('tamu/laporan_tamu')) {
                                 echo 'active';
                             } ?>" href="<?php echo base_url('tamu/laporan_tamu') ?>">Laporan Kunjungan Tamu</a>
@@ -278,7 +318,7 @@
 
     <li class="nav-item 
     <?php if ($user == 'admin'): ?>
-        <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratkeluar')) {
+        <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
             echo 'active';
         } ?>">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
@@ -287,29 +327,32 @@
                 <span>Laporan</span>
             </a>
             <div id="collapseLaporan" class="collapse 
-            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratkeluar')) {
+            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
                 echo 'show';
             } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">List:</h6>
+                    <h6 class="collapse-header">Surat:</h6>
                     <a class="collapse-item
                     <?php if ($user == 'admin'): ?>
-                        <?php if (current_url() == base_url('admin/laporan_suratmasuk')) {
+                        <?php if (current_url() == base_url('kp/laporan_kp')) {
                             echo 'active';
-                        } ?>" href="<?php echo base_url('admin/laporan_suratmasuk') ?>">Laporan Surat Masuk</a>
+                        } ?>" href="<?php echo base_url('kp/laporan_kp') ?>">Laporan Data KP</a>
+                        <a class="collapse-item   
+                        <?php if (current_url() == base_url('admin/laporan_suratpengajuan')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('admin/laporan_suratpengajuan') ?>">Laporan Surat Pengajuan</a>
                         <a class="collapse-item 
-                        <?php if (current_url() == base_url('admin/laporan_suratkeluar')) {
-                            echo 'active';
-                        } ?>" href="<?php echo base_url('admin/laporan_suratkeluar') ?>">Laporan Surat Keluar</a>
+                            <?php if (current_url() == base_url('admin/laporan_suratmasuk')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('admin/laporan_suratmasuk') ?>">Laporan Sertifikat
+                            Digital</a>
                     <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>
-
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider d-none d-md-block">
 
     <!-- Heading -->
     <div class="sidebar-heading">

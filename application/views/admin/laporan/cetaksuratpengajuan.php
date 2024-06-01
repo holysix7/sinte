@@ -26,11 +26,11 @@
 <body id="page-top" onload="window.print()">
     <hr>
     <center>
-        <h1>Laporan Surat Keluar</h1>
+        <h1>Laporan Surat Pengajuan</h1>
     </center>
     <hr>
     <div class="table-responsive">
-        <table class="table table-bordered" id="cetaksuratkeluar" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="cetaksuratpengajuan" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>No.</th>
@@ -38,20 +38,20 @@
                     <th>Judul Surat</th>
                     <th>Indeks</th>
                     <th>Tujuan</th>
-                    <th>Tanggal Keluar</th>
+                    <th>Tanggal Pengajuan</th>
                     <th>Keterangan</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $no = 1;
-                foreach ($suratkeluar as $sk) : ?>
+                foreach ($suratpengajuan as $sk) : ?>
                     <tr>
                         <td><?= $no++; ?></td>
-                        <td><?= $sk->no_suratkeluar; ?></td>
-                        <td><?= $sk->judul_suratkeluar; ?></td>
+                        <td><?= $sk->no_suratpengajuan; ?></td>
+                        <td><?= $sk->judul_suratpengajuan; ?></td>
                         <td><?= $sk->judul_indeks; ?></td>
                         <td><?= $sk->tujuan; ?></td>
-                        <td><?php $date = date_create($sk->tanggal_keluar);
+                        <td><?php $date = date_create($sk->tanggal_pengajuan);
                             echo date_format($date, 'd/m/Y'); ?></td>
                         <td><?= $sk->keterangan; ?></td>
                     </tr>

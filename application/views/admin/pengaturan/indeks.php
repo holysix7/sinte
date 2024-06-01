@@ -59,12 +59,14 @@
                                                     <a href="" data-id-i="<?php echo $i->id_indeks ?>"
                                                         data-toggle="modal"
                                                         data-target="#ubahindeks<?php echo $i->id_indeks ?>"
-                                                        class="badge badge-primary d-block">edit</a>
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
                                                     <br>
-                                                    <a href="<?php echo base_url('admin/hapus_dataindex/' . $i->id_indeks) ?>">
-                                                        <button onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini ?')" 
-                                                        class="badge badge-danger d-block">Hapus</button>
-                                                    </a>          
+                                                    <a href="" data-id-sk="<?php echo $i->id_indeks ?>"
+                                                        data-toggle="modal"
+                                                        data-target="#hapusindeks<?php echo $i->id_indeks ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
+                                                    </a>
                                                 </td>
                                             <?php } else {
                                             } ?>
@@ -93,6 +95,37 @@
     <!-- End of Content Wrapper -->
 
 </div>
+
+<!-- Hapus -->
+<?php $no = 0;
+foreach ($indeks as $i):
+    $no++ ?>
+
+    <div class="modal fade" id="hapusindeks<?php echo $i->id_indeks ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="<?php echo base_url('admin/hapus_dataindex/' . $i->id_indeks) ?>">
+					<div class="modal-body text-center">
+					<h5>Apakah anda yakin untuk menghapus ini? </h5>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
+					</div>
+				</form>           
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+<!-- Hapus -->
 
 <!-- Ubah indeks -->
 

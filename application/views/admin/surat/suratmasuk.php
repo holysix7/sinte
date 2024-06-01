@@ -68,24 +68,22 @@
                                                 echo base_url('admin/download/suratmasuk/' . $sm->berkas_suratmasuk);
                                             } elseif ($sm->berkas_suratmasuk == "") {
                                                 echo '#';
-                                            } ?>" class="badge badge-success btn-block"
-                                                    title="download">Download</i></a></i></a>
+                                            } ?>" class="badge badge-success d-block"><i class="fa fa-download"></i> Download
                                             </td>
                                             <?php if ($user == 'superadmin') { ?>
                                                 <td>
 
                                                     <a href="" data-id-sk="<?php echo $sm->id_suratmasuk ?>" data-toggle="modal"
                                                         data-target="#ubahsm<?php echo $sm->id_suratmasuk ?>"
-                                                        class="badge badge-primary d-block">edit</a>
-
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
                                                     <br>
-                                                    <a href="<?php echo base_url('admin/hapus_datasm/' . $sm->id_suratmasuk) ?>">
-                                                        <button onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data Ini ?')" 
-                                                        class="badge badge-danger d-block">Hapus</button>
+                                                    <a href="" data-id-sk="<?php echo $sm->id_suratmasuk ?>"
+                                                        data-toggle="modal"
+                                                        data-target="#hapussm<?php echo $sm->id_suratmasuk ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
                                                     </a>
 
-
-                                                   
                                                 </td>
                                             <?php } else {
                                             } ?>
@@ -112,6 +110,38 @@
     <!-- End of Content Wrapper -->
 
 </div>
+
+
+<!-- Hapus -->
+<?php $no = 0;
+foreach ($suratmasuk as $sm):
+    $no++ ?>
+
+    <div class="modal fade" id="hapussm<?php echo $sm->id_suratmasuk ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="<?php echo base_url('admin/hapus_datasm/' . $sm->id_suratmasuk) ?>">
+					<div class="modal-body text-center">
+					<h5>Apakah anda yakin untuk menghapus ini? </h5>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
+					</div>
+				</form>           
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+<!-- Hapus -->
 
 <!-- Ubah Surat Masuk -->
 <?php $no = 0;

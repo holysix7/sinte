@@ -1,6 +1,56 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class M_bigdata extends CI_Model
 {
+
+    function gettahun()
+    {
+
+        $query = $this->db->query("SELECT YEAR(tgl_kegiatan) AS tahun FROM bigdata GROUP BY YEAR(tgl_kegiatan) ORDER BY YEAR(tgl_kegiatan) ASC");
+
+        return $query->result();
+
+    }
+
+    function filterbytanggal($where)
+    {
+
+        $query = $this->db->get_where('bigdata', $where);
+
+        return $query->result();
+    }
+
+    function filterbytanggal1($tanggalawal, $tanggalakhir)
+    {
+
+        $query = $this->db->query("SELECT * from bigdata where tgl_kegiatan BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_kegiatan ASC ");
+
+        return $query->result();
+    }
+
+    function filterbybulan($tahun1, $bulanawal, $bulanakhir)
+    {
+
+        $query = $this->db->query("SELECT * from bigdata where YEAR(tgl_kegiatan) = '$tahun1' and MONTH(tgl_kegiatan) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tgl_kegiatan ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun($tahun2)
+    {
+
+        $query = $this->db->query("SELECT * from bigdata where YEAR(tgl_kegiatan) = '$tahun2'  ORDER BY tgl_kegiatan ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun2($where)
+    {
+
+        $query = $this->db->get_where('bigdata', $where);
+
+        return $query->result();
+    }
+
     public function SemuaData()
     {
         return $this->db->get('bigdata')->result_array();

@@ -83,11 +83,18 @@
     
                                             <?php if ($user == 'superadmin') { ?>
                                                 <td>
-                                                    <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
-                                                        data-target="#edittamu<?php  echo $tm['id']; ?>">Edit</button>
+                                                    <a href="" data-id-tamu="<?php echo $tm['id']; ?>"
+                                                        data-toggle="modal"
+                                                        data-target="#edittamu<?php echo $tm['id']; ?>"
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
                                                     <br>
-                                                    <a href="<?php echo base_url() ?>tamu/hapus_data/<?php echo $tm['id']; ?>"
-                                                        class="badge badge-danger btn-flat btn-block">Hapus</a>
+                                                    <a href="" data-id-tamu="<?php echo $tm['id']; ?>"
+                                                        data-toggle="modal"
+                                                        data-target="#hapustamu<?php echo $tm['id']; ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
+                                                    </a>
+
                                                 </td>
                                             <?php } else {
                                             } ?>
@@ -114,6 +121,38 @@
     <!-- End of Content Wrapper -->
 
 </div>
+
+
+<!-- Hapus -->
+<?php $no = 0;
+foreach ($tamu as $tm):
+    $no++ ?>
+
+    <div class="modal fade" id="hapustamu<?php echo $tm['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="<?php echo base_url() ?>tamu/hapus_data/<?php echo $tm['id']; ?>">
+					<div class="modal-body text-center">
+					<h5>Apakah anda yakin untuk menghapus ini? </h5>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
+					</div>
+				</form>           
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+<!-- Hapus -->
 
 
 <!-- tamu add -->

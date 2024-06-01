@@ -1,6 +1,54 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class M_publikasi extends CI_Model
 {
+    function gettahun()
+    {
+
+        $query = $this->db->query("SELECT YEAR(tgl_publikasi) AS tahun FROM publikasi GROUP BY YEAR(tgl_publikasi) ORDER BY YEAR(tgl_publikasi) ASC");
+
+        return $query->result();
+
+    }
+    function filterbytanggal($where)
+    {
+
+        $query = $this->db->get_where('publikasi', $where);
+
+        return $query->result();
+    }
+
+    function filterbytanggal1($tanggalawal, $tanggalakhir)
+    {
+
+        $query = $this->db->query("SELECT * from publikasi where tgl_publikasi BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_publikasi ASC ");
+
+        return $query->result();
+    }
+
+    function filterbybulan($tahun1, $bulanawal, $bulanakhir)
+    {
+
+        $query = $this->db->query("SELECT * from publikasi where YEAR(tgl_publikasi) = '$tahun1' and MONTH(tgl_publikasi) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tgl_publikasi ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun($tahun2)
+    {
+
+        $query = $this->db->query("SELECT * from publikasi where YEAR(tgl_publikasi) = '$tahun2'  ORDER BY tgl_publikasi ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun2($where)
+    {
+
+        $query = $this->db->get_where('publikasi', $where);
+
+        return $query->result();
+    }
+
     public function SemuaData()
     {
         return $this->db->get('publikasi')->result_array();

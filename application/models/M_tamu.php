@@ -1,6 +1,55 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class M_Tamu extends CI_Model
 {
+
+    function gettahun()
+    {
+
+        $query = $this->db->query("SELECT YEAR(tanggal_kunjungan	) AS tahun FROM tamu GROUP BY YEAR(tanggal_kunjungan	) ORDER BY YEAR(tanggal_kunjungan	) ASC");
+
+        return $query->result();
+
+    }
+    function filterbytanggal($where)
+    {
+
+        $query = $this->db->get_where('tamu', $where);
+
+        return $query->result();
+    }
+
+    function filterbytanggal1($tanggalawal, $tanggalakhir)
+    {
+
+        $query = $this->db->query("SELECT * from tamu where tanggal_kunjungan	 BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tanggal_kunjungan	 ASC ");
+
+        return $query->result();
+    }
+
+    function filterbybulan($tahun1, $bulanawal, $bulanakhir)
+    {
+
+        $query = $this->db->query("SELECT * from tamu where YEAR(tanggal_kunjungan	) = '$tahun1' and MONTH(tanggal_kunjungan	) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tanggal_kunjungan	 ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun($tahun2)
+    {
+
+        $query = $this->db->query("SELECT * from tamu where YEAR(tanggal_kunjungan	) = '$tahun2'  ORDER BY tanggal_kunjungan	 ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun2($where)
+    {
+
+        $query = $this->db->get_where('tamu', $where);
+
+        return $query->result();
+    }
+
     public function SemuaData()
     {
         return $this->db->get('tamu')->result_array();

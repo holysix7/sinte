@@ -18,7 +18,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Laporan Surat Keluar</h1>
+                <h1 class="h3 mb-4 text-gray-800">Laporan Surat Pengajuan</h1>
                 <div class="card card-success">
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
@@ -27,7 +27,7 @@
                                 <a href="#" id="cetaklaporansk" class="btn btn-success btn-block"><i class="fas fa-print"></i> Cetak laporan</a>
                             </div>
                             <div class="col-md-4">
-                                <form action="<?php echo base_url('admin/laporan_suratkeluar') ?>" method="GET">
+                                <form action="<?php echo base_url('admin/laporan_suratpengajuan') ?>" method="GET">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <select class="form-control" id="filter-index-sk" name="id_index">
@@ -46,10 +46,10 @@
                                         Filter tanggal
                                     </button>
                                     <?php if (isset($_GET['filter-tanggal'])) { ?>
-                                        <a href="<?php echo base_url('admin/laporan_suratkeluar') ?>" class="btn btn-info text-white btn-block"><i class="fas fa-eye" title="Tampilkan semua"></i> Tampilkan semua</a>
+                                        <a href="<?php echo base_url('admin/laporan_suratpengajuan') ?>" class="btn btn-info text-white btn-block"><i class="fas fa-eye" title="Tampilkan semua"></i> Tampilkan semua</a>
                                     <?php } ?>
                                     <div class="dropdown-menu lg" aria-labelledby="dropdownMenuButton">
-                                        <form action="<?php echo base_url('admin/laporan_suratkeluar') ?>" method='GET'>
+                                        <form action="<?php echo base_url('admin/laporan_suratpengajuan') ?>" method='GET'>
                                             <div class="form-group">
                                                 <label for="">start</label>
                                                 <input type="date" class="form-control" name="tanggal_awal">
@@ -68,7 +68,7 @@
                         </div>
                         <br>
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="lapsuratkeluar" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="lapsuratpengajuan" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No.</th>
@@ -76,20 +76,20 @@
                                         <th>Judul Surat</th>
                                         <th>Indeks</th>
                                         <th>Tujuan</th>
-                                        <th>Tanggal Keluar</th>
+                                        <th>Tanggal Pengajuan</th>
                                         <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;
-                                    foreach ($suratkeluar as $sk) : ?>
+                                    foreach ($suratpengajuan as $sk) : ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= $sk->no_suratkeluar; ?></td>
-                                            <td><?= $sk->judul_suratkeluar; ?></td>
+                                            <td><?= $sk->no_suratpengajuan; ?></td>
+                                            <td><?= $sk->judul_suratpengajuan; ?></td>
                                             <td><?= $sk->judul_indeks; ?></td>
                                             <td><?= $sk->tujuan; ?></td>
-                                            <td><?php $date = date_create($sk->tanggal_keluar);
+                                            <td><?php $date = date_create($sk->tanggal_pengajuan);
                                                 echo date_format($date, 'd/m/Y'); ?></td>
                                             <td><?= $sk->keterangan; ?></td>
                                         </tr>

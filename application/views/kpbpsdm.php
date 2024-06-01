@@ -124,7 +124,7 @@
 
                 <div class="row">
                     <div class="section-title">
-                        <div> <!-- Search Start Here -->
+                        <div>  <!-- Boyermoore Serch -->
                             <?php
                             if (!empty($kata)) {
                                 echo "<h3 style='font-size: 18px; padding: 2px; color: red;'> Hasil Pengecakan Testing: " . $total_time . " seconds</h3>";
@@ -187,12 +187,12 @@
                                     ?>
                                 </form>
                             </div>
-                        </div>
+                        </div>  <!-- Boyermoore Serch -->
                     </div>
                 </div>
 
             </div>
-        </section><!-- End F.A.Q Section -->
+        </section>
     </main>
     <!-- ======= KP ======= -->
 

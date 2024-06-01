@@ -83,23 +83,33 @@
 
                                             <td>
                                                 <button type="button" class="badge badge-dark btn-flat btn-block" data-toggle="modal"
-                                                    data-target="#upfotokegiatan<?php echo $bd['id_bigdata']; ?>">Upload</button>
+                                                    data-target="#upfotokegiatan<?php echo $bd['id_bigdata']; ?>"><i class="fa fa-upload"></i> Upload
+                                                </button>
                                                 <a href="<?php echo base_url() ?>bigdata/download1/<?php echo $bd['id_bigdata']; ?>"
-                                                    class="badge badge-success btn-flat btn-block" title="download">Download</a>
+                                                    class="badge badge-success btn-flat btn-block" title="download"><i class="fa fa-download"></i> Download
+                                                </a>
                                             </td>
                                             <td>
                                                 <button type="button" class="badge badge-dark btn-flat btn-block" data-toggle="modal"
-                                                    data-target="#updatapeserta<?php echo $bd['id_bigdata']; ?>">Upload</button>
+                                                    data-target="#updatapeserta<?php echo $bd['id_bigdata']; ?>"><i class="fa fa-upload"></i> Upload
+                                                </button>
                                                 <a href="<?php echo base_url() ?>bigdata/download2/<?php echo $bd['id_bigdata']; ?>"
-                                                    class="badge badge-success btn-flat btn-block" title="download">Download</a>
+                                                    class="badge badge-success btn-flat btn-block" title="download"><i class="fa fa-download"></i> Download
+                                                </a>
 
                                             </td>
                                             <td>
-                                                <button type="button" class="badge badge-primary btn-block" data-toggle="modal" 
-                                                    data-target="#editbigdata<?php  echo $bd['id_bigdata']; ?>">Edit</button>
+                                                <a href="" data-id-kp="<?php echo $bd['id_bigdata']; ?>"
+                                                    data-toggle="modal"
+                                                    data-target="#editbigdata<?php  echo $bd['id_bigdata']; ?>"
+                                                    class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                </a>
                                                 <br>
-                                                <a href="<?php echo base_url() ?>bigdata/hapus_data/<?php echo $bd['id_bigdata']; ?>"
-                                                    class="badge badge-danger btn-flat btn-block">Hapus</a>
+                                                <a href="" data-id-pu="<?php echo $bd['id_bigdata']; ?>"
+                                                    data-toggle="modal"
+                                                    data-target="#hapusbig<?php echo $bd['id_bigdata']; ?>"
+                                                    class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -125,6 +135,36 @@
 
 </div>
 
+<!-- Hapus -->
+<?php $no = 0;
+foreach ($bigdata as $bd):
+    $no++ ?>
+
+    <div class="modal fade" id="hapusbig<?php echo $bd['id_bigdata']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action=" <?php echo base_url() ?>bigdata/hapus_data/<?php echo $bd['id_bigdata']; ?>">
+					<div class="modal-body text-center">
+					<h5>Apakah anda yakin untuk menghapus ini? </h5>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
+					</div>
+				</form>           
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+<!-- Hapus -->
 
 <!-- Tambah Bigdata -->
 <div class="modal fade" id="addbigdata">
