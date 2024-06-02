@@ -128,6 +128,62 @@ class Model_surat extends CI_Model
     }
 
 
+    // untuk laporan surat pengajuan
+
+    function gettahun()
+    {
+
+        $query = $this->db->query("SELECT YEAR(tanggal_pengajuan) AS tahun FROM suratpengajuan GROUP BY YEAR(tanggal_pengajuan) ORDER BY YEAR(tanggal_pengajuan) ASC");
+
+        return $query->result();
+
+    }
+    function filterbytanggal($where)
+    {
+
+        $query = $this->db->get_where('suratpengajuan', $where);
+
+        return $query->result();
+    }
+
+    function filterbytanggal1($tanggalawal, $tanggalakhir)
+    {
+
+        $query = $this->db->query("SELECT * from suratpengajuan where tanggal_pengajuan BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tanggal_pengajuan ASC ");
+
+        return $query->result();
+    }
+
+    function filterbybulan($tahun1, $bulanawal, $bulanakhir)
+    {
+
+        $query = $this->db->query("SELECT * from suratpengajuan where YEAR(tanggal_pengajuan) = '$tahun1' and MONTH(tanggal_pengajuan) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tanggal_pengajuan ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun($tahun2)
+    {
+
+        $query = $this->db->query("SELECT * from suratpengajuan where YEAR(tanggal_pengajuan) = '$tahun2'  ORDER BY tanggal_pengajuan ASC ");
+
+        return $query->result();
+    }
+
+    function filterbytahun2($where)
+    {
+
+        $query = $this->db->get_where('suratpengajuan', $where);
+
+        return $query->result();
+    }
+
+
+    public function SemuaData()
+    {
+        return $this->db->get('suratpengajuan')->result_array();
+    }
+
 
 
 }

@@ -38,7 +38,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <h1><a href=""><img src="assets/img/logoputih.png" align="right"> <span>Sinte</span> &nbsp;
+                <h1><a href="landingpage"><img src="assets/img/logoputih.png" align="right"> <span>Sinte</span> &nbsp;
                     </a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
 
@@ -63,7 +63,6 @@
                         <h1>Sistem Informasi <br> <span>Integral Technology</span></h1>
                         <h2>Layanan Tamu Kunjungan</h2>
                         <div class="text-center text-lg-start">
-                            <a href="landingpage" class="btn-get-started scrollto">Kembali</a>
                             <a href="#about" class="btn-get-started scrollto">Memulai</a>
                         </div>
                     </div>

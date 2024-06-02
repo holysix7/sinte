@@ -28,11 +28,11 @@ class Userskp extends CI_Controller
 
         $today = date('Y-m-d');
         $sm_today = "tanggal_diterima='$today'";
-        $sk_today = "tanggal_keluar='$today'";
+        $sk_today = "tanggal_pengajuan='$today'";
         $data['count_sm'] = $this->model_surat->countdata('suratmasuk')->result();
-        $data['count_sk'] = $this->model_surat->countdata('suratkeluar')->result();
+        $data['count_sk'] = $this->model_surat->countdata('suratpengajuan')->result();
         $data['sm_today'] = $this->model_surat->getdatawithadd('suratmasuk', $sm_today)->result();
-        $data['sk_today'] = $this->model_surat->getdatawithadd('suratkeluar', $sk_today)->result();
+        $data['sk_today'] = $this->model_surat->getdatawithadd('suratpengajuan', $sk_today)->result();
         $data['count_indeks'] = $this->model_surat->countother('indeks')->result();
         $data['count_users'] = $this->model_surat->countother('user')->result();
 
@@ -297,10 +297,10 @@ class Userskp extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-// suratkeluar
-    public function suratkeluar()
+// suratpengajuan
+    public function suratpengajuan()
     {
-        $data['title'] = 'Surat Keluar';
+        $data['title'] = 'Surat pengajuan';
         if ($this->session->userdata('level') == 1) {
             $data['user'] = 'superadmin';
         } elseif ($this->session->userdata('level') == 2) {
@@ -309,187 +309,187 @@ class Userskp extends CI_Controller
             $data['user'] = 'userskp';
         }
 
-        $data['suratkeluar'] = $this->model_surat->getdata('suratkeluar')->result();
+        $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
         $data['indeks'] = $this->model_surat->getother('indeks')->result();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/surat/suratkeluar', $data);
+        $this->load->view('admin/surat/suratpengajuan', $data);
         $this->load->view('templates/footer');
     }
 
     public function tambahsk()
     {
-        $no_suratkeluar = htmlspecialchars($this->input->post('no_suratkeluar'));
-        $judul_suratkeluar = htmlspecialchars($this->input->post('judul_suratkeluar'));
+        $no_suratpengajuan = htmlspecialchars($this->input->post('no_suratpengajuan'));
+        $judul_suratpengajuan = htmlspecialchars($this->input->post('judul_suratpengajuan'));
         $id_indeks = htmlspecialchars($this->input->post('id_indeks'));
         $tujuan = htmlspecialchars($this->input->post('tujuan'));
-        $tanggal_keluar = htmlspecialchars($this->input->post('tanggal_keluar'));
+        $tanggal_pengajuan = htmlspecialchars($this->input->post('tanggal_pengajuan'));
         $keterangan = htmlspecialchars($this->input->post('keterangan'));
-        $namaberkas_suratkeluar = $_FILES['berkas_suratkeluar']['name'];
-        $exp = explode('.', $namaberkas_suratkeluar);
-        $typeberkas_suratkeluar = end($exp);
-        $berkas_suratkeluar = uniqid() . '.' . $typeberkas_suratkeluar;
+        $namaberkas_suratpengajuan = $_FILES['berkas_suratpengajuan']['name'];
+        $exp = explode('.', $namaberkas_suratpengajuan);
+        $typeberkas_suratpengajuan = end($exp);
+        $berkas_suratpengajuan = uniqid() . '.' . $typeberkas_suratpengajuan;
 
-        $cek_no = $this->model_surat->getdatawithadd('suratkeluar', 'no_suratkeluar="' . $no_suratkeluar . '"')->row_array();
+        $cek_no = $this->model_surat->getdatawithadd('suratpengajuan', 'no_suratpengajuan="' . $no_suratpengajuan . '"')->row_array();
         if (!$cek_no) {
             $array = [
-                'id_suratkeluar' => null,
-                'no_suratkeluar' => $no_suratkeluar,
-                'judul_suratkeluar' => $judul_suratkeluar,
+                'id_suratpengajuan' => null,
+                'no_suratpengajuan' => $no_suratpengajuan,
+                'judul_suratpengajuan' => $judul_suratpengajuan,
                 'id_indeks' => $id_indeks,
                 'tujuan' => $tujuan,
-                'tanggal_keluar' => $tanggal_keluar,
+                'tanggal_pengajuan' => $tanggal_pengajuan,
                 'keterangan' => $keterangan,
-                'berkas_suratkeluar' => $berkas_suratkeluar
+                'berkas_suratpengajuan' => $berkas_suratpengajuan
             ];
-            if ($berkas_suratkeluar != null) {
-                $config['upload_path']          = 'vendor/files/suratkeluar/';
+            if ($berkas_suratpengajuan != null) {
+                $config['upload_path']          = 'vendor/files/suratpengajuan/';
                 $config['allowed_types']        = 'jpeg|jpg|png|doc|docx|pdf';
-                $config['file_name'] = $berkas_suratkeluar;
+                $config['file_name'] = $berkas_suratpengajuan;
 
                 $this->load->library('upload', $config);
 
-                if (!$this->upload->do_upload('berkas_suratkeluar')) {
+                if (!$this->upload->do_upload('berkas_suratpengajuan')) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fa fa-trash"></i> ' . $this->upload->display_errors() . '!</h5>
                         </div>');
-                    redirect('admin/suratkeluar');
+                    redirect('admin/suratpengajuan');
                 } else {
                     $this->upload->do_upload();
-                    $this->model_surat->adddata('suratkeluar', $array);
+                    $this->model_surat->adddata('suratpengajuan', $array);
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Data ditambahkan!</h5>
                         </div>');
-                    redirect('admin/suratkeluar');
+                    redirect('admin/suratpengajuan');
                 }
             } else {
-                $this->model_surat->adddata('suratkeluar', $array);
+                $this->model_surat->adddata('suratpengajuan', $array);
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-check"></i> Data ditambahkan!</h5>
                     </div>');
-                redirect('admin/suratkeluar');
+                redirect('admin/suratpengajuan');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Nomor surat sudah ada!</h5>
                 </div>');
-            redirect('admin/suratkeluar');
+            redirect('admin/suratpengajuan');
         }
     }
 
     public function aksiubahsk()
     {
-        $id_suratkeluar = $this->input->post('id_suratkeluar');
-        $no_suratkeluar = htmlspecialchars($this->input->post('no_suratkeluar'));
-        $judul_suratkeluar = htmlspecialchars($this->input->post('judul_suratkeluar'));
+        $id_suratpengajuan = $this->input->post('id_suratpengajuan');
+        $no_suratpengajuan = htmlspecialchars($this->input->post('no_suratpengajuan'));
+        $judul_suratpengajuan = htmlspecialchars($this->input->post('judul_suratpengajuan'));
         $id_indeks = htmlspecialchars($this->input->post('id_indeks'));
         $tujuan = htmlspecialchars($this->input->post('tujuan'));
-        $tanggal_keluar = htmlspecialchars($this->input->post('tanggal_keluar'));
+        $tanggal_pengajuan = htmlspecialchars($this->input->post('tanggal_pengajuan'));
         $keterangan = htmlspecialchars($this->input->post('keterangan'));
-        $namaberkas_suratkeluar = $_FILES['berkas_suratkeluar']['name'];
-        $exp = explode('.', $namaberkas_suratkeluar);
-        $typeberkas_suratkeluar = end($exp);
-        $berkas_suratkeluar = uniqid() . '.' . $typeberkas_suratkeluar;
+        $namaberkas_suratpengajuan = $_FILES['berkas_suratpengajuan']['name'];
+        $exp = explode('.', $namaberkas_suratpengajuan);
+        $typeberkas_suratpengajuan = end($exp);
+        $berkas_suratpengajuan = uniqid() . '.' . $typeberkas_suratpengajuan;
 
-        $cek_no = $this->model_surat->getdatawithadd('suratkeluar', 'no_suratkeluar="' . $no_suratkeluar . '" AND id_suratkeluar!=' . $id_suratkeluar)->row_array();
+        $cek_no = $this->model_surat->getdatawithadd('suratpengajuan', 'no_suratpengajuan="' . $no_suratpengajuan . '" AND id_suratpengajuan!=' . $id_suratpengajuan)->row_array();
 
 // jika no surat benar
         if (!$cek_no) {
 // jika berkas kosong
-            if ($namaberkas_suratkeluar != null) {
+            if ($namaberkas_suratpengajuan != null) {
                 $array = [
-                    'no_suratkeluar' => $no_suratkeluar,
-                    'judul_suratkeluar' => $judul_suratkeluar,
+                    'no_suratpengajuan' => $no_suratpengajuan,
+                    'judul_suratpengajuan' => $judul_suratpengajuan,
                     'id_indeks' => $id_indeks,
                     'tujuan' => $tujuan,
-                    'tanggal_keluar' => $tanggal_keluar,
+                    'tanggal_pengajuan' => $tanggal_pengajuan,
                     'keterangan' => $keterangan,
-                    'berkas_suratkeluar' => $berkas_suratkeluar
+                    'berkas_suratpengajuan' => $berkas_suratpengajuan
                 ];
 
-                $config['upload_path']          = 'vendor/files/suratkeluar/';
+                $config['upload_path']          = 'vendor/files/suratpengajuan/';
                 $config['allowed_types']        = 'jpeg|jpg|png|doc|docx|pdf';
-                $config['file_name'] = $berkas_suratkeluar;
+                $config['file_name'] = $berkas_suratpengajuan;
 
                 $this->load->library('upload', $config);
 // jika upload gagal
-                if (!$this->upload->do_upload('berkas_suratkeluar')) {
+                if (!$this->upload->do_upload('berkas_suratpengajuan')) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fa fa-trash"></i> ' . $this->upload->display_errors() . '!</h5>
                         </div>');
-                    redirect('admin/suratkeluar');
+                    redirect('admin/suratpengajuan');
                 } else {
 // jika berhasil
                     $this->upload->do_upload();
-                    $this->model_surat->updatedata('suratkeluar', $array, array('id_suratkeluar' => $id_suratkeluar));
+                    $this->model_surat->updatedata('suratpengajuan', $array, array('id_suratpengajuan' => $id_suratpengajuan));
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-check"></i> Data ditambahkan!</h5>
                         </div>');
-                    redirect('admin/suratkeluar');
+                    redirect('admin/suratpengajuan');
                 }
             } else {
                 $array = [
-                    'no_suratkeluar' => $no_suratkeluar,
-                    'judul_suratkeluar' => $judul_suratkeluar,
+                    'no_suratpengajuan' => $no_suratpengajuan,
+                    'judul_suratpengajuan' => $judul_suratpengajuan,
                     'id_indeks' => $id_indeks,
                     'tujuan' => $tujuan,
-                    'tanggal_keluar' => $tanggal_keluar,
+                    'tanggal_pengajuan' => $tanggal_pengajuan,
                     'keterangan' => $keterangan
                 ];
 // tanpa upload berkas
-                $this->model_surat->updatedata('suratkeluar', $array, array('id_suratkeluar' => $id_suratkeluar));
+                $this->model_surat->updatedata('suratpengajuan', $array, array('id_suratpengajuan' => $id_suratpengajuan));
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-check"></i> Data ditambahkan!</h5>
                     </div>');
-                redirect('admin/suratkeluar');
+                redirect('admin/suratpengajuan');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Nomor surat sudah ada!</h5>
                 </div>');
-            redirect('admin/suratkeluar');
+            redirect('admin/suratpengajuan');
         }
     }
 
-    public function hapussk($id_suratkeluar)
+    public function hapussk($id_suratpengajuan)
     {
-        $cek_berkas = $this->model_surat->getdatawithadd('suratkeluar', 'id_suratkeluar=' . $id_suratkeluar)->row_array();
-        if (null !== $cek_berkas['berkas_suratkeluar']) {
-            $path = 'vendor/files/suratkeluar/' . $cek_berkas['berkas_suratkeluar'];
+        $cek_berkas = $this->model_surat->getdatawithadd('suratpengajuan', 'id_suratpengajuan=' . $id_suratpengajuan)->row_array();
+        if (null !== $cek_berkas['berkas_suratpengajuan']) {
+            $path = 'vendor/files/suratpengajuan/' . $cek_berkas['berkas_suratpengajuan'];
             unlink($path);
         }
-        $query = $this->db->query('DELETE FROM suratkeluar WHERE id_suratkeluar=' . $id_suratkeluar);
+        $query = $this->db->query('DELETE FROM suratpengajuan WHERE id_suratpengajuan=' . $id_suratpengajuan);
         if ($query) {
-            $cek = $this->model_surat->getdatawithadd('suratkeluar', 'id_suratkeluar=' . $id_suratkeluar)->row_array();
-            if ($cek['berkas_suratkeluar'] != "") {
-                $path = 'vendor/files/suratkeluar/' . $cek['berkas_suratkeluar'];
+            $cek = $this->model_surat->getdatawithadd('suratpengajuan', 'id_suratpengajuan=' . $id_suratpengajuan)->row_array();
+            if ($cek['berkas_suratpengajuan'] != "") {
+                $path = 'vendor/files/suratpengajuan/' . $cek['berkas_suratpengajuan'];
                 unlink($path);
             }
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i> Data dihapus!</h5>
                 </div>');
-            redirect('admin/suratkeluar');
+            redirect('admin/suratpengajuan');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Gagal dihapus!</h5>
                 </div>');
-            redirect('admin/suratkeluar');
+            redirect('admin/suratpengajuan');
         }
     }
 
-    public function laporan_suratkeluar()
+    public function laporan_suratpengajuan()
     {
-        $data['title'] = 'Surat Keluar';
+        $data['title'] = 'Surat pengajuan';
         if ($this->session->userdata('level') == 1) {
             $data['user'] = 'superadmin';
         } elseif ($this->session->userdata('level') == 2) {
@@ -499,40 +499,40 @@ class Userskp extends CI_Controller
         }
         if (null !== $this->input->get('filter-index')) {
             $id_indeks = $this->input->get('id_index');
-            $additional = "suratkeluar.id_indeks=" . $id_indeks;
-            $data['suratkeluar'] = $this->model_surat->getdatawithadd('suratkeluar', $additional)->result();
+            $additional = "suratpengajuan.id_indeks=" . $id_indeks;
+            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
         } elseif (null !== $this->input->get('filter-tanggal')) {
             $tanggal_awal = $this->input->get('tanggal_awal');
             $tanggal_akhir = $this->input->get('tanggal_akhir');
-            $additional = "suratkeluar.tanggal_keluar BETWEEN '" . $tanggal_awal . "' AND '" . $tanggal_akhir . "'";
-            $data['suratkeluar'] = $this->model_surat->getdatawithadd('suratkeluar', $additional)->result();
+            $additional = "suratpengajuan.tanggal_pengajuan BETWEEN '" . $tanggal_awal . "' AND '" . $tanggal_akhir . "'";
+            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
         } else {
-            $data['suratkeluar'] = $this->model_surat->getdata('suratkeluar')->result();
+            $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
         }
         $data['indeks'] = $this->model_surat->getother('indeks')->result();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('admin/laporan/laporan_suratkeluar', $data);
+        $this->load->view('admin/laporan/laporan_suratpengajuan', $data);
         $this->load->view('templates/footer');
     }
 
-    public function cetaksuratkeluar()
+    public function cetaksuratpengajuan()
     {
-        $data['title'] = 'Surat Keluar #' . uniqid();
+        $data['title'] = 'Surat Pengajuan #' . uniqid();
         if (null !== $this->input->get('id_index')) {
             $id_indeks = $this->input->get('id_index');
-            $additional = "suratkeluar.id_indeks=" . $id_indeks;
-            $data['suratkeluar'] = $this->model_surat->getdatawithadd('suratkeluar', $additional)->result();
+            $additional = "suratpengajuan.id_indeks=" . $id_indeks;
+            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
         } elseif (null !== $this->input->get('tanggal_awal')) {
             $tanggal_awal = $this->input->get('tanggal_awal');
             $tanggal_akhir = $this->input->get('tanggal_akhir');
-            $additional = "suratkeluar.tanggal_keluar BETWEEN '" . $tanggal_awal . "' AND '" . $tanggal_akhir . "'";
-            $data['suratkeluar'] = $this->model_surat->getdatawithadd('suratkeluar', $additional)->result();
+            $additional = "suratpengajuan.tanggal_pengajuan BETWEEN '" . $tanggal_awal . "' AND '" . $tanggal_akhir . "'";
+            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
         } else {
-            $data['suratkeluar'] = $this->model_surat->getdata('suratkeluar')->result();
+            $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
         }
 
-        $this->load->view('admin/laporan/cetaksuratkeluar', $data);
+        $this->load->view('admin/laporan/cetaksuratpengajuan', $data);
 // $this->load->view('templates/footer');
     }
 

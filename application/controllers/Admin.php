@@ -554,7 +554,6 @@ class Admin extends CI_Controller
     }
 
 
-
     public function laporan_suratpengajuan()
     {
         $data['title'] = 'Surat Pengajuan';
@@ -563,45 +562,124 @@ class Admin extends CI_Controller
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
         }
-        if (null !== $this->input->get('filter-index')) {
-            $id_indeks = $this->input->get('id_index');
-            $additional = "suratpengajuan.id_indeks=" . $id_indeks;
-            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
-        } elseif (null !== $this->input->get('filter-tanggal')) {
-            $tanggal_awal = $this->input->get('tanggal_awal');
-            $tanggal_akhir = $this->input->get('tanggal_akhir');
-            $additional = "suratpengajuan.tanggal_pengajuan BETWEEN '" . $tanggal_awal . "' AND '" . $tanggal_akhir . "'";
-            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
-        } else {
-            $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
-        }
-        $data['indeks'] = $this->model_surat->getother('indeks')->result();
+
+        $data['tahun'] = $this->model_surat->gettahun();
+        $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
+
+    
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/laporan/laporan_suratpengajuan', $data);
         $this->load->view('templates/footer');
+
     }
 
-    public function cetaksuratpengajuan()
+    function filter()
     {
-        $data['title'] = 'Surat pengajuan #' . uniqid();
-        if (null !== $this->input->get('id_index')) {
-            $id_indeks = $this->input->get('id_index');
-            $additional = "suratpengajuan.id_indeks=" . $id_indeks;
-            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
-        } elseif (null !== $this->input->get('tanggal_awal')) {
-            $tanggal_awal = $this->input->get('tanggal_awal');
-            $tanggal_akhir = $this->input->get('tanggal_akhir');
-            $additional = "suratpengajuan.tanggal_pengajuan BETWEEN '" . $tanggal_awal . "' AND '" . $tanggal_akhir . "'";
-            $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', $additional)->result();
-        } else {
-            $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
+        $tanggalawal = $this->input->post('tanggalawal');
+        $tanggalakhir = $this->input->post('tanggalakhir');
+        $tahun1 = $this->input->post('tahun1');
+        $bulanawal = $this->input->post('bulanawal');
+        $bulanakhir = $this->input->post('bulanakhir');
+        $tahun2 = $this->input->post('tahun2');
+        $nilaifilter = $this->input->post('nilaifilter');
+
+        //tambahan
+        $no_suratpengajuan = $this->input->post('no_suratpengajuan');
+
+        if ($nilaifilter == 1) {
+
+            $data['title'] = "Laporan Surat Pengajuan Berdasarkan Tanggal";
+            $data['subtitle'] = "Dari tanggal : " . $tanggalawal . ' Sampai tanggal : ' . $tanggalakhir;
+
+            if ($no_suratpengajuan == null) {
+                $where = array(
+                    'tanggal_pengajuan >=' => $tanggalawal,
+                    'tanggal_pengajuan <=' => $tanggalakhir,
+                );
+                $data['datafilter'] = $this->model_surat->filterbytanggal($where);
+            } else {
+
+                if ($no_suratpengajuan == null) {
+                    $where = array(
+                        'tanggal_pengajuan >=' => $tanggalawal,
+                        'tanggal_pengajuan <=' => $tanggalakhir,
+                        'no_suratpengajuan' => $no_suratpengajuan,
+                    );
+                    $data['datafilter'] = $this->model_surat->filterbytanggal($where);
+
+                } else if ($no_suratpengajuan == null) {
+                    $where = array(
+                        'tanggal_pengajuan >=' => $tanggalawal,
+                        'tanggal_pengajuan <=' => $tanggalakhir,
+                    );
+                    $data['datafilter'] = $this->model_surat->filterbytanggal($where);
+                } else {
+                    $where = array(
+                        'tanggal_pengajuan >=' => $tanggalawal,
+                        'tanggal_pengajuan <=' => $tanggalakhir,
+                        'no_suratpengajuan' => $no_suratpengajuan,
+                    );
+                    $data['datafilter'] = $this->model_surat->filterbytanggal($where);
+                }
+            }
+
+            $this->load->view('admin/laporan/print_laporan_pengajuan', $data);
+
+        } elseif ($nilaifilter == 2) {
+
+            $data['title'] = "Laporan Surat Pengajuan Berdasarkan Bulan";
+            $data['subtitle'] = "Dari bulan : " . $bulanawal . ' Sampai tanggal : ' . $bulanakhir . ' Tahun : ' . $tahun1;
+
+
+            $data['datafilter'] = $this->model_surat->filterbybulan($tahun1, $bulanawal, $bulanakhir);
+
+            $this->load->view('admin/laporan/print_laporan_pengajuan', $data);
+
+        } elseif ($nilaifilter == 3) {
+
+            $data['title'] = "Laporan Surat Pengajuan Berdasarkan Tahun";
+            $data['subtitle'] = ' Tahun : ' . $tahun2;
+
+            if ($no_suratpengajuan == null) {
+                $data['datafilter'] = $this->model_surat->filterbytahun($tahun2);
+            } else {
+
+                if ($no_suratpengajuan == null) {
+                    $where = array(
+                        'YEAR(tanggal_pengajuan)' => $tahun2,
+                        'no_suratpengajuan' => $no_suratpengajuan,
+                    );
+
+                    $data['datafilter'] = $this->model_surat->filterbytahun2($where);
+                } else if ($no_suratpengajuan == null) {
+                    $where = array(
+                        'YEAR(tanggal_pengajuan)' => $tahun2,
+                    );
+
+                    $data['datafilter'] = $this->model_surat->filterbytahun2($where);
+                } else {
+                    $where = array(
+                        'YEAR(tanggal_pengajuan)' => $tahun2,
+                        'no_suratpengajuan' => $no_suratpengajuan,
+                    );
+
+                    $data['datafilter'] = $this->model_surat->filterbytahun2($where);
+                }
+
+            }
+
+
+            $this->load->view('admin/laporan/print_laporan_pengajuan', $data);
+
         }
 
-        $this->load->view('admin/laporan/cetaksuratpengajuan', $data);
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/footer');
+
+
+
     }
+
+   
 
     // indeks
     public function indeks()

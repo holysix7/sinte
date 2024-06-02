@@ -38,7 +38,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <h1><a href=""><img src="assets/img/logoputih.png" align="right"> <span>Sinte</span> &nbsp;
+                <h1><a href="landingpage"><img src="assets/img/logoputih.png" align="right"> <span>Sinte</span> &nbsp;
                     </a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
 
@@ -66,7 +66,7 @@
 
 
                         <div class="text-center text-lg-start">
-                            <a href="landingpage" class="btn-get-started scrollto">Kembali</a>
+                            <a href="auth/register"  class="btn-get-started scrollto">Register</a>
                             <a href="auth" class="btn-get-started scrollto">Login</a>
                         </div>
                     </div>
