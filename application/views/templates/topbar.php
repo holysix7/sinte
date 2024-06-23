@@ -21,48 +21,7 @@ $nama_lengkap = $user['nama_lengkap'];
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
-        <!-- Nav Item - Messages -->
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">
-                    <?php
-                    $today = date('Y-m-d');
-                    $additional = "tanggal_diterima = '$today'";
-                    $count_today = $this->model_surat->countdatawithadd('suratmasuk', $additional)->result();
-                    foreach ($count_today as $t) {
-                        echo $t->total;
-                    } ?></span>
-            </a>
-            <!-- Dropdown - Messages -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                    Surat Masuk Terbaru, <?php echo date('d/m/Y') ?>
-                </h6>
-                <?php
-                $sm_today_add = "tanggal_diterima='$today'";
-                $sm_today = $this->model_surat->getdatawithadd('suratmasuk', $sm_today_add)->result();
-                foreach ($sm_today as $smt): ?>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="font-weight-bold">
-                            <div class="text-truncate"><?php echo $smt->no_suratmasuk ?> -
-                                <?php echo $smt->judul_suratmasuk ?>.
-                            </div>
-                            <div class="small text-gray-500">
-                                <?php echo $smt->asal_surat ?> ·
-                                <?php $date = date_create($smt->tanggal_masuk);
-                                echo date_format($date, 'd/m/Y'); ?>
-                            </div>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-                <a class="dropdown-item text-center small text-gray-500"
-                    href="<?= base_url('admin/suratmasuk') ?>">Tampilkan Lebih...</a>
-            </div>
-        </li>
+
 
         <div class="topbar-divider d-none d-sm-block"></div>
 

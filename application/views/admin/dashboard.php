@@ -71,6 +71,8 @@
                             <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
                         </svg>
 
+
+
                     </section><!-- End Hero -->
 
                     <br>
@@ -201,11 +203,11 @@
                 <br>
 
                 <div class="row">
-                    <!-- Surat masuk hari ini -->
-                    <div class="col-xl-6 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <!-- Kunjungan Tamu Hari Ini -->
+                    <!-- <div class="col-xl-6 col-lg-7">
+                        <div class="card shadow mb-4"> -->
+                           
+                            <!-- <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Surat Masuk hari ini</h6>
                                 <div class="dropdown no-arrow">
                                     <a href="<?= base_url('admin/suratmasuk') ?>" class="text-dark" style="text-decoration: none">Lihat semua</a>
@@ -216,32 +218,27 @@
                                     <table class="table table-bordered" id="suratmasuk" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>No.</th>
-                                                <th>Nomor Surat</th>
-                                                <th>Judul Surat</th>
-                                                <th>Indeks</th>
-                                                <th>Asal Surat</th>
-                                                <th>Tanggal Masuk</th>
-                                                <th>Tanggal Diterima</th>
-                                                <th>Keterangan</th>
-                                                <th>Berkas</th>
+                                                <td>No.</td>
+                                                <td>Tanggal Kunjungan</td>
+                                                <td>Nama Lengkap</td>
+                                                <td>Asal Instansi</td>
+                                                <td>Jabatan</td>
+                                                <td>Perihal</td>
+                                                <td>Jumlah Tamu</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1;
-                                            foreach ($sm_today as $sm) : ?>
+                                            foreach ($tamu as $tm): ?>
                                                 <tr>
                                                     <td><?= $no++; ?></td>
-                                                    <td><?= $sm->no_suratmasuk; ?></td>
-                                                    <td><?= $sm->judul_suratmasuk; ?></td>
-                                                    <td><?= $sm->judul_indeks; ?></td>
-                                                    <td><?= $sm->asal_surat; ?></td>
-                                                    <td><?php $date = date_create($sm->tanggal_masuk);
-                                                        echo date_format($date, 'd/m/Y'); ?></td>
-                                                    <td><?php $date = date_create($sm->tanggal_diterima);
-                                                        echo date_format($date, 'd/m/Y'); ?></td>
-                                                    <td><?= $sm->keterangan; ?></td>
-                                                    <td><a href="<?php echo base_url($user . '/download/' . $sm->berkas_suratmasuk) ?>"><i class="fas fa-download text-success"></i></a></td>
+                                                    <td><?= $tm->tanggal_kunjungan; ?></td>
+                                                    <td><?= $tm->nama; ?></td>
+                                                    <td><?= $tm->instansi; ?></td>
+                                                    <td><?= $tm->jabatan; ?></td>
+                                                   
+                                                    <td><?= $tm->keterangan; ?></td>
+                                                    <td><a href="<?php echo base_url($user . '/download/' . $tm->berkas_suratmasuk) ?>"><i class="fas fa-download text-success"></i></a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
@@ -249,15 +246,17 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="col-xl-6 col-lg-7">
+
+                     <!-- Pengajuan KP Hari Ini -->
+                    <div class="col-xl-12 col-lg-7">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-success">Surat Keluar hari ini</h6>
+                                <h6 class="m-0 font-weight-bold text-success">Surat Pengajuan hari ini</h6>
                                 <div class="dropdown no-arrow">
-                                    <a href="<?= base_url('admin/suratkeluar') ?>" class="text-dark" style="text-decoration: none">Lihat semua</a>
+                                    <a href="<?= base_url('admin/suratpengajuan') ?>" class="text-dark" style="text-decoration: none">Lihat semua</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -266,28 +265,29 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
+                                                <th>Tanggal Pengajuan</th>
                                                 <th>Nomor Surat</th>
-                                                <th>Judul Surat</th>
                                                 <th>Indeks</th>
-                                                <th>Tujuan</th>
-                                                <th>Tanggal Keluar</th>
+                                                <th>Asal Instansi</th>
+                                                <th>Status</th>
                                                 <th>Keterangan</th>
-                                                <th>Berkas</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $no = 1;
-                                            foreach ($sk_today as $sk) : ?>
+                                            foreach ($sp_today as $sp) : ?>
                                                 <tr>
                                                     <td><?= $no++; ?></td>
-                                                    <td><?= $sk->no_suratkeluar; ?></td>
-                                                    <td><?= $sk->judul_suratkeluar; ?></td>
-                                                    <td><?= $sk->judul_indeks; ?></td>
-                                                    <td><?= $sk->tujuan; ?></td>
-                                                    <td><?php $date = date_create($sk->tanggal_keluar);
-                                                        echo date_format($date, 'd/m/Y'); ?></td>
-                                                    <td><?= $sk->keterangan; ?></td>
-                                                    <td><a href="<?php echo base_url($user . '/download/' . $sk->berkas_suratkeluar) ?>"><i class="fas fa-download text-success"></i></a></td>
+                                                    <td><?= $sp->tanggal_pengajuan; ?></td>
+                                                    <td><?= $sp->no_suratpengajuan; ?></td>
+                                                    <td><?= $sp->judul_indeks; ?></td>
+                                                    <td><?= $sp->asal_instansi; ?></td>
+                                                    <td><?= $sp->status; ?></td>
+                                                    <td><?= $sp->keterangan; ?></td>
+                                                 
+                        
+                                                    
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>

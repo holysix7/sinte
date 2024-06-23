@@ -19,31 +19,21 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Kerja Praktik</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data Diri Peserta Kerja Praktik</h1>
                     <div class="card card-success">
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
-                                        data-target="#addkerjapraktik"><i class="fas fa-plus"></i> Tambah data </button>
-                                </div>
-                            </div>
                             <br>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Tanggal Pendataan</th>
                                             <th>Nama Lengkap</th>
-                                            <th>Alamat Email</th>
+                                            <th>No Handphone</th>
                                             <th>No. Induk</th>
-                                            <th>Asal Instansi</th>
                                             <th>Jurusan</th>
-                                            <th>Perihal</th>
-                                            <th>Jangka Waktu</th>
-                                            <th>Tanggal Awal</th>
-                                            <th>Tanggal Akhir</th>
                                             <th>Posisi Magang</th>
                                             <th>Status Kelulusan</th>
                                             <th>Keterangan Status Kelulusan</th>
@@ -52,7 +42,7 @@
                                             <?php } else {
                                             } ?>
                                             <th>Sertifikat Kelulusan</th>
-                                            <?php if ($user == 'superadmin') { ?>
+                                            <?php if ($user == 'userskp') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
                                             } ?>
@@ -66,31 +56,19 @@
                                                     <?php echo $no++; ?>
                                                 </td>
                                                 <td>
+                                                    <?php echo $magang['tanggal_pendataan']; ?>
+                                                </td>
+                                                <td>
                                                     <?php echo $magang['nama']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $magang['email']; ?>
+                                                    <?php echo $magang['nohp']; ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $magang['no_induk']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $magang['asal_instansi']; ?>
-                                                </td>
-                                                <td>
                                                     <?php echo $magang['jurusan']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['perihal']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['jangka_waktu']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['tgl_masuk']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['tgl_akhir']; ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $magang['posisi_magang']; ?>
@@ -105,7 +83,7 @@
                                                     <td>
                                                         <a href="" data-id-kp="<?php echo $magang['id'] ?>" data-toggle="modal"
                                                             data-target="#ubahstatus<?php echo $magang['id'] ?>"
-                                                            class="badge badge-warning d-block"><i class="fas fa-clock"></i> Update
+                                                            class="badge badge-primary d-block"><i class="fas fa-clock"></i> Update
                                                             Status
                                                         </a>
                                                     </td>
@@ -113,6 +91,11 @@
                                                 } ?>
                                                 <td>
                                                     <?php if ($user == 'superadmin') { ?>
+                                                        <button type="button" class="badge btn btn-info btn-block"
+                                                            data-toggle="modal"
+                                                            data-target="#generatesertifikat<?php echo $magang['id'] ?>"><i
+                                                                class="	fas fa-newspaper"></i> Generate
+                                                        </button>
                                                         <button type="button" class="badge badge-dark btn-block" data-toggle="modal"
                                                             data-target="#updatasertifikat<?php echo $magang['id'] ?>"><i
                                                                 class="fa fa-upload"></i> Upload
@@ -124,7 +107,7 @@
                                                             class="fa fa-download"></i> Download
                                                     </a>
                                                 </td>
-                                                <?php if ($user == 'superadmin') { ?>
+                                                <?php if ($user == 'userskp') { ?>
                                                     <td>
                                                         <a href="" data-id-kp="<?php echo $magang['id']; ?>" data-toggle="modal"
                                                             data-target="#editmagang<?php echo $magang['id']; ?>"
@@ -186,7 +169,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Kerja Praktik</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data Diri Peserta Kerja Praktik</h1>
                     <div class="card card-success">
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
@@ -196,18 +179,23 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Tanggal Pendataan</th>
                                             <th>Nama Lengkap</th>
-                                            <th>Alamat Email</th>
+                                            <th>No Handphone</th>
                                             <th>No. Induk</th>
-                                            <th>Asal Instansi</th>
                                             <th>Jurusan</th>
-                                            <th>Perihal</th>
-                                            <th>Jangka Waktu</th>
-                                            <th>Tanggal Awal</th>
-                                            <th>Tanggal Akhir</th>
                                             <th>Posisi Magang</th>
                                             <th>Status Kelulusan</th>
                                             <th>Keterangan Status Kelulusan</th>
+                                            <?php if ($user == 'superadmin') { ?>
+                                                <th>Update Status Kelulusan</th>
+                                            <?php } else {
+                                            } ?>
+                                            <th>Sertifikat Kelulusan</th>
+                                            <?php if ($user == 'userskp') { ?>
+                                                <th>Aksi</th>
+                                            <?php } else {
+                                            } ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -218,31 +206,19 @@
                                                     <?php echo $no++; ?>
                                                 </td>
                                                 <td>
+                                                    <?php echo $magang['tanggal_pendataan']; ?>
+                                                </td>
+                                                <td>
                                                     <?php echo $magang['nama']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $magang['email']; ?>
+                                                    <?php echo $magang['nohp']; ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $magang['no_induk']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $magang['asal_instansi']; ?>
-                                                </td>
-                                                <td>
                                                     <?php echo $magang['jurusan']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['perihal']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['jangka_waktu']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['tgl_masuk']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $magang['tgl_akhir']; ?>
                                                 </td>
                                                 <td>
                                                     <?php echo $magang['posisi_magang']; ?>
@@ -253,7 +229,44 @@
                                                 <td>
                                                     <?php echo $magang['ket_stat']; ?>
                                                 </td>
-
+                                                <?php if ($user == 'superadmin') { ?>
+                                                    <td>
+                                                        <a href="" data-id-kp="<?php echo $magang['id'] ?>" data-toggle="modal"
+                                                            data-target="#ubahstatus<?php echo $magang['id'] ?>"
+                                                            class="badge badge-warning d-block"><i class="fas fa-clock"></i> Update
+                                                            Status
+                                                        </a>
+                                                    </td>
+                                                <?php } else {
+                                                } ?>
+                                                <td>
+                                                    <?php if ($user == 'superadmin') { ?>
+                                                        <button type="button" class="badge badge-dark btn-block" data-toggle="modal"
+                                                            data-target="#updatasertifikat<?php echo $magang['id'] ?>"><i
+                                                                class="fa fa-upload"></i> Upload
+                                                        </button>
+                                                    <?php } else {
+                                                    } ?>
+                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?php echo $magang['id'] ?>"
+                                                        class="badge badge-success btn-block" title="download"><i
+                                                            class="fa fa-download"></i> Download
+                                                    </a>
+                                                </td>
+                                                <?php if ($user == 'userskp') { ?>
+                                                    <td>
+                                                        <a href="" data-id-kp="<?php echo $magang['id']; ?>" data-toggle="modal"
+                                                            data-target="#editmagang<?php echo $magang['id']; ?>"
+                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        </a>
+                                                        <br>
+                                                        <a href="" data-id-sk="<?php echo $magang['id']; ?>" data-toggle="modal"
+                                                            data-target="#hapuskp<?php echo $magang['id']; ?>"
+                                                            class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
+                                                            Hapus
+                                                        </a>
+                                                    </td>
+                                                <?php } else {
+                                                } ?>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -301,31 +314,21 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Kerja Praktik</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data Diri Peserta Kerja Praktik</h1>
                     <div class="card card-success">
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
-                                        data-target="#addkerjapraktik"><i class="fas fa-plus"></i> Tambah data </button>
-                                </div>
-                            </div>
                             <br>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Tanggal Pendataan</th>
                                             <th>Nama Lengkap</th>
-                                            <th>Alamat Email</th>
+                                            <th>No Handphone</th>
                                             <th>No. Induk</th>
-                                            <th>Asal Instansi</th>
                                             <th>Jurusan</th>
-                                            <th>Perihal</th>
-                                            <th>Jangka Waktu</th>
-                                            <th>Tanggal Awal</th>
-                                            <th>Tanggal Akhir</th>
                                             <th>Posisi Magang</th>
                                             <th>Status Kelulusan</th>
                                             <th>Keterangan Status Kelulusan</th>
@@ -334,62 +337,81 @@
                                             <?php } else {
                                             } ?>
                                             <th>Sertifikat Kelulusan</th>
-                                            <?php if ($user == 'superadmin') { ?>
+                                            <?php if ($user == 'userskp') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
                                             } ?>
                                         </tr>
-
                                     </thead>
                                     <tbody>
                                         <?php $no = 1;
-                                        foreach ($kp_user as $ku): ?>
+                                        foreach ($kp_user as $magang): ?>
                                             <tr>
                                                 <td>
                                                     <?php echo $no++; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['nama']; ?>
+                                                    <?php echo $magang['tanggal_pendataan']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['email']; ?>
+                                                    <?php echo $magang['nama']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['no_induk']; ?>
+                                                    <?php echo $magang['nohp']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['asal_instansi']; ?>
+                                                    <?php echo $magang['no_induk']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['jurusan']; ?>
+                                                    <?php echo $magang['jurusan']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['perihal']; ?>
+                                                    <?php echo $magang['posisi_magang']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['jangka_waktu']; ?>
+                                                    <?php echo $magang['stat']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ku['tgl_masuk']; ?>
+                                                    <?php echo $magang['ket_stat']; ?>
                                                 </td>
+                                                <?php if ($user == 'superadmin') { ?>
+                                                    <td>
+                                                        <a href="" data-id-kp="<?php echo $magang['id'] ?>" data-toggle="modal"
+                                                            data-target="#ubahstatus<?php echo $magang['id'] ?>"
+                                                            class="badge badge-warning d-block"><i class="fas fa-clock"></i> Update
+                                                            Status
+                                                        </a>
+                                                    </td>
+                                                <?php } else {
+                                                } ?>
                                                 <td>
-                                                    <?php echo $ku['tgl_akhir']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $ku['posisi_magang']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $ku['stat']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $ku['ket_stat']; ?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?php echo $ku['id'] ?>"
+                                                    <?php if ($user == 'superadmin') { ?>
+                                                        <button type="button" class="badge badge-dark btn-block" data-toggle="modal"
+                                                            data-target="#updatasertifikat<?php echo $magang['id'] ?>"><i
+                                                                class="fa fa-upload"></i> Upload
+                                                        </button>
+                                                    <?php } else {
+                                                    } ?>
+                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?php echo $magang['id'] ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
                                                     </a>
                                                 </td>
+                                                <?php if ($user == 'userskp') { ?>
+                                                    <td>
+                                                        <a href="" data-id-kp="<?php echo $magang['id']; ?>" data-toggle="modal"
+                                                            data-target="#editmagang<?php echo $magang['id']; ?>"
+                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        </a>
+                                                        <br>
+                                                        <a href="" data-id-sk="<?php echo $magang['id']; ?>" data-toggle="modal"
+                                                            data-target="#hapuskp<?php echo $magang['id']; ?>"
+                                                            class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
+                                                            Hapus
+                                                        </a>
+                                                    </td>
+                                                <?php } else {
+                                                } ?>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -598,25 +620,10 @@ foreach ($kp as $magang):
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Alamat Email</label>
+                                    <label for="">No Handphone</label>
                                     <div class="input-group">
-                                        <input type="text" name="email" class="form-control" placeholder="Alamat Email..."
-                                            value="<?php echo $magang['email']; ?>" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">No. Induk</label>
-                                    <div class="input-group">
-                                        <input type="number" name="no_induk" class="form-control" placeholder="No. Induk..."
-                                            value="<?php echo $magang['no_induk']; ?>" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Asal Instansi</label>
-                                    <div class="input-group">
-                                        <input type="text" name="asal_instansi" class="form-control"
-                                            placeholder="Asal Instansi..." value="<?php echo $magang['asal_instansi']; ?>"
-                                            required>
+                                        <input type="text" name="nohp" class="form-control" placeholder="No Handphone..."
+                                            value="<?php echo $magang['nohp']; ?>" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -626,43 +633,13 @@ foreach ($kp as $magang):
                                             value="<?php echo $magang['jurusan']; ?>" required>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-md">
                                 <div class="form-group">
-                                    <label>Perihal</label>
-                                    <select name="perihal" id="perihal" class="form-control" required>
-                                        <option value="">-- Pilih --</option>
-                                        <option value="Pendataan Kerja Praktik">Pendataan Kerja Praktik</option>
-                                        <option value="Pendataan Penelitian">Pendataan Penelitian</option>
-                                    </select>
-                                    <small><span class="text-danger text-small" id="alert_perihal"></span></small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Jangka Waktu</label>
+                                    <label for="">No. Induk</label>
                                     <div class="input-group">
-                                        <input type="text" name="jangka_waktu" class="form-control"
-                                            placeholder="Jangka Waktu..." value="<?php echo $magang['jangka_waktu']; ?>"
-                                            required>
+                                        <input type="text" name="no_induk" class="form-control" placeholder="No. Induk..."
+                                            value="<?php echo $magang['no_induk']; ?>" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Tanggal Awal</label>
-                                    <div class="input-group">
-                                        <input type="date" name="tgl_masuk" class="form-control"
-                                            placeholder="Tanggal Masuk..." value="<?php echo $magang['tgl_masuk']; ?>"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Tanggal Akhir</label>
-                                    <div class="input-group">
-                                        <input type="date" name="tgl_akhir" class="form-control"
-                                            placeholder="Tanggal Akhir..." value="<?php echo $magang['tgl_akhir']; ?>"
-                                            required>
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     <label>Posisi Magang</label>
                                     <select name="posisi_magang" id="posisi_magang" class="form-control" required>
@@ -684,11 +661,11 @@ foreach ($kp as $magang):
                                     <small><span class="text-danger text-small" id="alert_posisi_magang"></span></small>
                                 </div>
                             </div>
+
+
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-5">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
+                        <div class="modal-footer right-content-between">
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                     </p>
@@ -721,12 +698,20 @@ foreach ($kp as $magang):
                             <input type="hidden" name="id" value="<?= $magang['id'] ?>">
                             <div class="modal-body text-center">
                                 <h5>Update Status Kelulusan Kerja Praktik: <?= $magang['nama']; ?> ? </h5>
-                                <label for="stat">Pilih Status</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="stat" value="Lulus"> Lulus <br>
-                                        <input type="radio" name="stat" value="Belum Lulus"> Belum Lulus <br>
-                                        <input type="radio" name="stat" value="Tidak Lulus"> Tidak Lulus <br>
+                                <label for="stat">Silahkan Pilih Status :</label>
+                                <br>
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-primary active">
+                                        <input type="radio" name="stat" value="Lulus" id="option1" autocomplete="off"
+                                            checked> Lulus
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="stat" value="Belum Lulus" id="option2" autocomplete="off">
+                                        Belum Lulus
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="stat" value="Tidak Lulus" id="option3" autocomplete="off">
+                                        Tidak Lulus
                                     </label>
                                 </div>
                                 <div class="form-group">
@@ -754,6 +739,51 @@ foreach ($kp as $magang):
 <?php endforeach; ?>
 
 <!-- Kp ubah status-->
+
+<!-- Generate Sertifikat-->
+<?php $no = 0;
+foreach ($kp as $magang):
+    $no++ ?>
+    <?php
+    // Ambil data user dari database berdasarkan sesi penggun
+    ?>
+    <div class="modal fade" id="generatesertifikat<?php echo $magang['id'] ?>">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Form Generate Sertifikat</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <form role="form" action="<?= base_url('kp/generator') ?>" method="get" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?php echo $magang['id'] ?>">
+                        <div class="form-group">
+                            <label for="">Nama Lengkap</label>
+                            <div class="input-group">
+                                <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap..."
+                                    value="<?php echo $magang['nama']; ?>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-5">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    </p>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+
+<!-- Generate Sertifikat-->
+
 
 <!-- Upload Sertifikat-->
 <?php $no = 0;

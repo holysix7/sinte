@@ -18,9 +18,11 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Laporan Kerja Praktik</h1>
+                <h1 class="h3 mb-4 text-gray-800">Laporan Data Diri Kerja Praktik</h1>
                 <div class="card card-success">
                     <div class="card-body">
+                         <?= $this->session->flashdata('message'); ?>
+
                         <div class="row">
                             <!-- row satu  -->
                             <div class="col-lg-5">
@@ -233,7 +235,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <?= $this->session->flashdata('message'); ?>
+                          
                         </div>
 
                         <br>
@@ -241,16 +243,15 @@
                             <table class="table table-bordered" id="tableKp" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <td>No.</td>
-                                        <td>Nama Lengkap</td>
-                                        <td>No. Induk</td>
-                                        <td>Asal Instansi</td>
-                                        <td>Jurusan</td>
-                                        <td>Perihal</td>
-                                        <td>Jangka Waktu</td>
-                                        <td>Tanggal Awal</td>
-                                        <td>Tanggal Akhir</td>
-                                        <td>Posisi Magang</td>
+                                        <th>No.</th>
+                                        <th>Tanggal Pendataan</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>No Handphone</th>
+                                        <th>No. Induk</th>
+                                        <th>Jurusan</th>
+                                        <th>Posisi Magang</th>
+                                        <th>Status Kelulusan</th>
+                                        <th>Keterangan Status Kelulusan</th>
                                     </tr>
                                 </thead>
 
@@ -263,32 +264,30 @@
                                                 <?php echo $no++; ?>
                                             </td>
                                             <td>
+                                                <?php echo $magang['tanggal_pendataan']; ?>
+                                            </td>
+                                            <td>
                                                 <?php echo $magang['nama']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $magang['nohp']; ?>
                                             </td>
                                             <td>
                                                 <?php echo $magang['no_induk']; ?>
                                             </td>
                                             <td>
-                                                <?php echo $magang['asal_instansi']; ?>
-                                            </td>
-                                            <td>
                                                 <?php echo $magang['jurusan']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $magang['perihal']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $magang['jangka_waktu']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $magang['tgl_masuk']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $magang['tgl_akhir']; ?>
                                             </td>
                                             <td>
                                                 <?php echo $magang['posisi_magang']; ?>
                                             </td>
+                                            <td>
+                                                <?php echo $magang['stat']; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $magang['ket_stat']; ?>
+                                            </td>
+                                            
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -324,17 +323,17 @@
                 },
                 {
                     extend: 'excelHtml5',
-                    title: 'Laporan Kerja Praktik'
+                    title: 'Laporan Data Diri Kerja Praktik'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: 'Laporan Kerja Praktik'
+                    title: 'Laporan Data Diri Kerja Praktik'
                 },
                 {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
                     pageSize: 'legal',
-                    title: 'Laporan Kerja Praktik',
+                    title: 'Laporan Data Diri Kerja Praktik',
                     download: 'open',
                     customize: function (doc) {
                         doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');

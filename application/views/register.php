@@ -32,16 +32,11 @@
                                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                 </div>
                                 <form class="user" method="post" action="<?= base_url('auth/register');?>">
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="nama_lengkap"  name="nama_lengkap" placeholder="Nama Lengkap">
-                                                <?= form_error('nama_lengkap', '<small class="text-danger pl-3 pt-0">', '</small>'); ?>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="bio" name="bio" placeholder="Asal Instansi">
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user"
+                                            id="nama_lengkap"  name="nama_lengkap" placeholder="Nama Lengkap">
+                                            <?= form_error('nama_lengkap', '<small class="text-danger pl-3 pt-0">', '</small>'); ?>
+
                                     </div>
 
                                     <div class="form-group">
@@ -61,6 +56,12 @@
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="password" class="form-control form-control-user"
                                                 id="password1"  name="password1" placeholder="Password">
+                                                <?= form_error('password1', '<small class="text-danger pl-3 pt-0">', '</small>'); ?>
+                                                <br>
+                                                <div class="checkbox">
+                                                    <label for=""><input type="checkbox" class="mx-2" name="" id="showpass1">
+                                                        Lihat password</label>
+                                                </div>
                                                 <?= form_error('password1', '<small class="text-danger pl-3 pt-0">', '</small>'); ?>
                                         </div>
                                         <div class="col-sm-6">
@@ -102,6 +103,32 @@
           $('#password').attr("type", "text");
         } else {
           $('#password').attr("type", "password");
+        }
+      })
+    })
+
+    $(document).ready(function() {
+      $('#showpass1').click(function() {
+        if ($(this).is(':checked')) {
+          $('#password1', ).attr("type", "text");
+        } else {
+          $('#password1').attr("type", "password");
+          
+        }
+        if ($(this).is(':checked')) {
+          $('#password2').attr("type", "text");
+        } else {
+          $('#password2').attr("type", "password");
+        }
+      })
+    })
+
+    $(document).ready(function() {
+      $('#showpass2').click(function() {
+        if ($(this).is(':checked')) {
+          $('#password2').attr("type", "text");
+        } else {
+          $('#password2').attr("type", "password");
         }
       })
     })

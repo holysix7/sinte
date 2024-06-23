@@ -53,31 +53,28 @@
                   <thead>
                     <tr>
                       <th>No.</th>
+                      <th>Tanggal Pendataan</th>
                       <th>Nama Lengkap</th>
+                      <th>No Handphone</th>
                       <th>No. Induk</th>
-                      <th>Asal Instansi</th>
                       <th>Jurusan</th>
-                      <th>Perihal</th>
-                      <th>Jangka Waktu</th>
-                      <th>Tanggal Awal</th>
-                      <th>Tanggal Akhir</th>
                       <th>Posisi Magang</th>
+                      <th>Status Kelulusan</th>
+                      <th>Keterangan Status Kelulusan</th>
                     </tr>
                   </thead>
                   <tbody
                     <?php $no=1; foreach ($datafilter as $row): ?>
 											<tr>
-													
 												<td><?php echo $no++; ?></td>
+												<td><?php echo $row->tanggal_pendataan; ?></td>
 												<td><?php echo $row->nama; ?></td>
-												<td><?php echo $row->no_induk; ?></td>
-												<td><?php echo $row->asal_instansi; ?></td>
-                        <td><?php echo $row->jurusan; ?></td>
-												<td><?php echo $row->perihal; ?></td>
-												<td><?php echo $row->jangka_waktu; ?></td>
-                        <td><?php echo $row->tgl_masuk; ?></td>
-												<td><?php echo $row->tgl_akhir; ?></td>
-												<td><?php echo $row->	posisi_magang; ?></td>
+												<td><?php echo $row->nohp; ?></td>
+                        <td><?php echo $row->no_induk; ?></td>
+												<td><?php echo $row->jurusan; ?></td>
+												<td><?php echo $row->posisi_magang; ?></td>
+                        <td><?php echo $row->stat; ?></td>
+												<td><?php echo $row->ket_stat; ?></td>
 											</tr>
 										<?php endforeach; ?>
                     

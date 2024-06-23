@@ -65,8 +65,9 @@
 
 
 
+
                         <div class="text-center text-lg-start">
-                            <a href="auth/register"  class="btn-get-started scrollto">Register</a>
+                            <a href="auth/register"  class="btn-get-startedd scrollto" color= #fff >Register</a>
                             <a href="auth" class="btn-get-started scrollto">Login</a>
                         </div>
                     </div>

@@ -77,7 +77,7 @@
                         <h1>Sistem Informasi <br> <span>Integral Technology</span></h1>
                         <h2>Seluruh Jajaran BPSDM Provinsi Jawa Barat Terus Menerus Meningkatkan Mutu Pelayanan</h2>
                         <div class="text-center text-lg-start">
-                            <a href="#about" class="btn-get-started2 scrollto">Memulai</a>
+                            <a href="#about" class="btn-get-started scrollto">Memulai</a>
                         </div>
                     </div>
                 </div>

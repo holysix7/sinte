@@ -5,7 +5,7 @@ class M_kp extends CI_Model
     function gettahun()
     {
 
-        $query = $this->db->query("SELECT YEAR(tgl_masuk) AS tahun FROM kp GROUP BY YEAR(tgl_masuk) ORDER BY YEAR(tgl_masuk) ASC");
+        $query = $this->db->query("SELECT YEAR(tanggal_pendataan) AS tahun FROM kp GROUP BY YEAR(tanggal_pendataan) ORDER BY YEAR(tanggal_pendataan) ASC");
 
         return $query->result();
 
@@ -21,7 +21,7 @@ class M_kp extends CI_Model
     function filterbytanggal1($tanggalawal, $tanggalakhir)
     {
 
-        $query = $this->db->query("SELECT * from kp where tgl_masuk BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tgl_masuk ASC ");
+        $query = $this->db->query("SELECT * from kp where tanggal_pendataan BETWEEN '$tanggalawal' and '$tanggalakhir' ORDER BY tanggal_pendataan ASC ");
 
         return $query->result();
     }
@@ -29,7 +29,7 @@ class M_kp extends CI_Model
     function filterbybulan($tahun1, $bulanawal, $bulanakhir)
     {
 
-        $query = $this->db->query("SELECT * from kp where YEAR(tgl_masuk) = '$tahun1' and MONTH(tgl_masuk) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tgl_masuk ASC ");
+        $query = $this->db->query("SELECT * from kp where YEAR(tanggal_pendataan) = '$tahun1' and MONTH(tanggal_pendataan) BETWEEN '$bulanawal' and '$bulanakhir' ORDER BY tanggal_pendataan ASC ");
 
         return $query->result();
     }
@@ -37,7 +37,7 @@ class M_kp extends CI_Model
     function filterbytahun($tahun2)
     {
 
-        $query = $this->db->query("SELECT * from kp where YEAR(tgl_masuk) = '$tahun2'  ORDER BY tgl_masuk ASC ");
+        $query = $this->db->query("SELECT * from kp where YEAR(tanggal_pendataan) = '$tahun2'  ORDER BY tanggal_pendataan ASC ");
 
         return $query->result();
     }
@@ -59,16 +59,12 @@ class M_kp extends CI_Model
     {
         $data = [
             "nama" => $this->input->post('nama'),
-            "email	" => $this->input->post('email'),
+            "nohp" => $this->input->post('nohp'),
             "no_induk" => $this->input->post('no_induk'),
-            "asal_instansi" => $this->input->post('asal_instansi'),
             "jurusan" => $this->input->post('jurusan'),
-            "perihal" => $this->input->post('perihal'),
-            "jangka_waktu" => $this->input->post('jangka_waktu'),
-            "tgl_masuk" => $this->input->post('tgl_masuk'),
-            "tgl_akhir" => $this->input->post('tgl_akhir'),
             "user_id" => $this->session->userdata('id_user'),
             "posisi_magang" => $this->input->post('posisi_magang'),
+            "tanggal_pendataan" => $this->input->post('tanggal_pendataan'),
         ];
 
         $this->db->insert('kp', $data);
@@ -89,14 +85,10 @@ class M_kp extends CI_Model
     {
         $data = [
             "nama" => $this->input->post('nama'),
-            "email	" => $this->input->post('email'),
+            "nohp" => $this->input->post('nohp'),
             "no_induk" => $this->input->post('no_induk'),
-            "asal_instansi" => $this->input->post('asal_instansi'),
             "jurusan" => $this->input->post('jurusan'),
-            "perihal" => $this->input->post('perihal'),
-            "jangka_waktu" => $this->input->post('jangka_waktu'),
-            "tgl_masuk" => $this->input->post('tgl_masuk'),
-            "tgl_akhir" => $this->input->post('tgl_akhir'),
+            "user_id" => $this->session->userdata('id_user'),
             "posisi_magang" => $this->input->post('posisi_magang'),
         ];
 

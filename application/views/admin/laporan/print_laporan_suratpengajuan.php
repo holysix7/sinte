@@ -36,7 +36,7 @@
 
         
         <!-- DataTables Example -->
-          <div class="card mb-3" id="cardeservices">
+          <div class="card mb-3" id="cardsuratpengajuan">
             <div class="card-header">
               <center>
                 <b>
@@ -49,14 +49,15 @@
          
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="tabeleservice" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="tabelsuratpengajuan" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>No.</th>
-                      <th>Nomor Surat</th>
-                      <th>Judul Surat</th>
-                      <th>Tujuan</th>
                       <th>Tanggal Pengajuan</th>
+                      <th>Nomor Surat</th>
+                      <th>Asal Instansi</th>
+                      <th>Tanggal Awal</th>
+                      <th>Tanggal Akhir</th>
                       <th>Keterangan</th>
                     </tr>
                   </thead>
@@ -65,10 +66,11 @@
 											<tr>
 													
 												<td><?php echo $no++; ?></td>
+                        <td><?php echo $row->tanggal_pengajuan; ?></td>
 												<td><?php echo $row->no_suratpengajuan; ?></td>
-												<td><?php echo $row->judul_suratpengajuan; ?></td>
-                        <td><?php echo $row->tujuan; ?></td>
-												<td><?php echo $row->tanggal_pengajuan; ?></td>
+												<td><?php echo $row->asal_instansi; ?></td>
+                        <td><?php echo $row->tgl_masuk; ?></td>
+                        <td><?php echo $row->tgl_akhir; ?></td>
 												<td><?php echo $row->keterangan; ?></td>
 											</tr>
 										<?php endforeach; ?>

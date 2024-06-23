@@ -21,6 +21,7 @@
                 <h1 class="h3 mb-4 text-gray-800">Laporan Aplikasi</h1>
                 <div class="card card-success">
                     <div class="card-body">
+                    <?= $this->session->flashdata('message'); ?>
                         <div class="row">
                             <!-- row satu  -->
                             <div class="col-lg-5">
@@ -234,9 +235,9 @@
                                     </form>
                                 </div>
                             </div>
-                            <?= $this->session->flashdata('message'); ?>
+                         
                         </div>
-                        <?= $this->session->flashdata('message'); ?>
+                       
                         <br>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="tableEservice" width="100%" cellspacing="0">

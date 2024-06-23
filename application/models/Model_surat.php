@@ -25,6 +25,24 @@ class Model_surat extends CI_Model
         return $this->db->query($query);
     }
 
+    public function getdatawithadd1($table, $additional)
+    {
+
+
+        $this->db->where('kp.user_id ', $this->session->userdata('id_user'));
+        return $this->db->get('kp')->result();
+    }
+
+    public function getdatawithadd2($table, $additional)
+    {
+
+
+        $this->db->where('suratpengajuan.no_user ', $this->session->userdata('id_user'));
+        return $this->db->get('suratpengajuan')->result();
+    }
+
+
+
     public function countdata($table)
     {
         $query = "SELECT count(*) as total FROM " . $table . " INNER JOIN indeks WHERE " . $table . ".id_indeks=indeks.id_indeks";
@@ -72,7 +90,7 @@ class Model_surat extends CI_Model
     }
 
 
-    public function hapus_datask($id_suratpengajuan)
+    public function hapus_datasp($id_suratpengajuan)
     {
         return $this->db->delete('suratpengajuan', array('id_suratpengajuan' => $id_suratpengajuan));
     }
@@ -120,6 +138,7 @@ class Model_surat extends CI_Model
         return $this->db->get('suratpengajuan')->result();
 
     }
+
 
     public function downloadsuratbalasan($id_suratpengajuan)
     {

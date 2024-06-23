@@ -43,6 +43,7 @@ class Kp extends CI_Controller
 
         $data['kp'] = $this->M_kp->SemuaData();
         $data['kp_user'] = $this->M_kp->kp_user();
+      
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kp/lihat_data', $data);
@@ -56,7 +57,7 @@ class Kp extends CI_Controller
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
         </div>');
-        redirect('kp/view');
+        redirect('admin/tambahpengajuan_datadiri');
     }
 
     public function hapus_data($id)
@@ -182,30 +183,30 @@ class Kp extends CI_Controller
 
             if ($nama == null) {
                 $where = array(
-                    'tgl_masuk >=' => $tanggalawal,
-                    'tgl_masuk <=' => $tanggalakhir,
+                    'tanggal_pendataan >=' => $tanggalawal,
+                    'tanggal_pendataan <=' => $tanggalakhir,
                 );
                 $data['datafilter'] = $this->M_kp->filterbytanggal($where);
             } else {
 
                 if ($nama == null) {
                     $where = array(
-                        'tgl_masuk >=' => $tanggalawal,
-                        'tgl_masuk <=' => $tanggalakhir,
+                        'tanggal_pendataan >=' => $tanggalawal,
+                        'tanggal_pendataan <=' => $tanggalakhir,
                         'nama' => $nama,
                     );
                     $data['datafilter'] = $this->M_kp->filterbytanggal($where);
 
                 } else if ($nama == null) {
                     $where = array(
-                        'tgl_masuk >=' => $tanggalawal,
-                        'tgl_masuk <=' => $tanggalakhir,
+                        'tanggal_pendataan >=' => $tanggalawal,
+                        'tanggal_pendataan <=' => $tanggalakhir,
                     );
                     $data['datafilter'] = $this->M_kp->filterbytanggal($where);
                 } else {
                     $where = array(
-                        'tgl_masuk >=' => $tanggalawal,
-                        'tgl_masuk <=' => $tanggalakhir,
+                        'tanggal_pendataan >=' => $tanggalawal,
+                        'tanggal_pendataan <=' => $tanggalakhir,
                         'nama' => $nama,
                     );
                     $data['datafilter'] = $this->M_kp->filterbytanggal($where);
@@ -235,38 +236,107 @@ class Kp extends CI_Controller
 
                 if ($nama == null) {
                     $where = array(
-                        'YEAR(tgl_masuk)' => $tahun2,
+                        'YEAR(tanggal_pendataan)' => $tahun2,
                         'nama' => $nama,
                     );
 
                     $data['datafilter'] = $this->M_kp->filterbytahun2($where);
                 } else if ($nama == null) {
                     $where = array(
-                        'YEAR(tgl_masuk)' => $tahun2,
+                        'YEAR(tanggal_pendataan)' => $tahun2,
                     );
 
                     $data['datafilter'] = $this->M_kp->filterbytahun2($where);
                 } else {
                     $where = array(
-                        'YEAR(tgl_masuk)' => $tahun2,
+                        'YEAR(tanggal_pendataan)' => $tahun2,
                         'nama' => $nama,
                     );
 
                     $data['datafilter'] = $this->M_kp->filterbytahun2($where);
                 }
-
             }
-
-
             $this->load->view('admin/laporan/print_laporan_kp', $data);
-
         }
-
-
-
-
     }
 
+    public function generator()
+    {
+        if ($this->input->get('nama')) {
+            //memanggil fungsi generate() untuk proses menyisipkan text nama pada sertifikat
+            $this->generate($this->input->get('nama'));
+        }
+    }
+
+    public function generate($nama = '')
+    {
+        //direktori template sertifikat dan file hasil generate
+        $directory = "./assets/img/sertifikat";
+        if (!is_dir($directory)) {
+            mkdir($directory, 0775, TRUE);
+        }
+
+        //path file template
+        $image = $directory . '/template/serti.png';
+
+        //fungsi php untuk membuat image baru dari file atau URL
+        $createimage = imagecreatefrompng($image);
+
+        //mendapatkan width dan height dari image yang baru saja dibuat
+        $image_width = imagesx($createimage);
+        $image_height = imagesy($createimage);
+
+        //set variabel yang isinya path tempat menyimpan sertifikat hasil generate
+        //untuk format nama file sertifikat nya, gua menggunakan input fullname dengan menghapus spasi
+        //dan di konversi ke huruf kecil semua, plus disisipkan angka random, supaya nama file nya identik
+        //contoh : nama yang diinputkan "Roronoa Zoro", maka nama file nya kurang lebih menjadi roronoazoro345.png
+        $output = $directory . '/' . str_replace(" ", "", strtolower($nama)) . rand(pow(10, 2), pow(10, 3) - 1) . ".png";
+
+        //fungsi untuk set warna text dalam format RGB
+        $color = imagecolorallocate($createimage, 212, 165, 0);
+
+        //variabel untuk set, jika text mau di putar. Jika posisi text mau yang normal, set nilainya 0
+        $rotation = 0;
+        //variabel untuk set nama di sertifikat
+        $certificate_text = $nama;
+        //ukuran font text sertifikat, sesuaikan dengan ukuran font yang sesuai dengan template sertifikat
+        $font_size = 70;
+        //font directory untuk text
+        $drFont = FCPATH . "/assets/font/AlexBrush-Regular.ttf";
+
+        //fungsi untuk memberikan kotak batas text
+        //return nya berupa array
+        $text_box = imagettfbbox($font_size, $rotation, $drFont, $certificate_text);
+
+        //fungsi untuk mengetahui panjang text ditambah padding
+        //silahkan sesuaikan value variable padding ini dengan template sertifikat kalian
+        $padding = 650;
+        $text_width = ($text_box[2] - $text_box[0]) + intval($padding);
+
+        //setup posisi x dan y terhadap template sertifikat (silahkan sesuaikan dengan template kalian)
+        $origin_x = $image_width - $text_width;
+        $origin_y = 800;
+
+        //function untuk "menempelkan" text nama di sertifikat dengan parameter yang sudah di set sebelumnya
+        imagettftext($createimage, $font_size, $rotation, $origin_x, $origin_y, $color, $drFont, $certificate_text);
+
+        //membuat image sertifikat yang sudah ada text namanya dengan format png dan simpan sesuai dengan value variabel output
+        imagepng($createimage, $output, 3);
+
+        //memanggil fungsi untuk proses download sertifikat
+        $this->download_file($output);
+    }
+
+    public function download_file($path_file)
+    {
+
+        header("Content-Description: File Transfer");
+        header("Content-Type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=\"" . basename($path_file) . "\"");
+        readfile($path_file);
+        redirect('kp/view', 'reload');
+        exit();
+    }
 
 
 }

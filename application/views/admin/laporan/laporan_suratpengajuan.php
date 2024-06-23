@@ -21,6 +21,7 @@
                 <h1 class="h3 mb-4 text-gray-800">Laporan Surat Pengajuan</h1>
                 <div class="card card-success">
                     <div class="card-body">
+                    <?= $this->session->flashdata('message'); ?>
                         <div class="row">
                             <!-- row satu  -->
                             <div class="col-lg-5">
@@ -234,7 +235,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <?= $this->session->flashdata('message'); ?>
+                          
                         </div>
                         <br>
                         <div class="table-responsive">
@@ -242,26 +243,30 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Nomor Surat</th>
-                                        <th>Judul Surat</th>
-                                        <th>Indeks</th>
-                                        <th>Tujuan</th>
                                         <th>Tanggal Pengajuan</th>
+                                        <th>Nomor Surat</th>
+                                        <th>Perihal</th>
+                                        <th>Asal Instansi</th>
+                                        <th>Tanggal Awal</th>
+                                        <th>Tanggal Akhir</th>
                                         <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;
-                                    foreach ($suratpengajuan as $sk) : ?>
+                                    foreach ($suratpengajuan as $sp) : ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= $sk->no_suratpengajuan; ?></td>
-                                            <td><?= $sk->judul_suratpengajuan; ?></td>
-                                            <td><?= $sk->judul_indeks; ?></td>
-                                            <td><?= $sk->tujuan; ?></td>
-                                            <td><?php $date = date_create($sk->tanggal_pengajuan);
-                                                echo date_format($date, 'd/m/Y'); ?></td>
-                                            <td><?= $sk->keterangan; ?></td>
+                                            <td><?php $date = date_create($sp->tanggal_pengajuan);
+                                                echo date_format($date, 'd/m/Y'); ?>
+                                            </td>
+                                            <td><?= $sp->no_suratpengajuan; ?></td>
+                                            <td><?= $sp->judul_indeks; ?></td>
+                                            <td><?= $sp->asal_instansi; ?></td>
+                                            <td><?= $sp->tgl_masuk; ?></td>
+                                            <td><?= $sp->tgl_akhir; ?></td>
+                                            <td><?= $sp->keterangan; ?></td>
+                                            
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -305,7 +310,7 @@
                 },
                 {
                     extend: 'pdfHtml5',
-                    oriented: 'landscape',
+                    orientation: 'landscape',
                     pageSize: 'legal',
                     title: 'Laporan Surat Pengajuan',
                     download: 'open',
