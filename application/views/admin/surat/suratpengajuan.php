@@ -394,6 +394,8 @@ foreach ($suratpengajuan as $sp):
                                                 <td>
                                                     <?php if($kpp->ket_status == 'Data Belum Lengkap'){ ?>
                                                         <span class="badge badge-danger"><?= $kpp->ket_status; ?></span>
+                                                    <?php }else if($kpp->ket_status == 'Data Sudah Lengkap'){ ?>
+                                                        <span class="badge badge-success"><?= $kpp->ket_status; ?></span>
                                                     <?php }else{ ?>
                                                         <?= $kpp->ket_status; ?>
                                                     <?php } ?>

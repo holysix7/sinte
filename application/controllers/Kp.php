@@ -31,12 +31,15 @@ class Kp extends CI_Controller
         $data['d'] = $query->row_array();
 
         $data['kp'] = $this->M_kp->SemuaData();
-        $data['kp_user'] = $this->M_kp->SemuaDataIdSurat();
+        if(count(explode('/', $this->uri->uri_string())) > 2){
+            $data['kp_user'] = $this->M_kp->SemuaDataIdSurat();
+        }
 
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kp/lihat_data', $data);
         $this->load->view('templates/footer');
+        $this->load->view('templates/remove-alert');
     }
 
 
@@ -57,6 +60,7 @@ class Kp extends CI_Controller
         $this->M_kp->proses_tambah_data();
         $this->model_surat->updatedata('suratpengajuan', [
             'draft' => false,
+            'ket_status' => 'Data Sudah Lengkap',
         ], [
             'id_suratpengajuan' => $this->input->post('id_suratpengajuan')
         ]);
@@ -129,24 +133,33 @@ class Kp extends CI_Controller
         }
     }
 
-    public function downloadsertifikat($id)
+    public function downloadsertifikat($id_sp, $id)
     {
         $this->load->helper('download');
         $fileinfo = $this->M_kp->downloadsertifikat($id);
-        $file = 'vendor/files/sertifikat/' . $fileinfo['sertifikat'];
-        if (file_exists($file)) {
-            force_download($file, NULL);
+
+        if($fileinfo['sertifikat'] == 'Belum Tersedia'){
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
             </div>');
-            redirect('kp/view');
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
-        </div>');
-            redirect('kp/view');
+            redirect("kp/view/{$id_sp}");
+        }else{
+            $file = 'vendor/files/sertifikat/' . $fileinfo['sertifikat'];
+            if (file_exists($file)) {
+                force_download($file, NULL);
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
+                </div>');
+                redirect("kp/view/{$id_sp}");
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
+            </div>');
+                redirect("kp/view/{$id_sp}");
+            }
         }
     }
 

@@ -272,7 +272,7 @@
                                                         </button>
                                                     <?php } else {
                                                     } ?>
-                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?php echo $magang['id'] ?>"
+                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?= explode('/', $this->uri->uri_string())[2] ?>/<?php echo $magang['id'] ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
                                                     </a>
@@ -362,10 +362,10 @@
                                             <?php } else {
                                             } ?>
                                             <th>Sertifikat Kelulusan</th>
-                                            <?php if ($user == 'userskp') { ?>
+                                            <!-- <?php if ($user == 'userskp') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
-                                            } ?>
+                                            } ?> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -417,12 +417,12 @@
                                                         </button>
                                                     <?php } else {
                                                     } ?>
-                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?php echo $magang['id'] ?>"
+                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?= explode('/', $this->uri->uri_string())[2] ?>/<?php echo $magang['id'] ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
                                                     </a>
                                                 </td>
-                                                <?php if ($user == 'userskp') { ?>
+                                                <!-- <?php if ($user == 'userskp') { ?>
                                                     <td>
                                                         <a href="" data-id-kp="<?php echo $magang['id']; ?>" data-toggle="modal"
                                                             data-target="#editmagang<?php echo $magang['id']; ?>"
@@ -436,7 +436,7 @@
                                                         </a>
                                                     </td>
                                                 <?php } else {
-                                                } ?>
+                                                } ?> -->
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
