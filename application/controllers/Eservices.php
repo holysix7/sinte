@@ -9,6 +9,9 @@ class Eservices extends CI_Controller
         parent::__construct();
         $this->load->model('model_surat');
         $this->load->model('M_eservice');
+        $this->load->model('M_bigdata');
+        $this->load->model('M_publikasi');
+        $this->load->model('M_multimedia');
         if (!$this->session->userdata('level')) {
             redirect('auth');
         }
@@ -23,6 +26,8 @@ class Eservices extends CI_Controller
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
         }
 
         $data['databarang'] = $this->M_eservice->SemuaData();
@@ -45,8 +50,10 @@ class Eservices extends CI_Controller
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
         }
-        if ($this->session->userdata('level') != 1) {
+        if ($this->session->userdata('level') != 1 && $this->session->userdata('level') != 4) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
@@ -62,7 +69,10 @@ class Eservices extends CI_Controller
 
     public function proses_tambah_data()
     {
-        $this->M_eservice->proses_tambah_data();
+        $insert_id = $this->M_eservice->proses_tambah_data();
+        $this->M_bigdata->proses_tambah_data($insert_id);
+        $this->M_publikasi->proses_tambah_data();
+        $this->M_multimedia->proses_tambah_data();
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
@@ -145,13 +155,9 @@ class Eservices extends CI_Controller
 
     public function proses_edit_data()
     {
-        $data = [
-            "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
-            "nama_kegiatan" => $this->input->post('nama_kegiatan'),
-            "jumlah_peserta" => $this->input->post('jumlah_peserta'),
-        ];
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('eservice', $data);
+        $this->M_eservice->proses_edit_data();
+        $this->M_bigdata->proses_edit_by_es_data();
+
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
@@ -208,6 +214,12 @@ class Eservices extends CI_Controller
             $data['user'] = 'superadmin';
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
+        } elseif ($this->session->userdata('level') == 3) {
+            $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
         }
 
         $data['tahun'] = $this->M_eservice->gettahun();

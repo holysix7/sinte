@@ -222,8 +222,8 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
-                            <i class="bi bi-emoji-smile"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="968" data-purecounter-duration="1"
+                            <i class="bi bi-1-square-fill"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $total_userterdaftar?>" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>User Terdaftar</p>
                         </div>
@@ -231,26 +231,26 @@
 
                     <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                         <div class="count-box">
-                            <i class="bi bi-journal-richtext"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                            <i class="bi bi-2-square-fill"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $total_kp ?>" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p>Kelulusan Kerja Praktik</p>
+                            <p>Kegiatan Kerja Praktik</p>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                         <div class="count-box">
-                            <i class="bi bi-headset"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="518" data-purecounter-duration="1"
+                            <i class="bi bi-3-square-fill"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $total_pengajuan?>" data-purecounter-duration="1"
                                 class="purecounter"></span>
-                            <p>Setifikat Kelulusan</p>
+                            <p>Surat Pengajuan</p>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                         <div class="count-box">
-                            <i class="bi bi-people"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="735" data-purecounter-duration="1"
+                            <i class="bi bi-4-square-fill"></i>
+                            <span data-purecounter-start="0" data-purecounter-end="<?= $total_tamu ?>" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Kunjungan Tamu</p>
                         </div>

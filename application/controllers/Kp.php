@@ -12,22 +12,6 @@ class Kp extends CI_Controller
         }
     }
 
-    public function index()
-    {
-        $data['title'] = "Dashboard";
-        if ($this->session->userdata('level') == 1) {
-            $data['user'] = 'superadmin';
-        } elseif ($this->session->userdata('level') == 2) {
-            $data['user'] = 'admin';
-        } elseif ($this->session->userdata('level') == 3) {
-            $data['user'] = 'userskp';
-        }
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/dashboard', $data);
-        $this->load->view('templates/footer');
-    }
-
     public function view()
     {
         $data['title'] = 'Kerja Praktik';
@@ -41,23 +25,46 @@ class Kp extends CI_Controller
             $data['user'] = 'userskp';
         }
 
+
+        $id = $this->input->get('id');
+        $query = $this->db->get_where('kp', array('id' => $id));
+        $data['d'] = $query->row_array();
+
         $data['kp'] = $this->M_kp->SemuaData();
-        $data['kp_user'] = $this->M_kp->kp_user();
-      
+        $data['kp_user'] = $this->M_kp->SemuaDataIdSurat();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kp/lihat_data', $data);
         $this->load->view('templates/footer');
     }
 
+
+
+    public function tambahds()
+    {
+        $this->M_kp->proses_tambah_data_detail_sertifikat();
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
+        </div>');
+        redirect(base_url('buatqrcode'));
+
+    }
+
     public function proses_tambah_data()
     {
         $this->M_kp->proses_tambah_data();
+        $this->model_surat->updatedata('suratpengajuan', [
+            'draft' => false,
+        ], [
+            'id_suratpengajuan' => $this->input->post('id_suratpengajuan')
+        ]);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
         </div>');
-        redirect('admin/tambahpengajuan_datadiri');
+        redirect("admin/tambahpengajuan_datadiri/{$this->input->post('id_suratpengajuan')}");
     }
 
     public function hapus_data($id)

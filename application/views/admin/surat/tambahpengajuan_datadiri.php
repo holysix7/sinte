@@ -27,16 +27,19 @@
                             <div class="card-header">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link disabled" tabindex="1" aria-disabled="true"  id="surat-tab" data-toggle="tab" href="#surat" role="tab"
-                                            aria-controls="surat" aria-selected="false">Data Surat Pengajuan</a>
+                                        <a class="nav-link disabled" tabindex="1" aria-disabled="true" id="surat-tab"
+                                            data-toggle="tab" href="#surat" role="tab" aria-controls="surat"
+                                            aria-selected="false">Data Surat Pengajuan</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"
-                                            role="tab" aria-controls="profile" aria-selected="true">Data Peserta Kerja Praktik</a>
+                                            role="tab" aria-controls="profile" aria-selected="true">Data Peserta Kerja
+                                            Praktik</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link disabled" tabindex="3" aria-disabled="true"  id="finish-tab" data-toggle="tab" href="#finish" role="tab"
-                                            aria-controls="finish" aria-selected="false">Validasi Data</a>
+                                        <a class="nav-link disabled" tabindex="3" aria-disabled="true" id="finish-tab"
+                                            data-toggle="tab" href="#finish" role="tab" aria-controls="finish"
+                                            aria-selected="false">Validasi Data</a>
                                     </li>
                                 </ul>
                             </div>
@@ -137,13 +140,15 @@
                                     aria-labelledby="profile-tab">
                                     <div class="modal-body">
                                         <?php
-                                        echo form_open_multipart('kp/proses_tambah_data');
+                                        echo form_open_multipart('kp/proses_tambah_data/');
                                         ?>
                                         <div class="card-body row">
                                             <div class="col-md">
                                                 <div class="form-group">
                                                     <label for="">Nama Lengkap</label>
                                                     <div class="input-group">
+                                                        <input type="hidden" name="id_suratpengajuan" class="form-control"
+                                                            value="<?= explode('/', $this->uri->uri_string())[2] ?>" required>
                                                         <input type="text" name="nama" class="form-control"
                                                             placeholder="Nama Lengkap..." required>
                                                     </div>
@@ -162,7 +167,8 @@
                                                             placeholder="Jurusan..." required>
                                                     </div>
                                                 </div>
-                                                <small class="text-danger">*Tambahkan data peserta kerja praktik sesuai dengan data pada surat pengajuan </small>
+                                                <small class="text-danger">*Tambahkan data peserta kerja praktik sesuai
+                                                    dengan data pada surat pengajuan </small>
                                             </div>
                                             <div class="col-md">
                                                 <div class="form-group">
@@ -213,23 +219,23 @@
                                                             id="alert_posisi_magang"></span></small>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
-                                        
+
                                         <!-- /.card-body -->
                                     </div>
-                                    
+
                                     <div>
                                         <div class="modal-footer right-content-between">
                                             <button type="submit" name="tambah" class="btn btn-primary"> Tambah</button>
                                             <a href="<?php echo base_url() ?>admin/tambahpengajuan_validasi/<?php echo base_url('admin/tambahpengajuan_validasi') ?>"
-                                                 class="btn btn-success " title="selesai"></i> Selesai
+                                                class="btn btn-success " title="selesai"></i> Selesai
                                             </a>
                                         </div>
                                         </form>
                                     </div>
 
-                                    
+
                                     <!-- /.modal-content -->
                                 </div>
 
@@ -238,9 +244,9 @@
                                         Data Diri Peserta Kerja Praktik Dapat di Lihat Pada "Detail" Halaman Pengajuan
                                     </div>
                                     <div class="modal-footer right-content-between">
-                                    
+
                                         <a href="<?php echo base_url() ?>admin/suratpengajuan/<?php echo base_url('admin/suratpengajuan') ?>"
-                                             class="btn btn-primary" title="selesai"></i> Pengajuan Selesai
+                                            class="btn btn-primary" title="selesai"></i> Pengajuan Selesai
                                         </a>
                                     </div>
                                 </div>

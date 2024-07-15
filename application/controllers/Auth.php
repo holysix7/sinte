@@ -26,8 +26,7 @@ class Auth extends CI_Controller
 		$password = $this->input->post('password');
 
 		$cek = $this->db->get_where('user', ['username' => $username])->row_array();
-		$userskp = $this->db->get_where('user', ['username' => $username])->row_array();	
-
+		$userskp = $this->db->get_where('user', ['username' => $username])->row_array();
 		if ($cek) {
 			if (sha1($password) == $cek['password']) {
 				$userdata = [
@@ -36,46 +35,45 @@ class Auth extends CI_Controller
 					'level' => $cek['level']
 				];
 
-				$this->session->set_flashdata('message', "<script>Swal.fire(
-						'Login berhasil!',
-						'You clicked the button!',
-						'success'
-						)</script>");
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Login Berhasil!</div>');
 				$this->session->set_userdata($userdata);
 				if ($this->session->userdata('level') == 1) {
 					redirect('admin');
 				} elseif ($this->session->userdata('level') == 2) {
 					redirect('admin');
 				}
-				} elseif ($this->session->userdata('level') == 3) {
-					redirect('userskp');
-				}
-			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Password salah!</div>');
-				redirect('auth');
+			} elseif ($this->session->userdata('level') == 3) {
+				redirect('userskp');
 			}
-	
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Password salah!</div>');
+			redirect('auth');
+		}
+
 		if ($userskp) {
-			if ($userskp ['isactive']== 1) {
+			if ($userskp['isactive'] == 1) {
 
 				// cek password 
-				if (password_verify($password, $userskp['password'])){
+				if (sha1($password) == $userskp['password']) {
 					$userdata = [
 						'id_user' => $cek['id_user'],
 						'username' => $cek['username'],
 						'level' => $cek['level']
 					];
 					$this->session->set_userdata($userdata);
-					redirect('userskp');
-					
-				}else {
+					$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Login Berhasil!</div>');
+					redirect('auth');
+
+				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Wrong password!</div>');
 					redirect('auth');
 				}
 
-			
+
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>This Username has not been actived!</div>');
@@ -94,10 +92,10 @@ class Auth extends CI_Controller
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 
-		$userskp = $this->db->get_where('user', ['username' => $username])->row_array();	
+		$userskp = $this->db->get_where('user', ['username' => $username])->row_array();
 
-	// buat users yang register sebagai peserta magang
-		
+		// buat users yang register sebagai peserta magang
+
 	}
 
 
@@ -105,10 +103,10 @@ class Auth extends CI_Controller
 	public function register()
 	{
 		$this->form_validation->set_rules('username', 'Uuserame', 'required|trim');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]',[
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]', [
 			'is_unique' => 'This email has already registered!'
 		]);
-		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]',[
+		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
 			'matches' => 'Password dont match!',
 			'min_length' => 'Password too short!'
 		]);
@@ -120,14 +118,14 @@ class Auth extends CI_Controller
 			$this->load->view('register');
 			$this->load->view('templates/footer');
 		} else {
-			$data =[
+			$data = [
 				'username' => htmlspecialchars($this->input->post('username', true)),
-				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+				'password' => sha1($this->input->post('password1')),
 				'nama_lengkap' => htmlspecialchars($this->input->post('nama_lengkap', true)),
 				'image' => 'default.jpg',
-				'bio' =>htmlspecialchars($this->input->post('bio', true)),
+				'bio' => htmlspecialchars($this->input->post('bio', true)),
 				'facebook' => 'facebook',
-				'email' =>htmlspecialchars($this->input->post('email', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
 				'level' => 3,
 				'isactive' => 1,
 				'datecreate' => time()

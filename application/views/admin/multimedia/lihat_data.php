@@ -1,108 +1,181 @@
-<div id="wrapper">
+<?php if ($user == 'superadmin'): ?>
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <?php $this->load->view('templates/sidebar'); ?>
-    <!-- End of Sidebar -->
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-            <!-- Topbar -->
-            <?php $this->load->view('templates/topbar'); ?>
-            <!-- End of Topbar -->
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Multimedia</h1>
-                <div class="card card-success">
-                    <div class="card-body">
-                        <?= $this->session->flashdata('message'); ?>
-                        <div class="row">
-                            <?php if ($user == 'superadmin') { ?>
-                                <div class="col-md-3">
-                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
-                                        data-target="#addmultimedia"><i class="fas fa-plus"></i> Tambah data </button>
-                                </div>
-                            <?php } else { ?>
-                            <?php } ?>
-                        </div>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <td>No.</td>
-                                        <td>Tanggal</td>
-                                        <td>Nama Kegiatan</td>
-                                        <td>Link Video</td>
-                                        <?php if ($user == 'superadmin') { ?>
-                                            <th>Aksi</th>
-                                        <?php } else {
-                                        } ?>
-                                    </tr>
-                                </thead>
-                    
-                                <tbody>
-                                    <?php
-                                    $no = 1;
-                                    foreach ($multimedia as $mu): ?>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Multimedia</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <?php echo $no++; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $mu['tgl_multimedia']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $mu['nama_kegiatan']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $mu['link_vidio']; ?>
-                                            </td>
-
-                                            <td>
-                                                <a href="" data-id-kp="<?php echo $mu['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#editmultimedia<?php  echo $mu['id']; ?>"
-                                                    class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <br>
-                                                <a href="" data-id-mul="<?php echo $mu['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#hapusmul<?php echo $mu['id']; ?>"
-                                                    class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
-                                                </a>
-                                            </td>
-
+                                            <td>No.</td>
+                                            <td>Tanggal</td>
+                                            <td>Nama Kegiatan</td>
+                                            <td>Link Video</td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($multimedia as $mu): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mu['tgl_multimedia']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mu['nama_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mu['link_vidio']; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
 
         </div>
-        
-         <!-- Footer -->
-        <?php $this->load->view('templates/copyright') ?>
-        <!-- End of Footer -->
-
-        <!-- End of Main Content -->
-        <?php $this->load->view('admin/ekstra/modal') ?>
-
+        <!-- End of Content Wrapper -->
     </div>
-    <!-- End of Content Wrapper -->
-</div>
+<?php endif; ?>
 
+<?php if ($user == 'devmultimedia'): ?>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Multimedia</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <td>No.</td>
+                                            <td>Tanggal</td>
+                                            <td>Nama Kegiatan</td>
+                                            <td>Link Video</td>
+                                            <?php if ($user == 'devmultimedia') { ?>
+                                                <th>Aksi</th>
+                                            <?php } else {
+                                            } ?>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($multimedia as $mu): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mu['tgl_multimedia']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mu['nama_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mu['link_vidio']; ?>
+                                                </td>
+
+                                                <td>
+                                                    <a href="" data-id-kp="<?php echo $mu['id']; ?>" data-toggle="modal"
+                                                        data-target="#editmultimedia<?php echo $mu['id']; ?>"
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                    <br>
+                                                    <a href="" data-id-mul="<?php echo $mu['id']; ?>" data-toggle="modal"
+                                                        data-target="#hapusmul<?php echo $mu['id']; ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
+                                                        Hapus
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
+
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+<?php endif; ?>
 
 <!-- Hapus -->
 <?php $no = 0;
@@ -119,14 +192,14 @@ foreach ($multimedia as $mu):
                     </button>
                 </div>
                 <form method="post" action=" <?php echo base_url() ?>multimedia/hapus_data/<?php echo $mu['id'] ?>">
-					<div class="modal-body text-center">
-					<h5>Apakah anda yakin untuk menghapus ini? </h5>
-					</div>
-					<div class="modal-footer text-center">
-						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
-						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
-					</div>
-				</form>           
+                    <div class="modal-body text-center">
+                        <h5>Apakah anda yakin untuk menghapus ini? </h5>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary btn-simple">Ya</button>
+                    </div>
+                </form>
             </div>
             <!-- /.modal-content -->
         </div>
@@ -202,7 +275,7 @@ foreach ($multimedia as $mu):
 
                         <input type="hidden" name="id" value="<?php echo $mu['id'] ?>">
                         <div class="form-group">
-                        <label for="">Tanggal</label>
+                            <label for="">Tanggal</label>
                             <div class="input-group">
                                 <input type="date" name="tgl_multimedia" class="form-control" placeholder="Tanggal"
                                     value="<?php echo $mu['tgl_multimedia']; ?>" required>
@@ -211,14 +284,14 @@ foreach ($multimedia as $mu):
                         <div class="form-group">
                             <label for="">Nama Kegiatan</label>
                             <div class="input-group">
-                            <input type="text" name="nama_kegiatan" class="form-control" placeholder="Nama Kegiatan"
+                                <input type="text" name="nama_kegiatan" class="form-control" placeholder="Nama Kegiatan"
                                     value="<?php echo $mu['nama_kegiatan']; ?>" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">Link Video</label>
                             <input type="text" name="link_vidio" class="form-control" placeholder="Link Video"
-                                    value="<?php echo $mu['link_vidio']; ?>" required>
+                                value="<?php echo $mu['link_vidio']; ?>" required>
                         </div>
                         <div class="row mb-3">
                             <div class="col-sm-5">

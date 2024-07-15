@@ -37,6 +37,16 @@
 
         } ?>
 
+        <?php if ($user == 'deveservice'): ?>
+            <a class="nav-link
+                <?php if (current_url() == base_url('eservices/view')) {
+                    echo 'active';
+                } ?>" href="<?php echo base_url('eservices/view') ?>">
+                <i class="fas fa-vote-yea"></i>
+                <span>E-services</span>
+            </a>
+        <?php endif; ?>
+
         <?php if ($user == 'superadmin'): ?>
             <a class="nav-link
                 <?php if (current_url() == base_url('eservices/view')) {
@@ -44,8 +54,10 @@
                 } ?>" href="<?php echo base_url('eservices/view') ?>">
                 <i class="fas fa-vote-yea"></i>
                 <span>E-services</span>
-            <?php endif; ?>
-        </a>
+            </a>
+        <?php endif; ?>
+
+
     </li>
 
     <!-- Nav Item - Charts Aplikasi -->
@@ -61,7 +73,16 @@
                 <i class="fas fa-laptop-code"></i>
                 <span>Aplikasi</span>
             <?php endif; ?>
-        </a>
+
+            <?php if ($user == 'devaplikasi'): ?>
+                <a class="nav-link
+                <?php if (current_url() == base_url('aplikasi/view')) {
+                    echo 'active';
+                } ?>" href="<?php echo base_url('aplikasi/view') ?>">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Aplikasi</span>
+                <?php endif; ?>
+            </a>
     </li>
 
     <!-- Nav Item - Charts Big Data -->
@@ -76,14 +97,34 @@
                 } ?>" href="<?php echo base_url('bigdata/view') ?>">
                 <i class="fab fa-sellsy"></i>
                 <span>Big Data</span>
-            <?php endif; ?>
-        </a>
+            </a>
+        <?php endif; ?>
+
+        <?php if ($user == 'devbigdata'): ?>
+            <a class="nav-link
+                <?php if (current_url() == base_url('bigdata/view')) {
+                    echo 'active';
+                } ?>" href="<?php echo base_url('bigdata/view') ?>">
+                <i class="fab fa-sellsy"></i>
+                <span>Big Data</span>
+            </a>
+        <?php endif; ?>
     </li>
 
     <!-- Nav Item - Charts Multimedia -->
     <li class="nav-item">
         <?php if (current_url() == base_url('multimedia/view')) {
         } ?>
+
+        <?php if ($user == 'devmultimedia'): ?>
+            <a class="nav-link
+                <?php if (current_url() == base_url('multimedia/view')) {
+                    echo 'active';
+                } ?>" href="<?php echo base_url('multimedia/view') ?>">
+                <i class="fas fa-photo-video"></i>
+                <span>Multimedia</span>
+            </a>
+        <?php endif; ?>
 
         <?php if ($user == 'superadmin'): ?>
             <a class="nav-link
@@ -92,14 +133,24 @@
                 } ?>" href="<?php echo base_url('multimedia/view') ?>">
                 <i class="fas fa-photo-video"></i>
                 <span>Multimedia</span>
-            <?php endif; ?>
-        </a>
+            </a>
+        <?php endif; ?>
     </li>
 
     <!-- Nav Item - Charts Publikasi -->
     <li class="nav-item">
         <?php if (current_url() == base_url('publikasi/view')) {
         } ?>
+
+        <?php if ($user == 'devpublikasi'): ?>
+            <a class="nav-link
+                <?php if (current_url() == base_url('publikasi/view')) {
+                    echo 'active';
+                } ?>" href="<?php echo base_url('publikasi/view') ?>">
+                <i class="fas fa-share-alt"></i>
+                <span>Publikasi</span>
+            </a>
+        <?php endif; ?>
 
         <?php if ($user == 'superadmin'): ?>
             <a class="nav-link
@@ -108,8 +159,8 @@
                 } ?>" href="<?php echo base_url('publikasi/view') ?>">
                 <i class="fas fa-share-alt"></i>
                 <span>Publikasi</span>
-            <?php endif; ?>
-        </a>
+            </a>
+        <?php endif; ?>
     </li>
 
 
@@ -140,54 +191,71 @@
     <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratpengajuan')) {
         echo 'active';
     } ?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
-            <i class="fas fa-envelope-open-text"></i>
-            <span>Kerja Praktik</span>
-        </a>
-        <div id="collapseTwo" class="collapse 
+        <?php if ($user == 'superadmin'): ?>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                aria-controls="collapseTwo">
+                <i class="fas fa-envelope-open-text"></i>
+                <span>Kerja Praktik</span>
+            <?php endif; ?>
+
+            <?php if ($user == 'userskp'): ?>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <span>Kerja Praktik</span>
+                <?php endif; ?>
+            </a>
+            <?php if ($user == 'admin'): ?>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <span>Kerja Praktik</span>
+                <?php endif; ?>
+            </a>
+
+            <div id="collapseTwo" class="collapse 
         <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratpengajuan')) {
             echo 'show';
         } ?>" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">List:</h6>
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">List:</h6>
 
-                <?php if ($user == 'userskp'): ?>
-                    
+                    <?php if ($user == 'userskp'): ?>
 
-                    <a class="collapse-item 
+
+                        <a class="collapse-item 
                         <?php if (current_url() == base_url('admin/suratpengajuankp')) {
                             echo 'active';
                         } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan
-                    </a>
+                        </a>
 
-                <?php endif; ?>
+                    <?php endif; ?>
 
-                <?php if ($user == 'admin'): ?>
-                    <a class="collapse-item 
-                    <?php if (current_url() == base_url('kp/view')) {
-                        echo 'active';
-                    } ?>" href="<?php echo base_url('kp/view') ?>">Data Diri Peserta KP</a>
+                    <?php if ($user == 'admin'): ?>
+                        <a class="collapse-item 
+                        <?php if (current_url() == base_url('kp/view')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('kp/view') ?>">Data Diri Peserta KP</a>
 
-                    <a class="collapse-item 
-                    <?php if (current_url() == base_url('admin/suratpengajuan')) {
-                        echo 'active';
-                    } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>
-                <?php endif; ?>
+                        <a class="collapse-item 
+                        <?php if (current_url() == base_url('admin/suratpengajuan')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>
+                     <?php endif; ?>
 
-                <?php if ($user == 'superadmin'): ?>
-                    <a class="collapse-item 
-                    <?php if (current_url() == base_url('kp/view')) {
-                        echo 'active';
-                    } ?>" href="<?php echo base_url('kp/view') ?>">Data Diri Peserta KP</a>
+                    <?php if ($user == 'superadmin'): ?>
+                            <a class="collapse-item 
+                        <?php if (current_url() == base_url('kp/view')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('kp/view') ?>">Data Diri Peserta KP</a>
 
-                    <a class="collapse-item 
-                    <?php if (current_url() == base_url('admin/suratpengajuan')) {
-                        echo 'active';
-                    } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>
-                <?php endif; ?>
+                            <a class="collapse-item 
+                        <?php if (current_url() == base_url('admin/suratpengajuan')) {
+                            echo 'active';
+                        } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
     </li>
 
     <hr class="sidebar-divider d-none d-md-block">
@@ -257,10 +325,6 @@
                         <?php if (current_url() == base_url('admin/laporan_suratpengajuan')) {
                             echo 'active';
                         } ?>" href="<?php echo base_url('admin/laporan_suratpengajuan') ?>">Laporan Surat Pengajuan</a>
-                   
-
-
-
                         <h6 class="collapse-header">Master:</h6>
                         <a class="collapse-item 
                             <?php if (current_url() == base_url('eservices/laporan_eservices')) {
@@ -295,6 +359,120 @@
                 </div>
             </div>
         <?php endif; ?>
+
+        <!-- deveservices -->
+        <?php if ($user == 'deveservice'): ?>
+            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                echo 'active';
+            } ?>">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                aria-expanded="true" aria-controls="collapseLaporan">
+                <i class="fas fa-fw fa-file-pdf"></i>
+                <span>Laporan</span>
+            </a>
+            <div id="collapseLaporan" class="collapse 
+                <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                    echo 'show';
+                } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class=" collapse-item <?php if (current_url() == base_url('eservices/laporan_eservices')) {
+                        echo 'active';
+                    } ?>" href="<?php echo base_url('eservices/laporan_eservices') ?>">Laporan E-Services</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <!-- devaplikasi -->
+        <?php if ($user == 'devaplikasi'): ?>
+            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                echo 'active';
+            } ?>">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                aria-expanded="true" aria-controls="collapseLaporan">
+                <i class="fas fa-fw fa-file-pdf"></i>
+                <span>Laporan</span>
+            </a>
+            <div id="collapseLaporan" class="collapse 
+                <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                    echo 'show';
+                } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item 
+                            <?php if (current_url() == base_url('aplikasi/laporan_aplikasi')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('aplikasi/laporan_aplikasi') ?>">Laporan Aplikasi</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <!-- devbigdata -->
+        <?php if ($user == 'devbigdata'): ?>
+            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                echo 'active';
+            } ?>">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                aria-expanded="true" aria-controls="collapseLaporan">
+                <i class="fas fa-fw fa-file-pdf"></i>
+                <span>Laporan</span>
+            </a>
+            <div id="collapseLaporan" class="collapse 
+                <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                    echo 'show';
+                } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item 
+                            <?php if (current_url() == base_url('bigdata/laporan_bigdata')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('bigdata/laporan_bigdata') ?>">Laporan Bigdata</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <!-- devmultimedia -->
+        <?php if ($user == 'devmultimedia'): ?>
+            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                echo 'active';
+            } ?>">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                aria-expanded="true" aria-controls="collapseLaporan">
+                <i class="fas fa-fw fa-file-pdf"></i>
+                <span>Laporan</span>
+            </a>
+            <div id="collapseLaporan" class="collapse 
+                <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                    echo 'show';
+                } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item 
+                            <?php if (current_url() == base_url('multimedia/laporan_multimedia')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('multimedia/laporan_multimedia') ?>">Laporan Multimedia</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <!-- devpublikasi -->
+        <?php if ($user == 'devpublikasi'): ?>
+            <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                echo 'active';
+            } ?>">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                aria-expanded="true" aria-controls="collapseLaporan">
+                <i class="fas fa-fw fa-file-pdf"></i>
+                <span>Laporan</span>
+            </a>
+            <div id="collapseLaporan" class="collapse 
+                <?php if (current_url() == base_url('admin/laporan_suratmasuk') or current_url() == base_url('admin/laporan_suratpengajuan')) {
+                    echo 'show';
+                } ?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item 
+                            <?php if (current_url() == base_url('publikasi/laporan_publikasi')) {
+                                echo 'active';
+                            } ?>" href="<?php echo base_url('publikasi/laporan_publikasi') ?>">Laporan Publikasi</a>
+                </div>
+            </div>
+        <?php endif; ?>
     </li>
 
 
@@ -323,7 +501,7 @@
                         <?php if (current_url() == base_url('admin/laporan_suratpengajuan')) {
                             echo 'active';
                         } ?>" href="<?php echo base_url('admin/laporan_suratpengajuan') ?>">Laporan Surat Pengajuan</a>
-                     
+
                     <?php endif; ?>
                 </div>
             </div>

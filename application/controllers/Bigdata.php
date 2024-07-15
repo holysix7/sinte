@@ -21,6 +21,16 @@ class Bigdata extends CI_Controller
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
+        } elseif ($this->session->userdata('level') == 6) {
+            $data['user'] = 'devbigdata';
+        } elseif ($this->session->userdata('level') == 7) {
+            $data['user'] = 'devmultimedia';
+        } elseif ($this->session->userdata('level') == 8) {
+            $data['user'] = 'devpublikasi';
         }
 
         $this->load->view('templates/header', $data);
@@ -40,8 +50,20 @@ class Bigdata extends CI_Controller
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
+        } elseif ($this->session->userdata('level') == 6) {
+            $data['user'] = 'devbigdata';
+        } elseif ($this->session->userdata('level') == 7) {
+            $data['user'] = 'devmultimedia';
+        } elseif ($this->session->userdata('level') == 8) {
+            $data['user'] = 'devpublikasi';
         }
-        if ($this->session->userdata('level') != 1) {
+
+
+        if ($this->session->userdata('level') != 1 && $this->session->userdata('level') != 6) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
@@ -197,6 +219,14 @@ class Bigdata extends CI_Controller
             $data['user'] = 'superadmin';
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
+        } elseif ($this->session->userdata('level') == 3) {
+            $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
+        } elseif ($this->session->userdata('level') == 6) {
+            $data['user'] = 'devbigdata';
         }
 
         $data['bigdata'] = $this->M_bigdata->SemuaData();

@@ -73,7 +73,7 @@ class M_bigdata extends CI_Model
         return $query->row_array();
     }
 
-    public function proses_tambah_data()
+    public function proses_tambah_data($id_eservice = null)
     {
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
@@ -82,6 +82,8 @@ class M_bigdata extends CI_Model
             "bidang_penyelenggara" => $this->input->post('bidang_penyelenggara'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "link_sertifikat" => $this->input->post('link_sertifikat'),
+            "tgl_dibuat" => date('Y-m-d'),
+            "id_eservice" => $id_eservice,
         ];
         $this->db->insert('bigdata', $data);
     }
@@ -96,9 +98,21 @@ class M_bigdata extends CI_Model
             "bidang_penyelenggara" => $this->input->post('bidang_penyelenggara'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "link_sertifikat" => $this->input->post('link_sertifikat'),
-        ];
+            "tgl_dibuat" => $this->input->post('tgl_kegiatan'),
+        ]; 
 
         $this->db->where('id_bigdata', $this->input->post('id_bigdata'));
+        $this->db->update('bigdata', $data);
+    }
+
+    public function proses_edit_by_es_data(){
+        $data = [
+            "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
+            "nama_kegiatan" => $this->input->post('nama_kegiatan'),
+            "jumlah_peserta" => $this->input->post('jumlah_peserta'),
+        ];
+
+        $this->db->where('id_eservice', $this->input->post('id'));
         $this->db->update('bigdata', $data);
     }
 
@@ -124,5 +138,23 @@ class M_bigdata extends CI_Model
     public function adddata($table, $array)
     {
         return $this->db->insert($table, $array);
+    }
+
+    public function dataHariIni()
+    {
+        $data = $this->db->get_where('bigdata', array('tgl_dibuat' => date('Y-m-d')))->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
+
+    public function dataKeseluruhan()
+    {
+        $data = $this->db->get('bigdata')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
     }
 }

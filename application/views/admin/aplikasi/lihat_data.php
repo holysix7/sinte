@@ -1,110 +1,199 @@
-<div id="wrapper">
+<?php if ($user == 'superadmin'): ?>
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <?php $this->load->view('templates/sidebar'); ?>
-    <!-- End of Sidebar -->
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-            <!-- Topbar -->
-            <?php $this->load->view('templates/topbar'); ?>
-            <!-- End of Topbar -->
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Aplikasi</h1>
-                <div class="card card-success">
-                    <div class="card-body">
-                        <?= $this->session->flashdata('message'); ?>
-                        <div class="row">
-                            <?php if ($user == 'superadmin') { ?>
-                                <div class="col-md-3">
-                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
-                                        data-target="#addaplikasi"><i class="fas fa-plus"></i> Tambah data </button>
-                                </div>
-                            <?php } else { ?>
-                            <?php } ?>
-                        </div>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <td>No.</td>
-                                        <td>Tanggal</td>
-                                        <td>Nama Aplikasi</td>
-                                        <td>Deskripsi</td>
-                                        <td>Link Aplikasi</td>
-                                        <?php if ($user == 'superadmin') { ?>
-                                            <th>Aksi</th>
-                                        <?php } else {
-                                        } ?>
-                                    </tr>
-                                </thead>
-                    
-                                <tbody>
-                                    <?php
-                                    $no = 1;
-                                    foreach ($aplikasi as $ap): ?>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Aplikasi</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <?php echo $no++; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $ap['tgl_aplikasi']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $ap['nama_aplikasi']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $ap['deskripsi']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $ap['link_aplikasi'];   ?>
-                                            </td>
-                                           
-                                            <td>
-                                                <a href="" data-id-kp="<?php echo $ap['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#editaplikasi<?php  echo $ap['id']; ?>"
-                                                    class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <br>
-                                                <a href="" data-id-pu="<?php echo $ap['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#hapusap<?php echo $ap['id']; ?>"
-                                                    class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
-                                                </a>
-                                            </td>
+                                            <td>No.</td>
+                                            <td>Tanggal</td>
+                                            <td>Nama Aplikasi</td>
+                                            <td>Deskripsi</td>
+                                            <td>Link Aplikasi</td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($aplikasi as $ap): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['tgl_aplikasi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['nama_aplikasi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['deskripsi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['link_aplikasi']; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
 
         </div>
-        
-         <!-- Footer -->
-        <?php $this->load->view('templates/copyright') ?>
-        <!-- End of Footer -->
-
-        <!-- End of Main Content -->
-        <?php $this->load->view('admin/ekstra/modal') ?>
-
+        <!-- End of Content Wrapper -->
     </div>
-    <!-- End of Content Wrapper -->
-</div>
+<?php endif; ?>
+
+
+<?php if ($user == 'devaplikasi'): ?>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Aplikasi</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+                                <?php if ($user == 'devaplikasi') { ?>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
+                                            data-target="#addaplikasi"><i class="fas fa-plus"></i> Tambah data </button>
+                                    </div>
+                                <?php } else { ?>
+                                <?php } ?>
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <td>No.</td>
+                                            <td>Tanggal</td>
+                                            <td>Nama Aplikasi</td>
+                                            <td>Deskripsi</td>
+                                            <td>Link Aplikasi</td>
+                                            <?php if ($user == 'devaplikasi') { ?>
+                                                <th>Aksi</th>
+                                            <?php } else {
+                                            } ?>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($aplikasi as $ap): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['tgl_aplikasi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['nama_aplikasi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['deskripsi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['link_aplikasi']; ?>
+                                                </td>
+
+                                                <td>
+                                                    <a href="" data-id-kp="<?php echo $ap['id']; ?>" data-toggle="modal"
+                                                        data-target="#editaplikasi<?php echo $ap['id']; ?>"
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                    <br>
+                                                    <a href="" data-id-pu="<?php echo $ap['id']; ?>" data-toggle="modal"
+                                                        data-target="#hapusap<?php echo $ap['id']; ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
+                                                        Hapus
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
+
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+<?php endif; ?>
+
+
 
 
 <!-- Hapus -->
@@ -122,14 +211,14 @@ foreach ($aplikasi as $ap):
                     </button>
                 </div>
                 <form method="post" action=" <?php echo base_url() ?>aplikasi/hapus_data/<?php echo $ap['id']; ?>">
-					<div class="modal-body text-center">
-					<h5>Apakah anda yakin untuk menghapus ini? </h5>
-					</div>
-					<div class="modal-footer text-center">
-						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
-						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
-					</div>
-				</form>           
+                    <div class="modal-body text-center">
+                        <h5>Apakah anda yakin untuk menghapus ini? </h5>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary btn-simple">Ya</button>
+                    </div>
+                </form>
             </div>
             <!-- /.modal-content -->
         </div>
@@ -222,8 +311,8 @@ foreach ($aplikasi as $ap):
                         </div>
                         <div class="form-group">
                             <label for="">Deskripsi</label>
-                            <input type="text" class="form-control" name="deskripsi"
-                                value="<?php echo $ap['deskripsi']; ?>" required>
+                            <input type="text" class="form-control" name="deskripsi" value="<?php echo $ap['deskripsi']; ?>"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="">Link Aplikasi</label>
@@ -231,10 +320,10 @@ foreach ($aplikasi as $ap):
                                 value="<?php echo $ap['link_aplikasi']; ?>" required>
                         </div>
                         <div class="row mb-3">
-                        <div class="col-sm-5">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <div class="col-sm-5">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
                         </div>
-                    </div>
                     </form>
                     </p>
                 </div>

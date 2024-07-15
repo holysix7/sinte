@@ -85,8 +85,39 @@ class M_eservice extends CI_Model
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
+            "tgl_dibuat" => date('Y-m-d'),
         ];
         $this->db->insert('eservice', $data);
+        return $this->db->insert_id();
     }
 
+    public function proses_edit_data()
+    {
+        $data = [
+            "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
+            "nama_kegiatan" => $this->input->post('nama_kegiatan'),
+            "jumlah_peserta" => $this->input->post('jumlah_peserta'),
+            "tgl_dibuat" => $this->input->post('tgl_kegiatan'),
+        ];
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('eservice', $data);
+    }
+
+    public function dataHariIni()
+    {
+        $data = $this->db->get_where('eservice', array('tgl_dibuat' => date('Y-m-d')))->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
+
+    public function dataKeseluruhan()
+    {
+        $data = $this->db->get('eservice')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
 }

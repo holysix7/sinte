@@ -316,7 +316,7 @@
                               
                                 <div class="modal-footer right-content-between">
                                 
-                                    <a href="<?php echo base_url() ?>admin/suratpengajuan/<?php echo base_url('admin/suratpengajuan') ?>"
+                                    <a href="<?php echo base_url('admin/suratpengajuan') ?>"
                                          class="btn btn-primary" title="selesai"></i> Pengajuan Selesai
                                     </a>
                                 </div>

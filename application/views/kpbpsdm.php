@@ -28,7 +28,7 @@
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style3.css" rel="stylesheet">
 </head>
 
 <body>
@@ -95,6 +95,8 @@
 
     </section><!-- End Hero -->
 
+
+
     <!-- ======= KP ======= -->
     <main id="main">
             <section id="kp" class="kpbpsdm">
@@ -102,9 +104,12 @@
 
                 <div class="section-title" data-aos="fade-up">
                     <h2>Sistem Informasi Integral Technology</h2>
-                    <p>Data Kelulusan</p>
+                    <p>Bagaimana kami bisa membantu?</p>
+                    <h5>Telusuri basis pengetahuan kami untuk menemukan keikutsertaan peserta
+                    Kerja Praktik di BPSDM Provinsi Jawa Barat, atau hubungi kami secara langsung jika anda mengalami masalah.</h5>
+                    
                 </div>
-
+                
                 <?php
                 $start_time = microtime(true); 
 
@@ -167,8 +172,8 @@
 
                                             echo "<div class='search-results'>";
                                             echo nl2br(str_replace($kata, "<span class='highlighted'>" . $kata . "</span>", $teks['nama']));
-                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['asal_instansi'] . "</p>";
-                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['posisi_magang'] . "</p><hr/>";
+                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" .  $teks ['periode'] . "</p>";
+                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'> " . $teks['posisi_magang'] . "</p><hr/>";
                                             echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
                                             $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
@@ -196,6 +201,61 @@
         </section>
     </main>
     <!-- ======= KP ======= -->
+
+    
+        <!-- ======= about2 Section ======= -->
+        <section id="about2" class="about2">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch"
+                        data-aos="fade-right">
+                        <a href="https://youtu.be/qBNLpRDXeIk?si=iYPFiUXKveAQM8NP" class="glightbox play-btn mb-4"></a>
+                    </div>
+
+                    <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5"
+                        data-aos="fade-left">
+                        <div class="section-title" data-aos="fade-up">
+                            <h2>Sistem Informasi Integral Technology</h2>
+                            <p>Cek Validasi Sertifikat</p>
+                            <h5>Merupakan layanan yang mendukung secara khusus dalam melakukan pengecekan Sertifikat
+                        Kerja Praktik di BPSDM Provinsi Jawa Barat menggunakan QR-Code,
+                        Sebelum melakukan pengecekan pastikan anda menggunakan perangkat yang memiliki 
+                        kamera seperti laptop/smartphon.</h5>
+
+                        <br>
+                        <a href="<?php echo base_url('validasi-sertifikat'); ?>" style='background-color: #0205a1; color: white; text-shadow: 2px black; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px; margin-bottom: 20px;'>
+                            Cek Validasi Sertifikat dengan QR Code</a>
+                      
+                    </div>
+                      
+                    
+                        
+                       
+               
+
+                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+                        </div>
+
+                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
+                        </div>
+
+                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
+                        </div>
+                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+                        </div>
+
+                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
+                        </div>
+
+                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End about2 Section -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer">

@@ -19,7 +19,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Data Diri Peserta Kerja Praktik</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Data Peserta Kerja Praktik</h1>
                     <div class="card card-success">
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
@@ -41,6 +41,8 @@
                                                 <th>Update Status Kelulusan</th>
                                             <?php } else {
                                             } ?>
+                                            <th>No.Sertifikat</th>
+                                            <th>Periode</th>
                                             <th>Sertifikat Kelulusan</th>
                                             <?php if ($user == 'userskp') { ?>
                                                 <th>Aksi</th>
@@ -79,6 +81,7 @@
                                                 <td>
                                                     <?php echo $magang['ket_stat']; ?>
                                                 </td>
+
                                                 <?php if ($user == 'superadmin') { ?>
                                                     <td>
                                                         <a href="" data-id-kp="<?php echo $magang['id'] ?>" data-toggle="modal"
@@ -87,25 +90,47 @@
                                                             Status
                                                         </a>
                                                     </td>
+
+                                                    <td>
+                                                        <?php echo $magang['no_sertifikat']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $magang['periode']; ?>
+                                                    </td>
                                                 <?php } else {
                                                 } ?>
                                                 <td>
                                                     <?php if ($user == 'superadmin') { ?>
+
                                                         <button type="button" class="badge btn btn-info btn-block"
+                                                            data-toggle="modal"
+                                                            data-target="#detailsertifikat<?php echo $magang['id'] ?>"><i
+                                                                class="	fas fa-newspaper"></i> Update
+                                                        </button>
+                                                        <a class="badge btn btn-dark btn-block"
+                                                            href="<?php echo site_url('buatqrcode/generate_qr?no_induk=' .
+                                                                $magang['no_induk'] . '&nomor=' . $magang['no_sertifikat']); ?>">Buat Kode QR</a>
+
+                                                        <a href="<?php echo base_url() ?>sertifikat/generate/<?php echo
+                                                               $magang['id'] ?>" class="badge badge-primary btn-block"
+                                                            title="Generate"><i class="fas fa-ad"></i> Generate
+                                                        </a>
+
+                                                        <!-- Generate sertifikat foto -->
+                                                        <!-- <button type="button" class="badge btn btn-dark btn-block"
                                                             data-toggle="modal"
                                                             data-target="#generatesertifikat<?php echo $magang['id'] ?>"><i
                                                                 class="	fas fa-newspaper"></i> Generate
-                                                        </button>
-                                                        <button type="button" class="badge badge-dark btn-block" data-toggle="modal"
+                                                        </button> -->
+
+                                                        <button type="button" class="badge btn btn-success btn-block"
+                                                            data-toggle="modal"
                                                             data-target="#updatasertifikat<?php echo $magang['id'] ?>"><i
                                                                 class="fa fa-upload"></i> Upload
                                                         </button>
                                                     <?php } else {
                                                     } ?>
-                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?php echo $magang['id'] ?>"
-                                                        class="badge badge-success btn-block" title="download"><i
-                                                            class="fa fa-download"></i> Download
-                                                    </a>
+
                                                 </td>
                                                 <?php if ($user == 'userskp') { ?>
                                                     <td>
@@ -591,6 +616,66 @@ foreach ($kp as $magang):
     <!-- /.modal-dialog -->
 </div>
 <!-- kp add -->
+
+
+<!-- Kp Edit Menambahkan Periode&Nomor Sertifikat-->
+<?php $no = 0;
+foreach ($kp as $magang):
+    $no++ ?>
+    <div class="modal fade" id="detailsertifikat<?php echo $magang['id']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kelengkapan Data</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <form role="form" action="<?= base_url('kp/tambahds') ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?php echo $magang['id'] ?>">
+                        <div class="card-body row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label>No. Sertifikat</label>
+                                    <?php $today = date('d.m.Y');
+                                    $pecah = explode('.', $today);
+                                    $bulan = $pecah[1];
+                                    $tahun = $pecah[2]; ?>
+                                    <input type="text" name="no_sertifikat" class="form-control"
+                                        value=".../KPG.<?php echo $today; ?>/BPSDM<?php uniqid(); ?>">
+                                    <small class="text-danger">*Sesuaikan nomor sertifikat terlebih
+                                        dahulu</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Periode</label>
+                                    <div class="input-group">
+                                        <input type="text" name="periode" class="form-control"
+                                            placeholder="Masukan Data Periode" required>
+                                    </div>
+                                    <small class="text-danger">*Sesuaikan periode dengan tanggal awal s/d akhir kegiatan
+                                        kerja praktik</small>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer right-content-between">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                    </p>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach; ?>
+
+<!-- Kp Edit Menambahkan Periode&Nomor Sertifikat-->
 
 <!-- kp Edit-->
 <?php $no = 0;

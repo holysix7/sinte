@@ -696,6 +696,8 @@ section {
   }
 }
 
+
+
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
@@ -907,7 +909,7 @@ section {
   left: 50%;
   transform: translateX(-50%);
   font-size: 20px;
-  background: #1acc8d;
+  background: #010483;
   padding: 12px;
   color: #fff;
   border-radius: 50px;

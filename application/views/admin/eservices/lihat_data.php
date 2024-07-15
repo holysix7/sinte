@@ -1,124 +1,225 @@
-<div id="wrapper">
+<?php if ($user == 'superadmin'): ?>
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <?php $this->load->view('templates/sidebar'); ?>
-    <!-- End of Sidebar -->
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-            <!-- Topbar -->
-            <?php $this->load->view('templates/topbar'); ?>
-            <!-- End of Topbar -->
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">E-services</h1>
-                <div class="card card-success">
-                    <div class="card-body">
-                        <?= $this->session->flashdata('message'); ?>
-                        <div class="row">
-                            <?php if ($user == 'superadmin') { ?>
-                                <div class="col-md-3">
-                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
-                                        data-target="#addeservices"><i class="fas fa-plus"></i> Tambah data </button>
-                                </div>
-                            <?php } else { ?>
-                            <?php } ?>
-                        </div>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <td>No.</td>
-                                        <td>Tanggal Kegiatan</td>
-                                        <td>Nama Kegiatan</td>
-                                        <td>Jumlah Peserta</td>
-                                        <td>Jadwal Kegiatan</td>
-                                        <td>Data Peserta</td>
-                                        <?php if ($user == 'superadmin') { ?>
-                                            <th>Aksi</th>
-                                        <?php } else {
-                                        } ?>
-                                    </tr>
-                                </thead>
-                    
-                                <tbody>
-                                    <?php
-                                    $no = 1;
-                                    foreach ($eservice as $es): ?>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">E-services</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <?php echo $no++; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $es['tgl_kegiatan']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $es['nama_kegiatan']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $es['jumlah_peserta']; ?>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="badge badge-dark btn-block "
-                                                    data-toggle="modal"
-                                                    data-target="#upjadwalkegiatan<?php echo $es['id']; ?>"><i class="fa fa-upload"></i> Upload
-                                                </button>
-                                                <a href="<?php echo base_url() ?>eservices/download1/<?php echo $es['id']; ?>"
-                                                    class="badge badge-success btn-block" title="download"><i class="fa fa-download"></i> Download
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="badge badge-dark btn-block" data-toggle="modal"
-                                                    data-target="#updatapeserta<?php echo $es['id']; ?>"><i class="fa fa-upload"></i> Upload
-                                                </button>
-                                                <a href="<?php echo base_url() ?>eservices/download2/<?php echo $es['id']; ?>"
-                                                    class="badge badge-success btn-block" title="download"><i class="fa fa-download"></i> Download
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="" data-id-kp="<?php echo $es['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#editeservices<?php  echo $es['id']; ?>"
-                                                    class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <br>
-                                                <a href="" data-id-pu="<?php echo $es['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#hapuser<?php echo $es['id']; ?>"
-                                                    class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
-                                                </a>
-                                            </td>
+                                            <td>No.</td>
+                                            <td>Tanggal Kegiatan</td>
+                                            <td>Nama Kegiatan</td>
+                                            <td>Jumlah Peserta</td>
+                                            <td>Jadwal Kegiatan</td>
+                                            <td>Data Peserta</td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($eservice as $es): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $es['tgl_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $es['nama_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $es['jumlah_peserta']; ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?php echo base_url() ?>eservices/download1/<?php echo $es['id']; ?>"
+                                                        class="badge badge-success btn-block" title="download"><i
+                                                            class="fa fa-download"></i> Download
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?php echo base_url() ?>eservices/download2/<?php echo $es['id']; ?>"
+                                                        class="badge badge-success btn-block" title="download"><i
+                                                            class="fa fa-download"></i> Download
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
 
         </div>
-        
-         <!-- Footer -->
-        <?php $this->load->view('templates/copyright') ?>
-        <!-- End of Footer -->
-
-        <!-- End of Main Content -->
-        <?php $this->load->view('admin/ekstra/modal') ?>
-
+        <!-- End of Content Wrapper -->
     </div>
-    <!-- End of Content Wrapper -->
-</div>
+<?php endif; ?>
+
+<?php if ($user == 'deveservice'): ?>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">E-services</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+                                <?php if ($user == 'deveservice') { ?>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
+                                            data-target="#addeservices"><i class="fas fa-plus"></i> Tambah data </button>
+                                    </div>
+                                <?php } else { ?>
+                                <?php } ?>
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <td>No.</td>
+                                            <td>Tanggal Kegiatan</td>
+                                            <td>Nama Kegiatan</td>
+                                            <td>Jumlah Peserta</td>
+                                            <td>Jadwal Kegiatan</td>
+                                            <td>Data Peserta</td>
+                                            <?php if ($user == 'deveservice') { ?>
+                                                <th>Aksi</th>
+                                            <?php } else {
+                                            } ?>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($eservice as $es): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $es['tgl_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $es['nama_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $es['jumlah_peserta']; ?>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="badge badge-dark btn-block "
+                                                        data-toggle="modal"
+                                                        data-target="#upjadwalkegiatan<?php echo $es['id']; ?>"><i
+                                                            class="fa fa-upload"></i> Upload
+                                                    </button>
+                                                    <a href="<?php echo base_url() ?>eservices/download1/<?php echo $es['id']; ?>"
+                                                        class="badge badge-success btn-block" title="download"><i
+                                                            class="fa fa-download"></i> Download
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="badge badge-dark btn-block" data-toggle="modal"
+                                                        data-target="#updatapeserta<?php echo $es['id']; ?>"><i
+                                                            class="fa fa-upload"></i> Upload
+                                                    </button>
+                                                    <a href="<?php echo base_url() ?>eservices/download2/<?php echo $es['id']; ?>"
+                                                        class="badge badge-success btn-block" title="download"><i
+                                                            class="fa fa-download"></i> Download
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="" data-id-kp="<?php echo $es['id']; ?>" data-toggle="modal"
+                                                        data-target="#editeservices<?php echo $es['id']; ?>"
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                    <br>
+                                                    <a href="" data-id-pu="<?php echo $es['id']; ?>" data-toggle="modal"
+                                                        data-target="#hapuser<?php echo $es['id']; ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
+                                                        Hapus
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
+
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+<?php endif; ?>
+
 
 
 
@@ -139,14 +240,14 @@ foreach ($eservice as $es):
                     </button>
                 </div>
                 <form method="post" action=" <?php echo base_url() ?>eservices/hapus_data/<?php echo $es['id']; ?>">
-					<div class="modal-body text-center">
-					<h5>Apakah anda yakin untuk menghapus ini? </h5>
-					</div>
-					<div class="modal-footer text-center">
-						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
-						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
-					</div>
-				</form>           
+                    <div class="modal-body text-center">
+                        <h5>Apakah anda yakin untuk menghapus ini? </h5>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary btn-simple">Ya</button>
+                    </div>
+                </form>
             </div>
             <!-- /.modal-content -->
         </div>

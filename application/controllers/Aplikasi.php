@@ -21,6 +21,10 @@ class Aplikasi extends CI_Controller
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
         }
 
         $this->load->view('templates/header', $data);
@@ -40,8 +44,12 @@ class Aplikasi extends CI_Controller
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
         }
-        if ($this->session->userdata('level') != 1) {
+        if ($this->session->userdata('level') != 1 && $this->session->userdata('level') != 5) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
@@ -93,6 +101,12 @@ class Aplikasi extends CI_Controller
             $data['user'] = 'superadmin';
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
+        } elseif ($this->session->userdata('level') == 3) {
+            $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
         }
 
         $data['tahun'] = $this->M_aplikasi->gettahun();

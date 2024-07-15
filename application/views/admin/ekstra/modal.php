@@ -117,13 +117,16 @@
             <div class="card-header">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                            aria-controls="contact" aria-selected="false">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -141,7 +144,7 @@
                                         $bulan = $pecah[1];
                                         $tahun = $pecah[2]; ?>
                                         <input type="text" name="no_suratpengajuan" class="form-control" value=".../BPSDM/H-<?php echo $bulan; ?>/<?php echo $tahun;
-                                        uniqid(); ?>">
+                                           uniqid(); ?>">
                                         <small class="text-danger">Sesuaikan nomor surat terlebih dahulu</small>
                                     </div>
                                     <div class="form-group">
@@ -158,17 +161,18 @@
                                     <div class="form-group">
                                         <label for="">Tanggal Awal</label>
                                         <div class="input-group">
-                                            <input type="date" name="tgl_masuk" class="form-control" placeholder="Tanggal Masuk..."
-                                                required>
+                                            <input type="date" name="tgl_masuk" class="form-control"
+                                                placeholder="Tanggal Masuk..." required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Tanggal Akhir</label>
                                         <div class="input-group">
-                                            <input type="date" name="tgl_akhir" class="form-control" placeholder="Tanggal Akhir..."
-                                                required>
+                                            <input type="date" name="tgl_akhir" class="form-control"
+                                                placeholder="Tanggal Akhir..." required>
                                         </div>
-                                        <small class="text-danger">Sesuaikan tanggal awal s/d akhir kerja praktik</small>
+                                        <small class="text-danger">Sesuaikan tanggal awal s/d akhir kerja
+                                            praktik</small>
                                     </div>
                                 </div>
                                 <div class="col-md">
@@ -176,7 +180,8 @@
                                         <label>Tanggal Pengajuan:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                <span class="input-group-text"><i
+                                                        class="far fa-calendar-alt"></i></span>
                                             </div>
                                             <input type="date" name="tanggal_pengajuan" class="form-control"
                                                 data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
@@ -188,17 +193,19 @@
                                         <input type="text" name="asal_instansi" class="form-control"
                                             placeholder="Asal Instansi">
                                     </div>
-            
+
                                     <div class="form-group">
                                         <label for="">Upload Surat Pengajuan</label>
                                         <input type="file" class="form-control" name="berkas_suratpengajuan"
                                             class="custom-file-input" id="exampleInputFile">
-                                        <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan
+                                        <small class="text-danger">Support file berekstensi PDF, DOC, DOCX, XLS, XLSX,
+                                            PPTX, dan
                                             PPT</small>
                                     </div>
                                     <div class="form-group">
                                         <label>Keterangan</label>
-                                        <textarea class="form-control" name="keterangan" placeholder="Keterangan"></textarea>
+                                        <textarea class="form-control" name="keterangan"
+                                            placeholder="Keterangan"></textarea>
                                     </div>
 
                                 </div>
@@ -214,107 +221,108 @@
                 </div>
 
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="modal-body">
-                                <?php
-                                echo form_open_multipart('kp/proses_tambah_data');
-                                ?>
-                            <div class="card-body row">
-                                <div class="col-md">
-                                    <div class="form-group">
-                                        <label for="">Nama Lengkap</label>
-                                        <div class="input-group">
-                                            <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap..."
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Alamat Email</label>
-                                        <div class="input-group">
-                                            <input type="text" name="email" class="form-control" placeholder="Alamat Email..."
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">No. Induk</label>
-                                        <div class="input-group">
-                                            <input type="number" name="no_induk" class="form-control" placeholder="No. Induk..."
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Asal Instansi</label>
-                                        <div class="input-group">
-                                            <input type="text" name="asal_instansi" class="form-control"
-                                                placeholder="Asal Instansi..." required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Jurusan</label>
-                                        <div class="input-group">
-                                            <input type="text" name="jurusan" class="form-control" placeholder="Jurusan..."
-                                                required>
-                                        </div>
+                    <div class="modal-body">
+                        <?php
+                        echo form_open_multipart('kp/proses_tambah_data');
+                        ?>
+                        <div class="card-body row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label for="">Nama Lengkap</label>
+                                    <div class="input-group">
+                                        <input type="text" name="nama" class="form-control"
+                                            placeholder="Nama Lengkap..." required>
                                     </div>
                                 </div>
-                                <div class="col-md">
-                                    <div class="form-group">
-                                        <label>Perihal</label>
-                                        <select name="perihal" id="perihal" class="form-control" required>
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Pendataan Kerja Praktik">Pendataan Kerja Praktik</option>
-                                            <option value="Pendataan Penelitian">Pendataan Penelitian</option>
-                                        </select>
-                                        <small><span class="text-danger text-small" id="alert_perihal"></span></small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Jangka Waktu</label>
-                                        <div class="input-group">
-                                            <input type="text" name="jangka_waktu" class="form-control"
-                                                placeholder="Jangka Waktu..." required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Tanggal Awal</label>
-                                        <div class="input-group">
-                                            <input type="date" name="tgl_masuk" class="form-control" placeholder="Tanggal Masuk..."
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Tanggal Akhir</label>
-                                        <div class="input-group">
-                                            <input type="date" name="tgl_akhir" class="form-control" placeholder="Tanggal Akhir..."
-                                                required>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Posisi Magang</label>
-                                        <select name="posisi_magang" id="posisi_magang" class="form-control" required>
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Subbag Tata Usaha">Subbag Tata Usaha</option>
-                                            <option value="Bidang Pengembangan Kompetensi Manajerial">Bidang Pengembangan Kompetensi
-                                                Manajerial</option>
-                                            <option value="Bidang Pengembangan Kompetensi Teknis Umum">Bidang Pengembangan
-                                                Kompetensi Teknis Umum</option>
-                                            <option value="Bidang Pengembangan Kompetensi Teknis Inti">Bidang Pengembangan
-                                                Kompetensi Teknis Inti</option>
-                                            <option value="Bidang Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan">Bidang
-                                                Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan</option>
-                                            <option value="Sekretaris">Sekretaris</option>
-                                            <option value="Perpustakaan">Perpustakaan</option>
-                                            <option value="Kearsipan">Kearsipan</option>
-                                            <option value="Widyaiswara">Widyaiswara</option>
-                                        </select>
-                                        <small><span class="text-danger text-small" id="alert_posisi_magang"></span></small>
+                                <div class="form-group">
+                                    <label for="">Alamat Email</label>
+                                    <div class="input-group">
+                                        <input type="text" name="email" class="form-control"
+                                            placeholder="Alamat Email..." required>
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="">No. Induk</label>
+                                    <div class="input-group">
+                                        <input type="number" name="no_induk" class="form-control"
+                                            placeholder="No. Induk..." required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Asal Instansi</label>
+                                    <div class="input-group">
+                                        <input type="text" name="asal_instansi" class="form-control"
+                                            placeholder="Asal Instansi..." required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Jurusan</label>
+                                    <div class="input-group">
+                                        <input type="text" name="jurusan" class="form-control" placeholder="Jurusan..."
+                                            required>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.card-body -->
-                            </p>
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label>Perihal</label>
+                                    <select name="perihal" id="perihal" class="form-control" required>
+                                        <option value="">-- Pilih --</option>
+                                        <option value="Pendataan Kerja Praktik">Pendataan Kerja Praktik</option>
+                                        <option value="Pendataan Penelitian">Pendataan Penelitian</option>
+                                    </select>
+                                    <small><span class="text-danger text-small" id="alert_perihal"></span></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Jangka Waktu</label>
+                                    <div class="input-group">
+                                        <input type="text" name="jangka_waktu" class="form-control"
+                                            placeholder="Jangka Waktu..." required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Tanggal Awal</label>
+                                    <div class="input-group">
+                                        <input type="date" name="tgl_masuk" class="form-control"
+                                            placeholder="Tanggal Masuk..." required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Tanggal Akhir</label>
+                                    <div class="input-group">
+                                        <input type="date" name="tgl_akhir" class="form-control"
+                                            placeholder="Tanggal Akhir..." required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Posisi Magang</label>
+                                    <select name="posisi_magang" id="posisi_magang" class="form-control" required>
+                                        <option value="">-- Pilih --</option>
+                                        <option value="Subbag Tata Usaha">Subbag Tata Usaha</option>
+                                        <option value="Bidang Pengembangan Kompetensi Manajerial">Bidang Pengembangan
+                                            Kompetensi
+                                            Manajerial</option>
+                                        <option value="Bidang Pengembangan Kompetensi Teknis Umum">Bidang Pengembangan
+                                            Kompetensi Teknis Umum</option>
+                                        <option value="Bidang Pengembangan Kompetensi Teknis Inti">Bidang Pengembangan
+                                            Kompetensi Teknis Inti</option>
+                                        <option value="Bidang Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan">Bidang
+                                            Sertifikasi Kompetensi Dan Pengelolaan Kelembagaan</option>
+                                        <option value="Sekretaris">Sekretaris</option>
+                                        <option value="Perpustakaan">Perpustakaan</option>
+                                        <option value="Kearsipan">Kearsipan</option>
+                                        <option value="Widyaiswara">Widyaiswara</option>
+                                    </select>
+                                    <small><span class="text-danger text-small" id="alert_posisi_magang"></span></small>
+                                </div>
+                            </div>
+
                         </div>
-                        <div>
+                        <!-- /.card-body -->
+                        </p>
+                    </div>
+                    <div>
                         <div class="modal-footer right-content-between">
                             <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>
                         </div>
@@ -322,7 +330,7 @@
                     </div>
                     <!-- /.modal-content -->
                 </div>
-                
+
 
 
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -330,9 +338,9 @@
                         gatau buat apa kayanya klik selesai buat masuk ke data suoeradmin
                     </div>
                     <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>   
-                            </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -562,6 +570,11 @@
                             <option value="1">Super Admin</option>
                             <option value="2">Admin</option>
                             <option value="3">Users</option>
+                            <option value="4">Deveservice</option>
+                            <option value="5">Devaplikasi</option>
+                            <option value="6">Devbigdata</option>
+                            <option value="7">Devmultimedia</option>
+                            <option value="8">Devpublikasi</option>
                         </select>
                     </div>
                     </p>
@@ -569,7 +582,7 @@
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                 <button type="submit" name="tambah" class="btn btn-primary tambahuser">Tambah</button>
-          
+
             </div>
             </form>
         </div>

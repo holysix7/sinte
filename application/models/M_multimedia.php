@@ -55,12 +55,13 @@ class M_multimedia extends CI_Model
         return $this->db->get('multimedia')->result_array();
     }
 
-    public function proses_tambah_data()
+    public function proses_tambah_data($id_eservice = null)
     {
         $data = [
             "tgl_multimedia" => $this->input->post('tgl_multimedia'),
             "nama_kegiatan	" => $this->input->post('nama_kegiatan'),
             "link_vidio" => $this->input->post('link_vidio'),
+            "tgl_dibuat" => date('Y-m-d'),
         ];
 
         $this->db->insert('multimedia', $data);
@@ -83,9 +84,28 @@ class M_multimedia extends CI_Model
             "tgl_multimedia" => $this->input->post('tgl_multimedia'),
             "nama_kegiatan	" => $this->input->post('nama_kegiatan'),
             "link_vidio" => $this->input->post('link_vidio'),
+            "tgl_dibuat" => date('Y-m-d'),
         ];
 
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('multimedia', $data);
+    }
+
+    public function dataHariIni()
+    {
+        $data = $this->db->get_where('multimedia', array('tgl_dibuat' => date('Y-m-d')))->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
+
+    public function dataKeseluruhan()
+    {
+        $data = $this->db->get('multimedia')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
     }
 }

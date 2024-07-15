@@ -55,6 +55,14 @@ class M_kp extends CI_Model
         return $this->db->get('kp')->result_array();
     }
 
+    public function SemuaDataIdSurat()
+    {
+        $id = explode('/', $this->uri->uri_string())[2];
+        return $this->db->get_where('kp', [
+            'id_suratpengajuan' => $id
+        ])->result_array();
+    }
+
     public function proses_tambah_data()
     {
         $data = [
@@ -65,9 +73,40 @@ class M_kp extends CI_Model
             "user_id" => $this->session->userdata('id_user'),
             "posisi_magang" => $this->input->post('posisi_magang'),
             "tanggal_pendataan" => $this->input->post('tanggal_pendataan'),
+            "id_suratpengajuan" => $this->input->post('id_suratpengajuan'),
         ];
 
         $this->db->insert('kp', $data);
+    }
+
+
+    public function get_magang_by_id()
+    {
+        $id = $this->input->get('id');
+        $query = $this->db->get_where('kp', array('id' => $id));
+        $data['magang'] = $query->row_array();
+
+    }
+
+    public function get_certificate_data($id)
+    {
+        // Query untuk mengambil data sertifikat berdasarkan $id
+        $query = $this->db->get_where('kp', array('id' => $id));
+        return $query->row_array(); // Mengembalikan data sebagai array
+    }
+
+
+    public function proses_tambah_data_detail_sertifikat()
+    {
+
+        $data = [
+            "no_sertifikat" => $this->input->post('no_sertifikat'),
+            "periode" => $this->input->post('periode'),
+
+        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('kp', $data);
     }
 
     public function hapus_data($id)
@@ -119,5 +158,7 @@ class M_kp extends CI_Model
         $query = $this->db->get_where('kp', array('id' => $id));
         return $query->row_array();
     }
+
+
 }
 

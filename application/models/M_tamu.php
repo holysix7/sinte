@@ -1,6 +1,10 @@
+
+
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 class M_Tamu extends CI_Model
 {
+
+
 
     function gettahun()
     {
@@ -116,5 +120,43 @@ class M_Tamu extends CI_Model
 
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('tamu', $data);
+    }
+
+    
+    public function __construct() {
+        $this->load->database();
+    }
+
+    public function total_kunjungantamu()
+    {
+        return $this->db->count_all('tamu');
+    }
+
+    public function count_today_records() {
+        $this->db->where('DATE(tanggal_kunjungan)', date('Y-m-d'));
+        $this->db->from('tamu');
+        return $this->db->count_all_results();
+       
+    }
+
+    public function count_current_month_records() {
+        $this->db->where('MONTH(tanggal_kunjungan)', date('m'));
+        $this->db->where('YEAR(tanggal_kunjungan)', date('Y'));
+        $this->db->from('tamu'); 
+        return $this->db->count_all_results();
+       
+    }
+
+    public function count_current_year_records() {
+        $this->db->where('YEAR(tanggal_kunjungan)', date('Y'));
+        $this->db->from('tamu');
+        return $this->db->count_all_results();
+    }
+
+    public function get_name_data() {
+        $this->db->select('instansi, COUNT(*) as count');
+        $this->db->group_by('instansi');
+        $query = $this->db->get('tamu'); 
+        return $query->result();
     }
 }

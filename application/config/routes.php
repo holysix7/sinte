@@ -52,3 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'landingpage';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['generate_qr'] = 'qrcode/generate';
+$route['insert-mahasiswa'] = 'MahasiswaController/insertMahasiswa';
+$route['ijazah'] = 'ijazah/index';

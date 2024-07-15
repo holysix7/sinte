@@ -31,6 +31,7 @@
 <script src="<?php echo base_url('vendor/') ?>vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
+<script src="<?php echo base_url('vendor/') ?>js/demo/chart-bar-demo.js"></script>
 <script src="<?php echo base_url('vendor/') ?>js/demo/chart-area-demo.js"></script>
 <script src="<?php echo base_url('vendor/') ?>js/demo/chart-pie-demo.js"></script>
 

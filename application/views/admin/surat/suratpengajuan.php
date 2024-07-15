@@ -54,8 +54,8 @@
                                             } ?>
 
                                             <th>Berkas Surat Balasan</th>
-                                        
-                                            
+
+
 
                                         </tr>
                                     </thead>
@@ -111,7 +111,7 @@
                                                             class="fa fa-download"></i> Download
                                                     </a>
                                                 </td>
-                                                
+
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -364,10 +364,11 @@ foreach ($suratpengajuan as $sp):
                                             <th>Berkas Surat Pengajuan</th>
                                             <th>Status </th>
                                             <th>Keterangan Status</th>
+                                            <th>Draft</th>
                                             <th>Berkas Surat Balasan</th>
                                             <th>Aksi</th>
                                         </tr>
-                                        
+
                                     </thead>
                                     <tbody>
                                         <?php $no = 1;
@@ -387,10 +388,17 @@ foreach ($suratpengajuan as $sp):
                                                     <button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatfile<?=
                                                         $kpp->id_suratpengajuan ?>"><i class="fas fa-eye"></i></button>
                                                 </td>
-                                                
+
 
                                                 <td><?= $kpp->status; ?></td>
-                                                <td><?= $kpp->ket_status; ?></td>
+                                                <td>
+                                                    <?php if($kpp->ket_status == 'Data Belum Lengkap'){ ?>
+                                                        <span class="badge badge-danger"><?= $kpp->ket_status; ?></span>
+                                                    <?php }else{ ?>
+                                                        <?= $kpp->ket_status; ?>
+                                                    <?php } ?>
+                                                </td>
+                                                <td><?= $kpp->draft ? 'true' : 'false'; ?></td>
                                                 <td>
                                                     <a href="<?php echo base_url() ?>admin/downloadbalasan/<?php echo $kpp->id_suratpengajuan ?>"
                                                         class="badge badge-success btn-block" title="download"><i
@@ -399,9 +407,15 @@ foreach ($suratpengajuan as $sp):
                                                 </td>
                                                 <td>
 
-                                                    <a href="<?php echo base_url('kp/view') ?>"
-                                                     class="badge badge-primary d-block"><i class="	fas fa-edit"></i> Detail
-                                                    </a>
+                                                    <?php if($kpp->draft == true){ ?>
+                                                        <a href="<?php echo base_url("admin/tambahpengajuan_datadiri/{$kpp->id_suratpengajuan}") ?>"
+                                                            class="badge badge-warning d-block"><i class="	fas fa-edit"></i> Edit
+                                                        </a>
+                                                    <?php }else{ ?>
+                                                        <a href="<?php echo base_url("kp/view/{$kpp->id_suratpengajuan}") ?>"
+                                                            class="badge badge-primary d-block"><i class="	fas fa-edit"></i> Detail
+                                                        </a>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -486,13 +500,16 @@ foreach ($suratpengajuan as $sp):
                                 <br>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input type="radio" name="status" value="Pending" id="option1" autocomplete="off" checked> Pending
+                                        <input type="radio" name="status" value="Pending" id="option1" autocomplete="off"
+                                            checked> Pending
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input type="radio" name="status" value="Ditolak" id="option2" autocomplete="off"> Ditolak
+                                        <input type="radio" name="status" value="Ditolak" id="option2" autocomplete="off">
+                                        Ditolak
                                     </label>
                                     <label class="btn btn-primary">
-                                        <input type="radio" name="status" value="Diterima" id="option3" autocomplete="off">  Diterima
+                                        <input type="radio" name="status" value="Diterima" id="option3" autocomplete="off">
+                                        Diterima
                                     </label>
                                 </div>
                                 <div class="form-group">
@@ -608,7 +625,8 @@ foreach ($suratpengajuan as $sp):
                                                 for="exampleInputFile"><?= $sp->berkas_suratpengajuan ?></label>
                                         </div>
                                     </div>
-                                    <small class="text-danger">*Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX, dan
+                                    <small class="text-danger">*Support file berekstensi PDF, DOC, DOCX, XLS, XLSX, PPTX,
+                                        dan
                                         PPT</small>
                                 </div>
                                 <div class="form-group">

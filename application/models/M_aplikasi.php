@@ -90,4 +90,12 @@ class M_aplikasi extends CI_Model
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('aplikasi', $data);
     }
+
+    public function dataKeseluruhan(){
+        $data = $this->db->get('aplikasi')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
 }

@@ -1,0 +1,65 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+table {
+    border-collapse: collapse;
+}
+.page {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: relative;
+}
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Ensure the background is behind other content */
+}
+.content {
+    text-align: justify;
+    max-width: 100%; /* Adjust as needed */
+}
+.content2 {
+    text-align: center;
+    max-width: 100%; /* Adjust as needed */
+}
+h3 {
+    margin: 0;
+}
+.bottom-right-image {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 330px;
+}
+.top-left-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 330px;
+ 
+}
+.bottom-left-image {
+    position: absolute;
+    bottom: 70px; /* Adjust as needed */
+    left: 50px; /* Adjust as needed */
+    width: 110px;
+}
+.bottom-right-image2 {
+    position: absolute;
+    bottom: 60px; /* Adjust as needed */
+    right: 140px; /* Adjust as needed */
+    width: 140px;
+}
+</style>

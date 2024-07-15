@@ -62,12 +62,26 @@
                                             if ($u->level == 3) {
                                                 echo 'Users';
                                             }
+                                            if ($u->level == 4) {
+                                                echo 'deveservice';
+                                            }
+                                            if ($u->level == 5) {
+                                                echo 'devaplikasi';
+                                            }
+                                            if ($u->level == 6) {
+                                                echo 'devbigdata';
+                                            }
+                                            if ($u->level == 7) {
+                                                echo 'devmultimedia';
+                                            }
+                                            if ($u->level == 8) {
+                                                echo 'devpublikasi';
+                                            }
                                             ?>
                                             </td>
                                             <?php if ($user == 'superadmin') { ?>
                                                 <td>
                                                     <?php if ($u->id_user == $this->session->userdata('id_user')) { ?>
-
                                                     <?php } else { ?>
                                                         <a href="<?php echo base_url('admin/hapususer/' . $u->id_user) ?>"
                                                             class="badge badge-danger d-block">Hapus</a>

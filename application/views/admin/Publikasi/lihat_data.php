@@ -1,115 +1,197 @@
-<div id="wrapper">
+<?php if ($user == 'superadmin'): ?>
+    <div id="wrapper">
 
-    <!-- Sidebar -->
-    <?php $this->load->view('templates/sidebar'); ?>
-    <!-- End of Sidebar -->
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
-        <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-            <!-- Topbar -->
-            <?php $this->load->view('templates/topbar'); ?>
-            <!-- End of Topbar -->
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Publikasi</h1>
-                <div class="card card-success">
-                    <div class="card-body">
-                        <?= $this->session->flashdata('message'); ?>
-                        <div class="row">
-                            <?php if ($user == 'superadmin') { ?>
-                                <div class="col-md-3">
-                                    <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
-                                        data-target="#addpublikasi"><i class="fas fa-plus"></i> Tambah data </button>
-                                </div>
-                            <?php } else { ?>
-                            <?php } ?>
-                        </div>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <td>No.</td>
-                                        <td>Tanggal</td>
-                                        <td>Nama Kegiatan</td>
-                                        <td>Judul Flyer</td>
-                                        <td>Link Publikasi Internal</td>
-                                        <td>Link Publikasi External</td>
-                                        <?php if ($user == 'superadmin') { ?>
-                                            <th>Aksi</th>
-                                        <?php } else {
-                                        } ?>
-                                    </tr>
-                                </thead>
-                    
-                                <tbody>
-                                    <?php
-                                    $no = 1;
-                                    foreach ($publikasi as $pu): ?>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Publikasi</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <?php echo $no++; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $pu['tgl_publikasi']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $pu['nama_kegiatan']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $pu['judul_flayer']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $pu['link_internal']; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $pu['link_eksternal'];   ?>
-                                            </td>
-
-                                            <td>
-                                                <a href="" data-id-kp="<?php echo $pu['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#editpublikasi<?php  echo $pu['id']; ?>"
-                                                    class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <br>
-                                                <a href="" data-id-pu="<?php echo $pu['id']; ?>"
-                                                    data-toggle="modal"
-                                                    data-target="#hapuspu<?php echo $pu['id']; ?>"
-                                                    class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i> Hapus
-                                                </a>
-                                            </td>
+                                            <td>No.</td>
+                                            <td>Tanggal</td>
+                                            <td>Nama Kegiatan</td>
+                                            <td>Judul Flyer</td>
+                                            <td>Link Publikasi Internal</td>
+                                            <td>Link Publikasi External</td>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($publikasi as $pu): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['tgl_publikasi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['nama_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['judul_flayer']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['link_internal']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['link_eksternal']; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
 
         </div>
-        
-         <!-- Footer -->
-        <?php $this->load->view('templates/copyright') ?>
-        <!-- End of Footer -->
-
-        <!-- End of Main Content -->
-        <?php $this->load->view('admin/ekstra/modal') ?>
-
+        <!-- End of Content Wrapper -->
     </div>
-    <!-- End of Content Wrapper -->
-</div>
+<?php endif; ?>
 
+<?php if ($user == 'devpublikasi'): ?>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <?php $this->load->view('templates/sidebar'); ?>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <?php $this->load->view('templates/topbar'); ?>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Publikasi</h1>
+                    <div class="card card-success">
+                        <div class="card-body">
+                            <?= $this->session->flashdata('message'); ?>
+                            <div class="row">
+
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <td>No.</td>
+                                            <td>Tanggal</td>
+                                            <td>Nama Kegiatan</td>
+                                            <td>Judul Flyer</td>
+                                            <td>Link Publikasi Internal</td>
+                                            <td>Link Publikasi External</td>
+                                            <?php if ($user == 'devpublikasi') { ?>
+                                                <th>Aksi</th>
+                                            <?php } else {
+                                            } ?>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        foreach ($publikasi as $pu): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $no++; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['tgl_publikasi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['nama_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['judul_flayer']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['link_internal']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $pu['link_eksternal']; ?>
+                                                </td>
+
+                                                <td>
+                                                    <a href="" data-id-kp="<?php echo $pu['id']; ?>" data-toggle="modal"
+                                                        data-target="#editpublikasi<?php echo $pu['id']; ?>"
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                    <br>
+                                                    <a href="" data-id-pu="<?php echo $pu['id']; ?>" data-toggle="modal"
+                                                        data-target="#hapuspu<?php echo $pu['id']; ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
+                                                        Hapus
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+            <!-- Footer -->
+            <?php $this->load->view('templates/copyright') ?>
+            <!-- End of Footer -->
+
+            <!-- End of Main Content -->
+            <?php $this->load->view('admin/ekstra/modal') ?>
+
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+<?php endif; ?>
 
 <!-- Hapus -->
 <?php $no = 0;
@@ -126,14 +208,14 @@ foreach ($publikasi as $pu):
                     </button>
                 </div>
                 <form method="post" action=" <?php echo base_url() ?>publikasi/hapus_data/<?php echo $pu['id'] ?>">
-					<div class="modal-body text-center">
-					<h5>Apakah anda yakin untuk menghapus ini? </h5>
-					</div>
-					<div class="modal-footer text-center">
-						<button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
-						<button type="submit" class="btn btn-primary btn-simple">Ya</button>
-					</div>
-				</form>           
+                    <div class="modal-body text-center">
+                        <h5>Apakah anda yakin untuk menghapus ini? </h5>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary btn-simple">Ya</button>
+                    </div>
+                </form>
             </div>
             <!-- /.modal-content -->
         </div>

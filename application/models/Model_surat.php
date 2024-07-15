@@ -41,7 +41,18 @@ class Model_surat extends CI_Model
         return $this->db->get('suratpengajuan')->result();
     }
 
+    public function getdatawithadd3($table)
+    {
+    
+        $query = "SELECT * FROM " . $table ;
+        return $this->db->query($query);
+    }
 
+    public function get_data_today() {
+        $this->db->where('DATE(tanggal_kunjungan)', date('Y-m-d'));
+        $query = $this->db->get('tamu'); 
+        return $query->result_array();
+    }
 
     public function countdata($table)
     {
@@ -75,7 +86,8 @@ class Model_surat extends CI_Model
 
     public function adddata($table, $array)
     {
-        return $this->db->insert($table, $array);
+        $this->db->insert($table, $array);
+        return $this->db->insert_id();
     }
 
     public function updatedata($table, $array, $where)
@@ -203,6 +215,31 @@ class Model_surat extends CI_Model
         return $this->db->get('suratpengajuan')->result_array();
     }
 
+    //untuk landingpage count
 
+    public function __construct() {
+        $this->load->database();
+    }
 
+    public function total_userterdaftar()
+    {
+        return $this->db->count_all('user');
+    }
+
+    public function total_kp()
+    {
+        return $this->db->count_all('kp');
+    }
+
+  
+
+    public function total_tamu()
+    {
+        return $this->db->count_all('tamu');
+    }
+
+    public function total_pengajuan()
+    {
+        return $this->db->count_all('suratpengajuan');
+    }
 }

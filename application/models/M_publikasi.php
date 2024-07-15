@@ -54,7 +54,7 @@ class M_publikasi extends CI_Model
         return $this->db->get('publikasi')->result_array();
     }
 
-    public function proses_tambah_data()
+    public function proses_tambah_data($id_eservice = null)
     {
         $data = [
             "tgl_publikasi" => $this->input->post('tgl_publikasi'),
@@ -62,6 +62,7 @@ class M_publikasi extends CI_Model
             "judul_flayer" => $this->input->post('judul_flayer'),
             "link_internal" => $this->input->post('link_internal'),
             "link_eksternal" => $this->input->post('link_eksternal'),
+            "tgl_dibuat" => date('Y-m-d'),
         ];
 
         $this->db->insert('publikasi', $data);
@@ -86,9 +87,28 @@ class M_publikasi extends CI_Model
             "judul_flayer" => $this->input->post('judul_flayer'),
             "link_internal" => $this->input->post('link_internal'),
             "link_eksternal" => $this->input->post('link_eksternal'),
+            "tgl_dibuat" => date('Y-m-d'),
         ];
 
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('publikasi', $data);
+    }
+
+    public function dataHariIni()
+    {
+        $data = $this->db->get_where('publikasi', array('tgl_dibuat' => date('Y-m-d')))->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
+
+    public function dataKeseluruhan()
+    {
+        $data = $this->db->get('publikasi')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
     }
 }
