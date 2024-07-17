@@ -71,6 +71,11 @@ class Bigdata extends CI_Controller
             redirect(base_url(''));
         }
 
+
+        if (count(explode('/', $this->uri->uri_string())) > 3) {
+            $data['bigdata'] = $this->M_bigdata->getRedirectKp(explode('/', $this->uri->uri_string())[3]);
+        }
+
         $this->load->view('templates/header', $data);
         $this->load->view('admin/bigdata/lihat_data', $data);
         $this->load->view('templates/footer');

@@ -159,6 +159,11 @@ class M_kp extends CI_Model
         return $query->row_array();
     }
 
+    public function getRedirectKp($id)
+    {
+        $query = $this->db->get_where('kp', array('id' => $id));
+        return $query->result_array();
+    }
 
 }
 

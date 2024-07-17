@@ -31,10 +31,13 @@ class Kp extends CI_Controller
         $data['d'] = $query->row_array();
 
         $data['kp'] = $this->M_kp->SemuaData();
-        if(count(explode('/', $this->uri->uri_string())) > 2){
+        if (count(explode('/', $this->uri->uri_string())) > 2) {
             $data['kp_user'] = $this->M_kp->SemuaDataIdSurat();
         }
 
+        if (count(explode('/', $this->uri->uri_string())) > 3) {
+            $data['kp'] = $this->M_kp->getRedirectKp(explode('/', $this->uri->uri_string())[3]);
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kp/lihat_data', $data);
@@ -138,13 +141,13 @@ class Kp extends CI_Controller
         $this->load->helper('download');
         $fileinfo = $this->M_kp->downloadsertifikat($id);
 
-        if($fileinfo['sertifikat'] == 'Belum Tersedia'){
+        if ($fileinfo['sertifikat'] == 'Belum Tersedia') {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
             </div>');
             redirect("kp/view/{$id_sp}");
-        }else{
+        } else {
             $file = 'vendor/files/sertifikat/' . $fileinfo['sertifikat'];
             if (file_exists($file)) {
                 force_download($file, NULL);

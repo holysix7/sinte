@@ -79,18 +79,30 @@
                     <!-- End Hero -->
                     <div class="row">
 
-<!-- Area Chart -->
+                        <!-- Area Chart -->
                         <div class="col-xl-8">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Grafik Batang</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>" readonly>
+                                <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>"
+                                    readonly>
                                 <div class="card-body" style="height: 350px !important;">
-                                    <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                        <canvas id="myBarChart" width="714" height="320" style="display: block; width: 714px; height: 320px;" class="chartjs-render-monitor"></canvas>
+                                    <div class="chart-area">
+                                        <div class="chartjs-size-monitor">
+                                            <div class="chartjs-size-monitor-expand">
+                                                <div class=""></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink">
+                                                <div class=""></div>
+                                            </div>
+                                        </div>
+                                        <canvas id="myBarChart" width="714" height="320"
+                                            style="display: block; width: 714px; height: 320px;"
+                                            class="chartjs-render-monitor"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -100,12 +112,21 @@
                         <div class="col-xl-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Grafik Pie</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body" style="height: 350px !important;">
-                                    <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <div class="chartjs-size-monitor">
+                                            <div class="chartjs-size-monitor-expand">
+                                                <div class=""></div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink">
+                                                <div class=""></div>
+                                            </div>
+                                        </div>
                                         <canvas id="namePieChart"></canvas>
                                     </div>
                                 </div>
@@ -114,72 +135,72 @@
                     </div>
 
                     <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        var ctx = document.getElementById('namePieChart').getContext('2d');
-                        var nameData = <?php echo json_encode($name_data); ?>;
-                        
-                        var labels = nameData.map(function(e) {
-                            return e.instansi;
-                        });
-                        var data = nameData.map(function(e) {
-                            return e.count;
-                        });
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var ctx = document.getElementById('namePieChart').getContext('2d');
+                            var nameData = <?php echo json_encode($name_data); ?>;
 
-                        var chart = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Count',
-                                    data: data,
-                                    backgroundColor: [
-                                        'rgb(0,191,255)',
-                                        'rgb(173,216,230',
-                                        'rgb(100,149,237)',
-                                        'rgb(0,0,128)',
-                                        'rgb(135,206,235)',
-                                        'rgb(0,0,139)',
-                                        'rgb(0,0,205)',
-                                        'rgb(0,0,255',
-                                        'rgb(70,130,180)',
-                                        'rgb(25,25,112)',
-                                        'rgb(30,144,255)',
-                                        
-                                       
-                                    ],
-                                    borderColor: [
-                                        'rgb(0,191,255)',
-                                        'rgb(173,216,230',
-                                        'rgb(100,149,237)',
-                                        'rgb(0,0,128)',
-                                        'rgb(135,206,235)',
-                                        'rgb(0,0,139)',
-                                        'rgb(0,0,205)',
-                                        'rgb(0,0,255',
-                                        'rgb(70,130,180)',
-                                        'rgb(25,25,112)',
-                                        'rgb(30,144,255)',
-                                        
-                                        
-                                    ],
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                plugins: {
-                                    legend: {
-                                        position: 'top',
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Instansi Yang Pernah Berkunjung'
+                            var labels = nameData.map(function (e) {
+                                return e.instansi;
+                            });
+                            var data = nameData.map(function (e) {
+                                return e.count;
+                            });
+
+                            var chart = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        label: 'Count',
+                                        data: data,
+                                        backgroundColor: [
+                                            'rgb(0,191,255)',
+                                            'rgb(173,216,230',
+                                            'rgb(100,149,237)',
+                                            'rgb(0,0,128)',
+                                            'rgb(135,206,235)',
+                                            'rgb(0,0,139)',
+                                            'rgb(0,0,205)',
+                                            'rgb(0,0,255',
+                                            'rgb(70,130,180)',
+                                            'rgb(25,25,112)',
+                                            'rgb(30,144,255)',
+
+
+                                        ],
+                                        borderColor: [
+                                            'rgb(0,191,255)',
+                                            'rgb(173,216,230',
+                                            'rgb(100,149,237)',
+                                            'rgb(0,0,128)',
+                                            'rgb(135,206,235)',
+                                            'rgb(0,0,139)',
+                                            'rgb(0,0,205)',
+                                            'rgb(0,0,255',
+                                            'rgb(70,130,180)',
+                                            'rgb(25,25,112)',
+                                            'rgb(30,144,255)',
+
+
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            position: 'top',
+                                        },
+                                        title: {
+                                            display: true,
+                                            text: 'Instansi Yang Pernah Berkunjung'
+                                        }
                                     }
                                 }
-                            }
+                            });
                         });
-                    });
-                </script>
+                    </script>
 
                     <br>
                     <!-- ======= bigdata ======= -->
@@ -241,6 +262,9 @@
                                                                 <?php
                                                                 $Boyer = new Boyer();
 
+                                                                $stmt_kp = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
+                                                                $stmt_kp->execute(['kata' => "%$kata%"]);
+
                                                                 $stmt = $pdo->prepare("SELECT * FROM bigdata WHERE nama_kegiatan LIKE :kata");
                                                                 $stmt->execute(['kata' => "%$kata%"]);
 
@@ -258,10 +282,36 @@
                                                                         $finish_time_boyer = microtime(true);
                                                                         $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
 
+                                                                        $nama = $teks['nama_kegiatan'];
+                                                                        $url_redirect = implode('/', ['bigdata/view', $nama[0], $teks['id_bigdata']]);
                                                                         echo "<div class='search-results'>";
-                                                                        echo nl2br(str_replace($kata, "<span class='highlighted'>" . $kata . "</span>", $teks['nama_kegiatan']));
+                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
                                                                         echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['bidang_penyelenggara'] . "</p>";
                                                                         echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_kegiatan'] . "</p><hr/>";
+                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+
+                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                        $correct_searche++;
+                                                                        echo "</div>";
+                                                                    }
+                                                                }
+
+
+                                                                while ($teks = $stmt_kp->fetch(PDO::FETCH_ASSOC)) {
+                                                                    if (!empty($kata)) {
+                                                                        $start_time_boyer = microtime(true);
+
+                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama'], $kata);
+
+                                                                        $finish_time_boyer = microtime(true);
+                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                        $nama = $teks['nama'];
+                                                                        $url_redirect = implode('/', ['kp/view', $nama[0], $teks['id']]);
+                                                                        echo "<div class='search-results'>";
+                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['periode'] . "</p>";
+                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'> " . $teks['posisi_magang'] . "</p><hr/>";
                                                                         echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
                                                                         $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
@@ -329,8 +379,7 @@
                 <?php if ($user == 'superadmin') { ?>
                     <div class="row">
 
-                        <a type="button" class="col-xl-3 col-md-6 mb-4" data-toggle="modal"
-                            data-target="#eServiceModal">
+                        <a type="button" class="col-xl-3 col-md-6 mb-4" data-toggle="modal" data-target="#eServiceModal">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">

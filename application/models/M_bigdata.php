@@ -99,13 +99,14 @@ class M_bigdata extends CI_Model
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "link_sertifikat" => $this->input->post('link_sertifikat'),
             "tgl_dibuat" => $this->input->post('tgl_kegiatan'),
-        ]; 
+        ];
 
         $this->db->where('id_bigdata', $this->input->post('id_bigdata'));
         $this->db->update('bigdata', $data);
     }
 
-    public function proses_edit_by_es_data(){
+    public function proses_edit_by_es_data()
+    {
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
@@ -156,5 +157,11 @@ class M_bigdata extends CI_Model
             'counted' => count($data),
             'data' => $data
         ];
+    }
+
+    public function getRedirectKp($id)
+    {
+        $query = $this->db->get_where('bigdata', array('id_bigdata' => $id));
+        return $query->result_array();
     }
 }
