@@ -91,11 +91,18 @@ class M_aplikasi extends CI_Model
         $this->db->update('aplikasi', $data);
     }
 
-    public function dataKeseluruhan(){
+    public function dataKeseluruhan()
+    {
         $data = $this->db->get('aplikasi')->result_array();
         return [
             'counted' => count($data),
             'data' => $data
         ];
+    }
+
+    public function getRedirectApp($id)
+    {
+        $query = $this->db->get_where('aplikasi', array('id' => $id));
+        return $query->result_array();
     }
 }

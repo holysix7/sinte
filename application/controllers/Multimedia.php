@@ -64,6 +64,9 @@ class multimedia extends CI_Controller
                 </div>');
             redirect(base_url(''));
         }
+        if (count(explode('/', $this->uri->uri_string())) > 3) {
+            $data['multimedia'] = $this->M_multimedia->getRedirectApp(explode('/', $this->uri->uri_string())[3]);
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/multimedia/lihat_data', $data);

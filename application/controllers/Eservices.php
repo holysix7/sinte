@@ -53,6 +53,9 @@ class Eservices extends CI_Controller
         } elseif ($this->session->userdata('level') == 4) {
             $data['user'] = 'deveservice';
         }
+        if (count(explode('/', $this->uri->uri_string())) > 3) {
+            $data['eservice'] = $this->M_eservice->getRedirectApp(explode('/', $this->uri->uri_string())[3]);
+        }
         if ($this->session->userdata('level') != 1 && $this->session->userdata('level') != 4) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

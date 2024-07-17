@@ -56,6 +56,9 @@ class Aplikasi extends CI_Controller
                 </div>');
             redirect(base_url(''));
         }
+        if (count(explode('/', $this->uri->uri_string())) > 3) {
+            $data['aplikasi'] = $this->M_aplikasi->getRedirectApp(explode('/', $this->uri->uri_string())[3]);
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/aplikasi/lihat_data', $data);

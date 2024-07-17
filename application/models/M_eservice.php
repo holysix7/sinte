@@ -120,4 +120,10 @@ class M_eservice extends CI_Model
             'data' => $data
         ];
     }
+
+    public function getRedirectApp($id)
+    {
+        $query = $this->db->get_where('eservice', array('id' => $id));
+        return $query->result_array();
+    }
 }

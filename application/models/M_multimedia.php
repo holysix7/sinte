@@ -108,4 +108,10 @@ class M_multimedia extends CI_Model
             'data' => $data
         ];
     }
+
+    public function getRedirectApp($id)
+    {
+        $query = $this->db->get_where('multimedia', array('id' => $id));
+        return $query->result_array();
+    }
 }

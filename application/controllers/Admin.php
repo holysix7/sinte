@@ -67,7 +67,7 @@ class Admin extends CI_Controller
 
         $data['multimedia'] = $this->M_multimedia->dataHariIni()['data'];
         $data['jumlah_multimedia'] = $this->M_multimedia->dataHariIni()['counted'];
-        
+
         $eservice = $this->M_eservice->dataKeseluruhan();
         $aplikasi = $this->M_aplikasi->dataKeseluruhan();
         $bigdata = $this->M_bigdata->dataKeseluruhan();
@@ -81,7 +81,7 @@ class Admin extends CI_Controller
             $publikasi['counted'],
             $multimedia['counted'],
         ];
-        $data['data_bar'] = '['.implode(',', $data_bar) .']';
+        $data['data_bar'] = '[' . implode(',', $data_bar) . ']';
         $data['name_data'] = $this->M_tamu->get_name_data();
 
         $this->load->view('templates/header', $data);
@@ -108,7 +108,7 @@ class Admin extends CI_Controller
         $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
         $data['indeks'] = $this->model_surat->getother('indeks')->result();
         $data['kp_pengajuan'] = $this->model_surat->kp_pengajuan();
-// var_dump($data['kp_pengajuan'][0]->draft == false); die;
+        // var_dump($data['kp_pengajuan'][0]->draft == false); die;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/surat/suratpengajuan', $data);
@@ -829,6 +829,11 @@ class Admin extends CI_Controller
         }
 
         $data['indeks'] = $this->model_surat->getotherwithadd('indeks', 'ORDER BY kode_indeks')->result();
+
+        if (count(explode('/', $this->uri->uri_string())) > 3) {
+            $data['indeks'] = $this->model_surat->getRedirectApp(explode('/', $this->uri->uri_string())[3]);
+        }
+
         $this->load->view('templates/header', $data);
         $this->load->view('admin/pengaturan/indeks', $data);
         $this->load->view('templates/footer');

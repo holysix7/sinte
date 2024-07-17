@@ -15,6 +15,7 @@ class Auth extends CI_Controller
 			$data['main_title'] = 'SINTE BPSDM JABAR';
 			$data['title'] = 'Login';
 			$this->load->view('login', $data);
+			$this->load->view('templates/remove-alert');
 		} else {
 			$this->_login();
 		}
