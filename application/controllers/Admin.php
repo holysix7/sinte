@@ -48,6 +48,20 @@ class Admin extends CI_Controller
             ];
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
+            $data_bar = [
+                $eservice['counted'],
+                $aplikasi['counted'],
+                $bigdata['counted'],
+                $publikasi['counted'],
+                $multimedia['counted'],
+            ];
+            $data_label = [
+                "E-Service",
+                "Aplikasi",
+                "Bigdata",
+                "Multimedia",
+                "Publikasi"
+            ];
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
         } elseif ($this->session->userdata('level') == 4) {

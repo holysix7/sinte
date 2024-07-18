@@ -43,169 +43,180 @@
                 <body>
 
                     <!-- ======= Hero Section ======= -->
-                    <!-- <section id="hero">
-                        <div class="container">
-                            <div class="row justify-content-between">
-                                <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
-                                    <div data-aos="zoom-out">
-                                        <h1>Selamat Datang <br> <span>Sistem Informasi Integral Technology</span></h1>
-                                        <h2>Seluruh Jajaran BPSDM Provinsi Jawa Barat Terus Menerus Meningkatkan Mutu
-                                            Pelayanan</h2>
+                    <?php if ($user == 'userskp') { ?>
+                        <section id="hero">
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
+                                        <div data-aos="zoom-out">
+                                            <h1>Selamat Datang <br> <span>Sistem Informasi Integral Technology</span></h1>
+                                            <h2>Seluruh Jajaran BPSDM Provinsi Jawa Barat Terus Menerus Meningkatkan Mutu
+                                                Pelayanan</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 order-1 order-lg-2 2 data-aos=" zoom-out" data-aos-delay="300">
+                                        <img src="assets/img/BG/2.png" class="img-fluid animated" alt="">
                                     </div>
                                 </div>
-                                <div class="col-lg-5 order-1 order-lg-2 2 data-aos=" zoom-out" data-aos-delay="300">
-                                    <img src="assets/img/BG/2.png" class="img-fluid animated" alt="">
-                                </div>
                             </div>
-                        </div>
 
-                        <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 "
-                            preserveAspectRatio="none">
-                            <defs>
-                                <path id="wave-path"
-                                    d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
-                            </defs>
-                            <g class="wave1">
-                                <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
-                            </g>
-                            <g class="wave2">
-                                <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
-                            </g>
-                            <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
-                        </svg>
+                            <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 "
+                                preserveAspectRatio="none">
+                                <defs>
+                                    <path id="wave-path"
+                                        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+                                </defs>
+                                <g class="wave1">
+                                    <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+                                </g>
+                                <g class="wave2">
+                                    <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+                                </g>
+                                <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+                            </svg>
 
-                    </section> -->
+                        </section>
+                    <?php } ?>
                     <!-- End Hero -->
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-xl-8">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Batang</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>"
-                                    readonly>
-                                <input type="hidden" class="form-control" id="dataLabelChart"
-                                    value="<?= $data_label ?>" readonly>
-                                <div class="card-body" style="height: 350px !important;">
-                                    <div class="chart-area">
-                                        <div class="chartjs-size-monitor">
-                                            <div class="chartjs-size-monitor-expand">
-                                                <div class=""></div>
-                                            </div>
-                                            <div class="chartjs-size-monitor-shrink">
-                                                <div class=""></div>
+                    <!-- <?= $user ?> -->
+                    <?php if ($user != 'userskp') { ?>
+                        <div class="row">
+                            <!-- Area Chart -->
+
+                            <?php if ($user == 'superadmin' || $user == 'admin') { ?>
+                                <div class="col-xl-8">
+                                <?php } else { ?>
+                                    <div class="col-xl-12">
+                                    <?php } ?>
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Batang</h6>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>"
+                                            readonly>
+                                        <input type="hidden" class="form-control" id="dataLabelChart"
+                                            value="<?= $data_label ?>" readonly>
+                                        <div class="card-body" style="height: 350px !important;">
+                                            <div class="chart-area">
+                                                <div class="chartjs-size-monitor">
+                                                    <div class="chartjs-size-monitor-expand">
+                                                        <div class=""></div>
+                                                    </div>
+                                                    <div class="chartjs-size-monitor-shrink">
+                                                        <div class=""></div>
+                                                    </div>
+                                                </div>
+                                                <canvas id="myBarChart" width="714" height="320"
+                                                    style="display: block; width: 714px; height: 320px;"
+                                                    class="chartjs-render-monitor"></canvas>
                                             </div>
                                         </div>
-                                        <canvas id="myBarChart" width="714" height="320"
-                                            style="display: block; width: 714px; height: 320px;"
-                                            class="chartjs-render-monitor"></canvas>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Pie</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body" style="height: 350px !important;">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <div class="chartjs-size-monitor">
-                                            <div class="chartjs-size-monitor-expand">
-                                                <div class=""></div>
+                                <!-- Pie Chart -->
+                                <?php if ($user == 'superadmin' || $user == 'admin') { ?>
+                                    <div class="col-xl-4">
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-primary">Grafik Pie</h6>
                                             </div>
-                                            <div class="chartjs-size-monitor-shrink">
-                                                <div class=""></div>
+                                            <!-- Card Body -->
+                                            <div class="card-body" style="height: 350px !important;">
+                                                <div class="chart-pie pt-4 pb-2">
+                                                    <div class="chartjs-size-monitor">
+                                                        <div class="chartjs-size-monitor-expand">
+                                                            <div class=""></div>
+                                                        </div>
+                                                        <div class="chartjs-size-monitor-shrink">
+                                                            <div class=""></div>
+                                                        </div>
+                                                    </div>
+                                                    <canvas id="namePieChart"></canvas>
+                                                </div>
                                             </div>
                                         </div>
-                                        <canvas id="namePieChart"></canvas>
                                     </div>
-                                </div>
+                                <?php } ?>
                             </div>
-                        </div>
-                    </div>
+                        <?php } ?>
 
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function () {
-                            var ctx = document.getElementById('namePieChart').getContext('2d');
-                            var nameData = <?php echo json_encode($name_data); ?>;
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                var ctx = document.getElementById('namePieChart').getContext('2d');
+                                var nameData = <?php echo json_encode($name_data); ?>;
 
-                            var labels = nameData.map(function (e) {
-                                return e.instansi;
-                            });
-                            var data = nameData.map(function (e) {
-                                return e.count;
-                            });
+                                var labels = nameData.map(function (e) {
+                                    return e.instansi;
+                                });
+                                var data = nameData.map(function (e) {
+                                    return e.count;
+                                });
 
-                            var chart = new Chart(ctx, {
-                                type: 'pie',
-                                data: {
-                                    labels: labels,
-                                    datasets: [{
-                                        label: 'Count',
-                                        data: data,
-                                        backgroundColor: [
-                                            'rgb(0,191,255)',
-                                            'rgb(173,216,230',
-                                            'rgb(100,149,237)',
-                                            'rgb(0,0,128)',
-                                            'rgb(135,206,235)',
-                                            'rgb(0,0,139)',
-                                            'rgb(0,0,205)',
-                                            'rgb(0,0,255',
-                                            'rgb(70,130,180)',
-                                            'rgb(25,25,112)',
-                                            'rgb(30,144,255)',
-
-
-                                        ],
-                                        borderColor: [
-                                            'rgb(0,191,255)',
-                                            'rgb(173,216,230',
-                                            'rgb(100,149,237)',
-                                            'rgb(0,0,128)',
-                                            'rgb(135,206,235)',
-                                            'rgb(0,0,139)',
-                                            'rgb(0,0,205)',
-                                            'rgb(0,0,255',
-                                            'rgb(70,130,180)',
-                                            'rgb(25,25,112)',
-                                            'rgb(30,144,255)',
+                                var chart = new Chart(ctx, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: 'Count',
+                                            data: data,
+                                            backgroundColor: [
+                                                'rgb(0,191,255)',
+                                                'rgb(173,216,230',
+                                                'rgb(100,149,237)',
+                                                'rgb(0,0,128)',
+                                                'rgb(135,206,235)',
+                                                'rgb(0,0,139)',
+                                                'rgb(0,0,205)',
+                                                'rgb(0,0,255',
+                                                'rgb(70,130,180)',
+                                                'rgb(25,25,112)',
+                                                'rgb(30,144,255)',
 
 
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    plugins: {
-                                        legend: {
-                                            position: 'top',
-                                        },
-                                        title: {
-                                            display: true,
-                                            text: 'Instansi Yang Pernah Berkunjung'
+                                            ],
+                                            borderColor: [
+                                                'rgb(0,191,255)',
+                                                'rgb(173,216,230',
+                                                'rgb(100,149,237)',
+                                                'rgb(0,0,128)',
+                                                'rgb(135,206,235)',
+                                                'rgb(0,0,139)',
+                                                'rgb(0,0,205)',
+                                                'rgb(0,0,255',
+                                                'rgb(70,130,180)',
+                                                'rgb(25,25,112)',
+                                                'rgb(30,144,255)',
+
+
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            legend: {
+                                                position: 'top',
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'Instansi Yang Pernah Berkunjung'
+                                            }
                                         }
                                     }
-                                }
+                                });
                             });
-                        });
-                    </script>
+                        </script>
 
-                    <br>
-                    <!-- ======= bigdata ======= -->
-                    <!-- <?php if ($user == 'superadmin') { ?> -->
+                        <br>
+                        <!-- ======= bigdata ======= -->
                         <main id="main">
                             <div class="card-body">
                                 <header class="card card-waves">
@@ -214,7 +225,8 @@
                                             <div class="col-lg-6">
                                                 <h1 class="text-primary">Bagaimana kami bisa membantu?</h1>
                                                 <p class="lead mb-4">Telusuri basis pengetahuan kami untuk menemukan
-                                                    jawaban, atau hubungi kami secara langsung jika Anda mengalami masalah!
+                                                    jawaban, atau hubungi kami secara langsung jika Anda mengalami
+                                                    masalah!
                                                 </p>
 
                                             </div>
@@ -263,241 +275,287 @@
                                                                 <?php
                                                                 $Boyer = new Boyer();
 
-                                                                $stmt_kp = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
-                                                                $stmt_kp->execute(['kata' => "%$kata%"]);
+                                                                $stmt_kp = null;
+                                                                $stmt = null;
+                                                                $stmt_app = null;
+                                                                $stmt_es = null;
+                                                                $stmt_ind = null;
+                                                                $stmt_ml = null;
+                                                                $stmt_pb = null;
+                                                                $stmt_sp = null;
+                                                                $stmt_user = null;
+                                                                if ($user == 'superadmin' || $user == 'admin') {
+                                                                    $stmt_kp = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
+                                                                    $stmt_kp->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt = $pdo->prepare("SELECT * FROM bigdata WHERE nama_kegiatan LIKE :kata");
-                                                                $stmt->execute(['kata' => "%$kata%"]);
+                                                                    $stmt = $pdo->prepare("SELECT * FROM bigdata WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt_app = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_aplikasi LIKE :kata");
-                                                                $stmt_app->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_app = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_aplikasi LIKE :kata");
+                                                                    $stmt_app->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt_es = $pdo->prepare("SELECT * FROM eservice WHERE nama_kegiatan LIKE :kata");
-                                                                $stmt_es->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_es = $pdo->prepare("SELECT * FROM eservice WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt_es->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt_ind = $pdo->prepare("SELECT * FROM indeks WHERE judul_indeks LIKE :kata");
-                                                                $stmt_ind->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_ind = $pdo->prepare("SELECT * FROM indeks WHERE judul_indeks LIKE :kata");
+                                                                    $stmt_ind->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt_ml = $pdo->prepare("SELECT * FROM multimedia WHERE nama_kegiatan LIKE :kata");
-                                                                $stmt_ml->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_ml = $pdo->prepare("SELECT * FROM multimedia WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt_ml->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt_pb = $pdo->prepare("SELECT * FROM publikasi WHERE nama_kegiatan LIKE :kata");
-                                                                $stmt_pb->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_pb = $pdo->prepare("SELECT * FROM publikasi WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt_pb->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt_sp = $pdo->prepare("SELECT * FROM suratpengajuan WHERE no_suratpengajuan LIKE :kata");
-                                                                $stmt_sp->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_sp = $pdo->prepare("SELECT * FROM suratpengajuan WHERE no_suratpengajuan LIKE :kata");
+                                                                    $stmt_sp->execute(['kata' => "%$kata%"]);
 
-                                                                $stmt_user = $pdo->prepare("SELECT * FROM user WHERE nama_lengkap LIKE :kata");
-                                                                $stmt_user->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_user = $pdo->prepare("SELECT * FROM user WHERE nama_lengkap LIKE :kata");
+                                                                    $stmt_user->execute(['kata' => "%$kata%"]);
+                                                                }
+                                                                if ($user == 'deveservice') {
+                                                                    $stmt_es = $pdo->prepare("SELECT * FROM eservice WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt_es->execute(['kata' => "%$kata%"]);
+                                                                }
+                                                                if ($user == 'devaplikasi') {
+                                                                    $stmt_app = $pdo->prepare("SELECT * FROM aplikasi WHERE nama_aplikasi LIKE :kata");
+                                                                    $stmt_app->execute(['kata' => "%$kata%"]);
+                                                                }
+                                                                if ($user == 'devbigdata') {
+                                                                    $stmt = $pdo->prepare("SELECT * FROM bigdata WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt->execute(['kata' => "%$kata%"]);
+                                                                }
+                                                                if ($user == 'devmultimedia') {
+                                                                    $stmt_ml = $pdo->prepare("SELECT * FROM multimedia WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt_ml->execute(['kata' => "%$kata%"]);
+                                                                }
+                                                                if ($user == 'devpublikasi') {
+                                                                    $stmt_pb = $pdo->prepare("SELECT * FROM publikasi WHERE nama_kegiatan LIKE :kata");
+                                                                    $stmt_pb->execute(['kata' => "%$kata%"]);
+                                                                }
 
                                                                 $correct_searche = 0;
                                                                 $incorrect_searches = 0;
                                                                 $best_boyer_time = PHP_FLOAT_MAX;
                                                                 $worst_boyer_time = 0;
 
-                                                                while ($teks = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                if ($stmt) {
+                                                                    while ($teks = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
 
-                                                                        $nama = $teks['nama_kegiatan'];
-                                                                        $url_redirect = implode('/', ['bigdata/view', $nama[0], $teks['id_bigdata']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['bidang_penyelenggara'] . "</p>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_kegiatan'] . "</p><hr/>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+                                                                            $nama = $teks['nama_kegiatan'];
+                                                                            $url_redirect = implode('/', ['bigdata/view', $nama[0], $teks['id_bigdata']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['bidang_penyelenggara'] . "</p>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_kegiatan'] . "</p><hr/>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
+                                                                if ($stmt_kp) {
+                                                                    while ($teks = $stmt_kp->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                while ($teks = $stmt_kp->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['nama'], $kata);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama'], $kata);
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['nama'];
+                                                                            $url_redirect = implode('/', ['kp/view', $nama[0], $teks['id']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['periode'] . "</p>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'> " . $teks['posisi_magang'] . "</p><hr/>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['nama'];
-                                                                        $url_redirect = implode('/', ['kp/view', $nama[0], $teks['id']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['periode'] . "</p>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'> " . $teks['posisi_magang'] . "</p><hr/>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
-
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
+                                                                if ($stmt_app) {
+                                                                    while ($teks = $stmt_ap->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                while ($teks = $stmt_app->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['nama_aplikasi'], $kata);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama_aplikasi'], $kata);
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['nama_aplikasi'];
+                                                                            $url_redirect = implode('/', ['aplikasi/view', $nama[0], $teks['id']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['deskripsi'] . "</p>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['nama_aplikasi'];
-                                                                        $url_redirect = implode('/', ['aplikasi/view', $nama[0], $teks['id']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['deskripsi'] . "</p>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
-
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
-                                                                while ($teks = $stmt_es->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                if ($stmt_es) {
+                                                                    while ($teks = $stmt_es->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['nama_kegiatan'];
-                                                                        $url_redirect = implode('/', ['eservices/view', $nama[0], $teks['id']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['jumlah_peserta'] . "</p>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['nama_kegiatan'];
+                                                                            $url_redirect = implode('/', ['eservices/view', $nama[0], $teks['id']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['jumlah_peserta'] . "</p>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
-                                                                while ($teks = $stmt_ind->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                if ($stmt_ind) {
+                                                                    while ($teks = $stmt_ind->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['judul_indeks'], $kata);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['judul_indeks'], $kata);
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['judul_indeks'];
-                                                                        $url_redirect = implode('/', ['admin/indeks', $nama[0], $teks['id_indeks']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['kode_indeks'] . "</p>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['judul_indeks'];
+                                                                            $url_redirect = implode('/', ['admin/indeks', $nama[0], $teks['id_indeks']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['kode_indeks'] . "</p>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
-                                                                while ($teks = $stmt_ml->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                if ($stmt_ml) {
+                                                                    while ($teks = $stmt_ml->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['nama_kegiatan'];
-                                                                        $url_redirect = implode('/', ['multimedia/view', $nama[0], $teks['id']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_dibuat'] . "</p>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['nama_kegiatan'];
+                                                                            $url_redirect = implode('/', ['multimedia/view', $nama[0], $teks['id']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_dibuat'] . "</p>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
-                                                                while ($teks = $stmt_pb->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                if ($stmt_pb) {
+                                                                    while ($teks = $stmt_pb->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['nama_kegiatan'];
-                                                                        $url_redirect = implode('/', ['publikasi/view', $nama[0], $teks['id']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_dibuat'] . "</p>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['nama_kegiatan'];
+                                                                            $url_redirect = implode('/', ['publikasi/view', $nama[0], $teks['id']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_dibuat'] . "</p>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
-                                                                while ($teks = $stmt_sp->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                if ($stmt_sp) {
+                                                                    while ($teks = $stmt_sp->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['no_suratpengajuan'], $kata);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['no_suratpengajuan'], $kata);
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['no_suratpengajuan'];
-                                                                        $url_redirect = implode('/', ['admin/suratpengajuan', $nama[0], $teks['id_suratpengajuan']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tanggal_pengajuan'] . "</p>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['no_suratpengajuan'];
+                                                                            $url_redirect = implode('/', ['admin/suratpengajuan', $nama[0], $teks['id_suratpengajuan']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tanggal_pengajuan'] . "</p>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
 
-                                                                while ($teks = $stmt_user->fetch(PDO::FETCH_ASSOC)) {
-                                                                    if (!empty($kata)) {
-                                                                        $start_time_boyer = microtime(true);
+                                                                if ($stmt_user) {
+                                                                    while ($teks = $stmt_user->fetch(PDO::FETCH_ASSOC)) {
+                                                                        if (!empty($kata)) {
+                                                                            $start_time_boyer = microtime(true);
 
-                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['username'], $kata);
+                                                                            $hasil_boyer = $Boyer->BoyerMoore($teks['username'], $kata);
 
-                                                                        $finish_time_boyer = microtime(true);
-                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
-                                                                        $nama = $teks['username'];
-                                                                        $url_redirect = implode('/', ['admin/users', $nama[0], $teks['id_user']]);
-                                                                        echo "<div class='search-results'>";
-                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
-                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['nama_lengkap'] . "</p>";
-                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+                                                                            $finish_time_boyer = microtime(true);
+                                                                            $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                            $nama = $teks['username'];
+                                                                            $url_redirect = implode('/', ['admin/users', $nama[0], $teks['id_user']]);
+                                                                            echo "<div class='search-results'>";
+                                                                            echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['nama_lengkap'] . "</p>";
+                                                                            echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
-                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
-                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
-                                                                        $correct_searche++;
-                                                                        echo "</div>";
+                                                                            $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                            $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                            $correct_searche++;
+                                                                            echo "</div>";
+                                                                        }
                                                                     }
                                                                 }
-
                                                                 if (!empty($kata)) {
                                                                     echo "<p style='text-align: center; font-size: 13px; color: black;'>Jumlah Pencarian Benar: " . $correct_searche . "</p>";
                                                                     echo "<p style='text-align: center; font-size: 13px; color: black;'>Jumlah Pencarian Salah: " . $incorrect_searches . "</p>";
@@ -519,37 +577,35 @@
                             </div>
 
                         </main>
-                        <!-- <?php } else {
-                    } ?> -->
-                    <!-- ======= bigdata ======= -->
+                        <!-- ======= bigdata ======= -->
 
-                    <a href="#" class="back-to-top d-flex align-items-left justify-content-left"><i
-                            class="bi bi-arrow-up-short"></i></a>
-                    <div id="preloader"></div>
+                        <a href="#" class="back-to-top d-flex align-items-left justify-content-left"><i
+                                class="bi bi-arrow-up-short"></i></a>
+                        <div id="preloader"></div>
 
-                    <!-- Vendor JS Files -->
-                    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-                    <script src="assets/vendor/aos/aos.js"></script>
-                    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-                    <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
-                    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-                    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-                    <script src="assets/vendor/php-email-form/validate.js"></script>
-                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-                        type="text/javascript"></script>
+                        <!-- Vendor JS Files -->
+                        <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+                        <script src="assets/vendor/aos/aos.js"></script>
+                        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                        <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+                        <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
+                        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+                        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+                        <script src="assets/vendor/php-email-form/validate.js"></script>
+                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+                            type="text/javascript"></script>
 
-                    <!-- Template Main JS File -->
-                    <script src="assets/js/main.js"></script>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            setTimeout(function () {
-                                $('.close').click();
-                                <?=
-                                    $this->session->set_flashdata('message', ''); ?>
-                            }, 3000);
-                        })
-                    </script>
+                        <!-- Template Main JS File -->
+                        <script src="assets/js/main.js"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                setTimeout(function () {
+                                    $('.close').click();
+                                    <?=
+                                        $this->session->set_flashdata('message', ''); ?>
+                                }, 3000);
+                            })
+                        </script>
                 </body>
 
                 <br>
