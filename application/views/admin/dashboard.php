@@ -78,7 +78,6 @@
                     </section> -->
                     <!-- End Hero -->
                     <div class="row">
-
                         <!-- Area Chart -->
                         <div class="col-xl-8">
                             <div class="card shadow mb-4">
@@ -90,6 +89,8 @@
                                 <!-- Card Body -->
                                 <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>"
                                     readonly>
+                                <input type="hidden" class="form-control" id="dataLabelChart"
+                                    value="<?= $data_label ?>" readonly>
                                 <div class="card-body" style="height: 350px !important;">
                                     <div class="chart-area">
                                         <div class="chartjs-size-monitor">

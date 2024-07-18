@@ -23,23 +23,76 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard";
+        $eservice = $this->M_eservice->dataKeseluruhan();
+        $aplikasi = $this->M_aplikasi->dataKeseluruhan();
+        $bigdata = $this->M_bigdata->dataKeseluruhan();
+        $publikasi = $this->M_publikasi->dataKeseluruhan();
+        $multimedia = $this->M_multimedia->dataKeseluruhan();
+        $data_bar = [];
+        $data_label = [];
         if ($this->session->userdata('level') == 1) {
             $data['user'] = 'superadmin';
+            $data_bar = [
+                $eservice['counted'],
+                $aplikasi['counted'],
+                $bigdata['counted'],
+                $publikasi['counted'],
+                $multimedia['counted'],
+            ];
+            $data_label = [
+                "E-Service",
+                "Aplikasi",
+                "Bigdata",
+                "Multimedia",
+                "Publikasi"
+            ];
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
         } elseif ($this->session->userdata('level') == 4) {
             $data['user'] = 'deveservice';
+            $data_bar = [
+                $eservice['counted'],
+            ];
+            $data_label = [
+                "E-Service"
+            ];
         } elseif ($this->session->userdata('level') == 5) {
             $data['user'] = 'devaplikasi';
+            $data_bar = [
+                $aplikasi['counted'],
+            ];
+            $data_label = [
+                "Aplikasi",
+            ];
         } elseif ($this->session->userdata('level') == 6) {
             $data['user'] = 'devbigdata';
+            $data_bar = [
+                $bigdata['counted'],
+            ];
+            $data_label = [
+                "Bigdata",
+            ];
         } elseif ($this->session->userdata('level') == 7) {
             $data['user'] = 'devmultimedia';
+            $data_bar = [
+                $multimedia['counted'],
+            ];
+            $data_label = [
+                "Multimedia",
+            ];
         } elseif ($this->session->userdata('level') == 8) {
             $data['user'] = 'devpublikasi';
+            $data_bar = [
+                $publikasi['counted'],
+            ];
+            $data_label = [
+                "Publikasi"
+            ];
         }
+        $data['data_bar'] = '[' . implode(',', $data_bar) . ']';
+        $data['data_label'] = implode(', ', $data_label);
         $today = date('Y-m-d');
 
         $sp_today = "tanggal_pengajuan='$today'";
@@ -68,20 +121,6 @@ class Admin extends CI_Controller
         $data['multimedia'] = $this->M_multimedia->dataHariIni()['data'];
         $data['jumlah_multimedia'] = $this->M_multimedia->dataHariIni()['counted'];
 
-        $eservice = $this->M_eservice->dataKeseluruhan();
-        $aplikasi = $this->M_aplikasi->dataKeseluruhan();
-        $bigdata = $this->M_bigdata->dataKeseluruhan();
-        $publikasi = $this->M_publikasi->dataKeseluruhan();
-        $multimedia = $this->M_multimedia->dataKeseluruhan();
-
-        $data_bar = [
-            $eservice['counted'],
-            $aplikasi['counted'],
-            $bigdata['counted'],
-            $publikasi['counted'],
-            $multimedia['counted'],
-        ];
-        $data['data_bar'] = '[' . implode(',', $data_bar) . ']';
         $data['name_data'] = $this->M_tamu->get_name_data();
 
         $this->load->view('templates/header', $data);

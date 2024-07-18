@@ -2,12 +2,19 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+console.log(document.getElementById("dataBarChart").value)
+console.log(document.getElementById("dataLabelChart").value)
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
+var labels = document.getElementById("dataLabelChart").value
+var arrayResult = labels.split(", ");
+
+console.log(arrayResult)
 var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["E-Service", "Aplikasi", "Bigdata", "Multimedia", "Publikasi"],
+        labels: arrayResult,
+        // labels: JSON.parse(["E-Service", "Aplikasi", "Bigdata", "Multimedia", "Publikasi"]),
         datasets: [{
             label: "Earnings",
             backgroundColor: "#4e73df",
