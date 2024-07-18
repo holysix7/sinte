@@ -332,6 +332,10 @@
                                                                     $stmt_pb = $pdo->prepare("SELECT * FROM publikasi WHERE nama_kegiatan LIKE :kata");
                                                                     $stmt_pb->execute(['kata' => "%$kata%"]);
                                                                 }
+                                                                if ($user == 'userskp') {
+                                                                    $stmt_kp = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
+                                                                    $stmt_kp->execute(['kata' => "%$kata%"]);
+                                                                }
 
                                                                 $correct_searche = 0;
                                                                 $incorrect_searches = 0;
@@ -390,7 +394,7 @@
                                                                 }
 
                                                                 if ($stmt_app) {
-                                                                    while ($teks = $stmt_ap->fetch(PDO::FETCH_ASSOC)) {
+                                                                    while ($teks = $stmt_app->fetch(PDO::FETCH_ASSOC)) {
                                                                         if (!empty($kata)) {
                                                                             $start_time_boyer = microtime(true);
 

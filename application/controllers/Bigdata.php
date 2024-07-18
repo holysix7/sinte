@@ -93,9 +93,18 @@ class Bigdata extends CI_Controller
         redirect('bigdata/view');
     }
 
+    public function proses_uploadfotokegiatan_multi($id_bigdata)
+    {
+        $upload_path = 'vendor/files/foto_kegiatan/' . $id_bigdata;
+        if (!file_exists($upload_path)) {
+            mkdir($upload_path, 0777, true);
+        }
+    }
+
     public function proses_uploadfotokegiatan()
     {
-        $config['upload_path'] = 'vendor/files/foto_kegiatan/';
+        $upload_path = 'vendor/files/foto_kegiatan/';
+        $config['upload_path'] = $upload_path;
         $config['allowed_types'] = 'gif|jpg|png|PNG|JPEG';
         $config['max_size'] = 10000;
         $config['max_width'] = 10000;
