@@ -69,6 +69,10 @@ class publikasi extends CI_Controller
             redirect(base_url(''));
         }
 
+        if (count(explode('/', $this->uri->uri_string())) > 3) {
+            $data['publikasi'] = $this->M_publikasi->getRedirectApp(explode('/', $this->uri->uri_string())[3]);
+        }
+
         $this->load->view('templates/header', $data);
         $this->load->view('admin/publikasi/lihat_data', $data);
         $this->load->view('templates/footer');

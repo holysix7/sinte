@@ -280,6 +280,15 @@
                                                                 $stmt_ml = $pdo->prepare("SELECT * FROM multimedia WHERE nama_kegiatan LIKE :kata");
                                                                 $stmt_ml->execute(['kata' => "%$kata%"]);
 
+                                                                $stmt_pb = $pdo->prepare("SELECT * FROM publikasi WHERE nama_kegiatan LIKE :kata");
+                                                                $stmt_pb->execute(['kata' => "%$kata%"]);
+
+                                                                $stmt_sp = $pdo->prepare("SELECT * FROM suratpengajuan WHERE no_suratpengajuan LIKE :kata");
+                                                                $stmt_sp->execute(['kata' => "%$kata%"]);
+
+                                                                $stmt_user = $pdo->prepare("SELECT * FROM user WHERE nama_lengkap LIKE :kata");
+                                                                $stmt_user->execute(['kata' => "%$kata%"]);
+
                                                                 $correct_searche = 0;
                                                                 $incorrect_searches = 0;
                                                                 $best_boyer_time = PHP_FLOAT_MAX;
@@ -413,6 +422,72 @@
                                                                         echo "<div class='search-results'>";
                                                                         echo "<a href='{$url_redirect}'>{$nama}</a>";
                                                                         echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_dibuat'] . "</p>";
+                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+
+                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                        $correct_searche++;
+                                                                        echo "</div>";
+                                                                    }
+                                                                }
+
+                                                                while ($teks = $stmt_pb->fetch(PDO::FETCH_ASSOC)) {
+                                                                    if (!empty($kata)) {
+                                                                        $start_time_boyer = microtime(true);
+
+                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['nama_kegiatan'], $kata);
+
+                                                                        $finish_time_boyer = microtime(true);
+                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                        $nama = $teks['nama_kegiatan'];
+                                                                        $url_redirect = implode('/', ['publikasi/view', $nama[0], $teks['id']]);
+                                                                        echo "<div class='search-results'>";
+                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tgl_dibuat'] . "</p>";
+                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+
+                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                        $correct_searche++;
+                                                                        echo "</div>";
+                                                                    }
+                                                                }
+
+                                                                while ($teks = $stmt_sp->fetch(PDO::FETCH_ASSOC)) {
+                                                                    if (!empty($kata)) {
+                                                                        $start_time_boyer = microtime(true);
+
+                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['no_suratpengajuan'], $kata);
+
+                                                                        $finish_time_boyer = microtime(true);
+                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                        $nama = $teks['no_suratpengajuan'];
+                                                                        $url_redirect = implode('/', ['admin/suratpengajuan', $nama[0], $teks['id_suratpengajuan']]);
+                                                                        echo "<div class='search-results'>";
+                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['tanggal_pengajuan'] . "</p>";
+                                                                        echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
+
+                                                                        $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);
+                                                                        $worst_boyer_time = max($worst_boyer_time, $search_execution_time_boyer);
+                                                                        $correct_searche++;
+                                                                        echo "</div>";
+                                                                    }
+                                                                }
+
+                                                                while ($teks = $stmt_user->fetch(PDO::FETCH_ASSOC)) {
+                                                                    if (!empty($kata)) {
+                                                                        $start_time_boyer = microtime(true);
+
+                                                                        $hasil_boyer = $Boyer->BoyerMoore($teks['username'], $kata);
+
+                                                                        $finish_time_boyer = microtime(true);
+                                                                        $search_execution_time_boyer = round(($finish_time_boyer - $start_time_boyer) * 10000, 4);
+                                                                        $nama = $teks['username'];
+                                                                        $url_redirect = implode('/', ['admin/users', $nama[0], $teks['id_user']]);
+                                                                        echo "<div class='search-results'>";
+                                                                        echo "<a href='{$url_redirect}'>{$nama}</a>";
+                                                                        echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['nama_lengkap'] . "</p>";
                                                                         echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
                                                                         $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);

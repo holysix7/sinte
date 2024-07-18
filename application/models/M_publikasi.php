@@ -111,4 +111,10 @@ class M_publikasi extends CI_Model
             'data' => $data
         ];
     }
+
+    public function getRedirectApp($id)
+    {
+        $query = $this->db->get_where('publikasi', array('id' => $id));
+        return $query->result_array();
+    }
 }

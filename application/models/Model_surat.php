@@ -246,9 +246,25 @@ class Model_surat extends CI_Model
     }
 
 
-    public function getRedirectApp($id)
+    public function getRedirectAppIndeks($id)
     {
         $query = $this->db->get_where('indeks', array('id_indeks' => $id));
+        return $query->result();
+    }
+
+    public function getRedirectAppSuratPengajuan($id)
+    {
+        $this->db->select('*');
+        $this->db->from('suratpengajuan a');
+        $this->db->join('indeks b', 'a.id_indeks=b.id_indeks', 'left');
+        $this->db->where('a.id_suratpengajuan', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getRedirectAppUsers($id)
+    {
+        $query = $this->db->get_where('user', array('id_user' => $id));
         return $query->result();
     }
 }
