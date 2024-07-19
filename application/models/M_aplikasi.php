@@ -105,4 +105,14 @@ class M_aplikasi extends CI_Model
         $query = $this->db->get_where('aplikasi', array('id' => $id));
         return $query->result_array();
     }
+
+    
+    public function dataHariIni()
+    {
+        $data = $this->db->get_where('aplikasi', array('tgl_dibuat' => date('Y-m-d')))->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
 }

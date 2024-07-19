@@ -2,34 +2,114 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-console.log(document.getElementById("dataBarChart").value)
-console.log(document.getElementById("dataLabelChart").value)
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
+var ctx2 = document.getElementById("myBarChart2");
 var labels = document.getElementById("dataLabelChart").value
 var arrayResult = labels.split(", ");
-
-console.log(arrayResult)
+const lastTwoElements = JSON.parse(document.getElementById("dataBarChart").value).slice(-2);
+const fiveElements = JSON.parse(document.getElementById("dataBarChart").value).slice(0, 5);
+const fiveLabels = arrayResult.slice(0, 5)
+const lastTwoLabels = arrayResult.slice(-2)
 var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: arrayResult,
-        // labels: JSON.parse(["E-Service", "Aplikasi", "Bigdata", "Multimedia", "Publikasi"]),
+        labels: fiveLabels,
         datasets: [{
             label: "Earnings",
             backgroundColor: "#4e73df",
             hoverBackgroundColor: "#2e59d9",
             borderColor: "#4e73df",
-            data: JSON.parse(document.getElementById("dataBarChart").value),
+            data: fiveElements,
         }],
     },
     options: {
         maintainAspectRatio: false,
         layout: {
             padding: {
-                left: 10,
-                right: 25,
-                top: 25,
+                left: 5,
+                right: 5,
+                top: 5,
+                bottom: 0
+            },
+        },
+        scales: {
+            xAxes: [{
+                time: {
+                    unit: 'month'
+                },
+                gridLines: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    maxTicksLimit: 6
+                },
+                maxBarThickness: 25,
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 30,
+                    maxTicksLimit: 10,
+                    padding: 10,
+                    callback: function(value, index, values) {
+                        return number_format(value) ;
+                    }
+                },
+                gridLines: {
+                    color: "rgb(234, 236, 244)",
+                    zeroLineColor: "rgb(234, 236, 244)",
+                    drawBorder: false,
+                    borderDash: [2],
+                    zeroLineBorderDash: [2]
+                }
+            }],
+        },
+        legend: {
+            display: false
+        },
+        tooltips: {
+            titleMarginBottom: 10,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10,
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                    return 'Data: ' + number_format(tooltipItem.yLabel);
+                }
+            }
+        },
+    }
+});
+
+var myBarChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        // labels: arrayResult,
+        labels: lastTwoLabels,
+        datasets: [{
+            label: "Earnings",
+            backgroundColor: "#4e73df",
+            hoverBackgroundColor: "#2e59d9",
+            borderColor: "#4e73df",
+            data: lastTwoElements,
+        }],
+    },
+    options: {
+        maintainAspectRatio: false,
+        layout: {
+            padding: {
+                left: 5,
+                right: 5,
+                top: 5,
                 bottom: 0
             },
         },

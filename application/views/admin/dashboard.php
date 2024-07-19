@@ -85,10 +85,10 @@
                             <!-- Area Chart -->
 
                             <?php if ($user == 'superadmin' || $user == 'admin') { ?>
-                                <div class="col-xl-8">
-                                <?php } else { ?>
-                                    <div class="col-xl-12">
-                                    <?php } ?>
+                                <div class="col-xl-4">
+                            <?php } else { ?>
+                                    <div class="col-xl-6">
+                            <?php } ?>
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
                                         <div
@@ -111,6 +111,35 @@
                                                     </div>
                                                 </div>
                                                 <canvas id="myBarChart" width="714" height="320"
+                                                    style="display: block; width: 714px; height: 320px;"
+                                                    class="chartjs-render-monitor"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php if ($user == 'superadmin' || $user == 'admin') { ?>
+                                <div class="col-xl-4">
+                            <?php } else { ?>
+                                    <div class="col-xl-6">
+                            <?php } ?>
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Batang</h6>
+                                        </div>
+                                        <div class="card-body" style="height: 350px !important;">
+                                            <div class="chart-area">
+                                                <div class="chartjs-size-monitor">
+                                                    <div class="chartjs-size-monitor-expand">
+                                                        <div class=""></div>
+                                                    </div>
+                                                    <div class="chartjs-size-monitor-shrink">
+                                                        <div class=""></div>
+                                                    </div>
+                                                </div>
+                                                <canvas id="myBarChart2" width="714" height="320"
                                                     style="display: block; width: 714px; height: 320px;"
                                                     class="chartjs-render-monitor"></canvas>
                                             </div>
@@ -621,9 +650,9 @@
 
                 <br>
                 <?php if ($user == 'superadmin') { ?>
-                    <div class="row">
+                    <div class="row" style="justify-content: center">
 
-                        <a type="button" class="col-xl-3 col-md-6 mb-4" data-toggle="modal" data-target="#eServiceModal">
+                        <a type="button" class="col-xl-2 col-md-6 mb-4" data-toggle="modal" data-target="#eServiceModal">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -641,7 +670,25 @@
                             </div>
                         </a>
 
-                        <a type="button" class="col-xl-3 col-md-6 mb-4" data-toggle="modal" data-target="#bigDataModal">
+                        <a type="button" class="col-xl-2 col-md-6 mb-4" data-toggle="modal" data-target="#aplikasiModal">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Aplikasi</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah_aplikasi ?>
+                                                data</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-cog fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a type="button" class="col-xl-2 col-md-6 mb-4" data-toggle="modal" data-target="#bigDataModal">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -659,7 +706,7 @@
                             </div>
                         </a>
 
-                        <a class="col-xl-3 col-md-6 mb-4" data-toggle="modal" data-target="#publikasiModal">
+                        <a class="col-xl-2 col-md-6 mb-4" data-toggle="modal" data-target="#publikasiModal">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -677,7 +724,7 @@
                             </div>
                         </a>
 
-                        <a class="col-xl-3 col-md-6 mb-4" data-toggle="modal" data-target="#multimediaModal">
+                        <a class="col-xl-2 col-md-6 mb-4" data-toggle="modal" data-target="#multimediaModal">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -841,6 +888,62 @@
                                                                 class="badge badge-success btn-block" title="download"><i
                                                                     class="fa fa-download"></i> Download
                                                             </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="aplikasiModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">E-Service</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="suratkeluar" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td>No.</td>
+                                                    <td>Tanggal</td>
+                                                    <td>Nama Aplikasi</td>
+                                                    <td>Deskripsi</td>
+                                                    <td>Link Aplikasi</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                foreach ($aplikasi as $app): ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $no++; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $app['tgl_aplikasi']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $app['nama_aplikasi']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $app['deskripsi']; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $app['link_aplikasi']; ?>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>

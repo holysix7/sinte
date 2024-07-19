@@ -127,6 +127,9 @@ class Admin extends CI_Controller
         $data['service'] = $this->M_eservice->dataHariIni()['data'];
         $data['jumlah_service'] = $this->M_eservice->dataHariIni()['counted'];
 
+        $data['aplikasi'] = $this->M_aplikasi->dataHariIni()['data'];
+        $data['jumlah_aplikasi'] = $this->M_aplikasi->dataHariIni()['counted'];
+
         $data['bigdata'] = $this->M_bigdata->dataHariIni()['data'];
         $data['jumlah_big_data'] = $this->M_bigdata->dataHariIni()['counted'];
 
