@@ -153,7 +153,7 @@
                                 var nameData = <?php echo json_encode($name_data); ?>;
 
                                 var labels = nameData.map(function (e) {
-                                    return e.asal_instansi;
+                                    return e.asal_instansi || e.instansi;
                                 });
                                 var data = nameData.map(function (e) {
                                     return e.count;

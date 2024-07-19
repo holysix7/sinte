@@ -136,7 +136,16 @@ class Admin extends CI_Controller
         $data['multimedia'] = $this->M_multimedia->dataHariIni()['data'];
         $data['jumlah_multimedia'] = $this->M_multimedia->dataHariIni()['counted'];
 
-        $data['name_data'] = $this->model_surat->get_name_data();
+        if($data['user'] == 'superadmin'){
+            $data['name_data'] = $this->M_tamu->get_name_data();
+        }else{
+            $data['name_data'] = $this->model_surat->get_name_data();
+        }
+        // var_dump([
+        //     'name_data' => $data['name_data'],
+        //     'data_bar' => $data['data_bar'],
+        //     'data_label' => $data['data_label'],
+        // ]); die;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/dashboard', $data);
