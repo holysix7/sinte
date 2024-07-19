@@ -119,6 +119,13 @@
                         <div class="card-body">
                             <?= $this->session->flashdata('message'); ?>
                             <div class="row">
+                                <?php if ($user == 'deveservice') { ?>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary btn-flat btn-block" id="tambah" data-toggle="modal"
+                                            data-target="#addeservices"><i class="fas fa-plus"></i> Tambah data </button>
+                                    </div>
+                                <?php } else { ?>
+                                <?php } ?>
                             </div>
                             <br>
                             <div class="table-responsive">
@@ -131,6 +138,7 @@
                                             <td>Jumlah Peserta</td>
                                             <td>Jadwal Kegiatan</td>
                                             <td>Data Peserta</td>
+                                            <td>Aksi</td>
                                         </tr>
                                     </thead>
 
@@ -152,15 +160,36 @@
                                                     <?php echo $es['jumlah_peserta']; ?>
                                                 </td>
                                                 <td>
+                                                    <button type="button" class="badge badge-dark btn-block "
+                                                        data-toggle="modal"
+                                                        data-target="#upjadwalkegiatan<?php echo $es['id']; ?>"><i
+                                                            class="fa fa-upload"></i> Upload
+                                                    </button>
                                                     <a href="<?php echo base_url() ?>eservices/download1/<?php echo $es['id']; ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
                                                     </a>
                                                 </td>
                                                 <td>
+                                                    <button type="button" class="badge badge-dark btn-block" data-toggle="modal"
+                                                        data-target="#updatapeserta<?php echo $es['id']; ?>"><i
+                                                            class="fa fa-upload"></i> Upload
+                                                    </button>
                                                     <a href="<?php echo base_url() ?>eservices/download2/<?php echo $es['id']; ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="" data-id-kp="<?php echo $es['id']; ?>" data-toggle="modal"
+                                                        data-target="#editeservices<?php echo $es['id']; ?>"
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                    <br>
+                                                    <a href="" data-id-pu="<?php echo $es['id']; ?>" data-toggle="modal"
+                                                        data-target="#hapuser<?php echo $es['id']; ?>"
+                                                        class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
+                                                        Hapus
                                                     </a>
                                                 </td>
                                             </tr>
