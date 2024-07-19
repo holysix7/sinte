@@ -51,7 +51,7 @@
                                                     <?php echo $mu['nama_kegiatan']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $mu['link_vidio']; ?>
+                                                    <a href="<?php echo $mu['link_vidio']; ?>"><?php echo $mu['link_vidio']; ?></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -136,7 +136,7 @@
                                                     <?php echo $mu['nama_kegiatan']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $mu['link_vidio']; ?>
+                                                    <a href="<?php echo $mu['link_vidio']; ?>"><?php echo $mu['link_vidio']; ?></a>
                                                 </td>
 
                                                 <td>

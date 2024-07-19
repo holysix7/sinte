@@ -56,10 +56,10 @@
                                                     <?php echo $pu['judul_flayer']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $pu['link_internal']; ?>
+                                                    <a href="<?php echo $pu['link_internal']; ?>"><?php echo $pu['link_internal']; ?></a>
                                                 </td>
                                                 <td>
-                                                    <?php echo $pu['link_eksternal']; ?>
+                                                    <a href="<?php echo $pu['link_eksternal']; ?>"><?php echo $pu['link_eksternal']; ?></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -150,10 +150,11 @@
                                                     <?php echo $pu['judul_flayer']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $pu['link_internal']; ?>
+                                                    <a href="<?php echo $pu['link_internal']; ?>"><?php echo $pu['link_internal']; ?></a>
                                                 </td>
                                                 <td>
                                                     <?php echo $pu['link_eksternal']; ?>
+                                                    <a href="<?php echo $pu['link_eksternal']; ?>"><?php echo $pu['link_eksternal']; ?></a>
                                                 </td>
 
                                                 <td>
