@@ -71,10 +71,7 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="<?php echo base_url() ?>bigdata/download1/<?php echo $bd['id_bigdata']; ?>"
-                                                        class="badge badge-success btn-flat btn-block" title="download"><i
-                                                            class="fa fa-download"></i> Download
-                                                    </a>
+                                                    <a href="<?= base_url() ?>bigdata/detailFoto/<?= $bd['id_bigdata'] ?>" class="badge badge-dark btn-flat btn-block">Lihat Foto</a>
                                                 </td>
                                                 <td>
                                                     <a href="<?php echo base_url() ?>bigdata/download2/<?php echo $bd['id_bigdata']; ?>"
@@ -185,15 +182,7 @@
                                                 </td>
 
                                                 <td>
-                                                    <button type="button" class="badge badge-dark btn-flat btn-block"
-                                                        data-toggle="modal"
-                                                        data-target="#upfotokegiatan<?php echo $bd['id_bigdata']; ?>"><i
-                                                            class="fa fa-upload"></i> Upload
-                                                    </button>
-                                                    <a href="<?php echo base_url() ?>bigdata/download1/<?php echo $bd['id_bigdata']; ?>"
-                                                        class="badge badge-success btn-flat btn-block" title="download"><i
-                                                            class="fa fa-download"></i> Download
-                                                    </a>
+                                                    <a href="<?= base_url() ?>bigdata/detailFoto/<?= $bd['id_bigdata'] ?>" class="badge badge-dark btn-flat btn-block">Lihat Foto</a>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="badge badge-dark btn-flat btn-block"

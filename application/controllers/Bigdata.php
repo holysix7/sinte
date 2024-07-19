@@ -7,6 +7,7 @@ class Bigdata extends CI_Controller
         parent::__construct();
         $this->load->model('model_surat');
         $this->load->model('M_bigdata');
+        $this->load->model('M_fotokegiatan');
         if (!$this->session->userdata('level')) {
             redirect('auth');
         }
@@ -78,6 +79,38 @@ class Bigdata extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/bigdata/lihat_data', $data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/remove-alert');
+    }
+
+    public function detailFoto($id)
+    {
+        $data['title'] = 'BigData';
+
+        $data['bigdata'] = $this->M_bigdata->rowData($id);
+        $data['foto']    = $this->M_fotokegiatan->getByBDId($id);
+
+        if ($this->session->userdata('level') == 1) {
+            $data['user'] = 'superadmin';
+        } elseif ($this->session->userdata('level') == 2) {
+            $data['user'] = 'admin';
+        } elseif ($this->session->userdata('level') == 3) {
+            $data['user'] = 'userskp';
+        } elseif ($this->session->userdata('level') == 4) {
+            $data['user'] = 'deveservice';
+        } elseif ($this->session->userdata('level') == 5) {
+            $data['user'] = 'devaplikasi';
+        } elseif ($this->session->userdata('level') == 6) {
+            $data['user'] = 'devbigdata';
+        } elseif ($this->session->userdata('level') == 7) {
+            $data['user'] = 'devmultimedia';
+        } elseif ($this->session->userdata('level') == 8) {
+            $data['user'] = 'devpublikasi';
+        }
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/bigdata/lihat_foto', $data);
         $this->load->view('templates/footer');
         $this->load->view('templates/remove-alert');
     }
@@ -203,6 +236,67 @@ class Bigdata extends CI_Controller
         <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
         </div>');
             redirect('bigdata/view');
+        }
+    }
+
+    public function uploadDetailFoto()
+    {
+        $id_bigdata = $this->input->post('id_bigdata');
+        $enc_bigdata = base64_encode($this->input->post('id_bigdata'));
+        $upload_path = "vendor/files/foto_kegiatan/{$enc_bigdata}";
+        if (!file_exists($upload_path)) {
+            mkdir($upload_path, 0777, true);
+        }
+        $config['upload_path'] = $upload_path;
+        $config['allowed_types'] = 'gif|jpg|png|PNG|JPEG';
+        $config['max_size'] = 10000;
+        $config['max_width'] = 10000;
+        $config['max_height'] = 10000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('userfile')) {
+            echo "Gagal Tambah";
+        } else {
+            $foto_kegiatan = $this->upload->data();
+            $foto_kegiatan = $foto_kegiatan['file_name'];
+
+            $data = array(
+                'foto_kegiatan' => $foto_kegiatan,
+
+            );
+            $array = [
+                'id_bigdata' => $id_bigdata,
+                'nama' => $foto_kegiatan,
+                'path' => $upload_path,
+            ];
+            $this->M_fotokegiatan->simpanDetailFoto($array);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
+            </div>');
+            redirect("bigdata/detailFoto/{$id_bigdata}");
+        }
+    }
+
+    public function downloadDetail($id)
+    {
+        $this->load->helper('download');
+        $fileinfo = $this->M_fotokegiatan->getById($id);
+        $file = $fileinfo->path . $fileinfo->nama;
+        if (file_exists($file)) {
+            force_download($file, NULL);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
+            </div>');
+            redirect('bigdata/view');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
+        </div>');
+            redirect("bigdata/detailFoto/{$id}");
         }
     }
 

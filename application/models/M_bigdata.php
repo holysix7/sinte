@@ -164,4 +164,9 @@ class M_bigdata extends CI_Model
         $query = $this->db->get_where('bigdata', array('id_bigdata' => $id));
         return $query->result_array();
     }
+
+    public function rowData($id_bigdata)
+    {
+        return $this->db->get_where('bigdata', ['id_bigdata' => $id_bigdata])->row();
+    }
 }
