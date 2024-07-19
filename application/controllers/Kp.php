@@ -37,6 +37,7 @@ class Kp extends CI_Controller
 
         if (count(explode('/', $this->uri->uri_string())) > 3) {
             $data['kp'] = $this->M_kp->getRedirectKp(explode('/', $this->uri->uri_string())[3]);
+            $data['kp_user'] = $this->M_kp->getRedirectKp(explode('/', $this->uri->uri_string())[3]);
         }
 
         $this->load->view('templates/header', $data);

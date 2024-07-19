@@ -369,7 +369,9 @@
                                                                     $stmt_pb->execute(['kata' => "%$kata%"]);
                                                                 }
                                                                 if ($user == 'userskp') {
-                                                                    $stmt_kp = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
+                                                                    $id_user = $this->session->userdata('id_user');
+                                                                    $sql = "SELECT * FROM kp WHERE nama LIKE :kata and user_id = {$id_user}";
+                                                                    $stmt_kp = $pdo->prepare($sql);
                                                                     $stmt_kp->execute(['kata' => "%$kata%"]);
                                                                 }
 
