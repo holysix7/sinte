@@ -283,7 +283,7 @@ class Bigdata extends CI_Controller
     {
         $this->load->helper('download');
         $fileinfo = $this->M_fotokegiatan->getById($id);
-        $file = $fileinfo->path . $fileinfo->nama;
+        $file = $fileinfo->path . '/' . $fileinfo->nama;
         if (file_exists($file)) {
             force_download($file, NULL);
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
@@ -296,7 +296,7 @@ class Bigdata extends CI_Controller
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
         </div>');
-            redirect("bigdata/detailFoto/{$id}");
+            redirect("bigdata/detailFoto/{$fileinfo->id_bigdata}");
         }
     }
 
