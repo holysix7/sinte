@@ -18,6 +18,7 @@ class Admin extends CI_Controller
         $this->load->model('M_publikasi');
         $this->load->model('M_multimedia');
         $this->load->model('M_tamu');
+        $this->load->model('M_kp');
     }
 
     public function index()
@@ -28,6 +29,8 @@ class Admin extends CI_Controller
         $bigdata = $this->M_bigdata->dataKeseluruhan();
         $publikasi = $this->M_publikasi->dataKeseluruhan();
         $multimedia = $this->M_multimedia->dataKeseluruhan();
+        $kp = $this->M_kp->dataKeseluruhan();
+        $suratpengajuan = $this->model_surat->dataKeseluruhan();
         $data_bar = [];
         $data_label = [];
         if ($this->session->userdata('level') == 1) {
@@ -38,29 +41,27 @@ class Admin extends CI_Controller
                 $bigdata['counted'],
                 $publikasi['counted'],
                 $multimedia['counted'],
+                $kp['counted'],
+                $suratpengajuan['counted'],
             ];
             $data_label = [
                 "E-Service",
                 "Aplikasi",
                 "Bigdata",
                 "Multimedia",
-                "Publikasi"
+                "Publikasi",
+                "KP",
+                "Surat Pengajuan"
             ];
         } elseif ($this->session->userdata('level') == 2) {
             $data['user'] = 'admin';
             $data_bar = [
-                $eservice['counted'],
-                $aplikasi['counted'],
-                $bigdata['counted'],
-                $publikasi['counted'],
-                $multimedia['counted'],
+                $kp['counted'],
+                $suratpengajuan['counted'],
             ];
             $data_label = [
-                "E-Service",
-                "Aplikasi",
-                "Bigdata",
-                "Multimedia",
-                "Publikasi"
+                "KP",
+                "Surat Pengajuan"
             ];
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
@@ -135,7 +136,7 @@ class Admin extends CI_Controller
         $data['multimedia'] = $this->M_multimedia->dataHariIni()['data'];
         $data['jumlah_multimedia'] = $this->M_multimedia->dataHariIni()['counted'];
 
-        $data['name_data'] = $this->M_tamu->get_name_data();
+        $data['name_data'] = $this->model_surat->get_name_data();
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/dashboard', $data);

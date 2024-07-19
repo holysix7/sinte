@@ -267,4 +267,21 @@ class Model_surat extends CI_Model
         $query = $this->db->get_where('user', array('id_user' => $id));
         return $query->result();
     }
+
+    public function dataKeseluruhan()
+    {
+        $data = $this->db->get('suratpengajuan')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
+
+    public function get_name_data()
+    {
+        $this->db->select('asal_instansi, COUNT(*) as count');
+        $this->db->group_by('asal_instansi');
+        $query = $this->db->get('suratpengajuan');
+        return $query->result();
+    }
 }

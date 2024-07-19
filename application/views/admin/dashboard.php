@@ -153,7 +153,7 @@
                                 var nameData = <?php echo json_encode($name_data); ?>;
 
                                 var labels = nameData.map(function (e) {
-                                    return e.instansi;
+                                    return e.asal_instansi;
                                 });
                                 var data = nameData.map(function (e) {
                                     return e.count;
@@ -284,7 +284,14 @@
                                                                 $stmt_pb = null;
                                                                 $stmt_sp = null;
                                                                 $stmt_user = null;
-                                                                if ($user == 'superadmin' || $user == 'admin') {
+                                                                if ($user == 'admin') {
+
+                                                                    $stmt_kp = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
+                                                                    $stmt_kp->execute(['kata' => "%$kata%"]);
+                                                                    $stmt_sp = $pdo->prepare("SELECT * FROM suratpengajuan WHERE no_suratpengajuan LIKE :kata");
+                                                                    $stmt_sp->execute(['kata' => "%$kata%"]);
+                                                                }
+                                                                if ($user == 'superadmin') {
                                                                     $stmt_kp = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
                                                                     $stmt_kp->execute(['kata' => "%$kata%"]);
 
