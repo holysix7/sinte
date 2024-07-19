@@ -119,4 +119,28 @@ class M_aplikasi extends CI_Model
             'data' => $data
         ];
     }
+
+    public function total_data()
+    {
+        return $this->db->count_all('aplikasi');
+    }
+    
+    public function count_today_records() {
+        $this->db->where('DATE(tgl_dibuat)', date('Y-m-d'));
+        $this->db->from('aplikasi');
+        return $this->db->count_all_results();
+    }
+
+    public function count_current_month_records() {
+        $this->db->where('MONTH(tgl_dibuat)', date('m'));
+        $this->db->where('YEAR(tgl_dibuat)', date('Y'));
+        $this->db->from('aplikasi'); 
+        return $this->db->count_all_results();       
+    }
+
+    public function count_current_year_records() {
+        $this->db->where('YEAR(tgl_dibuat)', date('Y'));
+        $this->db->from('aplikasi');
+        return $this->db->count_all_results();
+    }
 }

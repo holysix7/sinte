@@ -114,4 +114,28 @@ class M_multimedia extends CI_Model
         $query = $this->db->get_where('multimedia', array('id' => $id));
         return $query->result_array();
     }
+
+    public function total_data()
+    {
+        return $this->db->count_all('multimedia');
+    }
+    
+    public function count_today_records() {
+        $this->db->where('DATE(tgl_dibuat)', date('Y-m-d'));
+        $this->db->from('multimedia');
+        return $this->db->count_all_results();
+    }
+
+    public function count_current_month_records() {
+        $this->db->where('MONTH(tgl_dibuat)', date('m'));
+        $this->db->where('YEAR(tgl_dibuat)', date('Y'));
+        $this->db->from('multimedia'); 
+        return $this->db->count_all_results();       
+    }
+
+    public function count_current_year_records() {
+        $this->db->where('YEAR(tgl_dibuat)', date('Y'));
+        $this->db->from('multimedia');
+        return $this->db->count_all_results();
+    }
 }
