@@ -67,7 +67,7 @@
                                                     <?php echo $bd['jumlah_peserta']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $bd['link_sertifikat']; ?>
+                                                    <a href="<?php echo $bd['link_sertifikat']; ?>"><?php echo $bd['link_sertifikat']; ?></a>
                                                 </td>
 
                                                 <td>
@@ -178,7 +178,7 @@
                                                     <?php echo $bd['jumlah_peserta']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $bd['link_sertifikat']; ?>
+                                                    <a href="<?php echo $bd['link_sertifikat']; ?>"><?php echo $bd['link_sertifikat']; ?></a>
                                                 </td>
 
                                                 <td>

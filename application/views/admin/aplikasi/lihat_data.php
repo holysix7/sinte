@@ -56,7 +56,7 @@
                                                     <?php echo $ap['deskripsi']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $ap['link_aplikasi']; ?>
+                                                    <a href="<?php echo $ap['link_aplikasi']; ?>"><?php echo $ap['link_aplikasi']; ?></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
