@@ -169,4 +169,28 @@ class M_bigdata extends CI_Model
     {
         return $this->db->get_where('bigdata', ['id_bigdata' => $id_bigdata])->row();
     }
+    
+    public function total_data()
+    {
+        return $this->db->count_all('bigdata');
+    }
+    
+    public function count_today_records() {
+        $this->db->where('DATE(tgl_dibuat)', date('Y-m-d'));
+        $this->db->from('bigdata');
+        return $this->db->count_all_results();
+    }
+
+    public function count_current_month_records() {
+        $this->db->where('MONTH(tgl_dibuat)', date('m'));
+        $this->db->where('YEAR(tgl_dibuat)', date('Y'));
+        $this->db->from('bigdata'); 
+        return $this->db->count_all_results();       
+    }
+
+    public function count_current_year_records() {
+        $this->db->where('YEAR(tgl_dibuat)', date('Y'));
+        $this->db->from('bigdata');
+        return $this->db->count_all_results();
+    }
 }
