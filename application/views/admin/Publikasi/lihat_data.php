@@ -153,7 +153,6 @@
                                                     <a href="<?php echo $pu['link_internal']; ?>"><?php echo $pu['link_internal']; ?></a>
                                                 </td>
                                                 <td>
-                                                    <?php echo $pu['link_eksternal']; ?>
                                                     <a href="<?php echo $pu['link_eksternal']; ?>"><?php echo $pu['link_eksternal']; ?></a>
                                                 </td>
 

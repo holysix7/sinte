@@ -35,6 +35,9 @@
                                             <td>Nama Aplikasi</td>
                                             <td>Deskripsi</td>
                                             <td>Link Aplikasi</td>
+                                            <td>Waktu</td>
+                                            <td>Narasumber</td>
+                                            <td>Penanggung Jawab</td>
                                         </tr>
                                     </thead>
 
@@ -54,6 +57,15 @@
                                                 </td>
                                                 <td>
                                                     <?php echo $ap['deskripsi']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['waktu']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['narasumber']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['penanggung_jawab']; ?>
                                                 </td>
                                                 <td>
                                                     <a href="<?php echo $ap['link_aplikasi']; ?>"><?php echo $ap['link_aplikasi']; ?></a>
@@ -128,6 +140,9 @@
                                             <td>Nama Aplikasi</td>
                                             <td>Deskripsi</td>
                                             <td>Link Aplikasi</td>
+                                            <td>Waktu</td>
+                                            <td>Narasumber</td>
+                                            <td>Penanggung Jawab</td>
                                             <?php if ($user == 'devaplikasi') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
@@ -154,6 +169,15 @@
                                                 </td>
                                                 <td>
                                                     <a href="<?php echo $ap['link_aplikasi']; ?>"><?php echo $ap['link_aplikasi']; ?></a>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['waktu']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['narasumber']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ap['penanggung_jawab']; ?>
                                                 </td>
 
                                                 <td>
@@ -261,6 +285,18 @@ foreach ($aplikasi as $ap):
                         <label for="">Link Aplikasi</label>
                         <input type="link" class="form-control" name="link_aplikasi">
                     </div>
+                    <div class="form-group">
+                        <label for="">Waktu</label>
+                        <input type="time" class="form-control" name="waktu">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Narasumber</label>
+                        <input type="text" class="form-control" name="narasumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Penanggung Jawab</label>
+                        <input type="text" class="form-control" name="penanggung_jawab">
+                    </div>
                     <div class="row mb-3">
                         <div class="col-sm-5">
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -319,6 +355,18 @@ foreach ($aplikasi as $ap):
                             <input type="link" class="form-control" name="link_aplikasi"
                                 value="<?php echo $ap['link_aplikasi']; ?>" required>
                         </div>
+                            <div class="form-group">
+                                <label for="">Waktu</label>
+                                <input type="time" class="form-control" name="waktu" value="<?= $ap['waktu'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Narasumber</label>
+                                <input type="text" class="form-control" name="narasumber" value="<?= $ap['narasumber'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Penanggung Jawab</label>
+                                <input type="text" class="form-control" name="penanggung_jawab" value="<?= $ap['penanggung_jawab'] ?>">
+                            </div>
                         <div class="row mb-3">
                             <div class="col-sm-5">
                                 <button type="submit" class="btn btn-primary">Update</button>
