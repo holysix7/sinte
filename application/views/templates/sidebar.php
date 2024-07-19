@@ -178,8 +178,8 @@
                 } ?>" href="<?php echo base_url('tamu/view') ?>">
                 <i class="fas fa-share-alt"></i>
                 <span>Data Kunjungan Tamu</span>
-            <?php endif; ?>
-        </a>
+            </a>
+        <?php endif; ?>
     </li>
 
 
@@ -241,15 +241,15 @@
                         <?php if (current_url() == base_url('admin/suratpengajuan')) {
                             echo 'active';
                         } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>
-                     <?php endif; ?>
+                    <?php endif; ?>
 
                     <?php if ($user == 'superadmin'): ?>
-                            <a class="collapse-item 
+                        <a class="collapse-item 
                         <?php if (current_url() == base_url('kp/view')) {
                             echo 'active';
                         } ?>" href="<?php echo base_url('kp/view') ?>">Data Diri Peserta KP</a>
 
-                            <a class="collapse-item 
+                        <a class="collapse-item 
                         <?php if (current_url() == base_url('admin/suratpengajuan')) {
                             echo 'active';
                         } ?>" href="<?php echo base_url('admin/suratpengajuan') ?>">Surat Pengajuan</a>

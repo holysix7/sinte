@@ -165,5 +165,13 @@ class M_kp extends CI_Model
         return $query->result_array();
     }
 
+    public function dataKeseluruhan()
+    {
+        $data = $this->db->get('kp')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
 }
 
