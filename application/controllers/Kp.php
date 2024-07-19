@@ -42,7 +42,6 @@ class Kp extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('admin/kp/lihat_data', $data);
         $this->load->view('templates/footer');
-        $this->load->view('templates/remove-alert');
     }
 
 
@@ -146,7 +145,6 @@ class Kp extends CI_Controller
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
             </div>');
-            redirect("kp/view/{$id_sp}");
         } else {
             $file = 'vendor/files/sertifikat/' . $fileinfo['sertifikat'];
             if (file_exists($file)) {
@@ -155,14 +153,17 @@ class Kp extends CI_Controller
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
                 </div>');
-                redirect("kp/view/{$id_sp}");
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
             </div>');
-                redirect("kp/view/{$id_sp}");
             }
+        }
+        if($id_sp == 's'){
+            redirect("kp/view");
+        }else{
+            redirect("kp/view/{$id_sp}");
         }
     }
 

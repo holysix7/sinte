@@ -59,6 +59,13 @@
 
 <script src="<?php echo base_url('vendor/') ?>js/usercustom.js"></script>
 
+<script type="text/javascript">
+    setTimeout(function () {
+        $('.close').click();
+        <?=
+            $this->session->set_flashdata('message', ''); ?>
+    }, 2000);
+</script>
 </body>
 
 </html>

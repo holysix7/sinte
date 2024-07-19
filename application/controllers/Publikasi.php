@@ -76,7 +76,6 @@ class publikasi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('admin/publikasi/lihat_data', $data);
         $this->load->view('templates/footer');
-        $this->load->view('templates/remove-alert');
     }
 
     public function proses_tambah_data()

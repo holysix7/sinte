@@ -272,7 +272,14 @@
                                                         </button>
                                                     <?php } else {
                                                     } ?>
-                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?= explode('/', $this->uri->uri_string())[2] ?>/<?php echo $magang['id'] ?>"
+                                                    <?php
+                                                        $exp_uri = explode('/', $this->uri->uri_string());
+                                                        $uri = 's';
+                                                        if(count($exp_uri) > 2){
+                                                            $uri = $exp_uri[2];
+                                                        }
+                                                    ?>
+                                                    <a href="<?php echo base_url() ?>kp/downloadsertifikat/<?= $uri ?>/<?php echo $magang['id'] ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
                                                     </a>
