@@ -63,6 +63,9 @@ class M_aplikasi extends CI_Model
             "deskripsi" => $this->input->post('deskripsi'),
             "link_aplikasi" => $this->input->post('link_aplikasi'),
             "tgl_dibuat" => date('Y-m-d'),
+            "waktu" => $this->input->post('waktu'),
+            "narasumber" => $this->input->post('narasumber'),
+            "penanggung_jawab" => $this->input->post('penanggung_jawab'),
         ];
 
         $this->db->insert('aplikasi', $data);
