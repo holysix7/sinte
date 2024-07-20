@@ -78,6 +78,7 @@ class Kp extends CI_Controller
     {
         $this->model_surat->updatedata('suratpengajuan', [
             'draft' => true,
+            'status' => 'Draft',
         ], [
             'id_suratpengajuan' => $id
         ]);
@@ -92,6 +93,7 @@ class Kp extends CI_Controller
     {
         $this->model_surat->updatedata('suratpengajuan', [
             'draft' => false,
+            'status' => 'Diproses',
         ], [
             'id_suratpengajuan' => $id
         ]);

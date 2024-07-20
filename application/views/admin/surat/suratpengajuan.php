@@ -81,7 +81,20 @@
 
 
 
-                                                <td><?= $sp->status; ?></td>
+                                                <td>
+                                                    <?php 
+                                                        if($sp->status == 'Draft'){
+                                                            $badge = 'warning';    
+                                                        }else if($sp->status == 'Ditolak'){
+                                                            $badge = 'danger';
+                                                        }else if($sp->status == 'Diproses'){
+                                                            $badge = 'primary';
+                                                        }else{
+                                                            $badge = 'success';
+                                                        }
+                                                    ?>
+                                                    <span class="badge badge-<?= $badge ?>"><?= $sp->status ?></span>
+                                                </td>
                                                 <td>
                                                     <?php 
                                                         $badge = $sp->draft ? 'warning' : 'success';
@@ -252,7 +265,6 @@ foreach ($suratpengajuan as $sp):
                                             <th>Keterangan</th>
                                             <th>Berkas Surat Pengajuan</th>
                                             <th>Status </th>
-                                            <th>Draft </th>
                                             <th>Berkas Surat Balasan</th>
                                         </tr>
                                     </thead>
@@ -278,13 +290,20 @@ foreach ($suratpengajuan as $sp):
                                                 </td>
 
 
-                                                <td><?= $sp->status; ?></td>
                                                 <td>
                                                     <?php 
-                                                        $badge = $kpp->draft ? 'warning' : 'success';
+                                                        if($sp->status == 'Draft'){
+                                                            $badge = 'warning';    
+                                                        }else if($sp->status == 'Ditolak'){
+                                                            $badge = 'danger';
+                                                        }else if($sp->status == 'Diproses'){
+                                                            $badge = 'primary';
+                                                        }else{
+                                                            $badge = 'success';
+                                                        }
                                                     ?>
-                                                    <span class="badge badge-<?= $badge ?>"><?= $kpp->ket_status ?></span>
-                                                <td>
+                                                    <span class="badge badge-<?= $badge ?>"><?= $sp->status ?></span>
+                                                </td>
 
                                                 <td>
                                                     <?php if ($user == 'superadmin') { ?>
@@ -353,7 +372,7 @@ foreach ($suratpengajuan as $sp):
                             <?= $this->session->flashdata('message'); ?>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a href="<?php echo base_url() ?>admin/tambahpengajuan/<?php echo base_url('admin/tambahpengajuan') ?>"
+                                    <a href="<?php echo base_url('admin/tambahpengajuan') ?>"
                                         class="btn btn-primary btn-flat btn-block" title="download"><i
                                             class="fas fa-plus"></i> Tambah data
                                     </a>
@@ -373,7 +392,6 @@ foreach ($suratpengajuan as $sp):
                                             <th>Keterangan</th>
                                             <th>Berkas Surat Pengajuan</th>
                                             <th>Status </th>
-                                            <th>Draft</th>
                                             <th>Berkas Surat Balasan</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -398,13 +416,20 @@ foreach ($suratpengajuan as $sp):
                                                         $kpp->id_suratpengajuan ?>"><i class="fas fa-eye"></i></button>
                                                 </td>
 
-
-                                                <td><?= $kpp->status; ?></td>
                                                 <td>
                                                     <?php 
-                                                        $badge = $kpp->draft ? 'warning' : 'success';
+                                                        if($kpp->status == 'Draft'){
+                                                            $badge = 'warning';    
+                                                        }else if($kpp->status == 'Ditolak'){
+                                                            $badge = 'danger';
+                                                        }else if($kpp->status == 'Diproses'){
+                                                            $badge = 'primary';
+                                                        }else{
+                                                            $badge = 'success';
+                                                        }
                                                     ?>
-                                                    <span class="badge badge-<?= $badge ?>"><?= $kpp->ket_status ?></span>
+                                                    <span class="badge badge-<?= $badge ?>"><?= $kpp->status ?></span>
+                                                </td>
                                                 <td>
                                                     <a href="<?php echo base_url() ?>admin/downloadbalasan/<?php echo $kpp->id_suratpengajuan ?>"
                                                         class="badge badge-success btn-block" title="download"><i
@@ -413,7 +438,7 @@ foreach ($suratpengajuan as $sp):
                                                 </td>
                                                 <td>
 
-                                                    <?php if($kpp->draft == true){ ?>
+                                                    <?php if($kpp->status == 'Draft'){ ?>
                                                         <a href="<?php echo base_url("admin/tambahpengajuan_datadiri/{$kpp->id_suratpengajuan}") ?>"
                                                             class="badge badge-warning d-block"><i class="	fas fa-edit"></i> Perbaharui
                                                         </a>

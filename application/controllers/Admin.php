@@ -316,6 +316,7 @@ class Admin extends CI_Controller
                 'berkas_suratpengajuan' => $berkas_suratpengajuan,
                 'no_user' => $no_user,
                 'draft' => true,
+                'status' => 'Draft',
                 'ket_status' => 'Data Belum Lengkap',
             ];
             if ($berkas_suratpengajuan != null) {
