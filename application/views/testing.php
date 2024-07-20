@@ -55,7 +55,7 @@
                                                 <td>
                                                     <a href="#" data-id-indeks="<?= $i->id_indeks ?>" data-toggle="modal"
                                                         data-target="#ubahindeks"><span
-                                                            class="badge badge-info d-block">Edit</span></a><br>
+                                                            class="badge badge-info d-block">Perbaharui</span></a><br>
 
                                                     <a href="<?= base_url('admin/hapusindeks/' . $i->id_indeks) ?>"
                                                         onclick="return confirm('Hapus?')"><span

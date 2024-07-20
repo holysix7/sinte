@@ -52,6 +52,7 @@ class M_aplikasi extends CI_Model
 
     public function SemuaData()
     {
+        $this->db->order_by('id', 'DESC');
         return $this->db->get('aplikasi')->result_array();
     }
 
@@ -110,7 +111,8 @@ class M_aplikasi extends CI_Model
 
     public function getRedirectApp($id)
     {
-        $query = $this->db->get_where('aplikasi', array('id' => $id));
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('aplikasi');
         return $query->result_array();
     }
 
@@ -118,6 +120,19 @@ class M_aplikasi extends CI_Model
     public function dataHariIni()
     {
         $data = $this->db->get_where('aplikasi', array('tgl_dibuat' => date('Y-m-d')))->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
+
+    public function dataMingguIni()
+    {
+        $today = date('Y-m-d');
+        $one_week_ago = date('Y-m-d', strtotime('-1 week'));
+        $this->db->where('tgl_dibuat >=', $one_week_ago);
+        $this->db->where('tgl_dibuat <=', $today);
+        $data = $this->db->get('aplikasi')->result_array();
         return [
             'counted' => count($data),
             'data' => $data

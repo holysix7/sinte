@@ -52,6 +52,7 @@ class M_kp extends CI_Model
 
     public function SemuaData()
     {
+        $this->db->order_by('id', 'DESC');
         return $this->db->get('kp')->result_array();
     }
 
@@ -161,7 +162,9 @@ class M_kp extends CI_Model
 
     public function getRedirectKp($id)
     {
-        $query = $this->db->get_where('kp', array('id' => $id));
+        $this->db->order_by('id', 'DESC');
+        $this->db->where('id', $id);
+        $query = $this->db->get('kp');
         return $query->result_array();
     }
 

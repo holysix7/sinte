@@ -2,11 +2,17 @@
 class M_fotokegiatan extends CI_Model
 {
     public function getByBDId($id){
-        return $this->db->get_where('fotokegiatan', ['id_bigdata' => $id])->result_array();
+        $this->db->order_by('id', 'DESC');
+        $this->db->where('id_bigdata', $id);
+        $query = $this->db->get('fotokegiatan');
+        return $query->result_array();
     }
 
     public function getById($id){
-        return $this->db->get_where('fotokegiatan', ['id' => $id])->row();
+        $this->db->order_by('id', 'DESC');
+        $this->db->where('id', $id);
+        $query = $this->db->get('fotokegiatan');
+        return $query->row();
     }
 
     public function simpanDetailFoto($array){

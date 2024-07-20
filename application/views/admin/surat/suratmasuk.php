@@ -75,7 +75,7 @@
 
                                                     <a href="" data-id-sk="<?php echo $sm->id_suratmasuk ?>" data-toggle="modal"
                                                         data-target="#ubahsm<?php echo $sm->id_suratmasuk ?>"
-                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                     </a>
                                                     <br>
                                                     <a href="" data-id-sk="<?php echo $sm->id_suratmasuk ?>"

@@ -56,6 +56,7 @@ class M_Tamu extends CI_Model
 
     public function SemuaData()
     {
+        $this->db->order_by('id', 'DESC');
         return $this->db->get('tamu')->result_array();
     }
 

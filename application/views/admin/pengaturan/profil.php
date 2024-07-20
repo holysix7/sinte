@@ -48,7 +48,7 @@
                                                     <a href="" data-id_user="<?php echo $p->id_user ?>"
                                                         data-toggle="modal"
                                                         data-target="#editprofil<?php echo $p->id_user ?>"
-                                                        class="btn btn-primary btn-flat"><i class="fas fa-edit"></i> Edit profil</a>
+                                                        class="btn btn-primary btn-flat"><i class="fas fa-edit"></i> Perbaharui profil</a>
 
                                             
                                                     <a href="" data-id_user="<?php echo $p->id_user ?>"

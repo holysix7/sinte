@@ -363,7 +363,6 @@ foreach ($suratpengajuan as $sp):
                                             <th>Keterangan</th>
                                             <th>Berkas Surat Pengajuan</th>
                                             <th>Status </th>
-                                            <th>Keterangan Status</th>
                                             <th>Draft</th>
                                             <th>Berkas Surat Balasan</th>
                                             <th>Aksi</th>
@@ -392,15 +391,10 @@ foreach ($suratpengajuan as $sp):
 
                                                 <td><?= $kpp->status; ?></td>
                                                 <td>
-                                                    <?php if($kpp->ket_status == 'Data Belum Lengkap'){ ?>
-                                                        <span class="badge badge-danger"><?= $kpp->ket_status; ?></span>
-                                                    <?php }else if($kpp->ket_status == 'Data Sudah Lengkap'){ ?>
-                                                        <span class="badge badge-success"><?= $kpp->ket_status; ?></span>
-                                                    <?php }else{ ?>
-                                                        <?= $kpp->ket_status; ?>
-                                                    <?php } ?>
-                                                </td>
-                                                <td><?= $kpp->draft ? 'true' : 'false'; ?></td>
+                                                    <?php 
+                                                        $badge = $kpp->draft ? 'warning' : 'success';
+                                                    ?>
+                                                    <span class="badge badge-<?= $badge ?>"><?= $kpp->ket_status ?></span>
                                                 <td>
                                                     <a href="<?php echo base_url() ?>admin/downloadbalasan/<?php echo $kpp->id_suratpengajuan ?>"
                                                         class="badge badge-success btn-block" title="download"><i
@@ -411,7 +405,7 @@ foreach ($suratpengajuan as $sp):
 
                                                     <?php if($kpp->draft == true){ ?>
                                                         <a href="<?php echo base_url("admin/tambahpengajuan_datadiri/{$kpp->id_suratpengajuan}") ?>"
-                                                            class="badge badge-warning d-block"><i class="	fas fa-edit"></i> Edit
+                                                            class="badge badge-warning d-block"><i class="	fas fa-edit"></i> Perbaharui
                                                         </a>
                                                     <?php }else{ ?>
                                                         <a href="<?php echo base_url("kp/view/{$kpp->id_suratpengajuan}") ?>"

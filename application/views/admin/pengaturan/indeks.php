@@ -64,7 +64,7 @@
                                                         data-id-i="<?php echo is_object($i) ? $i->id_indeks : $i['id_indeks'] ?>"
                                                         data-toggle="modal"
                                                         data-target="#ubahindeks<?php echo is_object($i) ? $i->id_indeks : $i['id_indeks'] ?>"
-                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                     </a>
                                                     <br>
                                                     <a href=""

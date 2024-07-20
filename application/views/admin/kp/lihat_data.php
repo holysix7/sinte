@@ -136,7 +136,7 @@
                                                     <td>
                                                         <a href="" data-id-kp="<?php echo $magang['id']; ?>" data-toggle="modal"
                                                             data-target="#editmagang<?php echo $magang['id']; ?>"
-                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                         </a>
                                                         <br>
                                                         <a href="" data-id-sk="<?php echo $magang['id']; ?>" data-toggle="modal"
@@ -288,7 +288,7 @@
                                                     <td>
                                                         <a href="" data-id-kp="<?php echo $magang['id']; ?>" data-toggle="modal"
                                                             data-target="#editmagang<?php echo $magang['id']; ?>"
-                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                         </a>
                                                         <br>
                                                         <a href="" data-id-sk="<?php echo $magang['id']; ?>" data-toggle="modal"
@@ -433,7 +433,7 @@
                                                     <td>
                                                         <a href="" data-id-kp="<?php echo $magang['id']; ?>" data-toggle="modal"
                                                             data-target="#editmagang<?php echo $magang['id']; ?>"
-                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                            class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                         </a>
                                                         <br>
                                                         <a href="" data-id-sk="<?php echo $magang['id']; ?>" data-toggle="modal"

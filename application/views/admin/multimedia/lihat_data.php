@@ -142,7 +142,7 @@
                                                 <td>
                                                     <a href="" data-id-kp="<?php echo $mu['id']; ?>" data-toggle="modal"
                                                         data-target="#editmultimedia<?php echo $mu['id']; ?>"
-                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                     </a>
                                                     <br>
                                                     <a href="" data-id-mul="<?php echo $mu['id']; ?>" data-toggle="modal"

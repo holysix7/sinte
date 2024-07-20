@@ -155,20 +155,20 @@ class Admin extends CI_Controller
         $data['count_kp'] = $this->model_surat->countother('kp')->result();
         $data['count_tamu'] = $this->model_surat->countother('tamu')->result();
 
-        $data['service'] = $this->M_eservice->dataHariIni()['data'];
-        $data['jumlah_service'] = $this->M_eservice->dataHariIni()['counted'];
+        $data['service'] = $this->M_eservice->dataMingguIni()['data'];
+        $data['jumlah_service'] = $this->M_eservice->dataMingguIni()['counted'];
 
-        $data['aplikasi'] = $this->M_aplikasi->dataHariIni()['data'];
-        $data['jumlah_aplikasi'] = $this->M_aplikasi->dataHariIni()['counted'];
+        $data['aplikasi'] = $this->M_aplikasi->dataMingguIni()['data'];
+        $data['jumlah_aplikasi'] = $this->M_aplikasi->dataMingguIni()['counted'];
 
-        $data['bigdata'] = $this->M_bigdata->dataHariIni()['data'];
-        $data['jumlah_big_data'] = $this->M_bigdata->dataHariIni()['counted'];
+        $data['bigdata'] = $this->M_bigdata->dataMingguIni()['data'];
+        $data['jumlah_big_data'] = $this->M_bigdata->dataMingguIni()['counted'];
 
-        $data['publikasi'] = $this->M_publikasi->dataHariIni()['data'];
-        $data['jumlah_publikasi'] = $this->M_publikasi->dataHariIni()['counted'];
+        $data['publikasi'] = $this->M_publikasi->dataMingguIni()['data'];
+        $data['jumlah_publikasi'] = $this->M_publikasi->dataMingguIni()['counted'];
 
-        $data['multimedia'] = $this->M_multimedia->dataHariIni()['data'];
-        $data['jumlah_multimedia'] = $this->M_multimedia->dataHariIni()['counted'];
+        $data['multimedia'] = $this->M_multimedia->dataMingguIni()['data'];
+        $data['jumlah_multimedia'] = $this->M_multimedia->dataMingguIni()['counted'];
 
         if($data['user'] == 'superadmin'){
             $data['name_data'] = $this->M_tamu->get_name_data();
@@ -924,7 +924,7 @@ class Admin extends CI_Controller
             $data['user'] = 'userskp';
         }
 
-        $data['indeks'] = $this->model_surat->getotherwithadd('indeks', 'ORDER BY kode_indeks')->result();
+        $data['indeks'] = $this->model_surat->getotherwithadd('indeks', 'ORDER BY kode_indeks ')->result();
 
         if (count(explode('/', $this->uri->uri_string())) > 3) {
             $data['indeks'] = $this->model_surat->getRedirectAppIndeks(explode('/', $this->uri->uri_string())[3]);
@@ -1043,7 +1043,7 @@ class Admin extends CI_Controller
             redirect(base_url(''));
         }
 
-        $data['users'] = $this->model_surat->getother('user')->result();
+        $data['users'] = $this->model_surat->getotherwithadd('user', 'ORDER BY id_user DESC')->result();
 
         if (count(explode('/', $this->uri->uri_string())) > 3) {
             $data['users'] = $this->model_surat->getRedirectAppUsers(explode('/', $this->uri->uri_string())[3]);

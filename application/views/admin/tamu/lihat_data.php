@@ -84,7 +84,7 @@
                                                 <td>
                                                     <a href="" data-id-tamu="<?php echo $tm['id']; ?>" data-toggle="modal"
                                                         data-target="#edittamu<?php echo $tm['id']; ?>"
-                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                     </a>
                                                     <br>
                                                     <a href="" data-id-tamu="<?php echo $tm['id']; ?>" data-toggle="modal"

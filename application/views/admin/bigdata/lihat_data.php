@@ -199,7 +199,7 @@
                                                 <td>
                                                     <a href="" data-id-kp="<?php echo $bd['id_bigdata']; ?>" data-toggle="modal"
                                                         data-target="#editbigdata<?php echo $bd['id_bigdata']; ?>"
-                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                     </a>
                                                     <br>
                                                     <a href="" data-id-pu="<?php echo $bd['id_bigdata']; ?>" data-toggle="modal"

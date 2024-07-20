@@ -74,6 +74,34 @@ class Kp extends CI_Controller
         redirect("admin/tambahpengajuan_datadiri/{$this->input->post('id_suratpengajuan')}");
     }
 
+    public function draft_suratpengajuan($id)
+    {
+        $this->model_surat->updatedata('suratpengajuan', [
+            'draft' => true,
+        ], [
+            'id_suratpengajuan' => $id
+        ]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data berhasil diubah menjadi draft!</h5>
+        </div>');
+        redirect("admin/suratpengajuan");
+    }
+
+    public function filled_suratpengajuan($id)
+    {
+        $this->model_surat->updatedata('suratpengajuan', [
+            'draft' => false,
+        ], [
+            'id_suratpengajuan' => $id
+        ]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i> Data sudah divalidasi!</h5>
+        </div>');
+        redirect("admin/suratpengajuan");
+    }
+
     public function hapus_data($id)
     {
         $this->M_kp->hapus_data($id);

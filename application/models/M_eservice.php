@@ -52,6 +52,7 @@ class M_eservice extends CI_Model
 
     public function SemuaData()
     {
+        $this->db->order_by('id', 'DESC');
         return $this->db->get('eservice')->result_array();
     }
 
@@ -112,6 +113,19 @@ class M_eservice extends CI_Model
         ];
     }
 
+    public function dataMingguIni()
+    {
+        $today = date('Y-m-d');
+        $one_week_ago = date('Y-m-d', strtotime('-1 week'));
+        $this->db->where('tgl_dibuat >=', $one_week_ago);
+        $this->db->where('tgl_dibuat <=', $today);
+        $data = $this->db->get('eservice')->result_array();
+        return [
+            'counted' => count($data),
+            'data' => $data
+        ];
+    }
+
     public function dataKeseluruhan()
     {
         $data = $this->db->get('eservice')->result_array();
@@ -123,8 +137,9 @@ class M_eservice extends CI_Model
 
     public function getRedirectApp($id)
     {
-        $query = $this->db->get_where('eservice', array('id' => $id));
-        return $query->result_array();
+        $this->db->order_by('id', 'DESC');
+        $data = $this->db->get('eservice');
+        return $data->result_array();
     }
     
     public function total_data()

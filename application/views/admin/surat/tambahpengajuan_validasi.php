@@ -220,8 +220,9 @@
                                 
                                 <div>
                                     <div class="modal-footer right-content-between">
+                                    <?php $id_surat = explode('/', $this->uri->uri_string())[2]; ?>
                                         <button type="submit" name="tambah" class="btn btn-primary">Tambah</button>
-                                        <a href="<?php echo base_url() ?>admin/tambahpengajuan_validasi/<?php echo base_url('admin/tambahpengajuan_validasi') ?>"
+                                        <a href="<?php echo base_url("admin/tambahpengajuan_validasi/{$id_surat}") ?>"
                                             class="btn btn-success " title="selesai"></i> Selesai
                                         </a>
                                     </div>
@@ -309,15 +310,20 @@
                             </div>
                                 
                             <p>
-                                <small class="text-danger">* Data diri peserta kerja praktik dapat di EDIT pada "Detail" halaman pengajuan</small>
+                                <small class="text-danger">* Data diri peserta kerja praktik dapat di Perbaharui pada "Detail" halaman pengajuan</small>
                                 <p>
                             
 
                               
                                 <div class="modal-footer right-content-between">
                                 
-                                    <a href="<?php echo base_url('admin/suratpengajuan') ?>"
-                                         class="btn btn-primary" title="selesai"></i> Pengajuan Selesai
+                                    <a href="<?= base_url("kp/draft_suratpengajuan/{$id_surat}") ?>"
+                                        class="btn btn-primary"> Simpan Sebagai Draft
+                                    </a>
+                                
+                                    <a href="javascript:void(0)" data-toggle="modal"
+                                        data-target="#modalKonfirmasi"
+                                        class="btn btn-primary"> Pengajuan Selesai
                                     </a>
                                 </div>
                             </div>
@@ -329,6 +335,34 @@
             </div>
             <!-- /.container-fluid -->
 
+            <div class="modal fade" id="modalKonfirmasi">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 style="text-align: center;">Apakah Anda yakin? karena tidak bisa dirubah kembali</h3>
+                            <div class="row" style="justify-content: center;">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <a href="<?php echo base_url("kp/filled_suratpengajuan/{$id_surat}") ?>" class="btn btn-primary w-100">Ya</a>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="javascript:void(0)" class="close btn btn-danger w-100" data-dismiss="modal" aria-label="Close">Tidak</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
         </div>
         <!-- End of Main Content -->
         <!-- modal tambah -->

@@ -159,7 +159,7 @@
                                                 <td>
                                                     <a href="" data-id-kp="<?php echo $pu['id']; ?>" data-toggle="modal"
                                                         data-target="#editpublikasi<?php echo $pu['id']; ?>"
-                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Edit
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
                                                     </a>
                                                     <br>
                                                     <a href="" data-id-pu="<?php echo $pu['id']; ?>" data-toggle="modal"

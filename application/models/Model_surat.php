@@ -3,7 +3,7 @@ class Model_surat extends CI_Model
 {
     public function getdata($table)
     {
-        $query = "SELECT * FROM " . $table . " INNER JOIN indeks WHERE " . $table . ".id_indeks=indeks.id_indeks";
+        $query = "SELECT * FROM " . $table . " INNER JOIN indeks WHERE " . $table . ".id_indeks=indeks.id_indeks order by ".$table." .id_suratpengajuan DESC";
         return $this->db->query($query);
 
         $data['status'] = [
@@ -147,8 +147,10 @@ class Model_surat extends CI_Model
 
     public function kp_pengajuan()
     {
+        $this->db->order_by('id_suratpengajuan', 'DESC');
         $this->db->where('suratpengajuan.no_user', $this->session->userdata('id_user'));
-        return $this->db->get('suratpengajuan')->result();
+        $query = $this->db->get('suratpengajuan');
+        return $query->result();
 
     }
 
@@ -213,6 +215,8 @@ class Model_surat extends CI_Model
 
     public function SemuaData()
     {
+        $this->db->order_by('id_suratpengajuan', 'DESC');
+        $query = $this->db->get('suratpengajuan');
         return $this->db->get('suratpengajuan')->result_array();
     }
 

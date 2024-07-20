@@ -227,8 +227,9 @@
 
                                     <div>
                                         <div class="modal-footer right-content-between">
+                                            <?php $id_surat = explode('/', $this->uri->uri_string())[2]; ?>
                                             <button type="submit" name="tambah" class="btn btn-primary"> Tambah</button>
-                                            <a href="<?php echo base_url() ?>admin/tambahpengajuan_validasi/<?php echo base_url('admin/tambahpengajuan_validasi') ?>"
+                                            <a href="<?php echo base_url("admin/tambahpengajuan_validasi/{$id_surat}") ?>"
                                                 class="btn btn-success " title="selesai"></i> Selesai
                                             </a>
                                         </div>
