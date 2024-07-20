@@ -89,6 +89,10 @@ class M_aplikasi extends CI_Model
             "nama_aplikasi	" => $this->input->post('nama_aplikasi'),
             "deskripsi" => $this->input->post('deskripsi'),
             "link_aplikasi" => $this->input->post('link_aplikasi'),
+            "tgl_dibuat" => date('Y-m-d'),
+            "waktu" => $this->input->post('waktu'),
+            "narasumber" => $this->input->post('narasumber'),
+            "penanggung_jawab" => $this->input->post('penanggung_jawab'),
         ];
 
         $this->db->where('id', $this->input->post('id'));
@@ -110,7 +114,7 @@ class M_aplikasi extends CI_Model
         return $query->result_array();
     }
 
-    
+
     public function dataHariIni()
     {
         $data = $this->db->get_where('aplikasi', array('tgl_dibuat' => date('Y-m-d')))->result_array();
@@ -124,21 +128,24 @@ class M_aplikasi extends CI_Model
     {
         return $this->db->count_all('aplikasi');
     }
-    
-    public function count_today_records() {
+
+    public function count_today_records()
+    {
         $this->db->where('DATE(tgl_dibuat)', date('Y-m-d'));
         $this->db->from('aplikasi');
         return $this->db->count_all_results();
     }
 
-    public function count_current_month_records() {
+    public function count_current_month_records()
+    {
         $this->db->where('MONTH(tgl_dibuat)', date('m'));
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
-        $this->db->from('aplikasi'); 
-        return $this->db->count_all_results();       
+        $this->db->from('aplikasi');
+        return $this->db->count_all_results();
     }
 
-    public function count_current_year_records() {
+    public function count_current_year_records()
+    {
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
         $this->db->from('aplikasi');
         return $this->db->count_all_results();
