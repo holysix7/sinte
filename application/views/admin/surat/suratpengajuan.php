@@ -82,7 +82,12 @@
 
 
                                                 <td><?= $sp->status; ?></td>
-                                                <td><?= $sp->ket_status; ?></td>
+                                                <td>
+                                                    <?php 
+                                                        $badge = $sp->draft ? 'warning' : 'success';
+                                                    ?>
+                                                    <span class="badge badge-<?= $badge ?>"><?= $sp->ket_status ?></span>
+                                                </td>
 
 
                                                 <?php if ($user == 'superadmin') { ?>
@@ -247,7 +252,7 @@ foreach ($suratpengajuan as $sp):
                                             <th>Keterangan</th>
                                             <th>Berkas Surat Pengajuan</th>
                                             <th>Status </th>
-                                            <th>Keterangan Status</th>
+                                            <th>Draft </th>
                                             <th>Berkas Surat Balasan</th>
                                         </tr>
                                     </thead>
@@ -274,7 +279,12 @@ foreach ($suratpengajuan as $sp):
 
 
                                                 <td><?= $sp->status; ?></td>
-                                                <td><?= $sp->ket_status; ?></td>
+                                                <td>
+                                                    <?php 
+                                                        $badge = $kpp->draft ? 'warning' : 'success';
+                                                    ?>
+                                                    <span class="badge badge-<?= $badge ?>"><?= $kpp->ket_status ?></span>
+                                                <td>
 
                                                 <td>
                                                     <?php if ($user == 'superadmin') { ?>
@@ -495,10 +505,6 @@ foreach ($suratpengajuan as $sp):
                                 <label for="status">Pilih Status</label>
                                 <br>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary active">
-                                        <input type="radio" name="status" value="Pending" id="option1" autocomplete="off"
-                                            checked> Pending
-                                    </label>
                                     <label class="btn btn-secondary">
                                         <input type="radio" name="status" value="Ditolak" id="option2" autocomplete="off">
                                         Ditolak
