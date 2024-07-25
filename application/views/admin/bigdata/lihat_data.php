@@ -39,6 +39,7 @@
                                             <td>Link Sertifikat</td>
                                             <td>Foto Kegiatan</td>
                                             <td>Data Peserta</td>
+                                            <td>Status</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,11 +68,13 @@
                                                     <?php echo $bd['jumlah_peserta']; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo $bd['link_sertifikat']; ?>"><?php echo $bd['link_sertifikat']; ?></a>
+                                                    <a
+                                                        href="<?php echo $bd['link_sertifikat']; ?>"><?php echo $bd['link_sertifikat']; ?></a>
                                                 </td>
 
                                                 <td>
-                                                    <a href="<?= base_url() ?>bigdata/detailFoto/<?= $bd['id_bigdata'] ?>" class="badge badge-dark btn-flat btn-block">Lihat Foto</a>
+                                                    <a href="<?= base_url() ?>bigdata/detailFoto/<?= $bd['id_bigdata'] ?>"
+                                                        class="badge badge-dark btn-flat btn-block">Lihat Foto</a>
                                                 </td>
                                                 <td>
                                                     <a href="<?php echo base_url() ?>bigdata/download2/<?php echo $bd['id_bigdata']; ?>"
@@ -79,6 +82,24 @@
                                                             class="fa fa-download"></i> Download
                                                     </a>
 
+                                                </td>
+                                                <td>
+                                                    <?php
+
+                                                    if ($bd['status'] == 0) {
+                                                        $status = 'Data Ditambahkan';
+                                                        $warna = 'success';
+                                                        $targetId = "";
+                                                    } else {
+                                                        $status = 'Data Diperbaharui';
+                                                        $warna = 'primary';
+                                                        $targetId = '';
+                                                    }
+                                                    ?>
+                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $bd['id_bigdata'] ?>"
+                                                        data-toggle="modal" data-target="<?= $targetId ?>"
+                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -146,6 +167,7 @@
                                             <td>Link Sertifikat</td>
                                             <td>Foto Kegiatan</td>
                                             <td>Data Peserta</td>
+                                            <td>Status</td>
                                             <?php if ($user == 'devbigdata') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
@@ -178,11 +200,13 @@
                                                     <?php echo $bd['jumlah_peserta']; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo $bd['link_sertifikat']; ?>"><?php echo $bd['link_sertifikat']; ?></a>
+                                                    <a
+                                                        href="<?php echo $bd['link_sertifikat']; ?>"><?php echo $bd['link_sertifikat']; ?></a>
                                                 </td>
 
                                                 <td>
-                                                    <a href="<?= base_url() ?>bigdata/detailFoto/<?= $bd['id_bigdata'] ?>" class="badge badge-dark btn-flat btn-block">Lihat Foto</a>
+                                                    <a href="<?= base_url() ?>bigdata/detailFoto/<?= $bd['id_bigdata'] ?>"
+                                                        class="badge badge-dark btn-flat btn-block">Lihat Foto</a>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="badge badge-dark btn-flat btn-block"
@@ -197,9 +221,28 @@
 
                                                 </td>
                                                 <td>
+                                                    <?php
+
+                                                    if ($bd['status'] == 0) {
+                                                        $status = 'Data Ditambahkan';
+                                                        $warna = 'success';
+                                                        $targetId = "#ubahstatus{$bd['id_bigdata']}";
+                                                    } else {
+                                                        $status = 'Data Diperbaharui';
+                                                        $warna = 'primary';
+                                                        $targetId = '';
+                                                    }
+                                                    ?>
+                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $bd['id_bigdata'] ?>"
+                                                        data-toggle="modal" data-target="<?= $targetId ?>"
+                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
+                                                    </a>
+                                                </td>
+                                                <td>
                                                     <a href="" data-id-kp="<?php echo $bd['id_bigdata']; ?>" data-toggle="modal"
                                                         data-target="#editbigdata<?php echo $bd['id_bigdata']; ?>"
-                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i> Perbaharui
+                                                        class="badge badge-primary d-block"><i class="fas fa-edit"></i>
+                                                        Perbaharui
                                                     </a>
                                                     <br>
                                                     <a href="" data-id-pu="<?php echo $bd['id_bigdata']; ?>" data-toggle="modal"
@@ -234,6 +277,42 @@
 
 <?php endif; ?>
 
+<?php foreach ($bigdata as $bd) { ?>
+    <div class="modal fade" id="ubahstatus<?php echo $bd['id_bigdata'] ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ubah Status</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" action="<?= base_url('bigdata/proses_edit_status') ?>" method="post"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="hidden" name="id" class="form-control" value="<?= $bd['id_bigdata'] ?>" required>
+                            <label for="">Status</label>
+                            <div class="input-group">
+                                <input type="text" name="" class="form-control" placeholder="Tanggal Kegiatan" required
+                                    value="Data Diperbaharui" readonly>
+                                <input type="hidden" name="status" class="form-control" required value="1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-5">
+                                <button type="submit" class="btn btn-primary">Ubah</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php } ?>
 <!-- Hapus -->
 <?php $no = 0;
 foreach ($bigdata as $bd):
@@ -365,14 +444,6 @@ foreach ($bigdata as $bd):
                         <input type="hidden" name="id_bigdata" value="<?php echo $bd['id_bigdata'] ?>">
                         <div class="card-body row">
                             <div class="col-md">
-                                <div class="form-group">
-                                    <label for="">Tanggal Kegiatan</label>
-                                    <div class="input-group">
-                                        <input type="date" name="tgl_kegiatan" class="form-control"
-                                            placeholder="Tanggal Kegiatan" value="<?php echo $bd['tgl_kegiatan']; ?>"
-                                            required>
-                                    </div>
-                                </div>
                                 <!-- dropdown  -->
                                 <div class="form-group">
                                     <label>Jenis Kegiatan</label>
@@ -384,12 +455,11 @@ foreach ($bigdata as $bd):
                                     </select>
                                     <small><span class="text-danger text-small" id="alert_jenis_kegiatan"></span></small>
                                 </div>
-                                <!-- dropdown  -->
                                 <div class="form-group">
-                                    <label for="">Nama Kegiatan</label>
+                                    <label for="">Link Sertifikat</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="nama_kegiatan"
-                                            value="<?php echo $bd['nama_kegiatan']; ?>" required>
+                                        <input type="text" class="form-control" name="link_sertifikat"
+                                            value="<?php echo $bd['link_sertifikat']; ?>" required>
                                     </div>
                                 </div>
                             </div>
@@ -407,13 +477,6 @@ foreach ($bigdata as $bd):
                                     <div class="input-group">
                                         <input type="number" class="form-control" name="jumlah_peserta"
                                             value="<?php echo $bd['jumlah_peserta']; ?>" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Link Sertifikat</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="link_sertifikat"
-                                            value="<?php echo $bd['link_sertifikat']; ?>" required>
                                     </div>
                                 </div>
                             </div>

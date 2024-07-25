@@ -114,6 +114,15 @@ class M_multimedia extends CI_Model
         ];
     }
 
+    public function proses_edit_status()
+    {
+        $data = [
+            'status' => $this->input->post('status'),
+        ];
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('multimedia', $data);
+    }
+
     public function dataKeseluruhan()
     {
         $data = $this->db->get('multimedia')->result_array();
@@ -135,21 +144,24 @@ class M_multimedia extends CI_Model
     {
         return $this->db->count_all('multimedia');
     }
-    
-    public function count_today_records() {
+
+    public function count_today_records()
+    {
         $this->db->where('DATE(tgl_dibuat)', date('Y-m-d'));
         $this->db->from('multimedia');
         return $this->db->count_all_results();
     }
 
-    public function count_current_month_records() {
+    public function count_current_month_records()
+    {
         $this->db->where('MONTH(tgl_dibuat)', date('m'));
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
-        $this->db->from('multimedia'); 
-        return $this->db->count_all_results();       
+        $this->db->from('multimedia');
+        return $this->db->count_all_results();
     }
 
-    public function count_current_year_records() {
+    public function count_current_year_records()
+    {
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
         $this->db->from('multimedia');
         return $this->db->count_all_results();

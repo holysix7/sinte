@@ -84,7 +84,6 @@ class M_publikasi extends CI_Model
     {
         $data = [
             "tgl_publikasi" => $this->input->post('tgl_publikasi'),
-            "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "judul_flayer" => $this->input->post('judul_flayer'),
             "link_internal" => $this->input->post('link_internal'),
             "link_eksternal" => $this->input->post('link_eksternal'),
@@ -102,6 +101,15 @@ class M_publikasi extends CI_Model
             'counted' => count($data),
             'data' => $data
         ];
+    }
+
+    public function proses_edit_status()
+    {
+        $data = [
+            'status' => $this->input->post('status'),
+        ];
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('publikasi', $data);
     }
 
     public function dataMingguIni()
@@ -133,26 +141,29 @@ class M_publikasi extends CI_Model
         $query = $this->db->get('publikasi');
         return $query->result_array();
     }
-    
+
     public function total_data()
     {
         return $this->db->count_all('publikasi');
     }
-    
-    public function count_today_records() {
+
+    public function count_today_records()
+    {
         $this->db->where('DATE(tgl_dibuat)', date('Y-m-d'));
         $this->db->from('publikasi');
         return $this->db->count_all_results();
     }
 
-    public function count_current_month_records() {
+    public function count_current_month_records()
+    {
         $this->db->where('MONTH(tgl_dibuat)', date('m'));
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
-        $this->db->from('publikasi'); 
-        return $this->db->count_all_results();       
+        $this->db->from('publikasi');
+        return $this->db->count_all_results();
     }
 
-    public function count_current_year_records() {
+    public function count_current_year_records()
+    {
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
         $this->db->from('publikasi');
         return $this->db->count_all_results();

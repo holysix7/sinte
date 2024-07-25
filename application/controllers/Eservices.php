@@ -168,6 +168,17 @@ class Eservices extends CI_Controller
         redirect('eservices/view');
     }
 
+    public function proses_edit_status()
+    {
+        $this->M_eservice->proses_edit_status();
+
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
+        </div>');
+        redirect('eservices/view');
+    }
+
     public function download1($id)
     {
         $this->load->helper('download');

@@ -135,6 +135,16 @@ class publikasi extends CI_Controller
         redirect('publikasi/view');
     }
 
+    public function proses_edit_status()
+    {
+        $this->M_publikasi->proses_edit_status();
+
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
+        </div>');
+        redirect('publikasi/view');
+    }
     public function laporan_publikasi()
     {
         $data['title'] = 'Publikasi';

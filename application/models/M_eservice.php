@@ -82,11 +82,14 @@ class M_eservice extends CI_Model
 
     public function proses_tambah_data()
     {
+        $tz = 'Asia/Jakarta';
+        $dt = new DateTime("now", new DateTimeZone($tz));
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "tgl_dibuat" => date('Y-m-d'),
+            "updated_at" => $dt->format('Y-m-d h:i:s')
         ];
         $this->db->insert('eservice', $data);
         return $this->db->insert_id();
@@ -94,11 +97,23 @@ class M_eservice extends CI_Model
 
     public function proses_edit_data()
     {
+        $tz = 'Asia/Jakarta';
+        $dt = new DateTime("now", new DateTimeZone($tz));
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "tgl_dibuat" => $this->input->post('tgl_kegiatan'),
+            "updated_at" => $dt->format('Y-m-d h:i:s')
+        ];
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('eservice', $data);
+    }
+
+    public function proses_edit_status()
+    {
+        $data = [
+            'status' => $this->input->post('status'),
         ];
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('eservice', $data);
@@ -141,26 +156,29 @@ class M_eservice extends CI_Model
         $data = $this->db->get('eservice');
         return $data->result_array();
     }
-    
+
     public function total_data()
     {
         return $this->db->count_all('eservice');
     }
-    
-    public function count_today_records() {
+
+    public function count_today_records()
+    {
         $this->db->where('DATE(tgl_dibuat)', date('Y-m-d'));
         $this->db->from('eservice');
         return $this->db->count_all_results();
     }
 
-    public function count_current_month_records() {
+    public function count_current_month_records()
+    {
         $this->db->where('MONTH(tgl_dibuat)', date('m'));
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
-        $this->db->from('eservice'); 
-        return $this->db->count_all_results();       
+        $this->db->from('eservice');
+        return $this->db->count_all_results();
     }
 
-    public function count_current_year_records() {
+    public function count_current_year_records()
+    {
         $this->db->where('YEAR(tgl_dibuat)', date('Y'));
         $this->db->from('eservice');
         return $this->db->count_all_results();

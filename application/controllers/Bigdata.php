@@ -87,7 +87,7 @@ class Bigdata extends CI_Controller
         $data['title'] = 'BigData';
 
         $data['bigdata'] = $this->M_bigdata->rowData($id);
-        $data['foto']    = $this->M_fotokegiatan->getByBDId($id);
+        $data['foto'] = $this->M_fotokegiatan->getByBDId($id);
 
         if ($this->session->userdata('level') == 1) {
             $data['user'] = 'superadmin';
@@ -210,6 +210,17 @@ class Bigdata extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
+        </div>');
+        redirect('bigdata/view');
+    }
+
+    public function proses_edit_status()
+    {
+        $this->M_bigdata->proses_edit_status();
+
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
         </div>');
         redirect('bigdata/view');
     }
