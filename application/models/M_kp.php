@@ -52,7 +52,11 @@ class M_kp extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->order_by('id', 'DESC');
+        $this->db->select('*');
+        $this->db->from('kp a');
+        $this->db->join('suratpengajuan b', 'a.id = b.id_suratpengajuan', 'left');
+        $this->db->where('b.status <> "draft"');
+        $this->db->order_by('a.id', 'DESC');
         return $this->db->get('kp')->result_array();
     }
 

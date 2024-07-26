@@ -1236,7 +1236,20 @@ class Admin extends CI_Controller
             $data['user'] = 'admin';
         } elseif ($this->session->userdata('level') == 3) {
             $data['user'] = 'userskp';
+        } else {
+            if ($this->session->userdata('level') == 4) {
+                $data['user'] = 'deveservice';
+            }elseif($this->session->userdata('level') == 5){
+                $data['user'] = 'devaplikasi';
+            }elseif($this->session->userdata('level') == 6){
+                $data['user'] = 'devbigdata';
+            }elseif($this->session->userdata('level') == 7){
+                $data['user'] = 'devmultimedia';
+            }elseif($this->session->userdata('level') == 8){
+                $data['user'] = 'devpublikasi';
+            }
         }
+        // var_dump($this->session->userdata); die;
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/ekstra/about', $data);

@@ -52,12 +52,12 @@
                                                     <?php echo $mu['nama_kegiatan']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php $status = $mu['status_multimedia'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
-                                                    <?php echo $status; ?>
-                                                </td>
-                                                <td>
                                                     <a
                                                         href="<?php echo $mu['link_vidio']; ?>"><?php echo $mu['link_vidio']; ?></a>
+                                                </td>
+                                                <td>
+                                                    <?php $status = $mu['status_multimedia'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
