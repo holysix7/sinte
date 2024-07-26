@@ -52,12 +52,8 @@ class M_kp extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->select('*');
-        $this->db->from('kp a');
-        $this->db->join('suratpengajuan b', 'a.id = b.id_suratpengajuan', 'left');
-        $this->db->where('b.status <> "draft"');
-        $this->db->order_by('a.id', 'DESC');
-        return $this->db->get('kp')->result_array();
+        $query = "SELECT a.*, b.draft, b.status FROM kp a LEFT JOIN suratpengajuan b ON a.id_suratpengajuan=b.id_suratpengajuan WHERE b.status <> 'Draft'";
+        return $this->db->query($query)->result_array();
     }
 
     public function SemuaDataIdSurat()
