@@ -382,7 +382,7 @@ foreach ($bigdata as $bd):
                                 <!-- dropdown  -->
                                 <div class="form-group">
                                     <label>Jenis Kegiatan</label>
-                                    <select name="jenis_kegiatan" id="jenis_kegiatan" class="form-control" required>
+                                    <select name="jenis_kegiatan" id="jenis_kegiatan" value="<?php echo $bd['jenis_kegiatan']; ?>" class="form-control" required>
                                         <option value="">-- Pilih --</option>
                                         <option value="Pelatihan">Pelatihan</option>
                                         <option value="Sertifikasi">Sertifikasi</option>

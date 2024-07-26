@@ -8,6 +8,7 @@ class Bigdata extends CI_Controller
         $this->load->model('model_surat');
         $this->load->model('M_bigdata');
         $this->load->model('M_fotokegiatan');
+        $this->load->model('M_status');
         if (!$this->session->userdata('level')) {
             redirect('auth');
         }
@@ -207,6 +208,7 @@ class Bigdata extends CI_Controller
     public function proses_edit_data()
     {
         $this->M_bigdata->proses_edit_data();
+        $this->M_status->proses_edit_data('bigdata', $this->input->post('id_bigdata'));
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
