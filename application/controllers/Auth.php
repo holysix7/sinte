@@ -37,7 +37,7 @@ class Auth extends CI_Controller
 				];
 
 				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Login Berhasil!</div>');
+				<button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>Login Berhasil!</div>');
 				$this->session->set_userdata($userdata);
 				if ($this->session->userdata('level') == 1) {
 					redirect('admin');
@@ -49,7 +49,7 @@ class Auth extends CI_Controller
 			}
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Password salah!</div>');
+				<button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>Password salah!</div>');
 			redirect('auth');
 		}
 
@@ -65,24 +65,24 @@ class Auth extends CI_Controller
 					];
 					$this->session->set_userdata($userdata);
 					$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Login Berhasil!</div>');
+					<button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>Login Berhasil!</div>');
 					redirect('auth');
 
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Wrong password!</div>');
+					<button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>Wrong password!</div>');
 					redirect('auth');
 				}
 
 
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>This Username has not been actived!</div>');
+				<button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>This Username has not been actived!</div>');
 				redirect('auth');
 			}
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Username is not registered!</div>');
+			<button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>Username is not registered!</div>');
 			redirect('auth');
 		}
 	}
@@ -148,7 +148,7 @@ class Auth extends CI_Controller
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('level');
 		$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
 		<h5><i class="icon fas fa-check"></i> Logout sukses!</h5>
 		</div>');
 		redirect(base_url('landingpage'));

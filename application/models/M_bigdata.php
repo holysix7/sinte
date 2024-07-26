@@ -181,15 +181,6 @@ class M_bigdata extends CI_Model
         return $query->result_array();
     }
 
-    public function proses_edit_status()
-    {
-        $data = [
-            'status' => $this->input->post('status'),
-        ];
-        $this->db->where('id_bigdata', $this->input->post('id'));
-        $this->db->update('bigdata', $data);
-    }
-
     public function rowData($id_bigdata)
     {
         return $this->db->get_where('bigdata', ['id_bigdata' => $id_bigdata])->row();

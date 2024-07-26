@@ -109,16 +109,6 @@ class M_eservice extends CI_Model
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('eservice', $data);
     }
-
-    public function proses_edit_status()
-    {
-        $data = [
-            'status' => $this->input->post('status'),
-        ];
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('eservice', $data);
-    }
-
     public function dataHariIni()
     {
         $data = $this->db->get_where('eservice', array('tgl_dibuat' => date('Y-m-d')))->result_array();

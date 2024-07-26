@@ -103,15 +103,6 @@ class M_publikasi extends CI_Model
         ];
     }
 
-    public function proses_edit_status()
-    {
-        $data = [
-            'status' => $this->input->post('status'),
-        ];
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('publikasi', $data);
-    }
-
     public function dataMingguIni()
     {
         $today = date('Y-m-d');

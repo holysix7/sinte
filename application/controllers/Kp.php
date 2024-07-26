@@ -51,7 +51,7 @@ class Kp extends CI_Controller
     {
         $this->M_kp->proses_tambah_data_detail_sertifikat();
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
         </div>');
         redirect(base_url('buatqrcode'));
@@ -68,7 +68,7 @@ class Kp extends CI_Controller
             'id_suratpengajuan' => $this->input->post('id_suratpengajuan')
         ]);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
         </div>');
         redirect("admin/tambahpengajuan_datadiri/{$this->input->post('id_suratpengajuan')}");
@@ -83,7 +83,7 @@ class Kp extends CI_Controller
             'id_suratpengajuan' => $id
         ]);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data berhasil diubah menjadi draft!</h5>
         </div>');
         redirect("admin/suratpengajuan");
@@ -98,7 +98,7 @@ class Kp extends CI_Controller
             'id_suratpengajuan' => $id
         ]);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data sudah divalidasi!</h5>
         </div>');
         redirect("admin/suratpengajuan");
@@ -108,7 +108,7 @@ class Kp extends CI_Controller
     {
         $this->M_kp->hapus_data($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
         </div>');
         redirect('kp/view');
@@ -118,7 +118,7 @@ class Kp extends CI_Controller
     {
         $this->M_kp->proses_edit_data();
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
         </div>');
         redirect('kp/view');
@@ -130,7 +130,7 @@ class Kp extends CI_Controller
     {
         $this->M_kp->editstatus();
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
         </div>');
         redirect(base_url('kp/view'));
@@ -159,7 +159,7 @@ class Kp extends CI_Controller
             $this->db->where('id ', $this->input->post('id'));
             $this->db->update('kp', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
             </div>');
             redirect('kp/view');
@@ -173,7 +173,7 @@ class Kp extends CI_Controller
 
         if ($fileinfo['sertifikat'] == 'Belum Tersedia') {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
             </div>');
         } else {
@@ -181,12 +181,12 @@ class Kp extends CI_Controller
             if (file_exists($file)) {
                 force_download($file, NULL);
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
                 </div>');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
             </div>');
             }

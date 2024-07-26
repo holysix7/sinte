@@ -64,25 +64,6 @@
                                                     <a
                                                         href="<?php echo $pu['link_eksternal']; ?>"><?php echo $pu['link_eksternal']; ?></a>
                                                 </td>
-
-                                                <td>
-                                                    <?php
-
-                                                    if ($pu['status'] == 0) {
-                                                        $status = 'Data Ditambahkan';
-                                                        $warna = 'success';
-                                                        $targetId = "";
-                                                    } else {
-                                                        $status = 'Data Diperbaharui';
-                                                        $warna = 'primary';
-                                                        $targetId = '';
-                                                    }
-                                                    ?>
-                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $pu['id'] ?>"
-                                                        data-toggle="modal" data-target="<?= $targetId ?>"
-                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
-                                                    </a>
-                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -147,7 +128,6 @@
                                             <td>Judul Flyer</td>
                                             <td>Link Publikasi Internal</td>
                                             <td>Link Publikasi External</td>
-                                            <td>Status</td>
                                             <?php if ($user == 'devpublikasi') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
@@ -179,25 +159,6 @@
                                                 <td>
                                                     <a
                                                         href="<?php echo $pu['link_eksternal']; ?>"><?php echo $pu['link_eksternal']; ?></a>
-                                                </td>
-
-                                                <td>
-                                                    <?php
-
-                                                    if ($pu['status'] == 0) {
-                                                        $status = 'Data Ditambahkan';
-                                                        $warna = 'success';
-                                                        $targetId = "#ubahstatus{$pu['id']}";
-                                                    } else {
-                                                        $status = 'Data Diperbaharui';
-                                                        $warna = 'primary';
-                                                        $targetId = '';
-                                                    }
-                                                    ?>
-                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $pu['id'] ?>"
-                                                        data-toggle="modal" data-target="<?= $targetId ?>"
-                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
-                                                    </a>
                                                 </td>
                                                 <td>
                                                     <a href="" data-id-kp="<?php echo $pu['id']; ?>" data-toggle="modal"
@@ -237,42 +198,6 @@
     </div>
 <?php endif; ?>
 
-<?php foreach ($publikasi as $pu) { ?>
-    <div class="modal fade" id="ubahstatus<?php echo $pu['id'] ?>">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Ubah Status</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form role="form" action="<?= base_url('publikasi/proses_edit_status') ?>" method="post"
-                        enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="hidden" name="id" class="form-control" value="<?= $pu['id'] ?>" required>
-                            <label for="">Status</label>
-                            <div class="input-group">
-                                <input type="text" name="" class="form-control" placeholder="Tanggal Kegiatan" required
-                                    value="Data Diperbaharui" readonly>
-                                <input type="hidden" name="status" class="form-control" required value="1">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-5">
-                                <button type="submit" class="btn btn-primary">Ubah</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-<?php } ?>
 <!-- Hapus -->
 <?php $no = 0;
 foreach ($publikasi as $pu):

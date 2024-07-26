@@ -59,7 +59,7 @@ class multimedia extends CI_Controller
         }
         if ($this->session->userdata('level') != 1 && $this->session->userdata('level') != 7) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
@@ -77,7 +77,7 @@ class multimedia extends CI_Controller
     {
         $this->M_multimedia->proses_tambah_data();
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
         </div>');
         redirect('multimedia/view');
@@ -87,7 +87,7 @@ class multimedia extends CI_Controller
     {
         $this->M_multimedia->hapus_data($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
         </div>');
         redirect('multimedia/view');
@@ -109,7 +109,7 @@ class multimedia extends CI_Controller
         }
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
@@ -124,7 +124,7 @@ class multimedia extends CI_Controller
     {
         $this->M_multimedia->proses_edit_data();
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>
         </div>');
         redirect('multimedia/view');
@@ -135,7 +135,7 @@ class multimedia extends CI_Controller
         $this->M_multimedia->proses_edit_status();
 
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
         </div>');
         redirect('multimedia/view');

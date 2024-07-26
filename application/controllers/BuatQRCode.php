@@ -43,7 +43,7 @@ class BuatQRCode extends CI_Controller {
             $this->qrcode_lib->generate($isi_teks, $namafile, $quality, $ukuran, $padding);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Generate</h5>
             </div>');
             redirect('kp/view'); // Adjust this to your actual redirect URL
@@ -69,7 +69,7 @@ class BuatQRCode extends CI_Controller {
 
         if ($this->session->userdata('level') != 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));

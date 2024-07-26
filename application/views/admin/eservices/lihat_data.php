@@ -36,7 +36,6 @@
                                             <td>Jumlah Peserta</td>
                                             <td>Jadwal Kegiatan</td>
                                             <td>Data Peserta</td>
-                                            <td>Status</td>
                                         </tr>
                                     </thead>
 
@@ -67,24 +66,6 @@
                                                     <a href="<?php echo base_url() ?>eservices/download2/<?php echo $es['id']; ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <?php
-
-                                                    if ($es['status'] == 0) {
-                                                        $status = 'Data Ditambahkan';
-                                                        $warna = 'success';
-                                                        $targetId = "";
-                                                    } else {
-                                                        $status = 'Data Diperbaharui';
-                                                        $warna = 'primary';
-                                                        $targetId = '';
-                                                    }
-                                                    ?>
-                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $es['id'] ?>"
-                                                        data-toggle="modal" data-target="<?= $targetId ?>"
-                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -157,7 +138,6 @@
                                             <td>Jumlah Peserta</td>
                                             <td>Jadwal Kegiatan</td>
                                             <td>Data Peserta</td>
-                                            <td>Status</td>
                                             <td>Aksi</td>
                                         </tr>
                                     </thead>
@@ -201,24 +181,6 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <?php
-
-                                                    if ($es['status'] == 0) {
-                                                        $status = 'Data Ditambahkan';
-                                                        $warna = 'success';
-                                                        $targetId = "#ubahstatus{$es['id']}";
-                                                    } else {
-                                                        $status = 'Data Diperbaharui';
-                                                        $warna = 'primary';
-                                                        $targetId = '';
-                                                    }
-                                                    ?>
-                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $es['id'] ?>"
-                                                        data-toggle="modal" data-target="<?= $targetId ?>"
-                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
-                                                    </a>
-                                                </td>
-                                                <td>
                                                     <a href="" data-id-kp="<?php echo $es['id']; ?>" data-toggle="modal"
                                                         data-target="#editeservices<?php echo $es['id']; ?>"
                                                         class="badge badge-primary d-block"><i class="fas fa-edit"></i>
@@ -255,43 +217,6 @@
         <!-- End of Content Wrapper -->
     </div>
 <?php endif; ?>
-
-<?php foreach ($eservice as $es) { ?>
-    <div class="modal fade" id="ubahstatus<?php echo $es['id'] ?>">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Ubah Status</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form role="form" action="<?= base_url('eservices/proses_edit_status') ?>" method="post"
-                        enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="hidden" name="id" class="form-control" value="<?= $es['id'] ?>" required>
-                            <label for="">Status</label>
-                            <div class="input-group">
-                                <input type="text" name="" class="form-control" placeholder="Tanggal Kegiatan" required
-                                    value="Data Diperbaharui" readonly>
-                                <input type="hidden" name="status" class="form-control" required value="1">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-5">
-                                <button type="submit" class="btn btn-primary">Ubah</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-<?php } ?>
 
 
 <!-- Modal Untuk E-services -->

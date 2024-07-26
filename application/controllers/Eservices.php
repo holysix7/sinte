@@ -58,7 +58,7 @@ class Eservices extends CI_Controller
         }
         if ($this->session->userdata('level') != 1 && $this->session->userdata('level') != 4) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fa fa-trash"></i> Akses ditolak!</h5>
                 </div>');
             redirect(base_url(''));
@@ -77,7 +77,7 @@ class Eservices extends CI_Controller
         $this->M_publikasi->proses_tambah_data();
         $this->M_multimedia->proses_tambah_data();
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
         </div>');
         redirect('eservices/view');
@@ -106,7 +106,7 @@ class Eservices extends CI_Controller
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('eservice', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
             </div>');
             redirect('eservices/view');
@@ -139,7 +139,7 @@ class Eservices extends CI_Controller
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('eservice', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>
             </div>');
             redirect('eservices/view');
@@ -150,7 +150,7 @@ class Eservices extends CI_Controller
     {
         $this->M_eservice->hapus_data($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
         </div>');
         redirect('eservices/view');
@@ -162,7 +162,7 @@ class Eservices extends CI_Controller
         $this->M_bigdata->proses_edit_by_es_data();
 
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
         </div>');
         redirect('eservices/view');
@@ -173,7 +173,7 @@ class Eservices extends CI_Controller
         $this->M_eservice->proses_edit_status();
 
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
         </div>');
         redirect('eservices/view');
@@ -187,13 +187,13 @@ class Eservices extends CI_Controller
         if (file_exists($file)) {
             force_download($file, NULL);
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
             </div>');
             redirect('eservices/view');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
         </div>');
             redirect('eservices/view');
@@ -208,13 +208,13 @@ class Eservices extends CI_Controller
         if (file_exists($file)) {
             force_download($file, NULL);
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h5><i class="icon fa fa-trash"></i> File tidak ditemukan!</h5>
             </div>');
             redirect('eservices/view');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data Berhasil di Download</h5>
         </div>');
             redirect('eservices/view');

@@ -39,7 +39,6 @@
                                             <td>Link Sertifikat</td>
                                             <td>Foto Kegiatan</td>
                                             <td>Data Peserta</td>
-                                            <td>Status</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,24 +81,6 @@
                                                             class="fa fa-download"></i> Download
                                                     </a>
 
-                                                </td>
-                                                <td>
-                                                    <?php
-
-                                                    if ($bd['status'] == 0) {
-                                                        $status = 'Data Ditambahkan';
-                                                        $warna = 'success';
-                                                        $targetId = "";
-                                                    } else {
-                                                        $status = 'Data Diperbaharui';
-                                                        $warna = 'primary';
-                                                        $targetId = '';
-                                                    }
-                                                    ?>
-                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $bd['id_bigdata'] ?>"
-                                                        data-toggle="modal" data-target="<?= $targetId ?>"
-                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
-                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -167,7 +148,6 @@
                                             <td>Link Sertifikat</td>
                                             <td>Foto Kegiatan</td>
                                             <td>Data Peserta</td>
-                                            <td>Status</td>
                                             <?php if ($user == 'devbigdata') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
@@ -221,24 +201,6 @@
 
                                                 </td>
                                                 <td>
-                                                    <?php
-
-                                                    if ($bd['status'] == 0) {
-                                                        $status = 'Data Ditambahkan';
-                                                        $warna = 'success';
-                                                        $targetId = "#ubahstatus{$bd['id_bigdata']}";
-                                                    } else {
-                                                        $status = 'Data Diperbaharui';
-                                                        $warna = 'primary';
-                                                        $targetId = '';
-                                                    }
-                                                    ?>
-                                                    <a href="javascript:void(0)" data-id-sk="<?php echo $bd['id_bigdata'] ?>"
-                                                        data-toggle="modal" data-target="<?= $targetId ?>"
-                                                        class="badge badge-<?= $warna ?> d-block"> <?= $status ?>
-                                                    </a>
-                                                </td>
-                                                <td>
                                                     <a href="" data-id-kp="<?php echo $bd['id_bigdata']; ?>" data-toggle="modal"
                                                         data-target="#editbigdata<?php echo $bd['id_bigdata']; ?>"
                                                         class="badge badge-primary d-block"><i class="fas fa-edit"></i>
@@ -276,43 +238,6 @@
     </div>
 
 <?php endif; ?>
-
-<?php foreach ($bigdata as $bd) { ?>
-    <div class="modal fade" id="ubahstatus<?php echo $bd['id_bigdata'] ?>">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Ubah Status</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form role="form" action="<?= base_url('bigdata/proses_edit_status') ?>" method="post"
-                        enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="hidden" name="id" class="form-control" value="<?= $bd['id_bigdata'] ?>" required>
-                            <label for="">Status</label>
-                            <div class="input-group">
-                                <input type="text" name="" class="form-control" placeholder="Tanggal Kegiatan" required
-                                    value="Data Diperbaharui" readonly>
-                                <input type="hidden" name="status" class="form-control" required value="1">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-5">
-                                <button type="submit" class="btn btn-primary">Ubah</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-<?php } ?>
 <!-- Hapus -->
 <?php $no = 0;
 foreach ($bigdata as $bd):

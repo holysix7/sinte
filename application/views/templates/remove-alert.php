@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		setTimeout(function () {
-			$('.close').click();
+			$('.autocl').click();
 			<?=
 				$this->session->set_flashdata('message', ''); ?>
 		}, 2000);

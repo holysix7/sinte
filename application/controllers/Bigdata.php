@@ -214,19 +214,6 @@ class Bigdata extends CI_Controller
         redirect('bigdata/view');
     }
 
-    public function proses_edit_status()
-    {
-        $this->M_bigdata->proses_edit_status();
-
-        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h5><i class="icon fa fa-check-square"></i>  Data diedit!</h5>
-        </div>');
-        redirect('bigdata/view');
-    }
-
-
-
     public function download1($id_bigdata)
     {
         $this->load->helper('download');
