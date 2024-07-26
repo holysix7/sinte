@@ -112,7 +112,7 @@
                                         <!-- Card Header - Dropdown -->
                                         <div
                                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Batang</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Data Master</h6>
                                         </div>
                                         <!-- Card Body -->
                                         <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>"
@@ -141,7 +141,7 @@
                                         <!-- Card Header - Dropdown -->
                                         <div
                                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Batang</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Kerja Prakik</h6>
                                         </div>
                                         <div class="card-body" style="height: 350px !important;">
                                             <div class="chart-area">
@@ -165,7 +165,7 @@
                                         <!-- Card Header - Dropdown -->
                                         <div
                                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Pie</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Kunjungan Tamu</h6>
                                         </div>
                                         <!-- Card Body -->
                                         <div class="card-body" style="height: 350px !important;">
