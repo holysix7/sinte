@@ -39,6 +39,7 @@
                                             <td>Link Sertifikat</td>
                                             <td>Foto Kegiatan</td>
                                             <td>Data Peserta</td>
+                                            <td>Status</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -81,6 +82,10 @@
                                                             class="fa fa-download"></i> Download
                                                     </a>
 
+                                                </td>
+                                                <td>
+                                                    <?php $status = $bd['status_bigdata'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -148,6 +153,7 @@
                                             <td>Link Sertifikat</td>
                                             <td>Foto Kegiatan</td>
                                             <td>Data Peserta</td>
+                                            <td>Status</td>
                                             <?php if ($user == 'devbigdata') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
@@ -199,6 +205,10 @@
                                                             class="fa fa-download"></i> Download
                                                     </a>
 
+                                                </td>
+                                                <td>
+                                                    <?php $status = $bd['status_bigdata'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status; ?>
                                                 </td>
                                                 <td>
                                                     <a href="" data-id-kp="<?php echo $bd['id_bigdata']; ?>" data-toggle="modal"

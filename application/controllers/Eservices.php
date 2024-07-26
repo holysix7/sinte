@@ -12,6 +12,7 @@ class Eservices extends CI_Controller
         $this->load->model('M_bigdata');
         $this->load->model('M_publikasi');
         $this->load->model('M_multimedia');
+        $this->load->model('M_status');
         if (!$this->session->userdata('level')) {
             redirect('auth');
         }
@@ -72,10 +73,11 @@ class Eservices extends CI_Controller
 
     public function proses_tambah_data()
     {
-        $insert_id = $this->M_eservice->proses_tambah_data();
-        $this->M_bigdata->proses_tambah_data($insert_id);
-        $this->M_publikasi->proses_tambah_data();
-        $this->M_multimedia->proses_tambah_data();
+        $insert_id_eservice     = $this->M_eservice->proses_tambah_data();
+        $insert_id_bigdata      = $this->M_bigdata->proses_tambah_data($insert_id_eservice);
+        $insert_id_publikasi    = $this->M_publikasi->proses_tambah_data();
+        $insert_id_multimedia   = $this->M_multimedia->proses_tambah_data();
+        $this->M_status->proses_tambah_data($insert_id_eservice, $insert_id_bigdata, $insert_id_publikasi, $insert_id_multimedia);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
         <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data ditambahkan!</h5>

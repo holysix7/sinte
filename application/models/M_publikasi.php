@@ -51,7 +51,10 @@ class M_publikasi extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->order_by('id', 'DESC');
+        $this->db->select('a.*, b.id_publikasi, b.status_publikasi, b.updated_at_publikasi, b.updated_by_publikasi');
+        $this->db->from('publikasi a');
+        $this->db->join('status b', 'a.id = b.id_publikasi', 'left');
+        $this->db->order_by('a.id', 'DESC');
         return $this->db->get('publikasi')->result_array();
     }
 
@@ -67,6 +70,7 @@ class M_publikasi extends CI_Model
         ];
 
         $this->db->insert('publikasi', $data);
+        return $this->db->insert_id();
     }
 
     public function hapus_data($id)
@@ -89,7 +93,6 @@ class M_publikasi extends CI_Model
             "link_eksternal" => $this->input->post('link_eksternal'),
             "tgl_dibuat" => date('Y-m-d'),
         ];
-
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('publikasi', $data);
     }

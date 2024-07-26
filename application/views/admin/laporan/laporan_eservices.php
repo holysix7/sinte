@@ -246,6 +246,7 @@
                                         <td>Tanggal Kegiatan</td>
                                         <td>Nama Kegiatan</td>
                                         <td>Jumlah Peserta</td>
+                                        <td>Status</td>
                                     </tr>
                                 </thead>
 
@@ -265,6 +266,10 @@
                                             </td>
                                             <td>
                                                 <?php echo $es['jumlah_peserta']; ?>
+                                            </td>
+                                            <td>
+                                                <?php $status_eservice = $es['status_eservice'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                <?php echo $status_eservice; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

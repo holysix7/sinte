@@ -248,6 +248,7 @@
                                         <td>Judul Flyer</td>
                                         <td>Link Publikasi Internal</td>
                                         <td>Link Publikasi External</td>
+                                        <td>Status</td>
                                     </tr>
                                 </thead>
 
@@ -273,6 +274,10 @@
                                             </td>
                                             <td>
                                                 <?php echo $pu['link_eksternal']; ?>
+                                            </td>
+                                            <td>
+                                                <?php $status = $pu['status_publikasi'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                <?php echo $status; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

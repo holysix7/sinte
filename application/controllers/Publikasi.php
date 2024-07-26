@@ -7,6 +7,7 @@ class publikasi extends CI_Controller
         parent::__construct();
         $this->load->model('model_surat');
         $this->load->model('M_publikasi');
+        $this->load->model('M_status');
         if (!$this->session->userdata('level')) {
             redirect('auth');
         }
@@ -128,6 +129,7 @@ class publikasi extends CI_Controller
     public function proses_edit_data()
     {
         $this->M_publikasi->proses_edit_data();
+        $this->M_status->proses_edit_data('publikasi', $this->input->post('id'));
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
         <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-check-square"></i> Data diedit!</h5>

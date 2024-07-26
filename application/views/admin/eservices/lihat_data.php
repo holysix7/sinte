@@ -36,6 +36,7 @@
                                             <td>Jumlah Peserta</td>
                                             <td>Jadwal Kegiatan</td>
                                             <td>Data Peserta</td>
+                                            <td>Status</td>
                                         </tr>
                                     </thead>
 
@@ -54,9 +55,6 @@
                                                     <?php echo $es['nama_kegiatan']; ?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $es['jumlah_peserta']; ?>
-                                                </td>
-                                                <td>
                                                     <a href="<?php echo base_url() ?>eservices/download1/<?php echo $es['id']; ?>"
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
@@ -67,6 +65,13 @@
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <?php echo $es['jumlah_peserta']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php $status_eservice = $es['status_eservice'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status_eservice; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -138,6 +143,7 @@
                                             <td>Jumlah Peserta</td>
                                             <td>Jadwal Kegiatan</td>
                                             <td>Data Peserta</td>
+                                            <td>Status</td>
                                             <td>Aksi</td>
                                         </tr>
                                     </thead>
@@ -179,6 +185,10 @@
                                                         class="badge badge-success btn-block" title="download"><i
                                                             class="fa fa-download"></i> Download
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <?php $status_eservice = $es['status_eservice'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status_eservice; ?>
                                                 </td>
                                                 <td>
                                                     <a href="" data-id-kp="<?php echo $es['id']; ?>" data-toggle="modal"

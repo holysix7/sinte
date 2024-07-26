@@ -52,7 +52,10 @@ class M_eservice extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->order_by('id', 'DESC');
+        $this->db->select('a.*, b.id_eservice, b.status_eservice, b.updated_at_eservice, b.updated_by_eservice');
+        $this->db->from('eservice a');
+        $this->db->join('status b', 'a.id = b.id_eservice', 'left');
+        $this->db->order_by('a.id', 'DESC');
         return $this->db->get('eservice')->result_array();
     }
 
@@ -82,14 +85,11 @@ class M_eservice extends CI_Model
 
     public function proses_tambah_data()
     {
-        $tz = 'Asia/Jakarta';
-        $dt = new DateTime("now", new DateTimeZone($tz));
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "tgl_dibuat" => date('Y-m-d'),
-            "updated_at" => $dt->format('Y-m-d h:i:s')
         ];
         $this->db->insert('eservice', $data);
         return $this->db->insert_id();
@@ -97,14 +97,11 @@ class M_eservice extends CI_Model
 
     public function proses_edit_data()
     {
-        $tz = 'Asia/Jakarta';
-        $dt = new DateTime("now", new DateTimeZone($tz));
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "tgl_dibuat" => $this->input->post('tgl_kegiatan'),
-            "updated_at" => $dt->format('Y-m-d h:i:s')
         ];
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('eservice', $data);

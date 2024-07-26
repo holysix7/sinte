@@ -34,6 +34,7 @@
                                             <td>Tanggal</td>
                                             <td>Nama Kegiatan</td>
                                             <td>Link Video</td>
+                                            <td>Status</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,6 +50,10 @@
                                                 </td>
                                                 <td>
                                                     <?php echo $mu['nama_kegiatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php $status = $mu['status_multimedia'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status; ?>
                                                 </td>
                                                 <td>
                                                     <a
@@ -115,6 +120,7 @@
                                             <td>Tanggal</td>
                                             <td>Nama Kegiatan</td>
                                             <td>Link Video</td>
+                                            <td>Status</td>
                                             <?php if ($user == 'devmultimedia') { ?>
                                                 <th>Aksi</th>
                                             <?php } else {
@@ -140,7 +146,10 @@
                                                     <a
                                                         href="<?php echo $mu['link_vidio']; ?>"><?php echo $mu['link_vidio']; ?></a>
                                                 </td>
-
+                                                <td>
+                                                    <?php $status = $mu['status_multimedia'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status; ?>
+                                                </td>
                                                 <td>
                                                     <a href="" data-id-kp="<?php echo $mu['id']; ?>" data-toggle="modal"
                                                         data-target="#editmultimedia<?php echo $mu['id']; ?>"

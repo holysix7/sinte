@@ -53,7 +53,10 @@ class M_bigdata extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->order_by('id_bigdata', 'DESC');
+        $this->db->select('a.*, b.id_bigdata, b.status_bigdata, b.updated_at_bigdata, b.updated_by_bigdata');
+        $this->db->from('bigdata a');
+        $this->db->join('status b', 'a.id_bigdata = b.id_bigdata', 'left');
+        $this->db->order_by('a.id_bigdata', 'DESC');
         return $this->db->get('bigdata')->result_array();
     }
 
@@ -87,6 +90,7 @@ class M_bigdata extends CI_Model
             "id_eservice" => $id_eservice,
         ];
         $this->db->insert('bigdata', $data);
+        return $this->db->insert_id();
     }
 
 

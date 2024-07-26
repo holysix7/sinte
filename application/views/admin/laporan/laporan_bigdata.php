@@ -220,6 +220,7 @@
                                         <td>Bidang Penyelenggara</td>
                                         <td>Jumlah Peserta</td>
                                         <td>Link Sertifikat</td>
+                                        <td>Status</td>
                                     </tr>
                                 </thead>
 
@@ -249,6 +250,10 @@
                                                 </td>
                                                 <td>
                                                     <?php echo $bd['link_sertifikat']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php $status = $bd['status_bigdata'] == 1 ? '<span class="badge badge-success">Sudah Isi</span>' : '<span class="badge badge-warning">Belum Isi</span>' ?>
+                                                    <?php echo $status; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

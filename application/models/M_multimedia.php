@@ -52,7 +52,10 @@ class M_multimedia extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->order_by('id', 'DESC');
+        $this->db->select('a.*, b.id_multimedia, b.status_multimedia, b.updated_at_multimedia, b.updated_by_multimedia');
+        $this->db->from('multimedia a');
+        $this->db->join('status b', 'a.id = b.id_multimedia', 'left');
+        $this->db->order_by('a.id', 'DESC');
         return $this->db->get('multimedia')->result_array();
     }
 
@@ -66,6 +69,7 @@ class M_multimedia extends CI_Model
         ];
 
         $this->db->insert('multimedia', $data);
+        return $this->db->insert_id();
     }
 
     public function hapus_data($id)
@@ -83,7 +87,6 @@ class M_multimedia extends CI_Model
     {
         $data = [
             "tgl_multimedia" => $this->input->post('tgl_multimedia'),
-            "nama_kegiatan	" => $this->input->post('nama_kegiatan'),
             "link_vidio" => $this->input->post('link_vidio'),
             "tgl_dibuat" => date('Y-m-d'),
         ];

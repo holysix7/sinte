@@ -197,7 +197,7 @@ class Admin extends CI_Controller
             $data['user'] = 'userskp';
         }
 
-        $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
+        $data['suratpengajuan'] = $this->model_surat->getdatawithadd('suratpengajuan', 'status <> "Draft"')->result();
         $data['indeks'] = $this->model_surat->getother('indeks')->result();
         $data['kp_pengajuan'] = $this->model_surat->kp_pengajuan();
         // var_dump($data['kp_pengajuan'][0]->draft == false); die;
