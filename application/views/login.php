@@ -88,22 +88,23 @@
 
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url('vendor/') ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url('vendor/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="<?php echo base_url('vendor/') ?>vendor/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url('vendor/') ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="<?php echo base_url('vendor/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="<?php echo base_url('vendor/') ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="<?php echo base_url('vendor/') ?>js/sb-admin-2.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="<?php echo base_url('vendor/') ?>js/sb-admin-2.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#showpass').click(function () {
+                console.log('f')
                 if ($(this).is(':checked')) {
-                    $('#password').attr("type", "text");
+                    $('#password').prop("type", "text");
                 } else {
-                    $('#password').attr("type", "password");
+                    $('#password').prop("type", "password");
                 }
             })
         })
