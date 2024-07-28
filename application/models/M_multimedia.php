@@ -63,6 +63,7 @@ class M_multimedia extends CI_Model
             "nama_kegiatan	" => $this->input->post('nama_kegiatan'),
             "link_vidio" => $this->input->post('link_vidio'),
             "tgl_dibuat" => date('Y-m-d'),
+            "id_eservice" => $id_eservice
         ];
 
         $this->db->insert('multimedia', $data);

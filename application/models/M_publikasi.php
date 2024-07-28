@@ -64,6 +64,7 @@ class M_publikasi extends CI_Model
             "link_internal" => $this->input->post('link_internal'),
             "link_eksternal" => $this->input->post('link_eksternal'),
             "tgl_dibuat" => date('Y-m-d'),
+            "id_eservice" => $id_eservice
         ];
 
         $this->db->insert('publikasi', $data);

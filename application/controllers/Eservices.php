@@ -74,8 +74,8 @@ class Eservices extends CI_Controller
     {
         $insert_id_eservice     = $this->M_eservice->proses_tambah_data();
         $insert_id_bigdata      = $this->M_bigdata->proses_tambah_data($insert_id_eservice);
-        $insert_id_publikasi    = $this->M_publikasi->proses_tambah_data();
-        $insert_id_multimedia   = $this->M_multimedia->proses_tambah_data();
+        $insert_id_publikasi    = $this->M_publikasi->proses_tambah_data($insert_id_eservice);
+        $insert_id_multimedia   = $this->M_multimedia->proses_tambah_data($insert_id_eservice);
         $this->M_status->proses_tambah_data($insert_id_eservice, $insert_id_bigdata, $insert_id_publikasi, $insert_id_multimedia);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
         <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>

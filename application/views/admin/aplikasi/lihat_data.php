@@ -59,6 +59,9 @@
                                                     <?php echo $ap['deskripsi']; ?>
                                                 </td>
                                                 <td>
+                                                    <a href="<?php echo $ap['link_aplikasi']; ?>"><?php echo $ap['link_aplikasi']; ?></a>
+                                                </td>
+                                                <td>
                                                     <?php echo $ap['waktu']; ?>
                                                 </td>
                                                 <td>
@@ -66,9 +69,6 @@
                                                 </td>
                                                 <td>
                                                     <?php echo $ap['penanggung_jawab']; ?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?php echo $ap['link_aplikasi']; ?>"><?php echo $ap['link_aplikasi']; ?></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
