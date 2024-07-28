@@ -29,16 +29,6 @@ foreach ($profil as $p):
                 <textarea name="bio" id="bio" required class="form-control" rows="3"><?php echo $p->bio ?></textarea>
             </div>
             <div class="form-group">
-                <label for="">Facebook</label>
-                <div class="input-group">
-                    <input type="text" id="facebook" name="facebook" value="<?php if ($p->facebook == null) {
-                        echo 'http://facebook.com/' . $p->username;
-                    } else {
-                        echo $p->facebook;
-                    } ?>" class="form-control" required>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="">Email</label>
                 <div class="input-group">
                     <input type="email" id="email" name="email" value="<?php if ($p->email == null) {

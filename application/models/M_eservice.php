@@ -52,11 +52,8 @@ class M_eservice extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->select('a.*, b.id_eservice, b.status_eservice, b.updated_at_eservice, b.updated_by_eservice');
-        $this->db->from('eservice a');
-        $this->db->join('status b', 'a.id = b.id_eservice', 'left');
-        $this->db->order_by('a.id', 'DESC');
-        return $this->db->get('eservice')->result_array();
+        $query = $this->db->query("SELECT * from eservice a LEFT JOIN status b ON a.id = b.id_eservice ORDER BY a.id DESC");
+        return $query->result_array();
     }
 
     public function hapus_data($id)

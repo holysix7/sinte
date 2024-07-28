@@ -37,7 +37,11 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <?php echo $this->session->flashdata('message'); ?>
+                <?php 
+                    if($this->session->flashdata('message')){
+                        echo $this->session->flashdata('message'); 
+                    }
+                ?>
                 <!-- Content Row -->
 
                 <body>
@@ -653,9 +657,6 @@
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 setTimeout(function () {
-                                    $('.close').click();
-                                    <?=
-                                        $this->session->set_flashdata('message', ''); ?>
                                 }, 3000);
                             })
                         </script>

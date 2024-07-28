@@ -24,6 +24,18 @@ class Model_surat extends CI_Model
         $query = "SELECT * FROM " . $table . " INNER JOIN indeks WHERE " . $table . ".id_indeks=indeks.id_indeks AND " . $additional;
         return $this->db->query($query);
     }
+    
+    public function getDataKpToday($today, $id)
+    {
+        $query = "SELECT * FROM kp a LEFT JOIN suratpengajuan b ON a.id_suratpengajuan = b.id_suratpengajuan WHERE a.id_suratpengajuan = {$id} AND a.tanggal_pendataan='{$today}' AND a.user_id = '{$this->session->userdata('id_user')}'";
+        return $this->db->query($query)->result();
+    }
+    
+    public function getDataSpToday($today, $id)
+    {
+        $query = "SELECT * FROM suratpengajuan a LEFT JOIN suratpengajuan b ON a.id_suratpengajuan = b.id_suratpengajuan WHERE a.id_suratpengajuan = {$id} AND a.tanggal_pengajuan='{$today}' AND a.no_user = '{$this->session->userdata('id_user')}'";
+        return $this->db->query($query)->result();
+    }
 
     public function getdatawithadd1($table, $additional)
     {
@@ -136,9 +148,7 @@ class Model_surat extends CI_Model
     public function editstatus()
     {
         $data = [
-            "status" => $this->input->post('status'),
-            "ket_status" => $this->input->post('ket_status'),
-
+            "status" => $this->input->post('status')
         ];
 
         $this->db->where('id_suratpengajuan', $this->input->post('id_suratpengajuan'));

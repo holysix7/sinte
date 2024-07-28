@@ -254,7 +254,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambahpengajuan_validasi()
+    public function tambahpengajuan_validasi($id)
     {
         $data['title'] = 'Surat Pengajuan';
         if ($this->session->userdata('level') == 1) {
@@ -266,10 +266,8 @@ class Admin extends CI_Controller
         }
 
         $today = date('Y-m-d');
-        $kp_today = "tanggal_pendataan='$today'";
-        $sp_today = "tanggal_pengajuan='$today'";
-        $data['kp_today'] = $this->model_surat->getdatawithadd1('kp', $kp_today);
-        $data['sp_today'] = $this->model_surat->getdatawithadd2('suratpengajuan', $sp_today);
+        $data['kp_today'] = $this->model_surat->getDataKpToday($today, $id);
+        $data['sp_today'] = $this->model_surat->getDataSpToday($today, $id);
         // $data['sp_today'] = $this->model_surat->getdatawithadd('suratpengajuan', $sp_today)->result();
 
         $data['suratpengajuan'] = $this->model_surat->getdata('suratpengajuan')->result();
@@ -317,7 +315,6 @@ class Admin extends CI_Controller
                 'no_user' => $no_user,
                 'draft' => true,
                 'status' => 'Draft',
-                'ket_status' => 'Data Belum Lengkap',
             ];
             if ($berkas_suratpengajuan != null) {
                 $config['upload_path'] = 'vendor/files/suratpengajuan/';

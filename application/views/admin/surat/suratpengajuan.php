@@ -46,7 +46,6 @@
                                             <th>Keterangan</th>
                                             <th>Berkas Surat Pengajuan</th>
                                             <th>Status </th>
-                                            <th>Keterangan Status</th>
                                             <?php if ($user == 'superadmin') { ?>
                                                 <th>Update Status</th>
 
@@ -95,12 +94,6 @@
                                                     ?>
                                                     <span class="badge badge-<?= $badge ?>"><?= $sp->status ?></span>
                                                 </td>
-                                                <td>
-                                                    <?php 
-                                                        $badge = $sp->draft ? 'warning' : 'success';
-                                                    ?>
-                                                    <span class="badge badge-<?= $badge ?>"><?= $sp->ket_status ?></span>
-                                                </td>
 
 
                                                 <?php if ($user == 'superadmin') { ?>
@@ -108,7 +101,7 @@
                                                         <a href="" data-id-sk="<?php echo $sp->id_suratpengajuan ?>"
                                                             data-toggle="modal"
                                                             data-target="#ubahstatus<?php echo $sp->id_suratpengajuan ?>"
-                                                            class="badge badge-primary d-block"><i class="fas fa-clock"></i> Update
+                                                            class="badge badge-primary d-block" style="padding: 10px;"><i class="fas fa-clock"></i> Update
                                                             Status
                                                         </a>
                                                     </td>
@@ -530,21 +523,14 @@ foreach ($suratpengajuan as $sp):
                                 <label for="status">Pilih Status</label>
                                 <br>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-secondary">
+                                    <label class="btn btn-danger">
                                         <input type="radio" name="status" value="Ditolak" id="option2" autocomplete="off">
                                         Ditolak
                                     </label>
-                                    <label class="btn btn-primary">
+                                    <label class="btn btn-success">
                                         <input type="radio" name="status" value="Diterima" id="option3" autocomplete="off">
                                         Diterima
                                     </label>
-                                </div>
-                                <div class="form-group">
-                                    <div class="modal-body text-left">
-                                        <label>Keterangan</label>
-                                        <textarea class="form-control" name="ket_status"
-                                            placeholder="Tuliskan Keterangan Pengajuan"></textarea>
-                                    </div>
                                 </div>
                             </div>
                         </div>

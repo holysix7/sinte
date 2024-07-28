@@ -42,7 +42,7 @@
     <br> 
       <div class="logo">
       
-        <h1><a href="index.html"><img src="assets/img/logoputih.png"> <span>Sinte</span> &nbsp; </a></h1>
+        <h1><a href="<?= base_url('/') ?>"><img src="assets/img/logoputih.png"> <span>Sinte</span> &nbsp; </a></h1>
        
       </div>
 

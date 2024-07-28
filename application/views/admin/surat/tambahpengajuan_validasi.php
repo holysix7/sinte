@@ -318,7 +318,7 @@
                                 <div class="modal-footer right-content-between">
                                 
                                     <a href="<?= base_url("kp/draft_suratpengajuan/{$id_surat}") ?>"
-                                        class="btn btn-primary"> Simpan Sebagai Draft
+                                        class="btn btn-warning"> Simpan Sebagai Draft
                                     </a>
                                 
                                     <a href="javascript:void(0)" data-toggle="modal"
@@ -336,27 +336,17 @@
             <!-- /.container-fluid -->
 
             <div class="modal fade" id="modalKonfirmasi">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <h3 style="text-align: center;">Apakah Anda yakin? karena tidak bisa dirubah kembali</h3>
-                            <div class="row" style="justify-content: center;">
-                                <div class="col-md-4">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <a href="<?php echo base_url("kp/filled_suratpengajuan/{$id_surat}") ?>" class="btn btn-primary w-100">Ya</a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <a href="javascript:void(0)" class="close btn btn-danger w-100" data-dismiss="modal" aria-label="Close">Tidak</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-body">Apakah Anda yakin? karena tidak bisa dirubah kembali</div>
+                        <div class="modal-footer">
+                            <a href="<?php echo base_url("kp/filled_suratpengajuan/{$id_surat}") ?>" class="btn btn-primary" style="width: 100px">Ya</a>
+                            <a href="javascript:void(0)" class="close btn btn-secondary" style="width: 100px" data-dismiss="modal" aria-label="Close">Tidak</a>
                         </div>
                     </div>
                     <!-- /.modal-content -->

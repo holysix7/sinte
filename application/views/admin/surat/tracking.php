@@ -132,7 +132,6 @@
                                         echo "<div class='search-results'>";
                                         echo nl2br(str_replace($kata, "<p style='text-align: center;>" ,"<span class='highlighted'>" . $kata . "</span>", $teks['no_suratkeluar']));
                                         echo "<p style='text-align: center; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['status'] . "</p>";
-                                        echo "<p style='text-align: center; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['ket_status'] . "</p><hr/>";
                                         echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
                                         $best_boyer_time = min($best_boyer_time, $search_execution_time_boyer);

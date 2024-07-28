@@ -65,7 +65,6 @@ class Eservices extends CI_Controller
             redirect(base_url(''));
         }
 
-
         $this->load->view('templates/header', $data);
         $this->load->view('admin/eservices/lihat_data', $data);
         $this->load->view('templates/footer');

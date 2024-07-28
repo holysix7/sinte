@@ -370,7 +370,6 @@ foreach ($suratpengajuan as $sp):
                                             <th>Keterangan</th>
                                             <th>Berkas Surat Pengajuan</th>
                                             <th>Status </th>
-                                            <th>Keterangan Status</th>
                                             <th>Berkas Surat Balasan</th>
                                         </tr>
                                     </thead>
@@ -397,7 +396,6 @@ foreach ($suratpengajuan as $sp):
 
 
                                                 <td><?= $sp->status; ?></td>
-                                                <td><?= $sp->ket_status; ?></td>
 
                                                 <td>
                                                     <?php if ($user == 'superadmin') { ?>
@@ -769,13 +767,6 @@ foreach ($suratpengajuan as $sp):
 
                                         <input type="radio" name="status" value="Pending"> Selesai
                                     </label>
-                                </div>
-                                <div class="form-group">
-                                    <div class="modal-body text-left">
-                                        <label>Keterangan</label>
-                                        <textarea class="form-control" name="ket_status"
-                                            placeholder="Tuliskan Keterangan Pengajuan"></textarea>
-                                    </div>
                                 </div>
                             </div>
                         </div>

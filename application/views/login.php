@@ -44,7 +44,11 @@
                                         <h1 class="h4 text-gray-900 mb-4"><?php echo $title; ?></h1>
                                     </div>
 
-                                    <?php echo $this->session->flashdata('message'); ?>
+                                    <?php 
+                                        if($this->session->flashdata('message')){
+                                            echo $this->session->flashdata('message'); 
+                                        } 
+                                    ?>
 
                                     <form class="user" action="<?php echo base_url('auth'); ?>" method="post">
                                         <div class="form-group">

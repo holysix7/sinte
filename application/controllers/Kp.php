@@ -63,7 +63,6 @@ class Kp extends CI_Controller
         $this->M_kp->proses_tambah_data();
         $this->model_surat->updatedata('suratpengajuan', [
             'draft' => false,
-            'ket_status' => 'Data Sudah Lengkap',
         ], [
             'id_suratpengajuan' => $this->input->post('id_suratpengajuan')
         ]);
