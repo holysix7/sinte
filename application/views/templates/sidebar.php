@@ -188,7 +188,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item 
-    <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratpengajuan')) {
+    <?php if (current_url() == base_url('admin/suratpengajuan')) {
         echo 'active';
     } ?>">
         <?php if ($user == 'superadmin'): ?>
@@ -214,7 +214,7 @@
             </a>
 
             <div id="collapseTwo" class="collapse 
-        <?php if (current_url() == base_url('admin/suratmasuk') or current_url() == base_url('admin/suratpengajuan')) {
+        <?php if (current_url() == base_url('admin/suratpengajuan')) {
             echo 'show';
         } ?>" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">

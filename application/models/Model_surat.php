@@ -120,12 +120,6 @@ class Model_surat extends CI_Model
         return $this->db->delete('suratpengajuan', array('id_suratpengajuan' => $id_suratpengajuan));
     }
 
-    public function hapus_datasm($id_suratmasuk)
-    {
-        return $this->db->delete('suratmasuk', array('id_suratmasuk' => $id_suratmasuk));
-    }
-
-
     public function hapus_dataindex($id_indeks)
     {
         $this->db->where('id_indeks', $id_indeks);

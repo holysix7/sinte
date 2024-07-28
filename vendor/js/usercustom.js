@@ -1,15 +1,5 @@
 $(document).ready(function () {
 
-    // $("#suratmasuk").DataTable();
-    $('#suratmasuk').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": true
-    })
-
     $('#lapsuratmasuk').DataTable({
         "paging": true,
         "lengthChange": true,
@@ -78,28 +68,6 @@ $(document).ready(function () {
             }
         })
     })
-
-    $('#ubahsm').on('show.bs.modal', function (e) {
-        var id_suratmasuk = $(e.relatedTarget).data('id-suratmasuk');
-
-        $.ajax({
-            url: 'http://localhost/e-arsip-ci/ajax/ajaxubahsm',
-            method: 'POST',
-            data: 'id_suratmasuk=' + id_suratmasuk,
-            success: function (data) {
-                $('#dataubahsm').html(data);
-            }
-        })
-    })
-
-    $('#hapussm').on('show.bs.modal', function (e) {
-        var id_suratmasuk = $(e.relatedTarget).data('id-suratmasuk');
-        var no_suratmasuk = $(e.relatedTarget).data('no-suratmasuk');
-
-        $('#hps-id-suratmasuk').attr('href', 'https://localhost/e-arsip-ci/admin/hapussm/' + id_suratmasuk);
-        $('#hps-no-suratmasuk').text(no_suratmasuk);
-    })
-
     // DISPOSISI
     $('#pengisi').change(function (event) {
         var pengisi = $('#pengisi option:selected').val();
@@ -125,28 +93,6 @@ $(document).ready(function () {
             type: 'POST',
             success: function(data){
                 $("#ajaxeditdisp").html(data);
-            }
-        })
-        .done(function() {
-            console.log("success");
-        })
-        .fail(function() {
-            console.log("error");
-        })
-        .always(function() {
-            console.log("complete");
-        });
-        
-    })
-
-    $('#hapusdisp').on('show.bs.modal', function(e){
-        var id_disposisi = $(e.relatedTarget).data('id_disposisi');
-
-        $.ajax({
-            url: 'http://localhost/e-arsip-ci/admin/hapusdisp/'+id_disposisi,
-            type: 'POST',
-            success: function(data){
-                $('#hps-id-disposisi').attr('href', 'http://localhost/e-arsip-ci/admin/hapusdisp/'+id_disposisi);
             }
         })
         .done(function() {
