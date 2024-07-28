@@ -52,7 +52,7 @@ class M_eservice extends CI_Model
 
     public function SemuaData()
     {
-        $query = $this->db->query("SELECT * from eservice a LEFT JOIN status b ON a.id = b.id_eservice ORDER BY a.id DESC");
+        $query = $this->db->query("SELECT a.*, b.id as id_status, b.status_eservice from eservice a LEFT JOIN status b ON a.id = b.id_eservice ORDER BY a.id DESC");
         return $query->result_array();
     }
 

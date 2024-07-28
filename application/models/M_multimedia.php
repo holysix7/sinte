@@ -52,11 +52,8 @@ class M_multimedia extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->select('a.*, b.id_multimedia, b.status_multimedia, b.updated_at_multimedia, b.updated_by_multimedia');
-        $this->db->from('multimedia a');
-        $this->db->join('status b', 'a.id = b.id_multimedia', 'left');
-        $this->db->order_by('a.id', 'DESC');
-        return $this->db->get('multimedia')->result_array();
+        $query = $this->db->query("SELECT a.*, b.id as id_status, b.status_multimedia from multimedia a LEFT JOIN status b ON a.id = b.id_multimedia ORDER BY a.id DESC");
+        return $query->result_array();
     }
 
     public function proses_tambah_data($id_eservice = null)

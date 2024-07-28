@@ -51,11 +51,8 @@ class M_publikasi extends CI_Model
 
     public function SemuaData()
     {
-        $this->db->select('a.*, b.id_publikasi, b.status_publikasi, b.updated_at_publikasi, b.updated_by_publikasi');
-        $this->db->from('publikasi a');
-        $this->db->join('status b', 'a.id = b.id_publikasi', 'left');
-        $this->db->order_by('a.id', 'DESC');
-        return $this->db->get('publikasi')->result_array();
+        $query = $this->db->query("SELECT a.*, b.id as id_status, b.status_publikasi from publikasi a LEFT JOIN status b ON a.id = b.id_publikasi ORDER BY a.id DESC");
+        return $query->result_array();
     }
 
     public function proses_tambah_data($id_eservice = null)
