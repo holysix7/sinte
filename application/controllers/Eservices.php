@@ -150,6 +150,9 @@ class Eservices extends CI_Controller
     public function hapus_data($id)
     {
         $this->M_eservice->hapus_data($id);
+        $this->M_bigdata->hapus_data_byeservice($id);
+        $this->M_multimedia->hapus_data_byeservice($id);
+        $this->M_publikasi->hapus_data_byeservice($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
         <button type="button" class="close autocl" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>

@@ -157,4 +157,9 @@ class M_multimedia extends CI_Model
         $this->db->from('multimedia');
         return $this->db->count_all_results();
     }
+    
+    public function hapus_data_byeservice($id_eservice){
+        $this->db->where('id_eservice', $id_eservice);
+        $this->db->delete('multimedia');
+    }
 }
