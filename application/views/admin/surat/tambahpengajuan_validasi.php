@@ -289,7 +289,7 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="table-responsive">
-                                                        <table class="table table-bordered" id="suratmasuk" width="100%"
+                                                        <table class="table table-bordered" id="tamuMasuk" width="100%"
                                                             cellspacing="0">
                                                             <thead>
                                                                 <tr>

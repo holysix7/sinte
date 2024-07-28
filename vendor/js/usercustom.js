@@ -54,6 +54,15 @@ $(document).ready(function () {
         "autoWidth": true
     })
 
+    $('#tamuMasuk').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+    })
+
     // SURATMASUK
     $('#filter-index-sm').change(function () {
         var id_indeks = $('#filter-index-sm option:selected').val();
