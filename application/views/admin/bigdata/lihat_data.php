@@ -216,12 +216,12 @@
                                                         class="badge badge-primary d-block"><i class="fas fa-edit"></i>
                                                         Perbaharui
                                                     </a>
-                                                    <br>
+                                                    <!-- <br>
                                                     <a href="" data-id-pu="<?php echo $bd['id_bigdata']; ?>" data-toggle="modal"
                                                         data-target="#hapusbig<?php echo $bd['id_bigdata']; ?>"
                                                         class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
                                                         Hapus
-                                                    </a>
+                                                    </a> -->
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

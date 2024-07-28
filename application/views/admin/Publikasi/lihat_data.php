@@ -175,12 +175,12 @@
                                                         class="badge badge-primary d-block"><i class="fas fa-edit"></i>
                                                         Perbaharui
                                                     </a>
-                                                    <br>
+                                                    <!-- <br>
                                                     <a href="" data-id-pu="<?php echo $pu['id']; ?>" data-toggle="modal"
                                                         data-target="#hapuspu<?php echo $pu['id']; ?>"
                                                         class="badge badge-danger d-block"><i class="fas fa-trash-restore"></i>
                                                         Hapus
-                                                    </a>
+                                                    </a> -->
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
