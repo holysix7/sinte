@@ -128,9 +128,7 @@ class M_publikasi extends CI_Model
 
     public function getRedirectApp($id)
     {
-        $this->db->order_by('id', 'DESC');
-        $this->db->where('id', $id);
-        $query = $this->db->get('publikasi');
+        $query = $this->db->query("SELECT a.*, b.id as id_status, b.status_publikasi from publikasi a LEFT JOIN status b ON a.id = b.id_publikasi WHERE a.id = $id");
         return $query->result_array();
     }
 
@@ -160,8 +158,9 @@ class M_publikasi extends CI_Model
         $this->db->from('publikasi');
         return $this->db->count_all_results();
     }
-    
-    public function hapus_data_byeservice($id_eservice){
+
+    public function hapus_data_byeservice($id_eservice)
+    {
         $this->db->where('id_eservice', $id_eservice);
         $this->db->delete('publikasi');
     }

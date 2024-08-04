@@ -67,7 +67,7 @@
 
 
                         <div class="text-center text-lg-start">
-                            <a href="auth/register"  class="btn-get-startedd scrollto" color= #fff >Register</a>
+                            <a href="auth/register" class="btn-get-startedd scrollto" color=#fff>Register</a>
                             <a href="auth" class="btn-get-started scrollto">Login</a>
                         </div>
                     </div>
@@ -99,19 +99,20 @@
 
     <!-- ======= KP ======= -->
     <main id="main">
-            <section id="kp" class="kpbpsdm">
+        <section id="kp" class="kpbpsdm">
             <div class="container">
 
                 <div class="section-title" data-aos="fade-up">
                     <h2>Sistem Informasi Integral Technology</h2>
                     <p>Bagaimana kami bisa membantu?</p>
                     <h5>Telusuri basis pengetahuan kami untuk menemukan keikutsertaan peserta
-                    Kerja Praktik di BPSDM Provinsi Jawa Barat, atau hubungi kami secara langsung jika anda mengalami masalah.</h5>
-                    
+                        Kerja Praktik di BPSDM Provinsi Jawa Barat, atau hubungi kami secara langsung jika anda
+                        mengalami masalah.</h5>
+
                 </div>
-                
+
                 <?php
-                $start_time = microtime(true); 
+                $start_time = microtime(true);
 
                 try {
                     $pdo = new PDO("mysql:host=localhost;dbname=sintebpsdmjabar", "root", "");
@@ -122,22 +123,23 @@
                 }
                 $kata = isset($_GET['kata']) ? trim($_GET['kata']) : '';
 
-                $finish_time = microtime(true); 
+                $finish_time = microtime(true);
                 $total_time = round($finish_time - $start_time, 4);
                 ?>
 
-                <?php include_once 'function/boyer.php';?>
+                <?php include_once 'function/boyer.php'; ?>
 
                 <div class="row">
                     <div class="section-title">
-                        <div>  <!-- Boyermoore Serch -->
+                        <div> <!-- Boyermoore Serch -->
                             <?php
                             if (!empty($kata)) {
                                 echo "<h3 style='font-size: 18px; padding: 2px; color: red;'> Hasil Pengecakan Testing: " . $total_time . " seconds</h3>";
                                 echo "<h3 style='font-size: 18px; padding: 2px; color: blue;'>Memory yang digunakan: " . memory_get_usage() . " bytes \n </h3><br>";
                                 echo " <a href='kpbpsdm'>
 
-                                <button type='button' style='background-color: #0205a1; color: white; text-shadow: 2px black; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px; margin-bottom: 20px;'>
+                                <button type='button' style='background-color: #0205a1; color: white; text-shadow: 2px black; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; 
+                                font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px; margin-bottom: 20px;'>
                                     Refresh Testing
                                 </button>
                             </a>";
@@ -145,13 +147,14 @@
                             ?>
                             <div class="s-bar" style="margin-bottom: 10px;">
                                 <form method="get" action="">
-                                    <input type="text" style="background-color: #9fa0ff"
-                                    name="kata" value="<?php echo htmlentities($kata, ENT_QUOTES); ?>"
-                                        onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Cari Data KP';}">
-                                    <input type="submit"  value="cari">
+                                    <input type="text" style="background-color: #9fa0ff" name="kata"
+                                        value="<?php echo htmlentities($kata, ENT_QUOTES); ?>"
+                                        onfocus="this.value = '';"
+                                        onblur="if (this.value == '') {this.value = 'Cari Data KP';}">
+                                    <input type="submit" value="cari">
 
                                     <?php
-                                    $Boyer = new Boyer(); 
+                                    $Boyer = new Boyer();
 
                                     $stmt = $pdo->prepare("SELECT * FROM kp WHERE nama LIKE :kata");
                                     $stmt->execute(['kata' => "%$kata%"]);
@@ -172,7 +175,7 @@
 
                                             echo "<div class='search-results'>";
                                             echo nl2br(str_replace($kata, "<span class='highlighted'>" . $kata . "</span>", $teks['nama']));
-                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" .  $teks ['periode'] . "</p>";
+                                            echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'>" . $teks['periode'] . "</p>";
                                             echo "<p style='text-align: justify; font-size: 13px;padding-top: 5px; padding-bottom:6px;'> " . $teks['posisi_magang'] . "</p><hr/>";
                                             echo "<p style='text-align: center; font-size: 13px; padding-bottom: 4px;'>Waktu Pencarian Boyer-Moore: <span class='highlighted'> $search_execution_time_boyer seconds </span></p><br>";
 
@@ -182,80 +185,80 @@
                                             echo "</div>";
                                         }
                                     }
-                                    
+
                                     if (!empty($kata)) {
                                         echo "<p style='text-align: center; font-size: 13px; color: black;'>Jumlah Pencarian Benar: " . $correct_searche . "</p>";
                                         echo "<p style='text-align: center; font-size: 13px; color: black;'>Jumlah Pencarian Salah: " . $incorrect_searches . "</p>";
                                         echo "<p style='text-align: center; font-size: 13px; color: black;'>Best Case Boyer-Moore: " . $best_boyer_time . " seconds</p>";
                                         echo "<p style='text-align: center; font-size: 13px; color: black;'>Worst Case Boyer-Moore: " . $worst_boyer_time . " seconds</p>";
                                     }
-                                    
+
                                     ?>
                                 </form>
                             </div>
-                        </div>  <!-- Boyermoore Serch -->
+                        </div> <!-- Boyermoore Serch -->
                     </div>
                 </div>
-
             </div>
         </section>
     </main>
     <!-- ======= KP ======= -->
 
-    
-        <!-- ======= about2 Section ======= -->
-        <section id="about2" class="about2">
-            <div class="container-fluid">
 
-                <div class="row">
-                    <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch"
-                        data-aos="fade-right">
-                        <a href="https://youtu.be/qBNLpRDXeIk?si=iYPFiUXKveAQM8NP" class="glightbox play-btn mb-4"></a>
-                    </div>
+    <!-- ======= about2 Section ======= -->
+    <section id="about2" class="about2">
+        <div class="container-fluid">
 
-                    <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5"
-                        data-aos="fade-left">
-                        <div class="section-title" data-aos="fade-up">
-                            <h2>Sistem Informasi Integral Technology</h2>
-                            <p>Cek Validasi Sertifikat</p>
-                            <h5>Merupakan layanan yang mendukung secara khusus dalam melakukan pengecekan Sertifikat
-                        Kerja Praktik di BPSDM Provinsi Jawa Barat menggunakan QR-Code,
-                        Sebelum melakukan pengecekan pastikan anda menggunakan perangkat yang memiliki 
-                        kamera seperti laptop/smartphon.</h5>
-
-                        <br>
-                        <a href="<?php echo base_url('validasi-sertifikat'); ?>" style='background-color: #0205a1; color: white; text-shadow: 2px black; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px; margin-bottom: 20px;'>
-                            Cek Validasi Sertifikat dengan QR Code</a>
-                      
-                    </div>
-                      
-                    
-                        
-                       
-               
-
-                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
-                        </div>
-
-                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
-                        </div>
-
-                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
-                        </div>
-                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
-                        </div>
-
-                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
-                        </div>
-
-                        <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
-                        </div>
-
-                    </div>
+            <div class="row">
+                <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch"
+                    data-aos="fade-right">
+                    <a href="https://youtu.be/qBNLpRDXeIk?si=iYPFiUXKveAQM8NP" class="glightbox play-btn mb-4"></a>
                 </div>
 
+                <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5"
+                    data-aos="fade-left">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>Sistem Informasi Integral Technology</h2>
+                        <p>Cek Validasi Sertifikat</p>
+                        <h5>Merupakan layanan yang mendukung secara khusus dalam melakukan pengecekan Sertifikat
+                            Kerja Praktik di BPSDM Provinsi Jawa Barat menggunakan QR-Code,
+                            Sebelum melakukan pengecekan pastikan anda menggunakan perangkat yang memiliki
+                            kamera seperti laptop/smartphon.</h5>
+
+                        <br>
+                        <a href="<?php echo base_url('validasi-sertifikat'); ?>"
+                            style='background-color: #0205a1; color: white; text-shadow: 2px black; border: none; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 5px; margin-bottom: 20px;'>
+                            Cek Validasi Sertifikat dengan QR Code</a>
+
+                    </div>
+
+
+
+
+
+
+                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+                    </div>
+
+                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
+                    </div>
+
+                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
+                    </div>
+                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+                    </div>
+
+                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
+                    </div>
+
+                    <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
+                    </div>
+
+                </div>
             </div>
-        </section><!-- End about2 Section -->
+
+        </div>
+    </section><!-- End about2 Section -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer">

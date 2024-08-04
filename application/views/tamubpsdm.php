@@ -92,244 +92,258 @@
 
     <main id="main">
         <div class="container-fluid">
-        <section id="chart" class="chart">
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Pie Chart</title>
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            </head>
-            <body>
-            <div class="section-title" data-aos="fade-up">
-                    <h3><p>Sinte BPSDM Jabar</h3>
-                    <h2>grafik chart pie</h2>
-                    <p></p>
-            </div>
-            
-            
-            <div class="container col-lg-4" >
-    
-                <canvas id="namePieChart"></canvas>
+            <section id="chart" class="chart">
+                <!DOCTYPE html>
+                <html>
 
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        var ctx = document.getElementById('namePieChart').getContext('2d');
-                        var nameData = <?php echo json_encode($name_data); ?>;
-                        
-                        var labels = nameData.map(function(e) {
-                            return e.instansi;
-                        });
-                        var data = nameData.map(function(e) {
-                            return e.count;
-                        });
+                <head>
+                    <title>Bar Chart</title>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                </head>
 
-                        var chart = new Chart(ctx, {
-                            type: 'pie',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Count',
-                                    data: data,
-                                    backgroundColor: [
-                                        'rgb(0,191,255)',
-                                        'rgb(173,216,230',
-                                        'rgb(100,149,237)',
-                                        'rgb(0,0,128)',
-                                        'rgb(135,206,235)',
-                                        'rgb(0,0,139)',
-                                        'rgb(0,0,205)',
-                                        'rgb(0,0,255',
-                                        'rgb(70,130,180)',
-                                        'rgb(25,25,112)',
-                                        'rgb(30,144,255)',
-                                        
-                                       
-                                    ],
-                                    borderColor: [
-                                        'rgb(0,191,255)',
-                                        'rgb(173,216,230',
-                                        'rgb(100,149,237)',
-                                        'rgb(0,0,128)',
-                                        'rgb(135,206,235)',
-                                        'rgb(0,0,139)',
-                                        'rgb(0,0,205)',
-                                        'rgb(0,0,255',
-                                        'rgb(70,130,180)',
-                                        'rgb(25,25,112)',
-                                        'rgb(30,144,255)',
-                                        
-                                        
-                                    ],
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                plugins: {
-                                    legend: {
-                                        position: 'top',
+                <body>
+                    <div class="section-title" data-aos="fade-up">
+                        <h3>
+                            <p>Sinte BPSDM Jabar
+                        </h3>
+                        <h2>grafik chart bar</h2>
+                        <p></p>
+                    </div>
+
+
+                    <div class="container col-lg-8">
+
+                        <canvas id="namePieChart"></canvas>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                var ctx = document.getElementById('namePieChart').getContext('2d');
+                                var nameData = <?php echo json_encode($name_data); ?>;
+
+                                var labels = nameData.map(function (e) {
+                                    return e.instansi;
+                                });
+                                var data = nameData.map(function (e) {
+                                    return e.count;
+                                });
+
+                                var chart = new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: 'Count',
+                                            data: data,
+                                            backgroundColor: [
+                                                'rgb(0,191,255)',
+                                                'rgb(173,216,230',
+                                                'rgb(100,149,237)',
+                                                'rgb(0,0,128)',
+                                                'rgb(135,206,235)',
+                                                'rgb(0,0,139)',
+                                                'rgb(0,0,205)',
+                                                'rgb(0,0,255',
+                                                'rgb(70,130,180)',
+                                                'rgb(25,25,112)',
+                                                'rgb(30,144,255)',
+
+
+                                            ],
+                                            borderColor: [
+                                                'rgb(0,191,255)',
+                                                'rgb(173,216,230',
+                                                'rgb(100,149,237)',
+                                                'rgb(0,0,128)',
+                                                'rgb(135,206,235)',
+                                                'rgb(0,0,139)',
+                                                'rgb(0,0,205)',
+                                                'rgb(0,0,255',
+                                                'rgb(70,130,180)',
+                                                'rgb(25,25,112)',
+                                                'rgb(30,144,255)',
+
+
+                                            ],
+                                            borderWidth: 1
+                                        }]
                                     },
-                                    title: {
-                                        display: true,
-                                        text: 'Instansi Yang Pernah Berkunjung'
+                                    options: {
+                                        responsive: true,
+                                        plugins: {
+                                            legend: {
+                                                position: 'top',
+                                            },
+                                            title: {
+                                                display: true,
+                                                text: 'Instansi Yang Pernah Berkunjung'
+                                            }
+                                        },
+                                        layout: {
+                                            padding: {
+                                                left: 5,
+                                                right: 5,
+                                                top: 5,
+                                                bottom: 0
+                                            },
+                                        },
                                     }
-                                }
-                            }
-                        });
-                    });
-                </script>
-            </div>
-            </body>
-            </html>
+                                });
+                            });
+                        </script>
+                    </div>
+                </body>
 
-        </section>
-        
-        <!-- ======= Counts Section ======= -->
-        <section id="counts" class="counts">
-            <div class="container">
+                </html>
 
-                <div class="row" data-aos="fade-up">
+            </section>
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="count-box">
-                            <i class="bi bi-1-square-fill"></i>
-                            <span data-purecounter-start="0" data-purecounter-end=" <?= $today_count ?>" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Kunjungan Tamu Hari Ini</p>
-                           
+            <!-- ======= Counts Section ======= -->
+            <section id="counts" class="counts">
+                <div class="container">
+
+                    <div class="row" data-aos="fade-up">
+
+                        <div class="col-lg-3 col-md-6">
+                            <div class="count-box">
+                                <i class="bi bi-1-square-fill"></i>
+                                <span data-purecounter-start="0" data-purecounter-end=" <?= $today_count ?>"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Kunjungan Tamu Hari Ini</p>
+
+                            </div>
                         </div>
+
+                        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                            <div class="count-box">
+                                <i class="bi bi-2-square-fill"></i>
+                                <span data-purecounter-start="0" data-purecounter-end="<?= $month_count ?>"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Kunjungan Tamu Bulan Ini</p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                            <div class="count-box">
+                                <i class="bi bi-3-square-fill"></i>
+                                <span data-purecounter-start="0" data-purecounter-end="<?= $year_count ?>"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Kunjungan Tamu Tahun Ini</p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                            <div class="count-box">
+                                <i class="bi bi-4-square-fill"></i>
+                                <span data-purecounter-start="0" data-purecounter-end="<?= $total_kunjungantamu ?>"
+                                    data-purecounter-duration="1" class="purecounter"></span>
+                                <p>Total Kunjungan Tamu</p>
+
+                            </div>
+                        </div>
+
+
                     </div>
 
-                    <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-                        <div class="count-box">
-                            <i class="bi bi-2-square-fill"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="<?= $month_count ?>" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Kunjungan Tamu Bulan Ini</p>
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                        <div class="count-box">
-                            <i class="bi bi-3-square-fill"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="<?= $year_count?>" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Kunjungan Tamu Tahun Ini</p>
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                        <div class="count-box">
-                            <i class="bi bi-4-square-fill"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="<?= $total_kunjungantamu ?>" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Total Kunjungan Tamu</p>
-                            
-                        </div>
-                    </div>
-
-                   
                 </div>
+            </section><!-- End Counts Section -->
 
-            </div>
-        </section><!-- End Counts Section -->
+            <!-- ======= About Section ======= -->
+            <section id="about" class="about">
+                <div class="container-fluid">
 
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about">
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch"
-                        data-aos="fade-right">
-                        <a href="https://youtu.be/qBNLpRDXeIk?si=iYPFiUXKveAQM8NP" class="glightbox play-btn mb-4"></a>
-                    </div>
-                    <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5"
-                        data-aos="fade-left">
-                        <h3>Kunjungan Tamu</h3>
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <p>
-                                    <?php
-                                    echo form_open_multipart('tamu/proses_tambah_data2');
-                                    ?>
-                                <div class="card-body row">
-                                    <div class="col-md">
-                                        <div class="form-group">
-                                            <label for="">Tanggal Kunjungan</label>
-                                            <div class="input-group">
-                                                <input type="date" name="tanggal_kunjungan" class="form-control"
-                                                    placeholder="" required>
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch"
+                            data-aos="fade-right">
+                            <a href="https://youtu.be/qBNLpRDXeIk?si=iYPFiUXKveAQM8NP"
+                                class="glightbox play-btn mb-4"></a>
+                        </div>
+                        <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5"
+                            data-aos="fade-left">
+                            <h3>Kunjungan Tamu</h3>
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <p>
+                                        <?php
+                                        echo form_open_multipart('tamu/proses_tambah_data2');
+                                        ?>
+                                    <div class="card-body row">
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label for="">Tanggal Kunjungan</label>
+                                                <div class="input-group">
+                                                    <input type="date" name="tanggal_kunjungan" class="form-control"
+                                                        placeholder="" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Nama Lengkap</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="nama" class="form-control" placeholder=""
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Alamat Email</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="email" class="form-control" placeholder=""
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Nomor Telepon</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="nomor" class="form-control"
+                                                        placeholder="" required>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Nama Lengkap</label>
-                                            <div class="input-group">
-                                                <input type="text" name="nama" class="form-control" placeholder=""
-                                                    required>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label for="">Instansi</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="instansi" class="form-control"
+                                                        placeholder="" required>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Alamat Email</label>
-                                            <div class="input-group">
-                                                <input type="text" name="email" class="form-control" placeholder=""
-                                                    required>
+                                            <div class="form-group">
+                                                <label for="">Jabatan</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="jabatan" class="form-control"
+                                                        placeholder="" required>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Nomor Telepon</label>
-                                            <div class="input-group">
-                                                <input type="number" name="nomor" class="form-control" placeholder=""
-                                                    required>
+                                            <div class="form-group">
+                                                <label for="">Perihal</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="perihal" class="form-control"
+                                                        placeholder="" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Jumlah Tamu</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="jumlah_tamu" class="form-control"
+                                                        placeholder="" required>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md">
-                                        <div class="form-group">
-                                            <label for="">Instansi</label>
-                                            <div class="input-group">
-                                                <input type="text" name="instansi" class="form-control" placeholder=""
-                                                    required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Jabatan</label>
-                                            <div class="input-group">
-                                                <input type="text" name="jabatan" class="form-control" placeholder=""
-                                                    required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Perihal</label>
-                                            <div class="input-group">
-                                                <input type="text" name="perihal" class="form-control" placeholder=""
-                                                    required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Jumlah Tamu</label>
-                                            <div class="input-group">
-                                                <input type="number" name="jumlah_tamu" class="form-control"
-                                                    placeholder="" required>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!-- /.card-body -->
+                                    </p>
                                 </div>
-                                <!-- /.card-body -->
-                                </p>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="reset" class="btn btn-danger">Reset</button>
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
+                                </form>
                             </div>
-                            <div class="modal-footer justify-content-between">
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        </section><!-- End About Section -->
+                </div>
+            </section><!-- End About Section -->
 
 
     </main><!-- End #main -->

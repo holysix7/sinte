@@ -111,18 +111,34 @@
                             <?php } ?>
 
                             <?php if ($user == 'superadmin' || $user == 'admin') { ?>
+                                <!-- Card Body -->
+                                <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>"
+                                    readonly>
+                                <input type="hidden" class="form-control" id="dataLabelChart"
+                                    value="<?= $data_label ?>" readonly>
+                                    
+                                    <?php if($user == 'superadmin'){ ?>
                                 <div class="col-xl-4">
+                                    <?php } ?>
+                                    <?php if($user == 'admin'){ ?>
+                                        <div class="col-xl-12">
+                                        <?php } ?>
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
+                                         
+                                    <?php if($user == 'superadmin'){ ?>
                                         <div
                                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                             <h6 class="m-0 font-weight-bold text-primary">Grafik Data Master</h6>
                                         </div>
-                                        <!-- Card Body -->
-                                        <input type="hidden" class="form-control" id="dataBarChart" value="<?= $data_bar ?>"
-                                            readonly>
-                                        <input type="hidden" class="form-control" id="dataLabelChart"
-                                            value="<?= $data_label ?>" readonly>
+                                        <?php } ?>
+                                        
+                                    <?php if($user == 'admin'){ ?>
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Kerja Praktik</h6>
+                                        </div>
+                                        <?php } ?>
                                         <div class="card-body" style="height: 350px !important;">
                                             <div class="chart-area">
                                                 <div class="chartjs-size-monitor">
@@ -140,12 +156,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <?php if($user == 'superadmin'){ ?>
                                 <div class="col-xl-4">
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
                                         <div
                                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Kerja Prakik</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Grafik Kerja Praktik</h6>
                                         </div>
                                         <div class="card-body" style="height: 350px !important;">
                                             <div class="chart-area">
@@ -164,6 +182,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <?php } ?>
+                                <?php if($user == 'superadmin'){ ?>
                                 <div class="col-xl-4">
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
@@ -187,10 +207,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <?php } ?>
                             <?php } ?>
                         </div>
                     <?php } ?>
 
+                    <?php if($user == 'superadmin'){ ?>
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
                                 var ctx = document.getElementById('namePieChart').getContext('2d');
@@ -258,6 +280,7 @@
                                 });
                             });
                         </script>
+                        <?php } ?>
 
                         <br>
                         <!-- ======= bigdata ======= -->

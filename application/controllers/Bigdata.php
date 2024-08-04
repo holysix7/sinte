@@ -203,6 +203,15 @@ class Bigdata extends CI_Controller
         </div>');
         redirect('bigdata/view');
     }
+    public function hapus_foto($id_bigdata, $id_foto)
+    {
+        $this->M_fotokegiatan->hapus_data($id_foto);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-trash"></i> Data dihapus!</h5>
+        </div>');
+        redirect("bigdata/detailFoto/{$id_bigdata}");
+    }
 
 
     public function proses_edit_data()

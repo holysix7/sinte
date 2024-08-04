@@ -174,9 +174,9 @@ class M_bigdata extends CI_Model
 
     public function getRedirectKp($id)
     {
-        $this->db->order_by('id_bigdata', 'DESC');
-        $this->db->where('id_bigdata', $id);
-        $query = $this->db->get('bigdata');
+        $query = $this->db->query("SELECT a.*, b.id as id_status, b.status_bigdata 
+        from bigdata a LEFT JOIN status b ON a.id_bigdata = b.id_bigdata 
+        WHERE a.id_bigdata = $id");
         return $query->result_array();
     }
 
@@ -211,8 +211,9 @@ class M_bigdata extends CI_Model
         $this->db->from('bigdata');
         return $this->db->count_all_results();
     }
-    
-    public function hapus_data_byeservice($id_eservice){
+
+    public function hapus_data_byeservice($id_eservice)
+    {
         $this->db->where('id_eservice', $id_eservice);
         $this->db->delete('bigdata');
     }

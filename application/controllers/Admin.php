@@ -50,7 +50,7 @@ class Admin extends CI_Controller
                 "Bigdata",
                 "Multimedia",
                 "Publikasi",
-                "KP",
+                "Data Diri Peserta Kerja Praktik",
                 "Surat Pengajuan"
             ];
         } elseif ($this->session->userdata('level') == 2) {
@@ -60,7 +60,7 @@ class Admin extends CI_Controller
                 $suratpengajuan['counted'],
             ];
             $data_label = [
-                "KP",
+                "Data Diri Peserta Kerja Praktik",
                 "Surat Pengajuan"
             ];
         } elseif ($this->session->userdata('level') == 3) {
@@ -74,10 +74,10 @@ class Admin extends CI_Controller
                 "E-Service"
             ];
             $data['total_data'] = [
-                'Total Data'        => $this->M_eservice->total_data(),
-                'Data Hari Ini'     => $this->M_eservice->count_today_records(),
-                'Data Bulan Ini'    => $this->M_eservice->count_current_month_records(),
-                'Data Tahun Ini'    => $this->M_eservice->count_current_year_records()
+                'Total Data' => $this->M_eservice->total_data(),
+                'Data Hari Ini' => $this->M_eservice->count_today_records(),
+                'Data Bulan Ini' => $this->M_eservice->count_current_month_records(),
+                'Data Tahun Ini' => $this->M_eservice->count_current_year_records()
             ];
 
         } elseif ($this->session->userdata('level') == 5) {
@@ -89,10 +89,10 @@ class Admin extends CI_Controller
                 "Aplikasi",
             ];
             $data['total_data'] = [
-                'Total Data'        => $this->M_aplikasi->total_data(),
-                'Data Hari Ini'     => $this->M_aplikasi->count_today_records(),
-                'Data Bulan Ini'    => $this->M_aplikasi->count_current_month_records(),
-                'Data Tahun Ini'    => $this->M_aplikasi->count_current_year_records()
+                'Total Data' => $this->M_aplikasi->total_data(),
+                'Data Hari Ini' => $this->M_aplikasi->count_today_records(),
+                'Data Bulan Ini' => $this->M_aplikasi->count_current_month_records(),
+                'Data Tahun Ini' => $this->M_aplikasi->count_current_year_records()
             ];
         } elseif ($this->session->userdata('level') == 6) {
             $data['user'] = 'devbigdata';
@@ -103,10 +103,10 @@ class Admin extends CI_Controller
                 "Bigdata",
             ];
             $data['total_data'] = [
-                'Total Data'        => $this->M_bigdata->total_data(),
-                'Data Hari Ini'     => $this->M_bigdata->count_today_records(),
-                'Data Bulan Ini'    => $this->M_bigdata->count_current_month_records(),
-                'Data Tahun Ini'    => $this->M_bigdata->count_current_year_records()
+                'Total Data' => $this->M_bigdata->total_data(),
+                'Data Hari Ini' => $this->M_bigdata->count_today_records(),
+                'Data Bulan Ini' => $this->M_bigdata->count_current_month_records(),
+                'Data Tahun Ini' => $this->M_bigdata->count_current_year_records()
             ];
         } elseif ($this->session->userdata('level') == 7) {
             $data['user'] = 'devmultimedia';
@@ -117,10 +117,10 @@ class Admin extends CI_Controller
                 "Multimedia",
             ];
             $data['total_data'] = [
-                'Total Data'        => $this->M_multimedia->total_data(),
-                'Data Hari Ini'     => $this->M_multimedia->count_today_records(),
-                'Data Bulan Ini'    => $this->M_multimedia->count_current_month_records(),
-                'Data Tahun Ini'    => $this->M_multimedia->count_current_year_records()
+                'Total Data' => $this->M_multimedia->total_data(),
+                'Data Hari Ini' => $this->M_multimedia->count_today_records(),
+                'Data Bulan Ini' => $this->M_multimedia->count_current_month_records(),
+                'Data Tahun Ini' => $this->M_multimedia->count_current_year_records()
             ];
         } elseif ($this->session->userdata('level') == 8) {
             $data['user'] = 'devpublikasi';
@@ -131,10 +131,10 @@ class Admin extends CI_Controller
                 "Publikasi"
             ];
             $data['total_data'] = [
-                'Total Data'        => $this->M_publikasi->total_data(),
-                'Data Hari Ini'     => $this->M_publikasi->count_today_records(),
-                'Data Bulan Ini'    => $this->M_publikasi->count_current_month_records(),
-                'Data Tahun Ini'    => $this->M_publikasi->count_current_year_records()
+                'Total Data' => $this->M_publikasi->total_data(),
+                'Data Hari Ini' => $this->M_publikasi->count_today_records(),
+                'Data Bulan Ini' => $this->M_publikasi->count_current_month_records(),
+                'Data Tahun Ini' => $this->M_publikasi->count_current_year_records()
             ];
         }
         $data['data_bar'] = '[' . implode(',', $data_bar) . ']';
@@ -170,9 +170,9 @@ class Admin extends CI_Controller
         $data['multimedia'] = $this->M_multimedia->dataMingguIni()['data'];
         $data['jumlah_multimedia'] = $this->M_multimedia->dataMingguIni()['counted'];
 
-        if($data['user'] == 'superadmin'){
+        if ($data['user'] == 'superadmin') {
             $data['name_data'] = $this->M_tamu->get_name_data();
-        }else{
+        } else {
             $data['name_data'] = $this->model_surat->get_name_data();
         }
 
@@ -997,13 +997,13 @@ class Admin extends CI_Controller
         } else {
             if ($this->session->userdata('level') == 4) {
                 $data['user'] = 'deveservice';
-            }elseif($this->session->userdata('level') == 5){
+            } elseif ($this->session->userdata('level') == 5) {
                 $data['user'] = 'devaplikasi';
-            }elseif($this->session->userdata('level') == 6){
+            } elseif ($this->session->userdata('level') == 6) {
                 $data['user'] = 'devbigdata';
-            }elseif($this->session->userdata('level') == 7){
+            } elseif ($this->session->userdata('level') == 7) {
                 $data['user'] = 'devmultimedia';
-            }elseif($this->session->userdata('level') == 8){
+            } elseif ($this->session->userdata('level') == 8) {
                 $data['user'] = 'devpublikasi';
             }
         }

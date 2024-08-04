@@ -82,11 +82,14 @@ class M_eservice extends CI_Model
 
     public function proses_tambah_data()
     {
+        $tz = 'Asia/Jakarta';
+        $dt = new DateTime("now", new DateTimeZone($tz));
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "tgl_dibuat" => date('Y-m-d'),
+            "updated_at" => $dt->format('Y-m-d h:i:s')
         ];
         $this->db->insert('eservice', $data);
         return $this->db->insert_id();
@@ -94,15 +97,28 @@ class M_eservice extends CI_Model
 
     public function proses_edit_data()
     {
+        $tz = 'Asia/Jakarta';
+        $dt = new DateTime("now", new DateTimeZone($tz));
         $data = [
             "tgl_kegiatan" => $this->input->post('tgl_kegiatan'),
             "nama_kegiatan" => $this->input->post('nama_kegiatan'),
             "jumlah_peserta" => $this->input->post('jumlah_peserta'),
             "tgl_dibuat" => $this->input->post('tgl_kegiatan'),
+            "updated_at" => $dt->format('Y-m-d h:i:s')
         ];
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('eservice', $data);
     }
+
+    public function proses_edit_status()
+    {
+        $data = [
+            'status' => $this->input->post('status'),
+        ];
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('eservice', $data);
+    }
+
     public function dataHariIni()
     {
         $data = $this->db->get_where('eservice', array('tgl_dibuat' => date('Y-m-d')))->result_array();
@@ -136,9 +152,9 @@ class M_eservice extends CI_Model
 
     public function getRedirectApp($id)
     {
-        $this->db->order_by('id', 'DESC');
-        $data = $this->db->get('eservice');
-        return $data->result_array();
+
+        $query = $this->db->query("SELECT a.*, b.id as id_status, b.status_eservice from eservice a LEFT JOIN status b ON a.id = b.id_eservice WHERE a.id = $id");
+        return $query->result_array();
     }
 
     public function total_data()
